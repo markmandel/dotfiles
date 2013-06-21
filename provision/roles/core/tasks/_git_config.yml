@@ -1,7 +1,3 @@
 ---
-- name: set git email
-  command: git config --global user.email "mark.mandel@gmail.com"
-- name: set git user name
-  command: git config --global user.name "Mark Mandel"
-- name: set git tracking
-  command: git config --global push.default tracking
+- name: copy git config file
+  copy: src=gitconfig dest=~/.gitconfig mode=0664
