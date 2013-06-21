@@ -1,8 +1,10 @@
 ---
-#synergy
+#standard packages
 - name: Install Synergy
   apt: pkg=synergy
   sudo: yes
+- name: synaptic
+  apt: pkg=synaptic
 
 #git config
 - include: _git_config.yml
@@ -13,5 +15,3 @@
   register: dropbox_installed
 - include: _dropbox.yml
   when: (not dropbox_installed.stdout)
-
-
