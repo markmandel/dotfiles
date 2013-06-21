@@ -10,5 +10,3 @@
   register: dropbox_installed
 - include: _dropbox.yml
   when: (not dropbox_installed.stdout)
-- name: Dropbox likes gpgme (make sure it goes across the board).
-  apt: pkg=python-gpgme
