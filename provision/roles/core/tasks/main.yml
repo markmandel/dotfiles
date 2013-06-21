@@ -5,6 +5,7 @@
   sudo: yes
 - name: synaptic
   apt: pkg=synaptic
+  sudo: yes
 
 #git config
 - include: _git_config.yml
