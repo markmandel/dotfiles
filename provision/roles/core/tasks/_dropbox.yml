@@ -7,7 +7,7 @@
   apt: pkg=gdebi-core
   sudo: true
 - name: install dropbox
-  command: gdebi /tmp/install_dropbox/dropbox.deb
+  command: gdebi -n /tmp/install_dropbox/dropbox.deb
   sudo: true
 - name: clean up
   file: path=/tmp/install_dropbox state=absent

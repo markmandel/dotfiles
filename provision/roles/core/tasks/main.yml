@@ -6,7 +6,7 @@
 
 #dropbox
 - name: See if dropbox is installed
-  shell: ls /usr/bin | grep dropbox
+  command: find /usr/bin/ -name 'dropbox'
   register: dropbox_installed
 - include: _dropbox.yml
   when: (not dropbox_installed.stdout)
