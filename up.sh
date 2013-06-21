@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x verbose #echo on
+#set -x verbose #echo on
 
 #only add the bare necessities to get started. Everything else should be ansible.
 workspace="$HOME/workspace"

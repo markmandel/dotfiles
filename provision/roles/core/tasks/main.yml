@@ -3,3 +3,10 @@
 - name: Install Synergy
   apt: pkg=synergy
   sudo: yes
+
+#dropbox
+- name: See if dropbox is installed
+  shell: ls /usr/bin | grep dropbox
+  register: dropbox_installed
+- include: _dropbox.yml
+  when: (not dropbox_installed.stdout)

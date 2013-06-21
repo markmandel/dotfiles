@@ -1,0 +1,13 @@
+---
+- name: create install dir
+  file: path=/tmp/install_dropbox state=directory
+- name: download dropbox
+  command:  "wget -O /tmp/install_dropbox/dropbox.deb https://www.dropbox.com/download\\?dl\\=packages/ubuntu/dropbox_1.6.0_amd64.deb"
+- name: make sure we have gdebi
+  apt: pkg=gdebi-core
+  sudo: true
+- name: install dropbox
+  command: gdebi /tmp/install_dropbox/dropbox.deb
+  sudo: true
+- name: clean up
+  file: path=/tmp/install_dropbox state=absent
