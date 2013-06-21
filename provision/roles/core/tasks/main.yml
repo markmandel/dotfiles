@@ -2,3 +2,4 @@
 #synergy
 - name: Install Synergy
   apt: pkg=synergy
+  sudo: yes
