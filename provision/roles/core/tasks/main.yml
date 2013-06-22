@@ -6,6 +6,12 @@
 - name: synaptic
   apt: pkg=synaptic
   sudo: yes
+- name: nautlis terminal
+  apt: pkg=nautilus-open-terminal
+  sudo: yes
+- name: nautlius wipe
+  apt: pkg=nautilus-wipe
+  sudo: true
 
 #git config
 - include: _git_config.yml

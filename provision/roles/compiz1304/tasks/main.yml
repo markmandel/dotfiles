@@ -1,8 +1,13 @@
 ---
 - name: ensure compizconfig is installed
   apt: pkg=python-compizconfig
+  sudo: yes
 - name: install ccsm
   apt: pkg=compizconfig-settings-manager
+  sudo: yes
+- name: install compiz plugins
+  apt: pkg=compiz-plugins
+  sudo: yes
 - name: make work directory
   file: path=/tmp/compiz_import state=directory
 - name: copy import script
