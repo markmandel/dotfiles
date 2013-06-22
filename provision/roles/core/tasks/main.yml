@@ -16,3 +16,10 @@
   register: dropbox_installed
 - include: _dropbox.yml
   when: (not dropbox_installed.stdout)
+
+#chrome
+- name: See if chrome is installed
+  command: find /usr/bin -name 'google-chrome'
+  register: chrome_installed
+- include: _google_chrome.yml
+  when: (not chrome_installed.stdout)

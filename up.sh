@@ -7,8 +7,6 @@ ansible="$workspace/ansible"
 ansible_git="git@github.com:markmandel/ansible.git"
 dot_files="$workspace/dotfiles"
 
-sudo apt-get install python python-yaml python-jinja2
-
 if [ -d $workspace ]; then
 
 	#provision ansible itself
