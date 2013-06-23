@@ -1,0 +1,7 @@
+- name: guake
+  apt: pkg=guake
+  sudo: true
+- name: install guake schema
+  command: gconftool-2 --install-schema-file=/usr/share/gconf/schemas/guake.schemas
+- name: create startp script
+  copy: src=guake.desktop dest=/home/mark/.config/autostart/guake.desktop

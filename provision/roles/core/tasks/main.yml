@@ -1,4 +1,21 @@
 ---
+#clean out some stuff
+- name: remove music dash
+  apt: pkg=unity-lens-music state=absent purge=yes
+  sudo: yes
+- name: remove photos dash
+  apt: pkg=unity-lens-photos state=absent purge=yes
+  sudo: yes
+- name: remove shopping dash
+  apt: pkg=unity-lens-shopping state=absent purge=yes
+  sudo: yes  
+- name: remove video dash
+  apt: pkg=unity-lens-video state=absent purge=yes
+  sudo: yes  
+- name: remove music store dash
+  apt: pkg=unity-scope-musicstores state=absent purge=yes
+  sudo: yes
+
 #standard packages
 - name: Install Synergy
   apt: pkg=synergy
@@ -11,6 +28,9 @@
   sudo: yes
 - name: nautlius wipe
   apt: pkg=nautilus-wipe
+  sudo: true
+- name: gedit plugins
+  apt: pkg=gedit-plugins
   sudo: true
 
 #git config
@@ -29,3 +49,12 @@
   register: chrome_installed
 - include: _google_chrome.yml
   when: (not chrome_installed.stdout)
+
+#zsh
+- include: _oh_my_zsh.yml
+
+#tmux
+- include: _tmux.yml
+
+#guake
+- include: _guake.yml

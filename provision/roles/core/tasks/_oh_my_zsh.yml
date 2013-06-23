@@ -1,0 +1,16 @@
+---
+# https://gist.github.com/tsabat/1498393
+- name: See if zsh is installed
+  shell: "[ -d ~/.oh-my-zsh ] && echo 'Found' || echo ''"
+  register: zsh_installed
+- name: zsh
+  apt: pkg=zsh
+  sudo: yes
+- name: zshrc config
+  copy: src=zshrc dest=~/.zshrc
+- name: install oh my zsh
+  shell: wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+  when: (not zsh_installed.stdout)
+- name: switch to zsh
+  command: chsh -s `which zsh`
+  when: (not zsh_installed.stdout)
