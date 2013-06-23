@@ -8,4 +8,4 @@ savefile=sys.argv[-1]
 
 context=compizconfig.Context()
 
-context.Import(savefile)
+context.Import(savefile, True)

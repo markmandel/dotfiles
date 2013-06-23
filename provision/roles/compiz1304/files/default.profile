@@ -420,7 +420,7 @@ s0_toggle_sticky_key = Disabled
 s0_activate_demands_attention_key = Disabled
 
 [core]
-s0_active_plugins = core;ccp;composite;opengl;compiztoolbox;decor;place;grid;copytex;resize;regex;move;vpswitch;snap;gnomecompat;mousepoll;imgpng;session;animation;wall;workarounds;expo;unitymtgrabhandles;ezoom;fade;scale;unityshell;
+s0_active_plugins = core;composite;opengl;decor;imgpng;mousepoll;resize;compiztoolbox;place;vpswitch;gnomecompat;unitymtgrabhandles;move;put;wall;snap;grid;regex;animation;copytex;expo;session;ezoom;workarounds;fade;scale;unityshell;
 s0_audible_bell = true
 s0_ignore_hints_when_maximized = true
 s0_hide_skip_taskbar_windows = true
@@ -1224,9 +1224,9 @@ s0_put_empty_bottomright_key = Disabled
 s0_put_empty_bottomright_button = Disabled
 s0_put_restore_key = <Super>KP_Insert
 s0_put_restore_button = Disabled
-s0_put_pointer_key = <Super>z
+s0_put_pointer_key = Disabled
 s0_put_pointer_button = Disabled
-s0_put_next_output_key = Disabled
+s0_put_next_output_key = <Super>z
 s0_put_next_output_button = Disabled
 s0_pad_left = 0
 s0_pad_right = 0
@@ -1235,7 +1235,7 @@ s0_pad_bottom = 0
 s0_unfocus_window = false
 s0_window_center = false
 s0_avoid_offscreen = false
-s0_speed = 2.500000
+s0_speed = 5.000000
 s0_timestep = 0.500000
 
 [splash]
