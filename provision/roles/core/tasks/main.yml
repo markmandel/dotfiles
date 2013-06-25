@@ -1,4 +1,12 @@
 ---
+#partner repo
+- name: partner repository
+  apt_repository: repo='deb http://archive.canonical.com/ubuntu raring partner'
+  sudo: yes
+- name: partner repository (src)
+  apt_repository: repo='deb-src http://archive.canonical.com/ubuntu raring partner'
+  sudo: yes
+  
 #clean out some stuff
 - name: remove music dash
   apt: pkg=unity-lens-music state=absent purge=yes
