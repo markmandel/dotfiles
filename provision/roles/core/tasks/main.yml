@@ -40,6 +40,9 @@
 - name: gedit plugins
   apt: pkg=gedit-plugins
   sudo: true
+- name: htop
+  apt: pkg=htop
+  sudo: true
 
 #git config
 - include: _git_config.yml
