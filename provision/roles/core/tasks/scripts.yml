@@ -1,0 +1,3 @@
+---
+- name: scripts symlink
+  file: path="~/scripts" src="~/Dropbox/scripts" state=link

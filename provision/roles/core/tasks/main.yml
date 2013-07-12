@@ -61,11 +61,8 @@
 - include: _google_chrome.yml
   when: (not chrome_installed.stdout)
 
-#zsh
+
 - include: _oh_my_zsh.yml
-
-#tmux
 - include: _tmux.yml
-
-#guake
 - include: _guake.yml
+- include: scripts.yml
