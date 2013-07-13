@@ -43,6 +43,10 @@
 - name: htop
   apt: pkg=htop
   sudo: true
+- name: meld
+  apt: pkg=meld
+  sudo: true
+
 
 #git config
 - include: _git_config.yml
