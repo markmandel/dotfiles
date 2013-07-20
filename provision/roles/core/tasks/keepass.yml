@@ -1,0 +1,10 @@
+---
+- name: keepass
+  apt: pkg=keepass2
+  sudo: yes
+- name: ppa for indicator
+  apt_repository: repo=ppa:dlech/keepass2-plugins
+  sudo: true
+- name: keepaass unity indicator
+  apt: pkg=keepass2-plugin-application-indicator
+  sudo: yes
