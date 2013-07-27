@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo apt-get install git python python-yaml python-jinja2
+sudo apt-get install git python python-yaml python-jinja2 aptitude
 cd ~
 mkdir workspace
 cd workspace

@@ -8,3 +8,6 @@
 - name: keepaass unity indicator
   apt: pkg=keepass2-plugin-application-indicator
   sudo: yes
+- name: xdotool
+  apt: pkg=xdotool
+  sudo: yes
