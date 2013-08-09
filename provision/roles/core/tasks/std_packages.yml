@@ -1,34 +1,25 @@
 ---
 - name: Install Synergy
   apt: pkg=synergy
-  sudo: yes
 - name: synaptic
   apt: pkg=synaptic
-  sudo: yes
 - name: nautlis terminal
   apt: pkg=nautilus-open-terminal
-  sudo: yes
 - name: nautlius wipe
   apt: pkg=nautilus-wipe
-  sudo: true
 - name: gedit plugins
   apt: pkg=gedit-plugins
-  sudo: true
 - name: htop
   apt: pkg=htop
-  sudo: true
 - name: meld
   apt: pkg=meld
-  sudo: true
 - name: ubuntu-restricted-extras
   apt: pkg=ubuntu-restricted-extras
-  sudo: true
 - name: Tweak tool
   apt: pkg=unity-tweak-tool
-  sudo: yes
 - name: skype
   apt: pkg=skype
-  sudo: true
 - name: clipit
   apt: pkg=clipit
-  sudo: true
+- name: alacarte
+  apt: pkg=alacarte

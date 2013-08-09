@@ -26,6 +26,7 @@
 
 #standard packages
 - include: std_packages.yml
+  sudo: true
 
 #git config
 - include: _git_config.yml
