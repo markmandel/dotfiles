@@ -23,3 +23,12 @@
 - name: ubuntu-restricted-extras
   apt: pkg=ubuntu-restricted-extras
   sudo: true
+- name: Tweak tool
+  apt: pkg=unity-tweak-tool
+  sudo: yes
+- name: skype
+  apt: pkg=skype
+  sudo: true
+- name: clipit
+  apt: pkg=clipit
+  sudo: true

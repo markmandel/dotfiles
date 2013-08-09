@@ -1,0 +1,5 @@
+---
+- include: install_java.yml
+- include: guayadeque.yml
+  sudo: true
+- include: symlink_dirs.yml

@@ -8,6 +8,7 @@
   sudo: true
 - name: Dropbox likes gpgme
   apt: pkg=python-gpgme
+  sudo: true
 - name: install dropbox
   command: gdebi -n /tmp/install_dropbox/dropbox.deb
   sudo: true

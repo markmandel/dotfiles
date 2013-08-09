@@ -50,3 +50,4 @@
 - include: _guake.yml
 - include: scripts.yml
 - include: keepass.yml
+- include: clipit.yml

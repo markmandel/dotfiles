@@ -4,3 +4,6 @@
   sudo: true
 - name: copy tmux config
   copy: src=tmux.conf dest=~/.tmux.conf
+- name: install xclip for clipboard management
+  apt: pkg=xclip
+  sudo: true

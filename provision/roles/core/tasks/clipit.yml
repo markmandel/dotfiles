@@ -1,0 +1,5 @@
+- name: clipit
+  apt: pkg=clipit
+  sudo: true
+- name: create clipit startup script
+  copy: src=clipit.desktop dest=/home/mark/.config/autostart/clipit.desktop
