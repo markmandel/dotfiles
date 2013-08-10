@@ -44,6 +44,8 @@
   register: chrome_installed
 - include: _google_chrome.yml
   when: (not chrome_installed.stdout)
+- name: move buttons to the left
+  command: gconftool-2 --set /apps/metacity/general/button_layout --type string "close,minimize,maximize:"
 
 
 - include: _oh_my_zsh.yml

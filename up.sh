@@ -31,20 +31,14 @@ if [ -d $workspace ]; then
 	cd $dot_files
 	git pull --rebase
 
+	#control which playbook is run from which machine by a .playbook file
+	cd $dot_files
+	playbook=`cat .playbook`.yml
+	echo "Playbook is: ${playbook}"
+
 	cd $dot_files/provision
-	echo "Which machine are you?"
-	select sp in "Primary" "Secondary"; do
-		case $sp in
-			Primary ) 
-				ansible-playbook -vvv -K -i hosts primary.yml
-				break				
-				;;
-			Secondary ) 
-				ansible-playbook -vvv -K -i hosts secondary.yml
-				break
-				;;
-		esac
-	done
+
+	ansible-playbook -vvv -K -i hosts $playbook
 
 else
 	echo "$workspace does not exist. WTF?"
