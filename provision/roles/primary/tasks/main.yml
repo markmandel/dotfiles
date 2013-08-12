@@ -7,3 +7,4 @@
   sudo: true
 - include: clean_packages.yml
   sudo: true
+- include: rvm.yml

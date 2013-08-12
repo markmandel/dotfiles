@@ -1,7 +1,7 @@
 ---
 #Music
 - name: stat Music dir
-  stat: path=/home/mark/Music
+  stat: path=~/Music
   register: st
 - debug: msg="Music folder is Exists; {{ st.stat.exists }} | isDir; {{ st.stat.isdir }}"
 - name: Delete the original Music folder
@@ -12,7 +12,7 @@
 
 #Pictures
 - name: stat Pictures dir
-  stat: path=/home/mark/Pictures
+  stat: path=~/Pictures
   register: st
 - debug: msg="Pictures folder is Exists; {{ st.stat.exists }} | isDir; {{ st.stat.isdir }}"
 - name: Delete the original Pictures folder
@@ -23,7 +23,7 @@
 
 #Videos
 - name: stat Videos dir
-  stat: path=/home/mark/Videos
+  stat: path=~/Videos
   register: st
 - debug: msg="Videos folder is Exists; {{ st.stat.exists }} | isDir; {{ st.stat.isdir }}"
 - name: Delete the original Videos folder
