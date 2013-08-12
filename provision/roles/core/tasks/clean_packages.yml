@@ -1,0 +1,13 @@
+---
+- name: remove music dash
+  apt: pkg=unity-lens-music state=absent purge=yes
+- name: remove photos dash
+  apt: pkg=unity-lens-photos state=absent purge=yes
+- name: remove shopping dash
+  apt: pkg=unity-lens-shopping state=absent purge=yes
+- name: remove video dash
+  apt: pkg=unity-lens-video state=absent purge=yes
+- name: remove music store dash
+  apt: pkg=unity-scope-musicstores state=absent purge=yes
+- name: remove thunderbird
+  apt: pkg=thunderbird state=absent purge=yes

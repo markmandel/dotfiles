@@ -1,0 +1,6 @@
+---
+- name: Install Pimary Standard Packages
+  apt: pkg={{ item }}
+  with_items:
+    - sshfs
+    - mysql-client

@@ -8,20 +8,7 @@
   sudo: yes
   
 #clean out some stuff
-- name: remove music dash
-  apt: pkg=unity-lens-music state=absent purge=yes
-  sudo: yes
-- name: remove photos dash
-  apt: pkg=unity-lens-photos state=absent purge=yes
-  sudo: yes
-- name: remove shopping dash
-  apt: pkg=unity-lens-shopping state=absent purge=yes
-  sudo: yes  
-- name: remove video dash
-  apt: pkg=unity-lens-video state=absent purge=yes
-  sudo: yes  
-- name: remove music store dash
-  apt: pkg=unity-scope-musicstores state=absent purge=yes
+- include: clean_packages.yml
   sudo: yes
 
 #standard packages
@@ -54,3 +41,7 @@
 - include: scripts.yml
 - include: keepass.yml
 - include: clipit.yml
+
+#extra dash lenses
+- include: dash_lenses.yml
+  sudo: true

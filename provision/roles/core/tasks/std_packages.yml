@@ -1,25 +1,17 @@
 ---
-- name: Install Synergy
-  apt: pkg=synergy
-- name: synaptic
-  apt: pkg=synaptic
-- name: nautlis terminal
-  apt: pkg=nautilus-open-terminal
-- name: nautlius wipe
-  apt: pkg=nautilus-wipe
-- name: gedit plugins
-  apt: pkg=gedit-plugins
-- name: htop
-  apt: pkg=htop
-- name: meld
-  apt: pkg=meld
-- name: ubuntu-restricted-extras
-  apt: pkg=ubuntu-restricted-extras
-- name: Tweak tool
-  apt: pkg=unity-tweak-tool
-- name: skype
-  apt: pkg=skype
-- name: clipit
-  apt: pkg=clipit
-- name: alacarte
-  apt: pkg=alacarte
+- name: Install core standard packages
+  apt: pkg={{ item }}
+  with_items:
+    - synergy
+    - synaptic
+    - nautilus-open-terminal
+    - nautilus-wipe
+    - gedit-plugins
+    - htop
+    - meld
+    - ubuntu-restricted-extras
+    - unity-tweak-tool
+    - skype
+    - clipit
+    - alacarte
+    - p7zip-full
