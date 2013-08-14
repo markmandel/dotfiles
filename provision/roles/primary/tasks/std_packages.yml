@@ -1,6 +1,7 @@
 ---
-- name: Install Pimary Standard Packages
+- name: Install Primary Standard Packages
   apt: pkg={{ item }}
   with_items:
     - sshfs
     - mysql-client
+    - puddletag
