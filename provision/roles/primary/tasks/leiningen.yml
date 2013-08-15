@@ -1,0 +1,12 @@
+---
+- name: Check if Leiningen is installed
+  stat: path="/usr/local/bin/lein"
+  register: lein_stat
+- name: Download Leiningen
+  command: wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O /usr/local/bin/lein
+  sudo: true
+  when: not lein_stat.stat.exists
+- name: Make sure lein is executable
+  file: path=/usr/local/bin/lein mode=0755
+  sudo: true
+

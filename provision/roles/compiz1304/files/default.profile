@@ -1,5 +1,5 @@
 [core]
-s0_active_plugins = core;composite;opengl;copytex;compiztoolbox;decor;resize;gnomecompat;snap;put;dbus;vpswitch;move;regex;place;imgpng;grid;session;animation;mousepoll;unitymtgrabhandles;workarounds;expo;wall;ezoom;fade;scale;unityshell;scaleaddon;scalefilter;
+s0_active_plugins = core;composite;opengl;copytex;compiztoolbox;decor;resize;gnomecompat;snap;put;dbus;vpswitch;move;regex;place;imgpng;grid;session;animation;mousepoll;unitymtgrabhandles;workarounds;expo;wall;ezoom;fade;scale;unityshell;scaleaddon;
 s0_audible_bell = true
 s0_ignore_hints_when_maximized = true
 s0_hide_skip_taskbar_windows = true
@@ -14,7 +14,7 @@ s0_click_to_focus = true
 s0_raise_on_click = true
 s0_autoraise = true
 s0_autoraise_delay = 1000
-s0_focus_prevention_level = 1
+s0_focus_prevention_level = 0
 s0_focus_prevention_match = !(class=Polkit-gnome-authentication-agent-1)
 s0_close_window_key = <Alt>F4
 s0_close_window_button = Disabled
