@@ -1,5 +1,5 @@
 [core]
-s0_active_plugins = core;composite;opengl;copytex;compiztoolbox;decor;resize;gnomecompat;snap;put;dbus;vpswitch;move;regex;place;imgpng;grid;session;animation;mousepoll;unitymtgrabhandles;workarounds;expo;wall;ezoom;fade;scale;unityshell;scaleaddon;
+s0_active_plugins = core;composite;opengl;copytex;compiztoolbox;decor;resize;gnomecompat;snap;put;dbus;vpswitch;move;regex;place;imgpng;grid;session;animation;mousepoll;unitymtgrabhandles;workarounds;expo;wall;ezoom;fade;scale;unityshell;scaleaddon;scalefilter;
 s0_audible_bell = true
 s0_ignore_hints_when_maximized = true
 s0_hide_skip_taskbar_windows = true
