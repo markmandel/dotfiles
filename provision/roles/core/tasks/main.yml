@@ -45,3 +45,6 @@
 #extra dash lenses
 - include: dash_lenses.yml
   sudo: true
+
+- include: install_java.yml
+- include: leiningen.yml

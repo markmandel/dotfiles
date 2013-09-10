@@ -1,5 +1,4 @@
 ---
-- include: install_java.yml
 - include: guayadeque.yml
   sudo: true
 - include: symlink_dirs.yml
@@ -8,4 +7,3 @@
 - include: clean_packages.yml
   sudo: true
 - include: rvm.yml
-- include: leiningen.yml

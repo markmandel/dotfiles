@@ -2,6 +2,8 @@
 #ppa:scopes-packagers/ppa
 - name: dash repository
   apt_repository: repo=ppa:scopes-packagers/ppa
+  notify: apt-update
+- meta: flush_handlers
 - name: install lenses
   apt: pkg={{ item }}
   with_items:
