@@ -1,0 +1,5 @@
+---
+- name: Install Secondary Standard Packages
+  apt: pkg={{ item }}
+  with_items:
+    - openssh-server
