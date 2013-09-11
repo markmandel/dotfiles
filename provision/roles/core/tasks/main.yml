@@ -48,3 +48,9 @@
 
 - include: install_java.yml
 - include: leiningen.yml
+
+- name: check if yaml gedit is installed
+  stat: path=/usr/share/gtksourceview-3.0/language-specs/yaml.lang
+  register: yaml_stat
+- include: yaml_gedit.yml
+  when: not yaml_stat.stat.exists
