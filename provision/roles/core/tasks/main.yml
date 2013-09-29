@@ -54,3 +54,6 @@
   register: yaml_stat
 - include: yaml_gedit.yml
   when: not yaml_stat.stat.exists
+
+- include: drawers.yml
+  sudo: true
