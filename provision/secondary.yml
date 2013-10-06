@@ -5,4 +5,4 @@
   roles:
     - core
     - secondary
-    - compiz1304
+    - xmonad

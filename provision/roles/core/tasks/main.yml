@@ -31,9 +31,6 @@
   register: chrome_installed
 - include: _google_chrome.yml
   when: (not chrome_installed.stdout)
-- name: move buttons to the left
-  command: gconftool-2 --set /apps/metacity/general/button_layout --type string "close,minimize,maximize:"
-
 
 - include: _oh_my_zsh.yml
 - include: _tmux.yml
@@ -41,10 +38,6 @@
 - include: scripts.yml
 - include: keepass.yml
 - include: clipit.yml
-
-#extra dash lenses
-- include: dash_lenses.yml
-  sudo: true
 
 - include: install_java.yml
 - include: leiningen.yml
@@ -54,6 +47,3 @@
   register: yaml_stat
 - include: yaml_gedit.yml
   when: not yaml_stat.stat.exists
-
-- include: drawers.yml
-  sudo: true
