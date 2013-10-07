@@ -7,6 +7,6 @@
 - name: make directory for config
   file: path="~/.xconfig" state=directory
 - name: copy xmonad config
-  copy: src=xmonad.hs dest=~/.xconfig/xmonad.hs
+  copy: src=xmonad.hs dest=~/.xmonad/xmonad.hs
 - name: reset xmonad
   shell: "xmonad --recompile; xmonad --restart"
