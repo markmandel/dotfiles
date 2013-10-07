@@ -3,6 +3,6 @@
   connection: local
   user: mark
   roles:
+    - ubuntu_1304
     - core
     - primary
-    - compiz1304

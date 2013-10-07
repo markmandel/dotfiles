@@ -1,0 +1,8 @@
+---
+#partner repo
+- name: partner repository
+  apt_repository: repo='deb http://archive.canonical.com/ubuntu raring partner'
+  sudo: yes
+- name: partner repository (src)
+  apt_repository: repo='deb-src http://archive.canonical.com/ubuntu raring partner'
+  sudo: yes

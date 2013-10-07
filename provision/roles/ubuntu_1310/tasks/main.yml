@@ -1,0 +1,11 @@
+---
+#partner repo
+- name: partner repository
+  apt_repository: repo='deb http://archive.canonical.com/ubuntu saucy partner'
+  sudo: yes
+  notify: apt-update
+- name: partner repository (src)
+  apt_repository: repo='deb-src http://archive.canonical.com/ubuntu saucy partner'
+  sudo: yes
+  notify: apt-update
+- meta: flush_handlers
