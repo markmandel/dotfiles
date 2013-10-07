@@ -1,0 +1,8 @@
+---
+- name: ppa for xft support
+  apt_repository: repo=ppa:chilicuil/sucklesstools
+  sudo: true
+  notify: apt-update
+- meta: flush_handlers
+- name: update suckless-tools
+  apt: pkg=suckless-tools
