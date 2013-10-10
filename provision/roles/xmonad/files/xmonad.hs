@@ -36,7 +36,7 @@ myManageHook =
 	[
 		className =? "Guake" --> doFloat
 		,isFullscreen --> doFullFloat
-		,isDialog <&&> className =? "jetbrains-idea" --> doIgnore --ignore IntelliJ autocomplete
+		,appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore --ignore IntelliJ autocomplete
 	]
 
 main = xmonad $ gnomeConfig {
@@ -58,6 +58,8 @@ main = xmonad $ gnomeConfig {
 	- scratchpad to replace guake
 	- scratchpad for Keepass
 	- dmenu open-terminal?
+	- is there a way to go backward and forward in workspace history? thinking mod+q to return to last used WS (would need to reset mod+q from reload)
+	- come up with a nicer border colour than red. Please.
 -}
 
 
