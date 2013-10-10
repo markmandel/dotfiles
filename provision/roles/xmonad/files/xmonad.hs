@@ -36,6 +36,7 @@ myManageHook =
 	[
 		className =? "Guake" --> doFloat
 		,isFullscreen --> doFullFloat
+		,isDialog <&&> className =? "jetbrains-idea" --> doIgnore --ignore IntelliJ autocomplete
 	]
 
 main = xmonad $ gnomeConfig {
@@ -50,7 +51,9 @@ main = xmonad $ gnomeConfig {
 
 {-|
 	## TODO list ##
-	- make the 0 workspace work
+	- make the 0 workspace work ((mod .|. shiftMask, xK_0), withFocused (\w -> do { windows $ W.shift "0" }))
+	((mod,xK_0), windows $ W.view "0")
+	((mod .|. shiftMask, xK_0), withFocused (\w -> do { windows $ W.shift "0" }))
 	- work out what is up with Keypass
 	- scratchpad to replace guake
 	- scratchpad for Keepass
