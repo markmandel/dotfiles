@@ -1,9 +1,9 @@
 import XMonad
 import XMonad.Config.Gnome
-import qualified Data.Map as M
-import XMonad.Hooks.ManageHelpers
 import XMonad.Actions.WindowBringer
-
+import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
+import qualified Data.Map as M
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[  ((modm, xK_p), spawn "dmenu_run -l 20 -fn ubuntu-mono-10") 
@@ -20,4 +20,7 @@ main = xmonad gnomeConfig {
 	modMask = mod4Mask,
 	keys = myKeys <+> keys gnomeConfig,
 	manageHook = manageHook gnomeConfig <+> composeAll myManageHook
+	,startupHook = do
+           startupHook gnomeConfig
+           setWMName "LG3D"
 }
