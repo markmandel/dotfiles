@@ -16,3 +16,5 @@
     - alacarte
     - p7zip-full
     - dconf-tools
+    - lftp
+    - sshfs

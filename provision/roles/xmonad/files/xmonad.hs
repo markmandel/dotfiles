@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Config.Gnome
 import XMonad.Actions.WindowBringer
 import XMonad.Actions.GridSelect
+import XMonad.Actions.CycleRecentWS
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
@@ -20,20 +21,32 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
              , xK_KP_Home, xK_KP_Up,    xK_KP_Page_Up   -- 7, 8, 9
              , xK_KP_Insert] -- 0
 
+isTermScratchPad = (className =? "term-scratch")
+isKeepass = (className =? "KeePass2")
+
 myScratchpads = 
 	[
-		NS "keepass2" "keepass2" (className =? "KeePass2") defaultFloating
-		, NS "terminal" "gnome-terminal --disable-factory --class=term-scratch" (className =? "term-scratch") defaultFloating
+		NS "keepass2" "keepass2" isKeepass nonFloating
+		, NS "terminal" "gnome-terminal --disable-factory --class=term-scratch --window-with-profile=Scratchpad -e 'tmux new'" isTermScratchPad nonFloating
 	]
 
 
 -- general keys
 myKeys =
-	[  ((myModKey, xK_p), spawn "dmenu_run -l 20 -fn ubuntu-mono-10") 
+	[  
+	((myModKey, xK_p), spawn "dmenu_run -l 20 -fn ubuntu-mono-10") 
 	, ((myModKey .|. shiftMask, xK_p), spawn "p=`find -type d | dmenu -fn ubuntu-mono-10 -l 20` && nautilus $p")
 	, ((myModKey .|. shiftMask, xK_g), gotoMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
 	, ((myModKey, xK_g), goToSelected defaultGSConfig)
-	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"]) ]
+	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
+	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)
+	]
+	++
+	-- make the 0 button go to the 0 worksapce
+	[
+	((myModKey, xK_0), windows $ W.greedyView "0")
+	, ((myModKey .|. shiftMask, xK_0), withFocused (\w -> do { windows $ W.shift "0" }))
+	]
 	++
 	-- numberpad
 	[((m .|. myModKey, k), windows $ f i)
@@ -49,9 +62,10 @@ myKeys =
 
 myManageHook = 
 	[
-		className =? "Guake" --> doFloat
-		,isFullscreen --> doFullFloat
+		isFullscreen --> doFullFloat
 		,appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore --ignore IntelliJ autocomplete
+		,isTermScratchPad --> doFloat
+		,isKeepass --> doCenterFloat
 	]
 
 main = xmonad $ gnomeConfig {
@@ -67,12 +81,9 @@ main = xmonad $ gnomeConfig {
 
 {-|
 	## TODO list ##
-	- make the 0 workspace work
-	((mod,xK_0), windows $ W.view "0")
-	((mod .|. shiftMask, xK_0), withFocused (\w -> do { windows $ W.shift "0" }))
 	- float scratchpads properly
-	- dmenu open-terminal?
-	- is there a way to go backward and forward in workspace history? thinking mod+q to return to last used WS (would need to reset mod+q from reload)
+	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
+	- dmenu open-terminal?	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
 -}
 
 
