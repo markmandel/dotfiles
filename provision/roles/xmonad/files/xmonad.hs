@@ -23,11 +23,13 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
 
 isTermScratchPad = (className =? "term-scratch")
 isKeepass = (className =? "KeePass2")
+isGuayadeque = (className =? "Guayadeque")
 
 myScratchpads = 
 	[
 		NS "keepass2" "keepass2" isKeepass nonFloating
 		, NS "terminal" "gnome-terminal --disable-factory --class=term-scratch --window-with-profile=Scratchpad -e 'tmux new'" isTermScratchPad nonFloating
+		, NS "guayadeque" "guayadeque" isGuayadeque nonFloating
 	]
 
 
@@ -40,6 +42,8 @@ myKeys =
 	, ((myModKey, xK_g), goToSelected defaultGSConfig)
 	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
 	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)
+    	-- close focused window
+	, ((myModKey, xK_x), kill)
 	]
 	++
 	-- make the 0 button go to the 0 worksapce
@@ -58,6 +62,7 @@ myKeys =
 	[
 		((myModKey .|. shiftMask, xK_k), namedScratchpadAction myScratchpads "keepass2")
 		,((myModKey, xK_F12), namedScratchpadAction myScratchpads "terminal")
+		,((myModKey, xK_F3), namedScratchpadAction myScratchpads "guayadeque")
 	]
 
 myManageHook = 
@@ -66,6 +71,7 @@ myManageHook =
 		,appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore --ignore IntelliJ autocomplete
 		,isTermScratchPad --> doFloat
 		,isKeepass --> doCenterFloat
+		,isGuayadeque --> doCenterFloat
 	]
 
 main = xmonad $ gnomeConfig {
@@ -81,7 +87,6 @@ main = xmonad $ gnomeConfig {
 
 {-|
 	## TODO list ##
-	- float scratchpads properly
 	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
 	- dmenu open-terminal?	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
 -}
