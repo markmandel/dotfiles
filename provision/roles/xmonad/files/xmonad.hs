@@ -60,7 +60,7 @@ myKeys =
 	++
 	-- named scratch pads
 	[
-		((myModKey .|. shiftMask, xK_k), namedScratchpadAction myScratchpads "keepass2")
+		((myModKey .|. controlMask, xK_k), namedScratchpadAction myScratchpads "keepass2")
 		,((myModKey, xK_F12), namedScratchpadAction myScratchpads "terminal")
 		,((myModKey, xK_F3), namedScratchpadAction myScratchpads "guayadeque")
 	]
