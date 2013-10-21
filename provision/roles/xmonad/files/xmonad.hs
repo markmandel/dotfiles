@@ -3,11 +3,13 @@ import XMonad.Config.Gnome
 import XMonad.Actions.WindowBringer
 import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleRecentWS
+import XMonad.Actions.DynamicWorkspaceGroups
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+import XMonad.Prompt
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 
@@ -32,8 +34,13 @@ myScratchpads =
 		, NS "guayadeque" "guayadeque" isGuayadeque nonFloating
 	]
 
+myXPConfig = defaultXPConfig
+	{
+		font = "xft: ubuntu-mono-10"
+		,promptBorderWidth = 0
+	}
 
--- general keys
+-- general keysimport XMonad.Prompt
 myKeys =
 	[  
 	((myModKey, xK_p), spawn "dmenu_run -l 20 -fn ubuntu-mono-10") 
@@ -63,6 +70,13 @@ myKeys =
 		((myModKey .|. controlMask, xK_k), namedScratchpadAction myScratchpads "keepass2")
 		,((myModKey, xK_F12), namedScratchpadAction myScratchpads "terminal")
 		,((myModKey, xK_F3), namedScratchpadAction myScratchpads "guayadeque")
+	]
+	-- dynamic workspace groups
+	++
+	[
+		((myModKey .|. controlMask, xK_a), promptWSGroupAdd myXPConfig "Name this group: ")
+		, ((myModKey, xK_m), promptWSGroupView myXPConfig "Go to group: ")
+		, ((myModKey .|. controlMask, xK_f), promptWSGroupForget myXPConfig "Forget group: ")
 	]
 
 myManageHook = 
