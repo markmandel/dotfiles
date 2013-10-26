@@ -6,6 +6,7 @@ import XMonad.Actions.CycleRecentWS
 import XMonad.Actions.DynamicWorkspaceGroups
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
@@ -40,11 +41,14 @@ myXPConfig = defaultXPConfig
 		,promptBorderWidth = 0
 	}
 
+myDemuConfig = " -l 20 -fn ubuntu-mono-10 "
+
 -- general keysimport XMonad.Prompt
 myKeys =
 	[  
-	((myModKey, xK_p), spawn "dmenu_run -l 20 -fn ubuntu-mono-10") 
-	, ((myModKey .|. shiftMask, xK_p), spawn "p=`find -type d | dmenu -fn ubuntu-mono-10 -l 20` && nautilus $p")
+	((myModKey, xK_p), spawn ("dmenu_run" ++ myDemuConfig)) 
+	, ((myModKey .|. shiftMask, xK_p), spawn ("p=`find -type d | dmenu " ++ myDemuConfig ++ "` && nautilus $p"))
+	, ((myModKey .|. shiftMask .|. controlMask, xK_p), spawn ("p=`echo '' | dmenu -fn ubuntu-mono-10 -p 'Open File v2:'` && d=`locate $p | dmenu" ++ myDemuConfig ++ "` && gnome-open $d"))
 	, ((myModKey .|. shiftMask, xK_g), gotoMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
 	, ((myModKey, xK_g), goToSelected defaultGSConfig)
 	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
@@ -82,26 +86,30 @@ myKeys =
 myManageHook = 
 	[
 		isFullscreen --> doFullFloat
-		,appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore --ignore IntelliJ autocomplete
 		,isTermScratchPad --> doFloat
 		,isKeepass --> doCenterFloat
 		,isGuayadeque --> doCenterFloat
 	]
+	-- IntelliJ Tweaks
+	++
+	[
+		--ignore IntelliJ autocomplete
+		appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore
+	]
 
 main = xmonad $ gnomeConfig {
 	modMask = myModKey
-	,focusedBorderColor = "#008db8"
-	,workspaces = myWorkspaces
-	,layoutHook = smartBorders (layoutHook gnomeConfig)
-	,manageHook = manageHook gnomeConfig <+> composeAll myManageHook
-	,startupHook = do
+	, focusedBorderColor = "#008db8"
+	, workspaces = myWorkspaces
+	, layoutHook = smartBorders (layoutHook gnomeConfig)
+	, manageHook = manageHook gnomeConfig <+> composeAll myManageHook
+	, startupHook = do
            startupHook gnomeConfig
            setWMName "LG3D"
 } `additionalKeys` myKeys
 
 {-|
 	## TODO list ##
-	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
 	- dmenu open-terminal?	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
 -}
 
