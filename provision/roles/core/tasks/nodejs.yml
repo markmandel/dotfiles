@@ -1,0 +1,7 @@
+---
+- name: Install Node
+  apt: pkg={{ item }}
+  with_items:
+    - nodejs
+    - npm
+  sudo: true
