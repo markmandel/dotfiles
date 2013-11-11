@@ -25,7 +25,6 @@
 
 - include: _oh_my_zsh.yml
 - include: _tmux.yml
-- include: _guake.yml
 - include: scripts.yml
 - include: keepass.yml
 - include: clipit.yml
