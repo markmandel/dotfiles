@@ -18,3 +18,4 @@
     - dconf-tools
     - lftp
     - sshfs
+    - autojump
