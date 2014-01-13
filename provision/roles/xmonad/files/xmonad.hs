@@ -28,10 +28,14 @@ isTermScratchPad = (className =? "term-scratch")
 isKeepass = (className =? "KeePass2")
 isGuayadeque = (className =? "Guayadeque")
 
+myTmuxCommand = "tmux -2 new"
+myScratchCommand = "gnome-terminal --disable-factory --class=term-scratch --window-with-profile=Scratchpad -e '" ++ myTmuxCommand ++ "'"
+myTerminal = "gnome-terminal -e '" ++ myTmuxCommand ++ "'"
+
 myScratchpads = 
 	[
 		NS "keepass2" "keepass2" isKeepass nonFloating
-		, NS "terminal" "gnome-terminal --disable-factory --class=term-scratch --window-with-profile=Scratchpad -e 'tmux new'" isTermScratchPad nonFloating
+		, NS "terminal" myScratchCommand isTermScratchPad nonFloating
 		, NS "guayadeque" "guayadeque" isGuayadeque nonFloating
 	]
 
@@ -98,6 +102,7 @@ myManageHook =
 
 main = xmonad $ gnomeConfig {
 	modMask = myModKey
+	, terminal = myTerminal
 	, focusedBorderColor = "#008db8"
 	, workspaces = myWorkspaces
 	, layoutHook = smartBorders (layoutHook gnomeConfig)

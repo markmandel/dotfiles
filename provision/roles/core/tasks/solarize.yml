@@ -1,0 +1,18 @@
+---
+- name: Install solarized requirements
+  apt: pkg={{ item }}
+  with_items:
+    - coreutils
+    - gnome-terminal
+    # - dconf-cli
+  sudo: true
+- name: "Create .solarized dir"
+  file: path="~/.solarized" state=directory
+- name: "Checkout gnome-solarized"
+  git: repo=git://github.com/sigurdga/gnome-terminal-colors-solarized.git dest=~/.solarized/terminal
+- name: "execute the dark installation script"
+  command: /home/mark/.solarized/terminal/install.sh -s dark -p Default
+- name: "Checkout ls-colors-solarized"
+  git: repo=https://github.com/sigurdga/ls-colors-solarized.git dest=~/.solarized/ls
+- name: "symlink dircolors"
+  file: path=~/.dircolors src=/home/mark/.solarized/ls/dircolors state=link

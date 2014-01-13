@@ -43,3 +43,7 @@ if [ -f ~/.rvm/scripts/rvm ]; then
     . ~/.rvm/scripts/rvm
 fi
 
+# tmux + ls + solarized
+if [ -f ~/.dircolors ]; then
+  eval `dircolors ~/.dircolors`
+fi
