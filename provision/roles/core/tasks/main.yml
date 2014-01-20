@@ -32,6 +32,7 @@
 - include: install_java.yml
 - include: leiningen.yml
 - include: nodejs.yml
+- include: window_applet.yml
 
 - name: check if yaml gedit is installed
   stat: path=/usr/share/gtksourceview-3.0/language-specs/yaml.lang

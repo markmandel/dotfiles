@@ -1,0 +1,9 @@
+---
+- name: ppa for webupdate8
+  apt_repository: repo=ppa:nilarimogard/webupd8
+  sudo: true
+  notify: apt-update
+- meta: flush_handlers
+- name: install gnome-window-applets
+  apt: pkg=gnome-window-applets
+  sudo: true

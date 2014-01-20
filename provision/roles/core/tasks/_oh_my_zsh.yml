@@ -12,5 +12,5 @@
   shell: wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
   when: (not zsh_installed.stdout)
 - name: switch to zsh
-  command: chsh -s `which zsh`
+  shell: chsh -s `which zsh`
   when: (not zsh_installed.stdout)
