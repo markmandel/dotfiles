@@ -9,3 +9,8 @@
   sudo: yes
   notify: apt-update
 - meta: flush_handlers
+
+#fix the osd-notify - http://askubuntu.com/questions/367961/no-notifications-from-notify-osd-on-13-10
+- name: Fix osd-notify
+  lineinfile: state=present dest=/etc/xdg/autostart/notification-daemon.desktop line=AutostartCondition=false regexp="AutostartCondition=GNOME3 unless-session gnome" backup=yes
+  sudo: true
