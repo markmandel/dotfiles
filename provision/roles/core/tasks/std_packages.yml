@@ -20,3 +20,5 @@
     - sshfs
     - autojump
     - gksu
+    - cifs-utils
+    - trash-cli
