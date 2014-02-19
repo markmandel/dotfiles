@@ -92,6 +92,7 @@ myManageHook =
 		,isTermScratchPad --> doFloat
 		,isKeepass --> doCenterFloat
 		,isGuayadeque --> doCenterFloat
+		,(className =? "Zenity") --> doCenterFloat
 	]
 	-- IntelliJ Tweaks
 	++
