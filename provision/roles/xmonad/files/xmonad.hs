@@ -51,7 +51,7 @@ myDemuConfig = " -l 20 -fn ubuntu-mono-10 "
 myKeys =
 	[  
 	((myModKey, xK_p), spawn ("dmenu_run" ++ myDemuConfig)) 
-	, ((myModKey .|. shiftMask, xK_p), spawn ("p=`echo '' | dmenu -fn ubuntu-mono-10 -p 'Open File:'` && d=`locate $p | dmenu" ++ myDemuConfig ++ "` && gnome-open $d"))
+	, ((myModKey .|. shiftMask, xK_p), spawn ("p=`echo '' | dmenu -fn ubuntu-mono-10 -p 'Open File:'` && d=`locate $p | dmenu" ++ myDemuConfig ++ "` && gnome-open \"$d\""))
 	, ((myModKey, xK_g), gotoMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
 	, ((myModKey .|. shiftMask, xK_g), goToSelected defaultGSConfig)
 	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
