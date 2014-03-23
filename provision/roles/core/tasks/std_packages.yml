@@ -6,6 +6,7 @@
     - synaptic
     - nautilus-open-terminal
     - nautilus-wipe
+    - wipe
     - gedit-plugins
     - htop
     - meld
