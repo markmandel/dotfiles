@@ -41,3 +41,4 @@
   when: not yaml_stat.stat.exists
 
 - include: solarize.yml
+- include: tlp.yml
