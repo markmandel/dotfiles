@@ -42,3 +42,4 @@
 
 - include: solarize.yml
 - include: tlp.yml
+- include: rvm.yml
