@@ -1,16 +1,16 @@
 ---
 #partner repo
 - name: partner repository
-  apt_repository: repo='deb http://archive.canonical.com/ubuntu trusty partner' update_cache=no
+  apt_repository: repo='deb http://archive.canonical.com/ubuntu trusty partner'
   sudo: yes
 - name: partner repository (src)
-  apt_repository: repo='deb-src http://archive.canonical.com/ubuntu trusty partner' update_cache=no
+  apt_repository: repo='deb-src http://archive.canonical.com/ubuntu trusty partner'
   sudo: yes
 #extras repo
-- name: partner repository
-  apt_repository: repo='deb http://extras.ubuntu.com/ubuntu trusty main' update_cache=no
+- name: extra repository
+  apt_repository: repo='deb http://extras.ubuntu.com/ubuntu trusty main'
   sudo: yes
-- name: partner repository (src)
+- name: extra repository (src)
   apt_repository: repo='deb-src http://extras.ubuntu.com/ubuntu trusty main'
   sudo: yes
 
