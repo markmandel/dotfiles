@@ -55,8 +55,9 @@ myKeys =
 	, ((myModKey, xK_g), gotoMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
 	, ((myModKey .|. shiftMask, xK_g), goToSelected defaultGSConfig)
 	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
-	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)
-    	-- close focused window
+	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)	
+	, ((mod1Mask .|. shiftMask, xK_a), spawn ("keepass2 --auto-type"))
+	-- close focused window
 	, ((myModKey, xK_x), kill)
 	]
 	++
