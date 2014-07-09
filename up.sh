@@ -4,7 +4,7 @@
 #only add the bare necessities to get started. Everything else should be ansible.
 workspace="$HOME/workspace"
 ansible="$workspace/ansible"
-ansible_git="git@github.com:markmandel/ansible.git"
+ansible_git="https://github.com/ansible/ansible.git"
 dot_files="$workspace/dotfiles"
 
 if [ -d $workspace ]; then
