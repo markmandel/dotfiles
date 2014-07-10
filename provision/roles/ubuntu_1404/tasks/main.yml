@@ -15,10 +15,10 @@
   sudo: yes
 
 #fix the osd-notify - http://askubuntu.com/questions/367961/no-notifications-from-notify-osd-on-13-10
-#- name: check if notify-daemon exists
-#  stat: path=/etc/xdg/autostart/notification-daemon.desktop
-#  register: notify_daemon_stat
-#- name: Fix osd-notify
-#  lineinfile: state=present dest=/etc/xdg/autostart/notification-daemon.desktop line=AutostartCondition=false regexp="AutostartCondition=GNOME3 unless-session gnome" backup=yes
-#  sudo: true
-#  when: notify_daemon_stat.stat.exists
+- name: check if notify-daemon exists
+  stat: path=/etc/xdg/autostart/notification-daemon.desktop
+  register: notify_daemon_stat
+- name: Fix osd-notify
+  lineinfile: state=present dest=/etc/xdg/autostart/notification-daemon.desktop line=OnlyShowIn=Unity; regexp='OnlyShowIn.*' backup=yes
+  sudo: true
+  when: notify_daemon_stat.stat.exists
