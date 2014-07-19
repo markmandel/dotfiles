@@ -45,3 +45,4 @@
 - include: rvm.yml
 - include: jdownloader.yml
 - include: synergy.yml
+- include: templates.yml

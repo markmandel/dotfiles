@@ -8,7 +8,7 @@
   file: state=absent path="~/Music"
   when: st.stat.exists and st.stat.isdir
 - name: Music symlink
-  file: state=link path="~/Music" src="/media/data/Music"
+  file: state=link path="~/Music" src="/mnt/data/Music"
 
 #Pictures
 - name: stat Pictures dir
@@ -19,7 +19,7 @@
   file: state=absent path="~/Pictures"
   when: st.stat.exists and st.stat.isdir
 - name: Pictures symlink
-  file: state=link path="~/Pictures" src="/media/data/Pictures"
+  file: state=link path="~/Pictures" src="/mnt/data/Pictures"
 
 #Videos
 - name: stat Videos dir
@@ -30,4 +30,4 @@
   file: state=absent path="~/Videos"
   when: st.stat.exists and st.stat.isdir
 - name: Videos symlink
-  file: state=link path="~/Videos" src="/media/data/Videos"
+  file: state=link path="~/Videos" src="/mnt/data/Videos"

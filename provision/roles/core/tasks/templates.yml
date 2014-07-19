@@ -1,0 +1,3 @@
+---
+- name: copy new template
+  copy: src=Empty dest=~/Templates/Empty

@@ -3,7 +3,7 @@
   connection: local
   user: mark
   roles:
-    - ubuntu_1310
+    - ubuntu_1404
     - core
     - secondary
     - xmonad
