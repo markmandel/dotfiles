@@ -22,3 +22,7 @@
   lineinfile: state=present dest=/etc/xdg/autostart/notification-daemon.desktop line=OnlyShowIn=Unity; regexp='OnlyShowIn.*' backup=yes
   sudo: true
   when: notify_daemon_stat.stat.exists
+
+# remove ibus ctrl+space binding
+- name: fix ibus keybinding
+  command: gsettings set org.freedesktop.ibus.general.hotkey triggers '[]'

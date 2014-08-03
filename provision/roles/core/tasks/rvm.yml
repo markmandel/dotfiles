@@ -12,6 +12,6 @@
   stat: path=~/.rvm
   register: st
 - name: Fail if RVM isn't installed
-  fail: msg=RVM isn't installed {{ st }}
+  fail: msg="RVM isn't installed {{ st }}"
   when: not st.stat.exists
 
