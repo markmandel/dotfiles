@@ -27,3 +27,5 @@
     - retext
     - gimp
     - xbacklight
+    - tree
+    - ppa-purge
