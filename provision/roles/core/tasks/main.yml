@@ -9,6 +9,8 @@
 #git config
 - include: _git_config.yml
 
+- include: file-descriptors.yml
+
 #dropbox
 - name: See if dropbox is installed
   command: find /usr/bin/ -name 'dropbox'
