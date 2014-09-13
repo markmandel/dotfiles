@@ -7,7 +7,10 @@ import XMonad.Actions.DynamicWorkspaceGroups
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spiral
+import XMonad.Layout.Tabbed
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
 import XMonad.Prompt
@@ -87,6 +90,20 @@ myKeys =
 		, ((myModKey .|. controlMask, xK_f), promptWSGroupForget myXPConfig "Forget group: ")
 	]
 
+myLayout = tiled ||| Mirror tiled ||| spiral (toRational (2/(1+sqrt(5)::Double))) ||| simpleTabbed ||| Full 
+  where
+     -- default tiling algorithm partitions the screen into two panes
+     tiled   = Tall nmaster delta ratio
+
+     -- The default number of windows in the master pane
+     nmaster = 1
+
+     -- Default proportion of screen occupied by master pane
+     ratio   = 1/2
+
+     -- Percent of screen to increment by when resizing panes
+     delta   = 3/100
+
 myManageHook = 
 	[
 		isFullscreen --> doFullFloat
@@ -107,7 +124,7 @@ main = xmonad $ gnomeConfig {
 	, terminal = myTerminal
 	, focusedBorderColor = "#008db8"
 	, workspaces = myWorkspaces
-	, layoutHook = smartBorders (layoutHook gnomeConfig)
+	, layoutHook = avoidStruts $smartBorders $ myLayout 
 	, manageHook = manageHook gnomeConfig <+> composeAll myManageHook
 	, startupHook = do
            startupHook gnomeConfig
