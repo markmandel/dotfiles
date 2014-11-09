@@ -13,10 +13,12 @@ if [ -d $workspace ]; then
 	if [ ! -d $ansible ]; then
 		echo "Cloning Ansible..."
 		git clone $ansible_git $ansible
+		git submodule update --init --recursive
 	else
 		echo "Updating Ansible..."
 		cd $ansible
 		git pull --rebase
+		git pull --recurse-submodules --rebase
 	fi
 
 	echo "Setting up Ansible in $ansible"
