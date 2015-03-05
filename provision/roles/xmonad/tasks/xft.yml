@@ -1,8 +1,4 @@
 ---
-- name: ppa for xft support
-  apt_repository: repo=ppa:chilicuil/sucklesstools
+- name: Set default alternative for dmenu
+  command: sudo update-alternatives --set dmenu /usr/bin/dmenu.xft
   sudo: true
-  notify: apt-update
-- meta: flush_handlers
-- name: update suckless-tools
-  apt: pkg=suckless-tools

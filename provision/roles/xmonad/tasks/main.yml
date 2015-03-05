@@ -1,4 +1,3 @@
 ---
-- include: xft.yml
-  sudo: true
 - include: install.yml
+- include: xft.yml

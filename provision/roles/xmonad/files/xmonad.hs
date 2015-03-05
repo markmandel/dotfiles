@@ -130,10 +130,3 @@ main = xmonad $ gnomeConfig {
            startupHook gnomeConfig
            setWMName "LG3D"
 } `additionalKeys` myKeys
-
-{-|
-	## TODO list ##
-	- dmenu open-terminal?	- dynamic workspace groups: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Actions-DynamicWorkspaceGroups.html
--}
-
-

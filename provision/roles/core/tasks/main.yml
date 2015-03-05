@@ -15,7 +15,7 @@
 - name: See if dropbox is installed
   command: find /usr/bin/ -name 'dropbox'
   register: dropbox_installed
-- include: _dropbox.yml
+- include: dropbox.yml
   when: (not dropbox_installed.stdout)
 
 #chrome

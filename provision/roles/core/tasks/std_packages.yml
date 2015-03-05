@@ -10,7 +10,6 @@
     - htop
     - meld
     - ubuntu-restricted-extras
-    - unity-tweak-tool
     - skype
     - clipit
     - alacarte
@@ -30,3 +29,4 @@
     - tree
     - ppa-purge
     - rar
+    - ubuntu-mono

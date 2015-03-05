@@ -2,7 +2,7 @@
 - name: create install dir
   file: path=/tmp/install_dropbox state=directory
 - name: download dropbox
-  command:  "wget -O /tmp/install_dropbox/dropbox.deb https://www.dropbox.com/download\\?dl\\=packages/ubuntu/dropbox_1.6.0_amd64.deb"
+  get_url: dest="/tmp/install_dropbox/dropbox.deb" url="https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.02.12_amd64.deb"
 - name: make sure we have gdebi
   apt: pkg=gdebi-core
   sudo: true
