@@ -30,6 +30,7 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
 isTermScratchPad = (className =? "Gnome-terminal") <&&> (stringProperty "WM_WINDOW_ROLE" =? "Scratchpad")
 isKeepass = (className =? "KeePass2")
 isGuayadeque = (className =? "Guayadeque")
+isDo = (className =? "Do")
 
 myTmuxCommand = "tmux -2 new"
 myScratchCommand = "gnome-terminal --role=Scratchpad -e '" ++ myTmuxCommand ++ "'"
@@ -110,6 +111,7 @@ myManageHook =
 		,isTermScratchPad --> doRectFloat(W.RationalRect 0 0 0.9 0.9)		
 		,isKeepass --> doCenterFloat
 		,isGuayadeque --> doCenterFloat
+		,isDo --> doCenterFloat
 		,(className =? "Zenity") --> doCenterFloat
 	]
 	-- IntelliJ Tweaks
