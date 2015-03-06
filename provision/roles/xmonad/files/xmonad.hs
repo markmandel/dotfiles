@@ -27,12 +27,12 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
              , xK_KP_Home, xK_KP_Up,    xK_KP_Page_Up   -- 7, 8, 9
              , xK_KP_Insert] -- 0
 
-isTermScratchPad = (className =? "term-scratch")
+isTermScratchPad = (className =? "Gnome-terminal") <&&> (stringProperty "WM_WINDOW_ROLE" =? "Scratchpad")
 isKeepass = (className =? "KeePass2")
 isGuayadeque = (className =? "Guayadeque")
 
 myTmuxCommand = "tmux -2 new"
-myScratchCommand = "gnome-terminal --disable-factory --class=term-scratch --window-with-profile=Scratchpad -e '" ++ myTmuxCommand ++ "'"
+myScratchCommand = "gnome-terminal --role=Scratchpad -e '" ++ myTmuxCommand ++ "'"
 myTerminal = "gnome-terminal -e '" ++ myTmuxCommand ++ "'"
 
 myScratchpads = 
@@ -54,11 +54,11 @@ myDemuConfig = " -l 20 -fn ubuntu-mono-10 "
 myKeys =
 	[  
 	((myModKey, xK_p), spawn ("dmenu_run" ++ myDemuConfig)) 
-	, ((myModKey .|. shiftMask, xK_p), spawn ("p=`echo '' | dmenu -fn ubuntu-mono-10 -p 'Open File:'` && d=`locate $p | dmenu" ++ myDemuConfig ++ "` && gnome-open \"$d\""))
+	, ((myModKey .|. shiftMask, xK_p), spawn ("p=`echo '' | dmenu -fn ubuntu-mono-10 -p 'Open File:'` && d=`locate $p | dmenu" ++ myDemuConfig ++ "` && xdg-open \"$d\""))
 	, ((myModKey, xK_g), gotoMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
 	, ((myModKey .|. shiftMask, xK_g), goToSelected defaultGSConfig)
 	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs ["-fn", "ubuntu-mono-10", "-l", "20"])
-	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)	
+	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)
 	, ((mod1Mask .|. shiftMask, xK_a), spawn ("keepass2 --auto-type"))
 	-- close focused window
 	, ((myModKey, xK_x), kill)
@@ -107,7 +107,7 @@ myLayout = tiled ||| Mirror tiled ||| spiral (toRational (2/(1+sqrt(5)::Double))
 myManageHook = 
 	[
 		isFullscreen --> doFullFloat
-		,isTermScratchPad --> doFloat
+		,isTermScratchPad --> doRectFloat(W.RationalRect 0 0 0.9 0.9)		
 		,isKeepass --> doCenterFloat
 		,isGuayadeque --> doCenterFloat
 		,(className =? "Zenity") --> doCenterFloat
