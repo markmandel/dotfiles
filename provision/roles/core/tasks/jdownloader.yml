@@ -5,8 +5,6 @@
 - name: "Add the JDownloader PPA"
   apt_repository: repo=ppa:jd-team/jdownloader
   sudo: true
-  notify: apt-update
-- meta: flush_handlers
 - name: "install: jdownloader"
   apt: pkg=jdownloader-installer
   sudo: true

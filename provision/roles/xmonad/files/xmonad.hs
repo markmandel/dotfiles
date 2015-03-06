@@ -126,7 +126,7 @@ main = xmonad $ gnomeConfig {
 	, terminal = myTerminal
 	, focusedBorderColor = "#008db8"
 	, workspaces = myWorkspaces
-	, layoutHook = avoidStruts $smartBorders $ myLayout 
+	, layoutHook = avoidStruts $ smartBorders $ myLayout
 	, manageHook = manageHook gnomeConfig <+> composeAll myManageHook
 	, startupHook = do
            startupHook gnomeConfig

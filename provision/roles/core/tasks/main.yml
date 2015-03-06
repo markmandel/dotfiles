@@ -42,3 +42,4 @@
 - include: jdownloader.yml
 - include: synergy.yml
 - include: templates.yml
+- include: compass_icons.yml
