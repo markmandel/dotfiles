@@ -9,24 +9,6 @@ dot_files="$workspace/dotfiles"
 
 if [ -d $workspace ]; then
 
-	#provision ansible itself
-	if [ ! -d $ansible ]; then
-		echo "Cloning Ansible..."
-		git clone $ansible_git $ansible --recursive			
-	else
-		echo "Updating Ansible..."
-		cd $ansible
-		git pull --rebase
-		git submodule update --init --recursive
-	fi
-
-	echo "Setting up Ansible in $ansible"
-	#for some reason have to go one level in. Don't ask, it works.	
-	cd $ansible/hacking
-	source env-setup
-
-	ansible --version
-
 	#self update
 	echo "Updating Dotfiles..."
 	cd $dot_files

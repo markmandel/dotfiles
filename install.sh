@@ -1,6 +1,12 @@
 #!/bin/sh
-sudo apt-get install git python python-yaml python-jinja2 aptitude
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible git
 cd ~
-mkdir workspace
-cd workspace
-git clone git@github.com:markmandel/dotfiles.git
+
+if [ ! -d "~/workspace/dotfiles" ]; then
+    mkdir workspace
+    cd workspace
+    git clone git@github.com:markmandel/dotfiles.git
+fi
