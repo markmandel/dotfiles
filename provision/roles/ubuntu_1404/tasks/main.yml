@@ -26,3 +26,8 @@
 # remove ibus ctrl+space binding
 - name: fix ibus keybinding
   command: gsettings set org.freedesktop.ibus.general.hotkey triggers '[]'
+
+# upgrade tmux to the later version
+- name: upgrade tmux to the latest version
+  apt_repository: repo='ppa:pi-rho/dev'
+  sudo: true
