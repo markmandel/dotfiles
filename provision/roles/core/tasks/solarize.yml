@@ -4,15 +4,17 @@
   with_items:
     - coreutils
     - gnome-terminal
-    # - dconf-cli
   sudo: true
 - name: "Create .solarized dir"
   file: path="~/.solarized" state=directory
 - name: "Checkout gnome-solarized"
   git: repo=git://github.com/sigurdga/gnome-terminal-colors-solarized.git dest=~/.solarized/terminal
+# making this async, as it seems to be hanging. Can't work out why. Do manually if it doesn't work.
 - name: "execute the dark installation script"
-  command: /home/mark/.solarized/terminal/install.sh -s dark -p Default
+  command: ~/.solarized/terminal/install.sh -s dark -p Default
+  async: 45
+  poll: 0
 - name: "Checkout ls-colors-solarized"
-  git: repo=https://github.com/sigurdga/ls-colors-solarized.git dest=~/.solarized/ls
+  git: repo=https://github.com/seebi/dircolors-solarized.git dest=~/.solarized/ls
 - name: "symlink dircolors"
-  file: path=~/.dircolors src=/home/mark/.solarized/ls/dircolors state=link
+  file: path=~/.dircolors src=~/.solarized/ls/dircolors.ansi-dark state=link
