@@ -7,11 +7,11 @@
   register: synergy_v
   when: synergy_exists.stat.exists
 - name: download synergy
-  get_url: url="http://synergy-project.org/files/packages/synergy-1.6.2-master-ebba77f-Linux-x86_64.deb" dest="/tmp/synergy.deb"
-  when: (synergy_v.stdout | default(0) | string) < "1.6.2"
+  get_url: url="http://synergy-project.org/files/packages/synergy-1.7.3-master-ebba77f-Linux-x86_64.deb" dest="/tmp/synergy.deb"
+  when: (synergy_v.stdout | default(0) | string) < "1.7.3"
 - name: install synergy
   apt: deb="/tmp/synergy.deb"
-  when: (synergy_v.stdout | default(0) | string) < "1.6.2"
+  when: (synergy_v.stdout | default(0) | string) < "1.7.3f"
   sudo: true
 - name: Cleanup download
   file: path="/tmp/synergy.deb" state="absent"

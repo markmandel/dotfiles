@@ -2,6 +2,10 @@
   apt: pkg={{ item }}
   with_items:
     - xmonad
+    - libghc-xmonad-contrib-dev
+    - libghc-xmonad-contrib-doc
+    - libghc-xmonad-dev
+    - libghc-xmonad-doc
     - suckless-tools
     - gnome-panel
   sudo: true

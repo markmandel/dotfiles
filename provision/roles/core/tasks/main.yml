@@ -40,6 +40,7 @@
 - include: tlp.yml
 - include: rvm.yml
 - include: jdownloader.yml
-- include: synergy.yml
+#- include: synergy.yml
 - include: templates.yml
 - include: compass_icons.yml
+- include: haskell.yml

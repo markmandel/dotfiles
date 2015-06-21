@@ -1,0 +1,9 @@
+---
+- name: Install Haskell
+  apt: pkg={{ item }}
+  sudo: true
+  with_items:
+    - ghc
+    - cabal-install
+- name: Create empty cabal bin dir
+  file: path=~/.cabal/bin state=directory
