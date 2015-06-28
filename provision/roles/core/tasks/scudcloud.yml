@@ -2,7 +2,7 @@
 - name: Install PPA for ScudCloud
   apt_repository: repo=ppa:rael-gc/scudcloud
   sudo: true
-- name: Install Node
+- name: Install Scudcloud
   apt: pkg={{ item }}
   with_items:
     - scudcloud

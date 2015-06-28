@@ -45,3 +45,4 @@
 - include: compass_icons.yml
 - include: haskell.yml
 - include: scudcloud.yml
+- include: zeal.yml
