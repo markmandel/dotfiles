@@ -33,17 +33,14 @@
 
 - include: install_java.yml
 - include: leiningen.yml
-#- include: nodejs.yml
 - include: window_applet.yml
 
 - include: solarize.yml
 - include: tlp.yml
-- include: rvm.yml
 - include: jdownloader.yml
 #- include: synergy.yml
 - include: templates.yml
 - include: compass_icons.yml
-- include: haskell.yml
 - include: scudcloud.yml
 - include: zeal.yml
 - include: calibre.yml

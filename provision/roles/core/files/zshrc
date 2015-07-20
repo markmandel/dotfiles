@@ -39,10 +39,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 # export PATH=:$PATH
 
-if [ -f ~/.rvm/scripts/rvm ]; then
-    . ~/.rvm/scripts/rvm
-fi
-
 # tmux + ls + solarized
 if [ -f ~/.dircolors ]; then
   eval `dircolors ~/.dircolors`
