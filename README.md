@@ -5,6 +5,8 @@ My local machine(s) provisioning setup.
 
 Yay for [Ansible](http://www.ansibleworks.com/).
 
+Includes configuration files, dockerfiles and more.
+
 ## Licence
 
 Copyright 2015 Mark Mandel

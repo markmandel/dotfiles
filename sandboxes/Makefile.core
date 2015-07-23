@@ -1,0 +1,9 @@
+#
+# All the common tasks
+#
+
+build:
+	docker build --tag=$(TAG) .
+
+clean:
+	-docker rmi $(TAG)

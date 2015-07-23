@@ -43,3 +43,7 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.dircolors ]; then
   eval `dircolors ~/.dircolors`
 fi
+
+#Docker includes
+SANDBOXES=~/workspace/dotfiles/sandboxes
+source SANDBOXES/include.zsh
