@@ -28,6 +28,7 @@
 - include: _oh_my_zsh.yml
 - include: _tmux.yml
 - include: scripts.yml
+- include: docker.yml
 - include: keepass.yml
 - include: clipit.yml
 
