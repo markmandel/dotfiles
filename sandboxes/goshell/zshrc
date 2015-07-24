@@ -2,7 +2,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # theme
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gallifrey"
 
 #plugins
 plugins=(git debian git-extras colored-man autojump go zsh_reload dirhistory)

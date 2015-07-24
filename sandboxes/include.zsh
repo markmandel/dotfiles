@@ -3,6 +3,7 @@
 #includes
 source $SANDBOXES/goshell/include.zsh
 source $SANDBOXES/gcloudshell/include.zsh
+source $SANDBOXES/leinshell/include.zsh
 
 #Takes each argument and applies it to a docker run command
 function _docker_run() {
@@ -13,8 +14,12 @@ function _docker_run() {
 function _docker_zsh() {
     local shell=$1
     local src=$2
+    local name=$shell${${PWD//\//.}:-200} #make sure we stay under 255 chars
+
+    echo "Starting Container: $name (${#name})"
 
     _docker_run "--rm" \
+        "--name $name" \
         "-v ~/.oh-my-zsh:/root/.oh-my-zsh" \
         "-v ~/.dircolors:/root/.dircolors " \
         "-v ~/.zsh_history:/root/.zsh_history" \
@@ -22,7 +27,7 @@ function _docker_zsh() {
         "-v $SANDBOXES/$shell/zshrc:/root/.zshrc" \
         "-v `pwd`:$src" \
         ${argv:3} \
-        "-it markmandel/$shell zsh"
+        "-it markmandel/$shell /root/startup.sh"
 }
 
 #Credit: https://github.com/jbbarth/dotfiles/blob/master/.zsh/docker.zsh

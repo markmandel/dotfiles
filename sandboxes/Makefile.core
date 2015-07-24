@@ -7,3 +7,6 @@ build:
 
 clean:
 	-docker rmi $(TAG)
+
+bash:
+	docker run --rm -it $(TAG) bash
