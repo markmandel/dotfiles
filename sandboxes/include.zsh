@@ -4,15 +4,6 @@
 source $SANDBOXES/goshell/include.zsh
 source $SANDBOXES/gcloudshell/include.zsh
 
-function t() {
-    echo "argv:" $argv
-    for (( i=1; i<=$#argv; i++ ))
-        do echo "i: $i , $argv[i]"
-    done
-
-    echo "part:" $argv[2,-1]
-}
-
 #Takes each argument and applies it to a docker run command
 function _docker_run() {
     eval "docker run $argv"
