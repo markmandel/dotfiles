@@ -46,4 +46,4 @@ fi
 
 #Docker includes
 SANDBOXES=~/workspace/dotfiles/sandboxes
-source SANDBOXES/include.zsh
+source $SANDBOXES/include.zsh
