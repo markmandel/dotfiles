@@ -2,5 +2,5 @@
 
 #includes for go zsh config
 function gcloudshell() {
-	_run_docker_zsh 'gcloudshell' '/go'
+	_docker_zsh 'gcloudshell' '/go'
 }

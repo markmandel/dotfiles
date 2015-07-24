@@ -4,29 +4,34 @@
 source $SANDBOXES/goshell/include.zsh
 source $SANDBOXES/gcloudshell/include.zsh
 
-function _run_docker_zsh() {
-    #TODO: pass in /where to mount as a parameter
+function t() {
+    echo "argv:" $argv
+    for (( i=1; i<=$#argv; i++ ))
+        do echo "i: $i , $argv[i]"
+    done
+
+    echo "part:" $argv[2,-1]
+}
+
+#Takes each argument and applies it to a docker run command
+function _docker_run() {
+    eval "docker run $argv"
+}
+
+#standard default docker zsh function
+function _docker_zsh() {
     local shell=$1
-    local dir=$shell
-    local src
+    local src=$2
 
-    #if here is a second value, use that as the dir
-    if [ -z "$3" ]
-        then
-            src=$2
-        else
-            dir=$2
-            src=$3
-    fi
-
-    docker run --rm \
-	    -v ~/.oh-my-zsh:/root/.oh-my-zsh \
-	    -v ~/.dircolors:/root/.dircolors \
-	    -v ~/.zsh_history:/root/.zsh_history \
-	    -e TERM=$TERM \
-	    -v $SANDBOXES/$dir/zshrc:/root/.zshrc \
-	    -v `pwd`:$src \
-	    -it markmandel/$shell zsh
+    _docker_run "--rm" \
+        "-v ~/.oh-my-zsh:/root/.oh-my-zsh" \
+        "-v ~/.dircolors:/root/.dircolors " \
+        "-v ~/.zsh_history:/root/.zsh_history" \
+        "-e TERM=$TERM " \
+        "-v $SANDBOXES/$shell/zshrc:/root/.zshrc" \
+        "-v `pwd`:$src" \
+        ${argv:3} \
+        "-it markmandel/$shell zsh"
 }
 
 #Credit: https://github.com/jbbarth/dotfiles/blob/master/.zsh/docker.zsh
