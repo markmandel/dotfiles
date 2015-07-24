@@ -5,21 +5,28 @@ source $SANDBOXES/goshell/include.zsh
 source $SANDBOXES/gcloudshell/include.zsh
 
 function _run_docker_zsh() {
+    #TODO: pass in /where to mount as a parameter
     local shell=$1
     local dir=$shell
+    local src
 
     #if here is a second value, use that as the dir
-    if [ -n "$2" ]; then dir=$2; fi
+    if [ -z "$3" ]
+        then
+            src=$2
+        else
+            dir=$2
+            src=$3
+    fi
 
     docker run --rm \
 	    -v ~/.oh-my-zsh:/root/.oh-my-zsh \
 	    -v ~/.dircolors:/root/.dircolors \
 	    -v ~/.zsh_history:/root/.zsh_history \
 	    -e TERM=$TERM \
-	    -v $SANDBOXES/goshell/zshrc:/root/.zshrc \
-        #TODO: pass in /where to mount as a parameter
-	    -v `pwd`:/go \
-	    -it markmandel/goshell zsh
+	    -v $SANDBOXES/$dir/zshrc:/root/.zshrc \
+	    -v `pwd`:$src \
+	    -it markmandel/$shell zsh
 }
 
 #Credit: https://github.com/jbbarth/dotfiles/blob/master/.zsh/docker.zsh

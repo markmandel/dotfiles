@@ -2,5 +2,5 @@
 
 #includes for go zsh config
 function goshell() {
-    _run_docker_zsh 'goshell'
+    _run_docker_zsh 'goshell' '/go'
 }
