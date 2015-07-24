@@ -1,5 +1,6 @@
 # markmandel/gcloudshell
 #
+# Shell for Google Cloud Platform SDK + Go
 # Inspired by: https://registry.hub.docker.com/u/google/cloud-sdk/
 
 FROM markmandel/goshell

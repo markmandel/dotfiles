@@ -1,4 +1,6 @@
 #markmandel/goshell
+#
+# Shell for Go development
 
 FROM golang:1.4.2
 MAINTAINER Mark Mandel <mark.mandel@gmail.com>
