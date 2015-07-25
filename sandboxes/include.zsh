@@ -42,7 +42,7 @@ function docker-ssh-mount() {
     echo "Found: $(docker port $name)"
     mkdir -p $mountpoint
     echo "Mounting on $port[2]"
-    sshfs root@0.0.0.0:/ $mountpoint -p $port[2]
+    sshfs $USER@0.0.0.0:/ $mountpoint -p $port[2]
 }
 
 compdef __docker_ssh_mount docker-ssh-mount
