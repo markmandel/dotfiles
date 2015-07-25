@@ -32,8 +32,6 @@ function _docker_zsh() {
 
 #ssh mount a docker container
 function docker-ssh-mount() {
-    set -x
-
     local name=$1
     local mountpoint=/tmp/$name
 
@@ -42,9 +40,6 @@ function docker-ssh-mount() {
     mkdir -p $mountpoint
     echo "Mounting on $port[2]"
     sshfs root@0.0.0.0:/ $mountpoint -p $port[2]
-
-    set +x
-
 }
 
 compdef __docker_ssh_mount docker-ssh-mount
