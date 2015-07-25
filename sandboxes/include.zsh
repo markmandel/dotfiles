@@ -20,6 +20,9 @@ function _docker_zsh() {
 
     _docker_run "--rm" \
         "--name $name" \
+        "-e HOST_GID=`id -g`" \
+        "-e HOST_UID=`id -u`" \
+        "-e HOST_USER=$USER" \
         "-v ~/.oh-my-zsh:/root/.oh-my-zsh" \
         "-v ~/.dircolors:/root/.dircolors " \
         "-v ~/.zsh_history:/root/.zsh_history" \

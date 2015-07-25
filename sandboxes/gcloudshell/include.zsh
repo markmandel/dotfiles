@@ -4,3 +4,4 @@
 function gcloudshell() {
 	_docker_zsh 'gcloudshell' '/go'
 }
+
