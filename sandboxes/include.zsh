@@ -20,14 +20,14 @@ function _docker_zsh() {
 
     _docker_run "--rm" \
         "--name $name" \
+        "-e TERM=$TERM " \
         "-e HOST_GID=`id -g`" \
         "-e HOST_UID=`id -u`" \
         "-e HOST_USER=$USER" \
-        "-v ~/.oh-my-zsh:/root/.oh-my-zsh" \
-        "-v ~/.dircolors:/root/.dircolors " \
-        "-v ~/.zsh_history:/root/.zsh_history" \
-        "-e TERM=$TERM " \
-        "-v $SANDBOXES/$shell/zshrc:/root/.zshrc" \
+        "-v ~/.oh-my-zsh:/home/$USER/.oh-my-zsh" \
+        "-v ~/.dircolors:/home/$USER/.dircolors " \
+        "-v ~/.zsh_history:/home/$USER/.zsh_history" \
+        "-v $SANDBOXES/$shell/zshrc:/home/$USER/.zshrc" \
         "-v `pwd`:$src" \
         ${argv:3} \
         "-it markmandel/$shell /root/startup.sh"
