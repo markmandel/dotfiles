@@ -16,5 +16,5 @@ RUN mv ./bin/* /usr/local/bin
 
 RUN rm -rf /go
 
-#We use zsh from now on
-ENV SHELL=/usr/bin/zsh
+ADD startup.sh /root/startup.sh
+RUN chmod +x /root/startup.sh

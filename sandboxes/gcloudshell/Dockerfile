@@ -16,7 +16,7 @@ WORKDIR /
 RUN apt-get update && \
     apt-get install -y wget unzip
 
-RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip google-cloud-sdk.zip && rm google-cloud-sdk.zip
+RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip -q google-cloud-sdk.zip && rm google-cloud-sdk.zip
 RUN /google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/root/.bashrc
 ENV PATH /google-cloud-sdk/bin:$PATH
 
@@ -30,5 +30,6 @@ VOLUME ["/root/.config"]
 
 WORKDIR /go
 
-CMD ["/bin/bash"]
+ADD startup.sh /root/startup.sh
+RUN chmod +x /root/startup.sh
 
