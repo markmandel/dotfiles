@@ -23,7 +23,7 @@ function _docker_zsh() {
     _docker_run "--rm" \
         "--name $name" \
         "-P=true" \
-        "-e TERM=$TERM " \
+        "-e TERM" \
         "-e HOST_GID=`id -g`" \
         "-e HOST_UID=`id -u`" \
         "-e HOST_USER=$USER" \
