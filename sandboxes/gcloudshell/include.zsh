@@ -2,6 +2,8 @@
 
 #includes for go zsh config
 function gcloudshell() {
-	_docker_zsh 'gcloudshell' '/go'
+    mkdir -p ~/.config/gcloud
+	_docker_zsh 'gcloudshell' '/go' \
+				"-v ~/.config/gcloud:/home/$USER/.config/gcloud"
 }
 
