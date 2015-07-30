@@ -32,3 +32,6 @@ RUN chmod +x /root/startup.sh
 
 RUN mkdir /project
 WORKDIR /project
+
+#port for web apps
+EXPOSE 8080

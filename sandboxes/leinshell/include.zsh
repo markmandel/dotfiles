@@ -5,5 +5,5 @@ function leinshell() {
     _docker_zsh "leinshell" "/project" \
                 "-v $SANDBOXES/leinshell/profiles.clj:/home/$USER/.lein/profiles.clj" \
                 "-v ~/.m2:/home/$USER/.m2" \
-                "-p 22"
+                "-P=true"
 }

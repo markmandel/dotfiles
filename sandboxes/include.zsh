@@ -38,8 +38,8 @@ function docker-ssh-mount() {
     local name=$1
     local mountpoint=/tmp/$name
 
-    port=(${(@s/:/)$(docker port $name)})
-    echo "Found: $(docker port $name)"
+    port=(${(@s/:/)$(docker port $name 22)})
+    echo "Found: $(docker port $name 22)"
     mkdir -p $mountpoint
     echo "Mounting on $port[2]"
     sshfs $USER@0.0.0.0:/ $mountpoint -p $port[2]
