@@ -11,7 +11,7 @@ RUN apt-get update && \
 
 RUN apt-add-repository -y ppa:rael-gc/scudcloud && \
     apt-get update && \
-    apt-get install -y scudcloud
+    apt-get install -y dbus-x11 hunspell-en-us scudcloud
 
 ADD startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
