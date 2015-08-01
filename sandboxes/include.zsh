@@ -37,6 +37,7 @@ function _docker_zsh() {
 function docker-ssh-mount() {
     local name=$1
     local mountpoint=/tmp/$name
+    typeset -a port
 
     port=(${(@s/:/)$(docker port $name 22)})
     echo "Found: $(docker port $name 22)"

@@ -20,7 +20,7 @@ RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip
 RUN /google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/root/.bashrc
 ENV PATH /google-cloud-sdk/bin:$PATH
 
-RUN gcloud components update app preview beta alpha --quiet
+RUN gcloud components update app preview beta alpha app-engine-python --quiet
 
 ENV APPENGINE_VERSION=1.9.24
 RUN wget -O appengine.zip https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-$APPENGINE_VERSION.zip && unzip -q appengine.zip && rm appengine.zip
