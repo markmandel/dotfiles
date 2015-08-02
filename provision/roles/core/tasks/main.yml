@@ -33,7 +33,6 @@
 - include: clipit.yml
 
 - include: install_java.yml
-- include: leiningen.yml
 - include: window_applet.yml
 
 - include: solarize.yml
