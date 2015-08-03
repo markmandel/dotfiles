@@ -4,6 +4,7 @@
 
 build:
 	docker build --tag=$(TAG) .
+	notify-send "Build $(TAG) Complete"
 
 clean:
 	-docker rmi $(TAG)

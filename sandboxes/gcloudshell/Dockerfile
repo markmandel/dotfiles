@@ -14,7 +14,7 @@ RUN rm -rf /go
 # install google cloud sdk in root
 WORKDIR /
 RUN apt-get update && \
-    apt-get install -y wget unzip
+    apt-get install -y wget unzip less
 
 RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip -q google-cloud-sdk.zip && rm google-cloud-sdk.zip
 RUN /google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/root/.bashrc

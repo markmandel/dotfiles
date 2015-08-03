@@ -2,8 +2,6 @@
 
 #includes for go zsh config
 function gcloudshell() {
-    set -x
-
     mkdir -p ~/.config/gcloud
     typeset -a dockerGroup
     dockerGroup=(${(@s/:/)$(getent group docker)})
@@ -13,6 +11,4 @@ function gcloudshell() {
 				"-v ~/.config/gcloud:/home/$USER/.config/gcloud" \
 				"-v /usr/bin/docker:/usr/bin/docker" \
 				"-v /var/run/docker.sock:/var/run/docker.sock"
-
-    set +x
 }
