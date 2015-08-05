@@ -24,9 +24,6 @@ RUN cd /usr/local/bin/ && wget https://raw.githubusercontent.com/technomancy/lei
 
 RUN lein
 
-#We use zsh from now on
-ENV SHELL=/usr/bin/zsh
-
 ADD startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
 
