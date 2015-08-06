@@ -25,7 +25,7 @@
 - include: _google_chrome.yml
   when: (not chrome_installed.stdout)
 
-- include: _oh_my_zsh.yml
+- include: oh_my_zsh.yml
 - include: _tmux.yml
 - include: scripts.yml
 - include: docker.yml
