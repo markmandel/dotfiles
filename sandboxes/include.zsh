@@ -1,9 +1,11 @@
 #!/usr/bin/env zsh
 
-#includes
-source $SANDBOXES/goshell/include.zsh
-source $SANDBOXES/gcloudshell/include.zsh
-source $SANDBOXES/leinshell/include.zsh
+#Source all the shells
+for p in $SANDBOXES/*; do
+    if [[ -d $p ]]; then
+        source $p/include.zsh
+    fi
+done
 
 #Takes each argument and applies it to a docker run command
 function _docker_run() {
