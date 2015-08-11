@@ -28,6 +28,7 @@ function _docker_zsh() {
         "-v ~/.dircolors:/home/$USER/.dircolors " \
         "-v ~/.zsh_history:/home/$USER/.zsh_history" \
         "-v $SANDBOXES/$shell/zshrc:/home/$USER/.zshrc" \
+        "-v $SANDBOXES/core.zsh:/home/$USER/.core.zsh" \
         "-v `pwd`:$src" \
         ${argv:3} \
         "-it markmandel/$shell /root/startup.sh"

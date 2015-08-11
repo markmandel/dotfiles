@@ -1,9 +1,0 @@
----
-- name: Install PPA for NodeJS
-  apt_repository: repo=ppa:chris-lea/node.js
-  sudo: true
-- name: Install Node
-  apt: pkg={{ item }}
-  with_items:
-    - nodejs
-  sudo: true
