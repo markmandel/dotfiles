@@ -23,3 +23,8 @@ haskell_bin_dirs=$(find /opt -type d -name 'bin')
 haskell_bin_dirs=(${(@f)haskell_bin_dirs})
 
 export PATH=~/.cabal/bin:${(j/:/)haskell_bin_dirs}:$PATH
+
+# install the defalt ghc packages
+function install-default-ghc-packages() {
+  cabal update && cabal install hlint stylish-haskell ghc-mod
+}
