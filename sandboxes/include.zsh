@@ -48,7 +48,6 @@ _get_docker_ssh_port() {
 }
 #ssh mount a docker container
 function docker-ssh-mount() {
-    set -x
     local name=$1
     local mountpoint=/tmp/$name
     local port=$(_get_docker_ssh_port $name)
@@ -56,8 +55,6 @@ function docker-ssh-mount() {
     mkdir -p $mountpoint
     echo "Mounting on $port"
     sshfs $USER@0.0.0.0:/ $mountpoint -p $port -o follow_symlinks
-
-    set +x
 }
 
 compdef __list_docker_containers docker-ssh-mount
