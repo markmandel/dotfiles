@@ -14,22 +14,29 @@ ghcshell() {
                 "-v ~/.ghc:/home/$USER/.ghc"
 }
 
-clean-ghcshell() {
+ghcshell-clean() {
     rm -r ~/.cabal
     rm -r ~/.ghc
 }
 
-ghc-idea() {
-    ghc-mount
-    ghc-env
+ghcshell-idea() {
+    ghcshell-mount $1
+    ghcshell-env
     nohup idea.sh > /tmp/idea.log &
 }
 
-ghc-env() {
+compdef __list_docker_containers ghcshell-idea
+
+ghcshell-env() {
     export PATH=~/.cabal/bin/:$PATH
 }
 
-ghc-mount() {
+ghcshell-mount() {
+    if [[ $1 == "" ]]; then
+        echo "Container name not passed in" >&2
+        return 1
+    fi
+
     local name=$1
     local port=$(_get_docker_ssh_port $1)
 
@@ -38,4 +45,4 @@ ghc-mount() {
     sshfs $USER@0.0.0.0:/opt/ghc /opt/ghc -p $port -o follow_symlinks
 }
 
-compdef __list_docker_containers mount-ghc
+compdef __list_docker_containers ghcshell-mount

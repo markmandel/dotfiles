@@ -46,6 +46,7 @@ _get_docker_ssh_port() {
 
     echo $port[2]
 }
+
 #ssh mount a docker container
 function docker-ssh-mount() {
     local name=$1
@@ -58,6 +59,13 @@ function docker-ssh-mount() {
 }
 
 compdef __list_docker_containers docker-ssh-mount
+
+#attach a new zsh termainl to an already running shell
+shell-attach() {
+    docker exec -it -u=$USER $1 /usr/bin/zsh
+}
+
+compdef __list_docker_containers shell-attach
 
 #Credit: _docker .oh-my-zsh plugin
 __list_docker_containers() {

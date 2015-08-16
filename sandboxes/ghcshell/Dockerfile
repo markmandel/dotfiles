@@ -2,11 +2,13 @@
 #
 # Shell for Haskell development, with Cabal, etc
 
-FROM haskell:7.8
+FROM haskell
 MAINTAINER Mark Mandel <mark.mandel@gmail.com>
 
 RUN apt-get update && \
-    apt-get install -y zsh openssh-server rsync
+    apt-get install -y zsh openssh-server
+
+ENV SHELL=/usr/bin/zsh
 
 #sshd setup - https://docs.docker.com/examples/running_ssh_service/
 RUN mkdir /var/run/sshd
