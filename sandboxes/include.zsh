@@ -22,6 +22,7 @@ function _docker_zsh() {
 
     _docker_run "--rm" \
         "--name $name" \
+        "-P=true" \
         "-e TERM=$TERM " \
         "-e HOST_GID=`id -g`" \
         "-e HOST_UID=`id -u`" \
@@ -36,23 +37,33 @@ function _docker_zsh() {
         "-it markmandel/$shell /root/startup.sh"
 }
 
-#ssh mount a docker container
-function docker-ssh-mount() {
+_get_docker_ssh_port() {
     local name=$1
-    local mountpoint=/tmp/$name
+
     typeset -a port
 
     port=(${(@s/:/)$(docker port $name 22)})
-    echo "Found: $(docker port $name 22)"
+
+    echo $port[2]
+}
+#ssh mount a docker container
+function docker-ssh-mount() {
+    set -x
+    local name=$1
+    local mountpoint=/tmp/$name
+    local port=$(_get_docker_ssh_port $name)
+
     mkdir -p $mountpoint
-    echo "Mounting on $port[2]"
-    sshfs $USER@0.0.0.0:/ $mountpoint -p $port[2] -o follow_symlinks
+    echo "Mounting on $port"
+    sshfs $USER@0.0.0.0:/ $mountpoint -p $port -o follow_symlinks
+
+    set +x
 }
 
-compdef __docker_ssh_mount docker-ssh-mount
+compdef __list_docker_containers docker-ssh-mount
 
 #Credit: _docker .oh-my-zsh plugin
-__docker_ssh_mount() {
+__list_docker_containers() {
     declare -a cont_cmd
     cont_cmd=($(docker ps | awk 'NR>1{print $NF":[CON("$1")"$2"("$3")]"}'))
     if [[  'X$cont_cmd' != 'X' ]]
