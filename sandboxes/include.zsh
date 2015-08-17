@@ -86,3 +86,8 @@ function docker-cleanup() {
 }
 
 alias dc=docker-cleanup
+
+docker-known-hosts-clear() {
+    cp ~/.ssh/known_hosts ~/.ssh/known_hosts.old
+    grep -v 0.0.0.0 ~/.ssh/known_hosts.old > ~/.ssh/known_hosts
+}

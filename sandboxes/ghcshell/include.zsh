@@ -40,7 +40,7 @@ ghcshell-mount() {
     local name=$1
     local port=$(_get_docker_ssh_port $1)
 
-    echo "Mounting /opt/ghc"
+    echo "Mounting /opt/ghc (port: $port)"
 
     sshfs $USER@0.0.0.0:/opt/ghc /opt/ghc -p $port -o follow_symlinks
 }
