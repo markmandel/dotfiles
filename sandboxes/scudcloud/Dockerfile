@@ -11,12 +11,10 @@ RUN apt-get update && \
 
 RUN apt-add-repository -y ppa:rael-gc/scudcloud && \
     apt-get update && \
-    apt-get install -y dbus-x11 hunspell-en-us scudcloud
+    apt-get install -y scudcloud hunspell-en-us dbus-x11 python3-dbus libnotify-bin
 
-ADD startup.sh /root/startup.sh
-RUN chmod +x /root/startup.sh
+#debugging
+RUN apt-get install strace
 
-CMD /root/startup.sh
-
-
-
+#ENTRYPOINT ["strace", "/usr/bin/scudcloud"]
+ENTRYPOINT ["bash"]

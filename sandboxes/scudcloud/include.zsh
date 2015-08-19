@@ -1,20 +1,45 @@
 #!/usr/bin/env zsh
 
+#docker run -d \
+#		-v /tmp/.X11-unix:/tmp/.X11-unix \
+#		-e DISPLAY=unix$DISPLAY \
+#		-v /etc/machine-id:/etc/machine-id:ro \
+#		-v /var/run/dbus:/var/run/dbus \
+#		-v /var/run/user/$(id -u):/var/run/user/$(id -u) \
+#		-e TERM \
+#		-e XAUTHORITY \
+#		-e DBUS_SESSION_BUS_ADDRESS \
+#		-e HOME \
+#		-e QT_DEVICE_PIXEL_RATIO \
+#		-v /etc/passwd:/etc/passwd:ro \
+#		-v /etc/group:/etc/group:ro \
+#		-u $(whoami) -w "$HOME" \
+#		-v $HOME/.Xauthority:$HOME/.Xauthority \
+#		-v /etc/machine-id:/etc/machine-id:ro \
+#		-v $HOME/.scudcloud:/home/jessie/.config/scudcloud \
+#		--device /dev/snd \
+#		--name slack \
+#		jess/slack
+
 #includes for go zsh config
 function slack() {
     mkdir -p ~/.config/scudcloud
-    docker run --rm \
+    docker run --rm -it \
+            --privileged \
             --name scudcloud \
-            -e HOST_GID=`id -g` \
-            -e HOST_UID=`id -u` \
-            -e HOST_USER=$USER \
+            --device /dev/snd \
+            --privileged \
             -e DISPLAY \
-            -e DBUS_SESSION_BUS_ADDRESS \
             -e XAUTHORITY \
+            -e DBUS_SESSION_BUS_ADDRESS \
+            -u $USER \
+            -v /etc/localtime:/etc/localtime:ro \
             -v /tmp/.X11-unix:/tmp/.X11-unix \
-            -v ~/.config/scudcloud:/home/$USER/.config/scudcloud \
-            -v ~/.Xauthority:/home/$USER/.Xauthority \
-            -v /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro \
+            -v /etc/passwd:/etc/passwd:ro \
+            -v /etc/group:/etc/group:ro \
+            -v $HOME/.Xauthority:$HOME/.Xauthority \
+            -v $HOME/.config/scudcloud:/home/$USER/.config/scudcloud \
             -v /var/run/dbus:/var/run/dbus \
+            -v /var/run/user/$(id -u):/var/run/user/$(id -u) \
             markmandel/scudcloud
 }
