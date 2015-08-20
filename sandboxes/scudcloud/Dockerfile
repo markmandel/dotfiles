@@ -11,10 +11,10 @@ RUN apt-get update && \
 
 RUN apt-add-repository -y ppa:rael-gc/scudcloud && \
     apt-get update && \
-    apt-get install -y scudcloud hunspell-en-us dbus-x11 python3-dbus libnotify-bin
+    apt-get install -y scudcloud hunspell-en-us myspell-en-au myspell-en-gb dbus-x11 python3-dbus libnotify-bin
 
-#debugging
+#Debug
 RUN apt-get install strace
 
-#ENTRYPOINT ["strace", "/usr/bin/scudcloud"]
+#ENTRYPOINT ["/usr/bin/scudcloud"]
 ENTRYPOINT ["bash"]
