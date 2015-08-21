@@ -15,6 +15,7 @@ function slack() {
 		-u $USER \
         -v /etc/passwd:/etc/passwd:ro \
         -v /etc/group:/etc/group:ro \
+        -v /etc/localtime:/etc/localtime \
         -v $HOME/.Xauthority:$HOME/.Xauthority \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-v /var/run/dbus:/var/run/dbus \
