@@ -87,7 +87,16 @@ function docker-cleanup() {
 
 alias dc=docker-cleanup
 
-docker-known-hosts-clear() {
-    cp ~/.ssh/known_hosts ~/.ssh/known_hosts.old
-    grep -v 0.0.0.0 ~/.ssh/known_hosts.old > ~/.ssh/known_hosts
+docker-known-host-clear() {
+    if [[ $1 == "" ]]; then
+        echo "Container name not passed in" >&2
+        return 1
+    fi
+
+    local name=$1
+    local port=$(_get_docker_ssh_port $name)
+
+    ssh-keygen -R [0.0.0.0]:$port
 }
+
+compdef __list_docker_containers docker-known-host-clear

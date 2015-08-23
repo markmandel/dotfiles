@@ -20,6 +20,11 @@ ghcshell-clean() {
 }
 
 ghcshell-idea() {
+    if [[ $1 == "" ]]; then
+        echo "Container name not passed in" >&2
+        return 1
+    fi
+
     ghcshell-mount $1
     ghcshell-env
     nohup idea.sh > /tmp/idea.log &
