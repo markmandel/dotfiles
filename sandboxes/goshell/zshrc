@@ -19,3 +19,5 @@ export EDITOR='nano -w'
 # do this because gb is our go tool
 alias gbb="git branch"
 unalias gb
+
+export PATH=/usr/src/go/bin:$PATH
