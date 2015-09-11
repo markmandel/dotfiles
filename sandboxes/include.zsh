@@ -96,7 +96,7 @@ docker-known-host-clear() {
     local name=$1
     local port=$(_get_docker_ssh_port $name)
 
-    ssh-keygen -R [0.0.0.0]:$port
+    ssh-keygen -R 0.0.0.0:$port
 }
 
 compdef __list_docker_containers docker-known-host-clear
