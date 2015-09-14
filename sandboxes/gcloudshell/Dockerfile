@@ -14,7 +14,7 @@ RUN rm -rf /go
 # install google cloud sdk in root
 WORKDIR /
 RUN apt-get update && \
-    apt-get install -y wget unzip less
+    apt-get install -y wget unzip less libapparmor1
 
 RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip -q google-cloud-sdk.zip && rm google-cloud-sdk.zip
 RUN /google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/root/.bashrc
@@ -30,6 +30,9 @@ ENV PATH /go_appengine:$PATH
 VOLUME ["/root/.config"]
 
 WORKDIR /go
+
+#App Engine port
+EXPOSE 8080
 
 ADD startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
