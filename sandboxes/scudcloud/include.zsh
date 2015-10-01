@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #includes for go zsh config
-function slack() {
+function __slack() {
     mkdir -p /tmp/scudhome/.config/scudcloud
     mkdir -p ~/.config/scudcloud
     docker run -d \
