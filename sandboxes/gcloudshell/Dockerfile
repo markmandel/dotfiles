@@ -22,7 +22,7 @@ ENV PATH /google-cloud-sdk/bin:$PATH
 
 RUN gcloud components update app preview beta alpha app-engine-python --quiet
 
-ENV APPENGINE_VERSION=1.9.26
+ENV APPENGINE_VERSION=1.9.27
 RUN wget -O appengine.zip https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-$APPENGINE_VERSION.zip && unzip -q appengine.zip && rm appengine.zip
 
 ENV PATH /go_appengine:$PATH
