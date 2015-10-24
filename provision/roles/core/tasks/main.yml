@@ -41,6 +41,5 @@
 #- include: synergy.yml
 - include: templates.yml
 - include: compass_icons.yml
-- include: scudcloud.yml
 - include: zeal.yml
 #- include: calibre.yml
