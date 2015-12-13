@@ -20,4 +20,4 @@ export EDITOR='nano -w'
 alias gbb="git branch"
 unalias gb
 
-export PATH=/usr/src/go/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
