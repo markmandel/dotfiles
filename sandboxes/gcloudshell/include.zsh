@@ -11,6 +11,7 @@ function gcloudshell() {
                 "-e DOCKER_GID=$dockerGroup[3]" \
                 "-v ~/.appcfg_oauth2_tokens:/home/$USER/.appcfg_oauth2_tokens" \
                 "-v ~/.config/gcloud:/home/$USER/.config/gcloud" \
+                "-v ~/.gitconfig:/home/$USER/.gitconfig" \
                 "-v /usr/bin/docker:/usr/bin/docker" \
                 "-v /var/run/docker.sock:/var/run/docker.sock"
 }
