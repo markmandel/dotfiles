@@ -43,3 +43,4 @@
 - include: compass_icons.yml
 - include: zeal.yml
 #- include: calibre.yml
+- include: gdrive.yml
