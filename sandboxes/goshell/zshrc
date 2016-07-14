@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="gallifrey"
 
 #plugins
-plugins=(git debian git-extras colored-man autojump go zsh_reload dirhistory zsh-syntax-highlighting)
+plugins=(git gb debian git-extras colored-man autojump go zsh_reload dirhistory zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -2,7 +2,7 @@
 #
 # Shell for Go development
 
-FROM golang:1.5
+FROM golang:1.6
 MAINTAINER Mark Mandel <mark.mandel@gmail.com>
 
 RUN apt-get update && \
