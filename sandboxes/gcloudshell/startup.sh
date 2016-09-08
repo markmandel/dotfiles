@@ -4,7 +4,6 @@ useradd $HOST_USER --home /home/$HOST_USER --gid $HOST_GID --uid $HOST_UID --she
 echo "$HOST_USER:pw" | chpasswd
 chown $HOST_USER:$HOST_USER /home/$HOST_USER
 chown -R $HOST_USER:$HOST_USER /google-cloud-sdk
-chown -R $HOST_USER:$HOST_USER /go_appengine
 
 #allow docker passthrough
 groupadd --gid $DOCKER_GID docker
