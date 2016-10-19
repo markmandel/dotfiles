@@ -7,7 +7,7 @@ FROM markmandel/goshell
 MAINTAINER Mark Mandel <mark.mandel@gmail.com>
 
 #get the gb-gae plugin, so we can use it
-RUN go get code.palmstonegames.com/gb-gae
+RUN go get -u github.com/PalmStoneGames/gb-gae
 RUN mv ./bin/* /usr/local/bin
 RUN rm -rf /go
 
