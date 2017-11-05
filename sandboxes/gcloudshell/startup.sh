@@ -9,5 +9,4 @@ chown -R $HOST_USER:$HOST_USER /google-cloud-sdk
 groupadd --gid $DOCKER_GID docker
 usermod -a -G docker $HOST_USER
 
-/usr/sbin/sshd
 su $HOST_USER

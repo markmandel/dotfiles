@@ -1,20 +1,15 @@
 # markmandel/gcloudshell
 #
-# Shell for Google Cloud Platform SDK + Go
+# Shell for Google Cloud Platform SDK
 # Inspired by: https://registry.hub.docker.com/u/google/cloud-sdk/
 
-FROM markmandel/goshell
+FROM ubuntu
 MAINTAINER Mark Mandel <mark.mandel@gmail.com>
-
-#get the gb-gae plugin, so we can use it
-RUN go get -u github.com/PalmStoneGames/gb-gae
-RUN mv ./bin/* /usr/local/bin
-RUN rm -rf /go
 
 # install google cloud sdk in root
 WORKDIR /
 RUN apt-get update && \
-    apt-get install -y wget unzip less libapparmor1 libltdl7 nano
+    apt-get install -y python zsh wget unzip less libapparmor1 libltdl7 nano
 
 RUN wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && unzip -q google-cloud-sdk.zip && rm google-cloud-sdk.zip
 RUN /google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/root/.bashrc
