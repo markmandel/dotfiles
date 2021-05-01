@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+---
+- name: Install rofimoji deps
+  become: true
+  apt:
+    name:
+      - fonts-noto-color-emoji
+      - python3
+      - python3-pip
+      - rofi
+      - xdotool
+      - xsel
+- name: Download rofimoji release
+  get_url:
+    url: https://github.com/fdw/rofimoji/releases/download/5.1.0/rofimoji-5.1.0-py3-none-any.whl
+    dest: /tmp/
+- name: run Rofimoji install script
+  shell: pip3 install /tmp/rofimoji-5.1.0-py3-none-any.whl
+  become: true

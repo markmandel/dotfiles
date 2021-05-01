@@ -1,4 +1,0 @@
----
-- name: Set default alternative for dmenu
-  command: sudo update-alternatives --set dmenu /usr/bin/dmenu.xft
-  sudo: true

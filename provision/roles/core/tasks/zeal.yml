@@ -1,9 +1,0 @@
----
-- name: Install PPA for Zeal
-  apt_repository: repo=ppa:zeal-developers/ppa
-  sudo: true
-- name: Install Zeal
-  apt: pkg={{ item }}
-  with_items:
-    - zeal
-  sudo: true

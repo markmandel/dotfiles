@@ -1,28 +1,25 @@
 #!/bin/bash
+
+# Copyright 2021 Google LLC All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #set -x verbose #echo on
 
 #only add the bare necessities to get started. Everything else should be ansible.
 workspace="$HOME/workspace"
-ansible="$workspace/ansible"
-ansible_git="https://github.com/ansible/ansible.git"
 dot_files="$workspace/dotfiles"
 
-if [ -d $workspace ]; then
+cd $dot_files/provision
 
-	#self update
-	echo "Updating Dotfiles..."
-	cd $dot_files
-	git pull --rebase
-
-	#control which playbook is run from which machine by a .playbook file
-	cd $dot_files
-	playbook=`cat .playbook`.yml
-	echo "Playbook is: ${playbook}"
-
-	cd $dot_files/provision
-
-	ansible-playbook -vvv -K -i hosts $playbook
-
-else
-	echo "$workspace does not exist. WTF?"
-fi
+ansible-playbook -vvv -K -i hosts deploy.yml -e ansible_python_interpreter=/usr/bin/python3

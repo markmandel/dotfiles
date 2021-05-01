@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+-  name: Clone Lux
+   git:
+     repo: git://github.com/Ventto/lux.git
+     dest: ~/.local/share/lux
+     update: true
+-  name: Install Lux
+   shell: "make install && lux"
+   args:
+     chdir: "/home/{{ ansible_user_id }}/.local/share/lux"
+   become: true

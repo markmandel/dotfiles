@@ -1,3 +1,0 @@
-- name: clipit
-  apt: pkg=clipit
-  sudo: true

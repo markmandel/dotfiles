@@ -1,5 +1,0 @@
----
-- name: "Guayadeque PPA"
-  apt_repository: repo=ppa:anonbeat/guayadeque
-- name: "Install Guayadeque"
-  apt: pkg=guayadeque-svn

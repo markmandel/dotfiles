@@ -1,8 +1,0 @@
----
-- include: guayadeque.yml
-  sudo: true
-- include: symlink_dirs.yml
-- include: std_packages.yml
-  sudo: true
-- include: clean_packages.yml
-  sudo: true

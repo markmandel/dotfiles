@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2021 Google LLC All Rights Reserved.
 #
@@ -14,4 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+cat ~/.fehbg| awk -F' ' '{print $4}' | xargs rm
+find ~/Pictures/wallpapers -type f | shuf | head -n 1 | xargs feh --bg-fill
+echo `ls ~/Pictures/wallpapers | wc -l` wallpapers left.

@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+---
+- name: Install core standard packages
+  become: true
+  apt:
+    name:
+      - wipe
+      - htop
+      - p7zip-full
+      - autojump
+      - trash-cli
+      - tree
+      - gdebi
+      - zsh-syntax-highlighting
+      - python3-pip
+      - moreutils
+      - net-tools
+

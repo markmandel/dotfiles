@@ -1,3 +1,0 @@
----
-- name: copy git config file
-  copy: src=gitconfig dest="~/.gitconfig" mode=0664

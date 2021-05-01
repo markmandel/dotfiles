@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+-  name: Clone Xmonad Cinnamon Session
+   git: dest=~/.local/share/xmonad-cinnamon repo=git://github.com/syvanpera/xmonad-cinnamon.git update=true
+- user:
+    name: "{{ ansible_user_id }}"
+    state: present
+  register: me
+-  name: Install Xmonad Cinnamon Session
+   shell: "make install"
+   args:
+     chdir: "{{ me.home }}/.local/share/xmonad-cinnamon"
+   become: true

@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+---
+- name: tmux
+  become: true
+  apt:
+    name:
+    - tmux
+    - xclip
+    - urlview
+- name: copy tmux config
+  copy: src=tmux.conf dest=~/.tmux.conf
+- name: "Create .tmux plugins dir"
+  file: path="~/.tmux/plugins" state=directory
+- name: clone tmux plugin manager
+  git: repo=https://github.com/tmux-plugins/tpm dest=~/.tmux/plugins/tpm

@@ -1,7 +1,0 @@
----
-- name: "Install xmonad gnome session ppa"
-  apt_repository: repo=ppa:gekkio/xmonad
-  sudo: true
-- name: "Install xmonad gnome session"
-  apt: pkg=gnome-session-xmonad
-  sudo: true

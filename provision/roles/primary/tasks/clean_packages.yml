@@ -1,6 +1,0 @@
----
-- name: remove primary packages that aren't wanted
-  apt: pkg={{ item }} state=absent purge=yes
-  with_items:
-    - rhythmbox
-    - rhythmbox-data

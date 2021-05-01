@@ -1,4 +1,0 @@
----
-- name: increase file descriptors
-  copy: src=mark.conf dest="/etc/security/limits.d"
-  sudo: true

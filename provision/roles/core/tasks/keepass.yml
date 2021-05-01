@@ -1,7 +1,0 @@
----
-- name: keepass
-  apt: pkg=keepass2
-  sudo: yes
-- name: xdotool
-  apt: pkg=xdotool
-  sudo: yes

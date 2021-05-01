@@ -1,9 +1,0 @@
----
-- name: Install TLP PPA
-  apt_repository: repo=ppa:twodopeshaggy/drive
-  sudo: true
-- name: Install TLP
-  apt: pkg={{ item }}
-  with_items:
-    - drive
-  sudo: true

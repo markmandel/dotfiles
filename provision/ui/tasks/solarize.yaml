@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,4 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install ansible git
+---
+- name: Install solarized requirements
+  become: true
+  apt:
+    name:
+      - dbus-x11
+      - dconf-cli
+- name: "Create .solarized dir"
+  file: path="~/.solarized" state=directory
+- name: "Checkout gnome-solarized"
+  git:
+    repo: git://github.com/sigurdga/gnome-terminal-colors-solarized.git
+    dest: ~/.solarized/terminal
+    update: true
+- name: "execute the dark installation script"
+  command: dbus-launch ~/.solarized/terminal/set_dark.sh Default --install-dircolors
