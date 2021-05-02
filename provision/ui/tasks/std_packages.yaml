@@ -30,7 +30,6 @@
       - vlc
       - mpv
       - compton
-      - tlp
       - feh
       - audacity
       - faenza-icon-theme
