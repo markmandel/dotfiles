@@ -17,6 +17,7 @@
   become: true
   apt:
     name:
+      - curl
       - wipe
       - htop
       - p7zip-full

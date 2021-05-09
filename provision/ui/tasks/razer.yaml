@@ -13,12 +13,18 @@
 # limitations under the License.
 
 ---
-- import_tasks: clean.yaml
-- import_tasks: razer.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: solarize.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: lux.yaml
-- import_tasks: rust.yaml
-- import_tasks: xmonad.yaml
-- import_tasks: xmonad-cinnamon.yaml
+- name: polychromatic key
+  become: true
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 96B9CD7C22E2C8C5
+- name: polychromatic repo
+  become: true
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/polychromatic/edge/ubuntu focal main
+- name: install openrazer and polychromatic
+  become: true
+  apt:
+    name:
+      - openrazer-meta
+      - polychromatic
