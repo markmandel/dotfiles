@@ -95,7 +95,8 @@ myKeys =
 
 	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 5% && notify-send \"Brightness: $(lux -G)\" -i video-display -h string:synchronous:brightness")
 	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 5% && notify-send \"Brightness: $(lux -G)\" -i video-display -h string:synchronous:brightness")
-        , ((0, xF86XK_Sleep), spawn "systemctl suspend")
+  , ((0, xF86XK_Sleep), spawn "systemctl suspend")
+  , ((0, xK_Print), spawn "flameshot gui")
 	]
 	++
 	-- map all my workspaces
