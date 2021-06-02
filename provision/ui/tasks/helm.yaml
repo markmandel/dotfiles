@@ -12,17 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-- import_tasks: clean.yaml
-- import_tasks: razer.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: solarize.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: lux.yaml
-- import_tasks: golang.yaml
-- import_tasks: rust.yaml
-- import_tasks: gcloud.yaml
-- import_tasks: helm.yaml
-- import_tasks: docker.yaml
-- import_tasks: xmonad.yaml
-- import_tasks: xmonad-cinnamon.yaml
+- name: grab helm installer
+  get_url:
+    url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    dest: /tmp/get_helm.sh
+    mode: 777
+  become: true
+- name: install the latest helm
+  shell:
+    cmd: /tmp/get_helm.sh
+  become: true
