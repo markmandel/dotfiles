@@ -3,8 +3,3 @@
 	email = markmandel@google.com
 [push]
 	default = tracking
-[alias]
-  pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
-  review = push origin HEAD:refs/for/master
-  setup = !"git config url.'persistent-https://devrel-review.git.corp.google.com'.insteadOf https://devrel-review.git.corp.google.com && curl -Lo `git rev-parse --git-dir`/hooks/commit-msg https://gerrit-review.googlesource.com/tools/hooks/commit-msg && chmod +x `git rev-parse --git-dir`/hooks/commit-msg"
-
