@@ -42,3 +42,4 @@
       - copyq-doc
       - adapta-gtk-theme
       - libnotify-bin
+      - locate

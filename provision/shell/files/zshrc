@@ -60,4 +60,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#2AA198,bg=,,"
 
 export EDITOR='nano -w'
 
+source /usr/share/google-cloud-sdk/completion.zsh.inc
+
 export PATH=/usr/local/go/bin:/usr/local/sbin/:/usr/sbin:$HOME/go/bin:$PATH
