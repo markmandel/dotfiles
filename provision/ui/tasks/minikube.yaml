@@ -13,18 +13,5 @@
 # limitations under the License.
 
 ---
-- import_tasks: clean.yaml
-- import_tasks: razer.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: solarize.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: lux.yaml
-- import_tasks: golang.yaml
-- import_tasks: rust.yaml
-- import_tasks: gcloud.yaml
-- import_tasks: minikube.yaml
-- import_tasks: helm.yaml
-- import_tasks: docker.yaml
-- import_tasks: xpra.yaml
-- import_tasks: xmonad.yaml
-- import_tasks: xmonad-cinnamon.yaml
+- name: install or update minikube
+  shell: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
