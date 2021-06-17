@@ -13,5 +13,7 @@ dconf write /org/cinnamon/desktop/interface/scaling-factor "1"
 
 killall copyq || true
 killall flameshot || true
+
+sleep 3
 nohup copyq >/dev/null 2>&1 &
 
