@@ -53,6 +53,7 @@ isTermScratchPad = (className =? "Gnome-terminal") <&&> (stringProperty "WM_WIND
 isKeepass = (className =? "KeePass2")
 isCopyQ = (className =? "copyq")
 isGTKFileChooser = (propertyToQuery (Role "GtkFileChooserDialog"))
+isPeek = (className =? "Peek")
 
 myTmuxCommand = "tmux -2 new"
 myScratchCommand = "gnome-terminal --role=Scratchpad -e '" ++ myTmuxCommand ++ "'"
@@ -163,6 +164,8 @@ myManageHook =
 		,(className =? "Zenity") --> doCenterFloat
 		,isCopyQ --> doRectFloat (W.RationalRect 0.25 0.25 0.5 0.75)
 		,isGTKFileChooser --> doRectFloat (W.RationalRect 0 0 0.75 0.75)
+		,isPeek --> doIgnore
+		
 	]
 	where floatRect = doRectFloat(W.RationalRect 0 0 0.9 0.9)
 	

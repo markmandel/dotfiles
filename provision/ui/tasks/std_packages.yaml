@@ -43,3 +43,4 @@
       - adapta-gtk-theme
       - libnotify-bin
       - locate
+      - peek
