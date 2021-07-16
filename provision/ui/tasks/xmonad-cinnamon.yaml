@@ -13,7 +13,11 @@
 # limitations under the License.
 
 -  name: Clone Xmonad Cinnamon Session
-   git: dest=~/.local/share/xmonad-cinnamon repo=git://github.com/syvanpera/xmonad-cinnamon.git update=true
+   git:
+    dest: ~/.local/share/xmonad-cinnamon
+    repo: git://github.com/syvanpera/xmonad-cinnamon.git
+    update: true
+    version: 246af184a4e9a7fecf38f1ecbf3c23823da06867
 - user:
     name: "{{ ansible_user_id }}"
     state: present
