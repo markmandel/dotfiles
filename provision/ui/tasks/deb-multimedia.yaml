@@ -11,18 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
 
-- name: add xpra key
-  apt_key:
-    url: https://xpra.org/gpg.asc
+- name: install deb-multimedia key
   become: true
-- name: add xpra repository
-  apt_repository:
-    repo: deb https://xpra.org/ bookworm main
-  become: true
-- name: install xpra
   apt:
-    name:
-      - xpra
+    deb: https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+- name: add deb-multimedia repo
   become: true
+  apt_repository:
+    repo: deb https://www.deb-multimedia.org testing main non-free
