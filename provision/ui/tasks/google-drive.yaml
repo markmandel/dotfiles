@@ -23,3 +23,8 @@
   apt:
     name:
       - google-drive-ocamlfuse
+- name: Replace mv_keep_target for keepass sync
+  lineinfile:
+    path: ~/.gdfuse/default/config
+    regexp: '^mv_keep_target=false'
+    line: 'mv_keep_target=true'
