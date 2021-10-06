@@ -50,7 +50,7 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
              , xK_KP_Insert] -- 0
 
 isTermScratchPad = (className =? "Gnome-terminal") <&&> (stringProperty "WM_WINDOW_ROLE" =? "Scratchpad")
-isKeepass = (className =? "KeePass2")
+isKeepass = (className =? "KeePassXC")
 isCopyQ = (className =? "copyq")
 isGTKFileChooser = (propertyToQuery (Role "GtkFileChooserDialog"))
 isPeek = (className =? "Peek")
@@ -62,11 +62,12 @@ volumeNotify = " --max-volume 100 --get-volume | awk '{print $1}' | xargs -I{} n
 
 myScratchpads =
 	[
-		NS "keepass2" "keepass2" isKeepass nonFloating
-		, NS "terminal" myScratchCommand isTermScratchPad nonFloating
+        NS "keepassxc" "keepassxc" isKeepass nonFloating
+        , NS "terminal" myScratchCommand isTermScratchPad nonFloating
+        , NS "copyq" "copyq show" isCopyQ nonFloating
 	]
 
--- general keysimport XMonad.Prompt
+-- general keysimport XMonad.Prompt[
 myKeys =
 	[
 	((myModKey, xK_p), spawn ("rofi -modi combi -show combi -combi-modi run,drun"))
@@ -76,11 +77,10 @@ myKeys =
 	, ((myModKey, xK_g), spawn ("rofi -show window"))
 	, ((myModKey .|. shiftMask, xK_b), bringMenuArgs' "rofi" [ "-dmenu" ])
 	, ((myModKey, xK_grave), cycleRecentWS [xK_Super_L] xK_grave xK_grave)
-	, ((mod1Mask .|. shiftMask, xK_a), spawn ("keepass2 --auto-type"))
+	-- , ((mod1Mask .|. shiftMask, xK_a), spawn ("keepassxc"))
 	, ((myModKey, xK_x), kill) -- close focused window
 	, ((myModKey .|. shiftMask, xK_x), kill1) -- close only the copy of the window
         -- these shortcut keys aren't working under gnome anymore, so let's define them
-        , ((shiftMask .|. controlMask, xK_a ), spawn ("copyq show"))
         , ((altMask .|. controlMask, xK_l ), spawn ("cinnamon-screensaver-command -l"))
 	]
 	-- Media/Function keys
@@ -121,11 +121,9 @@ myKeys =
 	++
 	-- named scratch pads
 	[
-		((myModKey .|. controlMask, xK_k), namedScratchpadAction myScratchpads "keepass2")
-		,((myModKey, xK_F12), namedScratchpadAction myScratchpads "terminal")
-		,((myModKey, xK_F3), namedScratchpadAction myScratchpads "guayadeque")
-		,((myModKey .|. controlMask, xK_h), namedScratchpadAction myScratchpads "hangouts")
-		,((myModKey .|. controlMask, xK_d), namedScratchpadAction myScratchpads "dynamite")
+        ((myModKey .|. controlMask, xK_k), namedScratchpadAction myScratchpads "keepassxc")
+        ,((myModKey, xK_F12), namedScratchpadAction myScratchpads "terminal")
+        , ((shiftMask .|. controlMask, xK_a ), namedScratchpadAction myScratchpads "copyq")
 	]
 	-- dynamic workspace groups
 	++
