@@ -5,5 +5,5 @@ set -o pipefail
 set -o nounset
 # set -o xtrace
 
-rclone mount Drive:/ ~/GoogleDrive --daemon
+google-drive-ocamlfuse ~/GoogleDrive
 

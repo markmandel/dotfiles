@@ -15,5 +15,6 @@ killall copyq || true
 killall flameshot || true
 
 sleep 3
+gnome-panel --replace
 nohup copyq >/dev/null 2>&1 &
 
