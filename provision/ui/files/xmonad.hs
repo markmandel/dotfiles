@@ -177,5 +177,4 @@ main = xmonad $ gnomeConfig {
 	, manageHook = manageHook gnomeConfig <+> composeAll myManageHook
 	, startupHook = do
            startupHook gnomeConfig
-           setWMName "LG3D"
 } `additionalKeys` myKeys
