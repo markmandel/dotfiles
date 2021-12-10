@@ -46,7 +46,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(debian tmux docker themes git git-extras colored-man-pages autojump zsh_reload dirhistory zsh-syntax-highlighting zsh-autosuggestions rust rustup cargo kubectl helm)
+plugins=(debian tmux docker themes git git-extras colored-man-pages autojump dirhistory zsh-syntax-highlighting zsh-autosuggestions rust rustup cargo kubectl helm)
 
 source $ZSH/oh-my-zsh.sh
 
