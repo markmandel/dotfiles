@@ -13,12 +13,9 @@
 # limitations under the License.
 
 ---
-- name: grab golang
-  get_url:
-    url: https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
-    dest: /tmp/golang.tar.gz
-- name: Extract Go to local
+- name: Install golang
   become: true
-  unarchive:
-    src: /tmp/golang.tar.gz
-    dest: /usr/local
+  apt:
+    name:
+      - golang
+      - golang-1.17
