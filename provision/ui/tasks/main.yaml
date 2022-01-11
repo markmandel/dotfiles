@@ -18,6 +18,7 @@
 - import_tasks: deb-multimedia.yaml
 - import_tasks: gh-cli.yaml
 - import_tasks: razer.yaml
+- import_tasks: idea.yaml
 - import_tasks: std_packages.yaml
 - import_tasks: solarize.yaml
 - import_tasks: rofimoji.yaml
