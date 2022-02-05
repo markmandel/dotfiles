@@ -25,8 +25,9 @@
       - xsel
 - name: Download rofimoji release
   get_url:
-    url: https://github.com/fdw/rofimoji/releases/download/5.3.0/rofimoji-5.3.0-py3-none-any.whl
+    url: https://github.com/fdw/rofimoji/releases/download/5.4.0/rofimoji-5.4.0-py3-none-any.whl
     dest: /tmp/
 - name: run Rofimoji install script
-  shell: pip3 install /tmp/rofimoji-5.3.0-py3-none-any.whl
+  shell: pip3 install /tmp/rofimoji-5.4.0-py3-none-any.whl
   become: true
+
