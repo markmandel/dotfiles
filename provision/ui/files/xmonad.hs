@@ -37,6 +37,7 @@ import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           Graphics.X11.ExtraTypes.XF86
 import           XMonad.Util.WindowProperties
+import           XMonad.Actions.FloatSnap
 
 myWorkspaces = ["1","2","3","4","5","6","7","8","9","0"]
 
@@ -125,6 +126,18 @@ myKeys =
         ,((myModKey, xK_F12), namedScratchpadAction myScratchpads "terminal")
         , ((shiftMask .|. controlMask, xK_a ), namedScratchpadAction myScratchpads "copyq")
 	]
+	++
+	-- floating window snapping
+	[
+        ((myModKey,                 xK_Left),  withFocused $ snapMove L Nothing)
+        , ((myModKey,               xK_Right), withFocused $ snapMove R Nothing)
+        , ((myModKey,               xK_Up),    withFocused $ snapMove U Nothing)
+        , ((myModKey,               xK_Down),  withFocused $ snapMove D Nothing)
+        , ((myModKey .|. shiftMask, xK_Left),  withFocused $ snapShrink R Nothing)
+        , ((myModKey .|. shiftMask, xK_Right), withFocused $ snapGrow R Nothing)
+        , ((myModKey .|. shiftMask, xK_Up),    withFocused $ snapShrink D Nothing)
+        , ((myModKey .|. shiftMask, xK_Down),  withFocused $ snapGrow D Nothing)
+    ]
 	-- dynamic workspace groups
 	++
 	[
