@@ -29,9 +29,9 @@
 - name: zshrc config
   copy: src=zshrc dest=~/.zshrc
 - name: install oh-my-zsh
-  git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh
+  git: repo=https://github.com/ohmyzsh/ohmyzsh.git dest=~/.oh-my-zsh
   when: not zsh_installed.stat.exists
 - name: "install custom plugin: zsh-autosuggestions"
-  git: repo=git://github.com/zsh-users/zsh-autosuggestions dest=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 - name: "install custom plugin: zsh-syntax-highlighting"
-  git: repo=git://github.com/zsh-users/zsh-syntax-highlighting dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  git: repo=https://github.com/zsh-users/zsh-syntax-highlighting.git dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
