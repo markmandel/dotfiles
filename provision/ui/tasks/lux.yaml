@@ -14,7 +14,7 @@
 
 -  name: Clone Lux
    git:
-     repo: git://github.com/Ventto/lux.git
+     repo: https://github.com/Ventto/lux.git
      dest: ~/.local/share/lux
      update: true
 -  name: Install Lux

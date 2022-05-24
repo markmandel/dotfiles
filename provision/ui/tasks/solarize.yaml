@@ -23,7 +23,7 @@
   file: path="~/.solarized" state=directory
 - name: "Checkout gnome-solarized"
   git:
-    repo: git://github.com/sigurdga/gnome-terminal-colors-solarized.git
+    repo: https://github.com/aruhier/gnome-terminal-colors-solarized.git
     dest: ~/.solarized/terminal
     update: true
 - name: "execute the dark installation script"

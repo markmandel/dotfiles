@@ -19,7 +19,7 @@
   become: true
 - name: add xpra repository
   apt_repository:
-    repo: deb https://xpra.org/ bookworm main
+    repo: deb https://xpra.org/ testing main
   become: true
 - name: install xpra
   apt:

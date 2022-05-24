@@ -15,7 +15,7 @@
 -  name: Clone Xmonad Cinnamon Session
    git:
     dest: ~/.local/share/xmonad-cinnamon
-    repo: git://github.com/syvanpera/xmonad-cinnamon.git
+    repo: https://github.com/syvanpera/xmonad-cinnamon.git
     update: true
 - user:
     name: "{{ ansible_user_id }}"
