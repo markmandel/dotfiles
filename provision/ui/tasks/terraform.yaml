@@ -13,16 +13,16 @@
 # limitations under the License.
 ---
 
-- name: add xpra key
+- name: add terraform key
   apt_key:
-    url: https://xpra.org/gpg.asc
+    url: https://apt.releases.hashicorp.com/gpg
   become: true
-- name: add xpra repository
+- name: add terraform repository
   apt_repository:
-    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/xpra-2022.gpg] https://xpra.org testing main
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com bookworm main
   become: true
-- name: install xpra
+- name: install terraform
   apt:
     name:
-      - xpra
+      - terraform
   become: true

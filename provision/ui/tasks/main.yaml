@@ -29,6 +29,7 @@
 - import_tasks: minikube.yaml
 - import_tasks: helm.yaml
 - import_tasks: docker.yaml
+- import_tasks: terraform.yamll
 - import_tasks: xpra.yaml
 - import_tasks: xmonad.yaml
 - import_tasks: xmonad-cinnamon.yaml
