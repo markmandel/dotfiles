@@ -46,7 +46,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(debian tmux docker themes git git-extras colored-man-pages autojump dirhistory zsh-syntax-highlighting zsh-autosuggestions rust kubectl helm)
+plugins=(debian tmux docker themes git git-extras colored-man-pages autojump dirhistory zsh-syntax-highlighting zsh-autosuggestions rust gcloud kubectl helm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -59,9 +59,5 @@ fi
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#2AA198,bg=,," 
 
 export EDITOR='nano -w'
-
-if [ -f /usr/share/google-cloud-sdk/completion.zsh.inc ]
-	then source /usr/share/google-cloud-sdk/completion.zsh.inc
-fi
 
 export PATH=/usr/local/go/bin:/usr/local/sbin/:/usr/sbin:$HOME/go/bin:$PATH
