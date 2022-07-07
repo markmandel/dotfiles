@@ -14,8 +14,9 @@
 ---
 
 - name: add xpra key
-  apt_key:
-    url: https://xpra.org/gpg.asc
+  get_url:
+    url: https://xpra.org/xpra-2022.gpg
+    dest: "/usr/share/keyrings/xpra-2022.gpg"
   become: true
 - name: add xpra repository
   apt_repository:
