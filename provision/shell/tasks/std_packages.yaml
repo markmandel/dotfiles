@@ -19,7 +19,7 @@
     name:
       - curl
       - wipe
-      - htop
+      - btop
       - p7zip-full
       - autojump
       - trash-cli

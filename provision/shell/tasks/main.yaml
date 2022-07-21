@@ -17,4 +17,4 @@
 - import_tasks: tmux.yaml
 - import_tasks: git_config.yaml
 - import_tasks: zsh.yaml
-- import_tasks: bpytop.yaml
+
