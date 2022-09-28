@@ -33,6 +33,7 @@
       - feh
       - audacity
       - faenza-icon-theme
+      - papirus-icon-theme
       - flameshot
       - zsh-syntax-highlighting
       - fonts-noto-color-emoji
