@@ -18,4 +18,3 @@
   apt:
     name:
       - golang
-      - golang-1.17

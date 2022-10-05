@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2022 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,19 +13,9 @@
 # limitations under the License.
 
 ---
-- import_tasks: clean.yaml
-- import_tasks: google-drive.yaml
-- import_tasks: deb-multimedia.yaml
-- import_tasks: gh-cli.yaml
-- import_tasks: razer.yaml
-- import_tasks: idea.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: solarize.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: lux.yaml
-- import_tasks: gcloud.yaml
-- import_tasks: minikube.yaml
-- import_tasks: helm.yaml
-- import_tasks: terraform.yaml
-- import_tasks: xmonad.yaml
-- import_tasks: xmonad-cinnamon.yaml
+- hosts: 127.0.0.1
+  connection: local
+  user: mark
+  roles:
+    - shell
+    - xpra

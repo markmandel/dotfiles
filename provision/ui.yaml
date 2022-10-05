@@ -18,4 +18,5 @@
   user: mark
   roles:
     - shell
+    - xpra
     - ui
