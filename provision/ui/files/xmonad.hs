@@ -146,11 +146,11 @@ myKeys =
 		, ((myModKey .|. controlMask, xK_f), promptWSGroupForget myXPConfig "Forget group: ")
 	]
 	where
-	myXPConfig = defaultXPConfig
+	myXPConfig = def
 	             {
               		font = "xft: ubuntu-mono-10"
               		,promptBorderWidth = 0
-              	     }
+                 }
 
 
 myLayout = tiled ||| Mirror tiled ||| ThreeCol 1 (3/100) (1/2) ||| spiral (toRational (2/(1+sqrt(5)::Double))) ||| noBorders simpleTabbed ||| noBorders Full
