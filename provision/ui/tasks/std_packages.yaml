@@ -29,7 +29,7 @@
       - gdebi
       - vlc
       - mpv
-      - compton
+      - picom
       - feh
       - audacity
       - faenza-icon-theme
