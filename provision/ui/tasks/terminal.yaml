@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2022 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
 # limitations under the License.
 
 ---
+# solarized
 - name: Install solarized requirements
   become: true
   apt:
@@ -28,3 +29,24 @@
     update: true
 - name: "execute the dark installation script"
   command: dbus-launch ~/.solarized/terminal/set_dark.sh Default --install-dircolors
+
+# nerd fontA key path (starting, but not ending with '/')
+- name: install JetBrainMono Nerd Font
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip
+    dest: ~/Downloads/JetBrainsMono.zip
+    force: false
+- name: ensure font directory exists
+  become: true
+  file:
+    path: /usr/share/fonts/nerd/jetbrains-mono
+    state: directory
+- name: unzip jetbrains fonts
+  become: true
+  unarchive:
+    src: ~/Downloads/JetBrainsMono.zip
+    dest: /usr/share/fonts/nerd/jetbrains-mono
+- name: set jetbrains mono as the mono font
+  dconf:
+    key: "/org/gnome/desktop/interface/monospace-font-name"
+    value: "'JetBrainsMono Nerd Font Mono 10'"

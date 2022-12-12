@@ -35,3 +35,8 @@
   git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 - name: "install custom plugin: zsh-syntax-highlighting"
   git: repo=https://github.com/zsh-users/zsh-syntax-highlighting.git dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+# Starship prompt
+- name: install or update starship prompt
+  become: true
+  shell: curl -sS https://starship.rs/install.sh | sh -s -- --yes
