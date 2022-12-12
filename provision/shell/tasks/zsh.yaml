@@ -40,3 +40,5 @@
 - name: install or update starship prompt
   become: true
   shell: curl -sS https://starship.rs/install.sh | sh -s -- --yes
+- name: copy starship config
+  copy: src=starship.toml dest=~/.config
