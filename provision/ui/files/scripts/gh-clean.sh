@@ -9,5 +9,4 @@ git checkout main
 git remote update -p
 
 git branch -vvv | grep gone | awk '{ print $1 }' | xargs git branch -D || true
-
 git pull --rebase
