@@ -14,12 +14,11 @@
 ---
 
 - name: add terraform key
-  apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
+  shell: "wget -q -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg"
   become: true
 - name: add terraform repository
   apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com bookworm main
+    repo: deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com bookworm main
   become: true
 - name: install terraform
   apt:
