@@ -13,15 +13,14 @@
 # limitations under the License.
 
 ---
-- name: polychromatic key
+
+- name: add polychromatic key
+  shell: "curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc0d54c34d00160459588000e96b9cd7c22e2c8c5' | sudo gpg --yes --dearmour -o /usr/share/keyrings/polychromatic.gpg"
   become: true
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 96B9CD7C22E2C8C5
-- name: polychromatic repo
-  become: true
+- name: add polychromatic repository
   apt_repository:
-    repo: deb http://ppa.launchpad.net/polychromatic/edge/ubuntu focal main
+    repo: deb [signed-by=/usr/share/keyrings/polychromatic.gpg] http://ppa.launchpad.net/polychromatic/stable/ubuntu focal main
+  become: true
 - name: install openrazer and polychromatic
   become: true
   apt:
