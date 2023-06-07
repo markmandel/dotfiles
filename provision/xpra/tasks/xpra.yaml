@@ -17,7 +17,9 @@
   get_url:
     url: https://xpra.org/gpg.asc
     dest: "/usr/share/keyrings/xpra.asc"
+    force: true
   become: true
+
 - name: add xpra key
   get_url:
     url: https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/bookworm/xpra-beta.sources

@@ -30,10 +30,10 @@
 - name: "execute the dark installation script"
   command: dbus-launch ~/.solarized/terminal/set_dark.sh Default --install-dircolors
 
-# nerd fontA key path (starting, but not ending with '/')
+# nerd font key path (starting, but not ending with '/')
 - name: install JetBrainMono Nerd Font
   get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.tar.xz
     dest: ~/Downloads/JetBrainsMono.zip
     force: false
 - name: ensure font directory exists
