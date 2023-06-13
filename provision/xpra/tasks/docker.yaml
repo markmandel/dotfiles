@@ -21,7 +21,7 @@
 - name: add docker repository
   become: true
   apt_repository:
-    repo: deb https://download.docker.com/linux/debian bullseye stable
+    repo: deb https://download.docker.com/linux/debian bookworm stable
 - name: install docker
   become: true
   apt:

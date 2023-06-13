@@ -15,16 +15,22 @@
 
 - name: add xpra key
   get_url:
-    url: https://xpra.org/gpg.asc
+    url: https://xpra.org/xpra-2023.asc
     dest: "/usr/share/keyrings/xpra.asc"
     force: true
   become: true
 
-- name: add xpra key
+#- name: add xpra repository
+#  apt_repository:
+#    repo: deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/xpra-2022.gpg] https://xpra.org/beta/ bookworm main
+#  become: true
+
+- name: add xpra respository
   get_url:
     url: https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/bookworm/xpra-beta.sources
     dest: /etc/apt/sources.list.d
   become: true
+
 - name: install xpra
   apt:
     name:
