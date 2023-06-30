@@ -32,7 +32,6 @@
       - picom
       - feh
       - audacity
-      - faenza-icon-theme
       - papirus-icon-theme
       - flameshot
       - zsh-syntax-highlighting
@@ -41,9 +40,10 @@
       - copyq
       - copyq-plugins
       - copyq-doc
-      - adapta-gtk-theme
+      - arc-theme
       - libnotify-bin
       - locate
       - peek
       - puddletag
       - baobab
+      - pasystray
