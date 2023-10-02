@@ -152,8 +152,7 @@ myKeys =
               		,promptBorderWidth = 0
                  }
 
-
-myLayout = tiled ||| Mirror tiled ||| ThreeCol 1 (3/100) (1/2) ||| spiral (toRational (2/(1+sqrt(5)::Double))) ||| noBorders simpleTabbed ||| noBorders Full
+myLayout = tiled ||| ThreeCol 1 (3/100) (1/3) ||| Mirror tiled ||| spiral (toRational (2/(1+sqrt(5)::Double))) ||| noBorders simpleTabbed ||| noBorders Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
