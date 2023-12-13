@@ -17,7 +17,6 @@
 - import_tasks: terminal.yaml
 - import_tasks: google-drive.yaml
 - import_tasks: deb-multimedia.yaml
-- import_tasks: gh-cli.yaml
 - import_tasks: razer.yaml
 - import_tasks: idea.yaml
 - import_tasks: std_packages.yaml
