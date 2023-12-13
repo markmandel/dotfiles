@@ -41,4 +41,5 @@
   become: true
   shell: curl -sS https://starship.rs/install.sh | sh -s -- --yes
 - name: copy starship config
-  copy: src=starship.toml dest=~/.config
+  copy: src=starship.toml dest=~/.config/starship.toml
+
