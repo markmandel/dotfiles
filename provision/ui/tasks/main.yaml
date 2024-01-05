@@ -24,7 +24,5 @@
 - import_tasks: lux.yaml
 - import_tasks: gcloud.yaml
 - import_tasks: minikube.yaml
-- import_tasks: helm.yaml
-- import_tasks: terraform.yaml
 - import_tasks: xmonad.yaml
 - import_tasks: xmonad-cinnamon.yaml
