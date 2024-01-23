@@ -55,6 +55,7 @@ isKeepass = (className =? "KeePassXC")
 isCopyQ = (className =? "copyq")
 isGTKFileChooser = (propertyToQuery (Role "GtkFileChooserDialog"))
 isPeek = (className =? "Peek")
+isXpra = (className =? "Xpra")
 
 myTmuxCommand = "tmux -2 new"
 myScratchCommand = "gnome-terminal --role=Scratchpad -e '" ++ myTmuxCommand ++ "'"
@@ -68,7 +69,7 @@ myScratchpads =
         , NS "copyq" "copyq show" isCopyQ nonFloating
 	]
 
--- general keysimport XMonad.Prompt[
+-- general keysimport XMonad.Prompt
 myKeys =
 	[
 	((myModKey, xK_p), spawn ("rofi -modi combi -show combi -combi-modi run,drun"))
@@ -97,8 +98,8 @@ myKeys =
 
 	, ((0, xF86XK_MonBrightnessUp), spawn "lux -a 5% && notify-send \"Brightness: $(lux -G)\" -i video-display -h string:synchronous:brightness")
 	, ((0, xF86XK_MonBrightnessDown), spawn "lux -s 5% && notify-send \"Brightness: $(lux -G)\" -i video-display -h string:synchronous:brightness")
-  , ((0, xF86XK_Sleep), spawn "systemctl suspend")
-  , ((0, xK_Print), spawn "flameshot gui")
+        , ((0, xF86XK_Sleep), spawn "systemctl suspend")
+        , ((0, xK_Print), spawn "flameshot gui")
 	]
 	++
 	-- map all my workspaces
@@ -150,7 +151,7 @@ myKeys =
 	             {
               		font = "xft: ubuntu-mono-10"
               		,promptBorderWidth = 0
-                 }
+              	     }
 
 myLayout = tiled ||| ThreeCol 1 (3/100) (1/3) ||| Mirror tiled ||| spiral (toRational (2/(1+sqrt(5)::Double))) ||| noBorders simpleTabbed ||| noBorders Full
   where
@@ -171,11 +172,10 @@ myManageHook =
 		isFullscreen --> doFullFloat
 		,isTermScratchPad --> floatRect
 		,isKeepass --> doCenterFloat
-		,(className =? "Zenity") --> doCenterFloat
-		,isCopyQ --> doRectFloat (W.RationalRect 0.25 0.25 0.5 0.75)
+		,isCopyQ --> doRectFloat (W.RationalRect 0.25 0.1 0.5 0.75)
 		,isGTKFileChooser --> doRectFloat (W.RationalRect 0 0 0.75 0.75)
 		,isPeek --> doIgnore
-		
+		,isXpra --> doIgnore
 	]
 	where floatRect = doRectFloat(W.RationalRect 0 0 0.9 0.9)
 	
