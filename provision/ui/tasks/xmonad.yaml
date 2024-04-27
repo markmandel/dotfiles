@@ -26,6 +26,7 @@
       - libghc-xmonad-doc
       - dunst
       - gnome-panel
+      - cinnamon
       - pavucontrol
       - pavumeter
       - playerctl
