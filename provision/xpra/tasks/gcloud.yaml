@@ -21,15 +21,14 @@
       - gnupg
   become: true
 - name: add gcloud key
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+  shell: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
   become: true
 - name: add gcloud repository
   apt_repository:
-    repo: deb https://packages.cloud.google.com/apt cloud-sdk main
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
   become: true
 - name: install gcloud
   apt:
     name:
-      - google-cloud-sdk
+      - google-cloud-cli
   become: true
