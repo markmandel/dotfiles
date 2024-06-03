@@ -21,7 +21,7 @@
       - gnupg
   become: true
 - name: add gcloud key
-  shell: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+  shell: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/cloud.google.gpg
   become: true
 - name: add gcloud repository
   apt_repository:

@@ -31,5 +31,6 @@
   apt:
     name:
       - xpra
+      - xpra-codecs-extras
     update_cache: true
   become: true
