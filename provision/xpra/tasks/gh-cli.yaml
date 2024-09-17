@@ -14,14 +14,13 @@
 
 ---
 
-- name: add gh-cli key
+- name: add gcloud key
   become: true
-  apt_key:
-    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+  shell: wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
 - name: add gh-cli repository
   become: true
   apt_repository:
-    repo: deb [arch=amd64] https://cli.github.com/packages stable main
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
 - name: install gh-cli
   become: true
   apt:
