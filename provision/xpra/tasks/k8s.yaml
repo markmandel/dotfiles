@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2024 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,16 +13,7 @@
 # limitations under the License.
 
 ---
-- import_tasks: clean.yaml
-- import_tasks: terminal.yaml
-- import_tasks: google-drive.yaml
-- import_tasks: deb-multimedia.yaml
-- import_tasks: razer.yaml
-- import_tasks: idea.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: lux.yaml
-- import_tasks: k8s.yaml
-- import_tasks: minikube.yaml
-- import_tasks: xmonad.yaml
-- import_tasks: xmonad-cinnamon.yaml
+- name: Install k9s
+  become: true
+  apt:
+    deb: "https://github.com/derailed/k9s/releases/download/v0.32.6/k9s_linux_amd64.deb"
