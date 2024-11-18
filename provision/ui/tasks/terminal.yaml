@@ -33,8 +33,8 @@
 # nerd font key path (starting, but not ending with '/')
 - name: install JetBrainMono Nerd Font
   get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
     dest: ~/Downloads/JetBrainsMono.zip
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
     force: false
 - name: ensure font directory exists
   become: true

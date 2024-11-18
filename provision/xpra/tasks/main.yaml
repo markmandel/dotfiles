@@ -18,8 +18,8 @@
 - import_tasks: docker.yaml
 - import_tasks: golang.yaml
 - import_tasks: helm.yaml
+- import_tasks: k8s.yaml
 - import_tasks: terraform.yaml
 - import_tasks: rust.yaml
 - import_tasks: gh-cli.yaml
 - import_tasks: gcloud.yaml
-
