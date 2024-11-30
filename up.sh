@@ -20,6 +20,13 @@
 workspace="$HOME/workspace"
 dot_files="$workspace/dotfiles"
 
+# Grab the Debian version information as env vars
+set -o allexport
+source /etc/os-release
+set +o allexport
+
+echo "Debian Version: ${VERSION_CODENAME}"
+
 playbook="${1:-ui}"
 
 cd $dot_files/provision

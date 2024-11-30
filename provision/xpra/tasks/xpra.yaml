@@ -22,7 +22,7 @@
 
 - name: add xpra respository
   get_url:
-    url: https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/trixie/xpra-beta.sources
+    url: "https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/{{ lookup('env', 'VERSION_CODENAME') }}/xpra-beta.sources"
     dest: /etc/apt/sources.list.d
     force: true
   become: true
