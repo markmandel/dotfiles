@@ -76,7 +76,6 @@ $battery\
 $time\
 $status\
 $os\
-$container\
 $shell\
 $character"""
 
