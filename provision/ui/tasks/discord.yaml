@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2025 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,18 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- import_tasks: clean.yaml
-- import_tasks: terminal.yaml
-- import_tasks: google-drive.yaml
-- import_tasks: deb-multimedia.yaml
-- import_tasks: razer.yaml
-- import_tasks: idea.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: lux.yaml
-- import_tasks: minikube.yaml
-- import_tasks: xmonad.yaml
-- import_tasks: xmonad-cinnamon.yaml
-- import_tasks: discord.yaml
+- name: Download Discord
+  get_url:
+    url: "https://discordapp.com/api/download?platform=linux&format=deb"
+    dest: "/tmp/discord.deb"
+    mode: '0644'
+
+- name: Install Discord
+  become: true
+  apt:
+    deb: "/tmp/discord.deb"
