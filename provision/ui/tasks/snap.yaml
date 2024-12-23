@@ -19,6 +19,14 @@
     name:
      - snapd
 
-- name: Install snap packages
+# source: https://snapcraft.io/install/obs-studio/debian
+- name: Install OBS
   become: true
-  shell: snap install obs-studio
+  shell: | 
+    snap install obs-studio
+    sudo snap connect obs-studio:alsa
+    sudo snap connect obs-studio:audio-record
+    sudo snap connect obs-studio:avahi-control
+    sudo snap connect obs-studio:camera
+    sudo snap connect obs-studio:jack1
+    sudo snap connect obs-studio:kernel-module-observe
