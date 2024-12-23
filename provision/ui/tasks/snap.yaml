@@ -13,3 +13,12 @@
 # limitations under the License.
 ---
 
+- name: Install snapd
+  become: true
+  apt:
+    name:
+     - snapd
+
+- name: Install snap packages
+  become: true
+  shell: snap install obs-studio
