@@ -15,14 +15,15 @@
 ---
 - name: google-drive-ocamlfuse repo
   become: true
-  apt_repository:
-    repo: ppa:alessandro-strada/ppa
-    codename: hirsute
+  shell: |
+    echo "deb [signed-by=/usr/share/keyrings/alessandro-strada.gpg] https://ppa.launchpadcontent.net/alessandro-strada/ppa/ubuntu noble main" | tee /etc/apt/sources.list.d/alessandro-strada.list
+    curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xA7AFF39895544C77C124BB46FEAC8456AF83AFEB' | gpg --yes --dearmour -o /usr/share/keyrings/alessandro-strada.gpg
 - name: install google-drive-ocamlfuse
   become: true
   apt:
     name:
       - google-drive-ocamlfuse
+    update_cache: true
 - name: Replace mv_keep_target for keepass sync
   lineinfile:
     path: ~/.gdfuse/default/config
