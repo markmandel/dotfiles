@@ -12,13 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Download Discord
-  get_url:
-    url: "https://discordapp.com/api/download?platform=linux&format=deb"
-    dest: "/tmp/discord.deb"
-    mode: '0644'
 
-- name: Install Discord
-  become: true
-  apt:
-    deb: "/tmp/discord.deb"
+- name: Download Zig
+  get_url:
+    url: "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
+    dest: "/tmp/zig-linux-x86_64.tar.xz"
+    mode: '0644'
+- name: Create Zig directory
+  become: true # Required for creating directories in /opt/
+  file:
+    path: /opt/zig
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+- name: Extract Zig
+  unarchive:
+    src: "/tmp/zig-linux-x86_64.tar.xz"
+    dest: "/opt/zig"
+    remote_src: yes
+    creates: "/opt/zig/zig-linux-x86_64-0.13.0" # Ensures idempotency

@@ -26,3 +26,4 @@
 - import_tasks: xmonad-cinnamon.yaml
 - import_tasks: discord.yaml
 - import_tasks: snap.yaml
+- import_tasks: ghostty.yaml
