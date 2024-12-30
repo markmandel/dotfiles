@@ -68,5 +68,12 @@
     dest: "/usr/local/bin/ghostty"
     state: link
 
-# TOXO: Copy the config file to ~/.config
-# TOXO: Copy the gtk-4.0.css file to the ~/.config
+- name: Copy ghostty config file
+  copy:
+    src: ghostty-config
+    dest: ~/.config/ghostty/config
+
+- name: Copy gtk-4.0 CSS file (remove rounded corners)
+  copy:
+    src: gtk-4.0.css
+    dest: ~/.config/gtk-4.0/gtk.css

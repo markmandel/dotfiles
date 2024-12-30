@@ -19,3 +19,4 @@ font-size = 9
 window-decoration = false
 gtk-adwaita = true
 gtk-single-instance = true
+window-save-state = never
