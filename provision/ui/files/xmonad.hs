@@ -50,7 +50,7 @@ numPadKeys = [ xK_KP_End,  xK_KP_Down,  xK_KP_Page_Down -- 1, 2, 3
              , xK_KP_Home, xK_KP_Up,    xK_KP_Page_Up   -- 7, 8, 9
              , xK_KP_Insert] -- 0
 
-isTermScratchPad = (className =? "Gnome-terminal") <&&> (stringProperty "WM_WINDOW_ROLE" =? "Scratchpad")
+isTermScratchPad = (className =? "com.markmandel.scratchpad")
 isKeepass = (className =? "KeePassXC")
 isCopyQ = (className =? "copyq")
 isGTKFileChooser = (propertyToQuery (Role "GtkFileChooserDialog"))
@@ -58,8 +58,8 @@ isPeek = (className =? "Peek")
 isXpra = (className =? "Xpra")
 
 myTmuxCommand = "tmux -2 new"
-myScratchCommand = "gnome-terminal --role=Scratchpad -e '" ++ myTmuxCommand ++ "'"
-myTerminal = "gnome-terminal -e '" ++ myTmuxCommand ++ "'"
+myScratchCommand = "ghostty --class=com.markmandel.scratchpad -e '" ++ myTmuxCommand ++ "'"
+myTerminal = "ghostty -e '" ++ myTmuxCommand ++ "'"
 volumeNotify = " --max-volume 100 --get-volume | awk '{print $1}' | xargs -I{} notify-send Volume: {}% -i audio-volume-medium -h string:synchronous:volume"
 
 myScratchpads =

@@ -13,11 +13,6 @@
 # limitations under the License.
 ---
 
-- name: Download Zig
-  get_url:
-    url: "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
-    dest: "/tmp/zig-linux-x86_64.tar.xz"
-    mode: '0644'
 - name: Create Zig directory
   become: true # Required for creating directories in /opt/
   file:
@@ -28,7 +23,50 @@
     group: "{{ ansible_user_gid }}"
 - name: Extract Zig
   unarchive:
-    src: "/tmp/zig-linux-x86_64.tar.xz"
+    src: "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
     dest: "/opt/zig"
     remote_src: yes
     creates: "/opt/zig/zig-linux-x86_64-0.13.0" # Ensures idempotency
+
+# build ghostty
+
+- name: Install required packages for ghostty
+  become: true
+  apt:
+    name:
+      - libgtk-4-dev
+      - libadwaita-1-dev
+      - git
+    state: present
+    update_cache: yes
+- name: Create ghostty directory
+  become: true # Required for creating directories in /opt/
+  file:
+    path: /opt/ghostty
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+
+- name: Extract ghostty
+  unarchive:
+    src: "https://github.com/ghostty-org/ghostty/archive/refs/tags/v1.0.0.zip"
+    dest: "/opt/ghostty"
+    remote_src: yes
+    creates: "/opt/ghostty/ghostty-1.0.0"  # For idempotency
+
+# https://github.com/ghostty-org/ghostty/discussions/3311 - -fsys=fontconfig workaround
+- name: Compile ghostty
+  shell: |
+    cd /opt/ghostty/ghostty-1.0.0
+    /opt/zig/zig-linux-x86_64-0.13.0/zig build -fsys=fontconfig -p /opt/ghostty -Doptimize=ReleaseFast
+
+- name: Create symbolic link for ghostty
+  become: true  # Needed for writing to /usr/local/bin
+  file:
+    src: "/opt/ghostty/bin/ghostty"
+    dest: "/usr/local/bin/ghostty"
+    state: link
+
+# TOXO: Copy the config file to ~/.config
+# TOXO: Copy the gtk-4.0.css file to the ~/.config
