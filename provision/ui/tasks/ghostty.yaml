@@ -50,15 +50,15 @@
 
 - name: Extract ghostty
   unarchive:
-    src: "https://github.com/ghostty-org/ghostty/archive/refs/tags/v1.0.0.zip"
+    src: "https://github.com/ghostty-org/ghostty/archive/refs/tags/v1.0.1.zip"
     dest: "/opt/ghostty"
     remote_src: yes
-    creates: "/opt/ghostty/ghostty-1.0.0"  # For idempotency
+    creates: "/opt/ghostty/ghostty-1.0.1"  # For idempotency
 
 # https://github.com/ghostty-org/ghostty/discussions/3311 - -fsys=fontconfig workaround
 - name: Compile ghostty
   shell: |
-    cd /opt/ghostty/ghostty-1.0.0
+    cd /opt/ghostty/ghostty-1.0.1
     /opt/zig/zig-linux-x86_64-0.13.0/zig build -fsys=fontconfig -p /opt/ghostty -Doptimize=ReleaseFast
 
 - name: Create symbolic link for ghostty
