@@ -13,14 +13,10 @@
 # limitations under the License.
 ---
 
-- name: add terraform key
-  shell: "wget -q -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg"
-  become: true
 - name: add terraform repository
   shell: |
-    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
-    https://apt.releases.hashicorp.com bookworm main" | \
-    tee /etc/apt/sources.list.d/hashicorp.list
+    wget -O- https://apt.releases.hashicorp.com/gpg | gpg --yes --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com bookworm main" | tee /etc/apt/sources.list.d/hashicorp.list
   become: true
 - name: install terraform
   apt:
