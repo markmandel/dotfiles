@@ -18,7 +18,6 @@
   apt:
     name:
       - synaptic
-      - gedit
       - gedit-plugins
       - meld
       - alacarte
@@ -27,8 +26,13 @@
       - gimp
       - inkscape
       - keepassxc
+      - gdebi
+      - vlc
       - mpv
+      - picom
+      - feh
       - audacity
+      - papirus-icon-theme
       - flameshot
       - zsh-syntax-highlighting
       - fonts-noto-color-emoji
@@ -36,7 +40,10 @@
       - copyq
       - copyq-plugins
       - copyq-doc
+      - arc-theme
+      - libnotify-bin
       - locate
+      - peek
       - picard
       - baobab
       - pasystray
