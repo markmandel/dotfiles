@@ -2,3 +2,13 @@
 
 # Setup standard home directories
 
+- name: Make default home directories
+  file: "~/{{ item }}"
+  state: directory
+  with_items:
+    - .config
+    - Downloads
+    - Pictures
+    - Documents
+    - Music
+
