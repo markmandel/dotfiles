@@ -13,11 +13,13 @@
 # limitations under the License.
 
 ---
+- import: home.yaml
 #- import_tasks: terminal.yaml
 #- import_tasks: google-drive.yaml
 #- import_tasks: razer.yaml
 #- import_tasks: idea.yaml
 - import_tasks: std_packages.yaml
+- import_tasks: hyprland.yaml
 #- import_tasks: rofimoji.yaml
 #- import_tasks: lux.yaml
 #- import_tasks: minikube.yaml
