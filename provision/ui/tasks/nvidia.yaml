@@ -7,3 +7,9 @@
       - nvidia-detect
       - libnvidia-egl-wayland1
       - libnvidia-egl-gbm1
+
+- name: Enable NVreg_PreserveVideoMemoryAllocations
+  become: true
+  shell: | 
+    echo 'options nvidia NVreg_PreserveVideoMemoryAllocations=1' > /etc/modprobe.d/nvidia-power-management.conf
+    echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-wayland-options.conf
