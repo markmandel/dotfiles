@@ -68,6 +68,11 @@
     dest: "/usr/local/bin/ghostty"
     state: link
 
+- name: create ghostty config directory
+  file:
+    path: ~/.config/ghostty
+    state: directory
+
 - name: Copy ghostty config file
   copy:
     src: ghostty-config
