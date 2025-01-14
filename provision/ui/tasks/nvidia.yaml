@@ -1,0 +1,9 @@
+---
+- name: Install core standard packages
+  become: true
+  apt:
+    name:
+      - nvidia-driver-full
+      - nvidia-detect
+      - libnvidia-egl-wayland1
+      - libnvidia-egl-gbm1
