@@ -18,3 +18,24 @@
   unarchive:
     src: ~/Downloads/JetBrainsMono.zip
     dest: /usr/share/fonts/nerd/jetbrains-mono
+
+- name: hyprland config directory
+  file:
+    path: ~/.config/hypr
+    state: directory
+
+- name: link hyprland config
+  shell: |
+    ln --force -s {{ role_path }}/files/config/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
+
+- name: install hyprland packages
+  become: true
+  apt:
+    name:
+      - hyprland
+      - nemo
+      - nemo-fileroller
+      - nemo-font-manager
+      - nemo-compare
+      - nwg-look
+      - wofi
