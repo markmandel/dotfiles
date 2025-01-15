@@ -7,6 +7,7 @@
       - nvidia-detect
       - libnvidia-egl-wayland1
       - libnvidia-egl-gbm1
+      - nvidia-vaapi-driver
 
 - name: Set nvdia options
   become: true

@@ -28,14 +28,30 @@
   shell: |
     ln --force -s {{ role_path }}/files/config/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
 
-- name: install hyprland packages
+- name: make directory for dunst config
+  file: path="~/.config/dunst" state=directory
+
+- name: link dunst config
+  shell: |
+    ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
+
+- name: install hyprland and related packages
   become: true
   apt:
     name:
       - hyprland
+      - xdg-desktop-portal-hyprland
       - nemo
       - nemo-fileroller
       - nemo-font-manager
       - nemo-compare
       - nwg-look
       - wofi
+      - dunst
+      - playerctl
+      - pipewire
+      - wireplumber
+      - xwaylandvideobridge
+      - qt5-wayland
+      - qt6-wayland
+      - waybar
