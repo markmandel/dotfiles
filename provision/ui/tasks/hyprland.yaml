@@ -66,3 +66,4 @@
       - xwaylandvideobridge
       - qt6-wayland
       - waybar
+      - wlr-rander
