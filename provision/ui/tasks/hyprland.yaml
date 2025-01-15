@@ -64,6 +64,5 @@
       - pipewire
       - wireplumber
       - xwaylandvideobridge
-      - qt5-wayland
       - qt6-wayland
       - waybar
