@@ -61,7 +61,7 @@
     ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
 
 - name: dconf gtk themeing
-  script: |
+  shell: |
     dconf write /org/gnome/desktop/interface/font-name "'Sans 10'"
     dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMono Nerd Font Mono 10'"
     dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8

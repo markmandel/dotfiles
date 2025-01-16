@@ -47,5 +47,6 @@
       - firefox-esr
       - kooha
       - wlr-randr
-      - wev      
+      - wev
+      - libnotify-bin
 
