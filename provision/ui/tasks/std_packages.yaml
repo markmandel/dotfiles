@@ -18,6 +18,10 @@
   apt:
     name:
       - synaptic
+      - nemo
+      - nemo-fileroller
+      - nemo-font-manager
+      - nemo-compare      
       - gedit
       - gedit-plugins
       - meld
@@ -39,7 +43,10 @@
       - locate
       - picard
       - baobab
-      - pasystray
+      - pasystrayo
       - obs-studio
       - firefox-esr
+      - kooha
+      - wlr-randr
+      - wev      
 

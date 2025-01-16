@@ -14,6 +14,25 @@
 
 ---
 
+
+- name: install hyprland and related packages
+  become: true
+  apt:
+    name:
+      - hyprland
+      - xdg-desktop-portal-hyprland
+      - nwg-look
+      - wofi
+      - dunst
+      - playerctl
+      - pipewire
+      - wireplumber
+      - xwaylandvideobridge
+      - qt6-wayland
+      - waybar
+
+# Themeing
+
 # nerd font key path (starting, but not ending with '/')
 - name: install JetBrainMono Nerd Font
   get_url:
@@ -41,25 +60,9 @@
     mkdir -p ~/.config/dunst
     ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
 
-- name: install hyprland and related packages
-  become: true
-  apt:
-    name:
-      - hyprland
-      - xdg-desktop-portal-hyprland
-      - nemo
-      - nemo-fileroller
-      - nemo-font-manager
-      - nemo-compare
-      - nwg-look
-      - wofi
-      - dunst
-      - playerctl
-      - pipewire
-      - wireplumber
-      - xwaylandvideobridge
-      - qt6-wayland
-      - waybar
-      - wlr-randr
-      - wev
+- name: dconf gtk themeing
+  script: |
+    dconf write /org/gnome/desktop/interface/font-name "'Sans 10'"
+    dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMono Nerd Font Mono 10'"
+    dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8
 
