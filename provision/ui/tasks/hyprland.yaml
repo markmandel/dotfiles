@@ -31,20 +31,14 @@
     src: ~/Downloads/JetBrainsMono.zip
     dest: /usr/share/fonts/nerd/jetbrains-mono
 
-- name: hyprland config directory
-  file:
-    path: ~/.config/hypr
-    state: directory
-
 - name: link hyprland config
   shell: |
+    mkdir -p ~/.config/hypr
     ln --force -s {{ role_path }}/files/config/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
-
-- name: make directory for dunst config
-  file: path="~/.config/dunst" state=directory
 
 - name: link dunst config
   shell: |
+    mkdir -p ~/.config/dunst
     ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
 
 - name: install hyprland and related packages
@@ -67,3 +61,5 @@
       - qt6-wayland
       - waybar
       - wlr-randr
+      - wev
+

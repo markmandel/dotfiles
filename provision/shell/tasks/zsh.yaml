@@ -26,8 +26,11 @@
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/zsh
   become: true
-- name: zshrc config
-  copy: src=zshrc dest=~/.zshrc
+  
+- name: link zshrc config
+  shell: |
+    ln --force -s {{ role_path }}/files/zshrc ~/.zshrc
+
 - name: install oh-my-zsh
   git: repo=https://github.com/ohmyzsh/ohmyzsh.git dest=~/.oh-my-zsh
   when: not zsh_installed.stat.exists
