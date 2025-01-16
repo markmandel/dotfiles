@@ -46,14 +46,45 @@ ZSH=$HOME/.oh-my-zsh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(debian tmux docker themes git git-extras colored-man-pages autojump dirhistory zsh-syntax-highlighting zsh-autosuggestions rust gcloud kubectl helm gh terraform)
+plugins=(
+    # os
+    debian 
+
+    # command line
+    tmux
+    colored-man-pages
+    autojump
+    dirhistory
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    starship 
+    extract
+    ssh
+    ssh-agent
+
+    # dev
+    git 
+    git-extras
+    gh
+    docker
+    
+    # infra
+    gcloud
+    kubectl
+    helm
+    terraform
+    k9s
+    
+    # languages
+    rust
+    golang
+)
+
+# Ssh agent plugin config
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent lazy yes
 
 source $ZSH/oh-my-zsh.sh
-
-# tmux + ls + solarized
-if [ -f ~/.dir_colors/dircolors ]
-    then eval `dircolors ~/.dir_colors/dircolors`
-fi
 
 # Set autocomplete formatting
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#2AA198,bg=,," 
@@ -62,5 +93,3 @@ export EDITOR='nano -w'
 
 export PATH=/usr/local/go/bin:/usr/local/sbin/:/usr/sbin:$HOME/go/bin:$PATH
 
-# starship
-eval "$(starship init zsh)"
