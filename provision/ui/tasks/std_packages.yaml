@@ -45,8 +45,9 @@
       - baobab
       - obs-studio
       - firefox-esr
-      - kooha
       - wlr-randr
       - wev
       - libnotify-bin
+      - slurp
+      - wf-recorder
 
