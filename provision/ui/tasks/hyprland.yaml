@@ -14,6 +14,7 @@
 
 ---
 
+# Installation of Hyprland and related
 
 - name: install hyprland and related packages
   become: true
