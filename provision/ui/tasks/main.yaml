@@ -18,6 +18,7 @@
 - import_tasks: ghostty.yaml
 - import_tasks: nvidia.yaml
 - import_tasks: hyprland.yaml
+- import_tasks: chrome.yaml
 
 #- import_tasks: terminal.yaml
 #- import_tasks: google-drive.yaml

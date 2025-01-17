@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cat ~/.fehbg| awk -F' ' '{print $4}' | xargs rm
-find ~/Pictures/wallpapers -type f | shuf | head -n 1 | xargs feh --bg-fill
-echo `ls ~/Pictures/wallpapers | wc -l` wallpapers left.
+---
+
+- name: Install Google Chrome
+  become: true
+  apt:
+    deb: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+
