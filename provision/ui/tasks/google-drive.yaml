@@ -24,9 +24,16 @@
     name:
       - google-drive-ocamlfuse
     update_cache: true
-- name: Replace mv_keep_target for keepass sync
-  lineinfile:
-    path: ~/.gdfuse/default/config
-    regexp: '^mv_keep_target=false'
-    line: 'mv_keep_target=true'
+
+- name: gdfuse config dir
+  file:
+    path: "~/.gdfuse/default"
+    state: directory
+
+# Replace mv_keep_target for keepass sync
+# mv_keep_target=true
+- name: copy config file for gdfuse
+  copy:
+    src: "gdfuse/default/config"
+    dest: "~/.gdfuse/default/config"
 
