@@ -48,6 +48,7 @@
       - wlr-randr
       - wev
       - libnotify-bin
+      - kooha
       - slurp
       - wf-recorder
 
