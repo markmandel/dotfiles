@@ -3,3 +3,5 @@
 	email = mark@compoundtheory.com
 [push]
 	default = tracking
+[init]
+        defaultBranch = main

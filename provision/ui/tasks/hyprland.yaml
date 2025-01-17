@@ -62,7 +62,11 @@
 
 - name: dconf gtk themeing
   shell: |
+    dconf write /org/nemo/desktop/font "'Sans 10'"
     dconf write /org/gnome/desktop/interface/font-name "'Sans 10'"
+    dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Sans Bold 10'"
+    dconf write /org/gnome/desktop/interface/document-font-name "'Sans 10'"
     dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMono Nerd Font Mono 10'"
+    dconf write /org/gnome/desktop/interface/titlebar-font "'Sans Bold 10'"
     dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8
 

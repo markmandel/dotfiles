@@ -21,12 +21,8 @@
 - import_tasks: chrome.yaml
 - import_tasks: google-drive.yaml
 
-#- import_tasks: terminal.yaml
-
 #- import_tasks: razer.yaml
 #- import_tasks: idea.yaml
 #- import_tasks: rofimoji.yaml
-#- import_tasks: lux.yaml
 #- import_tasks: minikube.yaml
 #- import_tasks: discord.yaml
-#- import_tasks: snap.yaml
