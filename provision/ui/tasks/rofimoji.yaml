@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC All Rights Reserved.
+# Copyright 2021 Google LLC All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,10 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
 
-- name: Install snapd
+---
+- name: Install rofimoji deps
   become: true
   apt:
     name:
-     - snapd
+      - fonts-noto-color-emoji
+      - python3
+      - pipx
+      - wtype
+      - wl-clipboard
+- name: Install rofimoji
+  shell: PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install https://github.com/fdw/rofimoji/releases/download/6.5.0/rofimoji-6.5.0-py3-none-any.whl --force
+  become: true

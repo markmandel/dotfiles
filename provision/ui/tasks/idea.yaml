@@ -39,6 +39,7 @@
     chdir: /opt/intellij
     cmd: |
       find -maxdepth 1 -name 'idea*' | xargs -I{} ln -s {} active
+  when: intellij_download.changed
       
 - name: create /usr/local/bin/ intellij link
   become: true
