@@ -36,4 +36,4 @@
   copy:
     src: "gdfuse/default/config"
     dest: "~/.gdfuse/default/config"
-
+    force: false # if this is true, will overwrite login information.
