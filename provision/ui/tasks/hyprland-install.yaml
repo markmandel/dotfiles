@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2024 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,17 +13,23 @@
 # limitations under the License.
 
 ---
-- import_tasks: home.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: jetbrains-mono.yaml
-- import_tasks: ghostty.yaml
-- import_tasks: nvidia.yaml
-- import_tasks: hyprland-install.yaml
-- import_tasks: hyprland-theme.yaml
-- import_tasks: chrome.yaml
-- import_tasks: google-drive.yaml
-- import_tasks: idea.yaml
-- import_tasks: rofimoji.yaml
 
-#- import_tasks: razer.yaml
-#- import_tasks: discord.yaml
+- name: install hyprland and related packages
+  become: true
+  apt:
+    name:
+      - xwayland
+      - xdg-desktop-portal
+      - xdg-desktop-portal-gtk
+      - hyprland
+      - xdg-desktop-portal-hyprland
+      - nwg-look
+      - wofi
+      - dunst
+      - playerctl
+      - pipewire
+      - wireplumber
+      - xwaylandvideobridge
+      - qt6-wayland
+      - waybar
+      - pavucontrol
