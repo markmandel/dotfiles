@@ -14,15 +14,78 @@
 
 ---
 
-- name: install hyprland and related packages
+- name: Install hyprland compliation dependencies.
+  become: true
+  apt:
+    name:
+      - build-essential
+      - cmake
+      - cmake-extras
+      - file
+      - fontconfig
+      - gettext
+      - gettext-base
+      - git
+      - glslang-tools
+      - hwdata
+      - libavcodec-dev
+      - libavformat-dev
+      - libavutil-dev
+      - libcairo2-dev
+      - libdbus-c++-dev
+      - libdisplay-info-dev
+      - libdrm-dev
+      - libegl-dev
+      - libegl1-mesa-dev
+      - libffi-dev
+      - libgbm-dev
+      - libgles2
+      - libglvnd-core-dev
+      - libglvnd-dev
+      - libinput-bin
+      - libinput-dev
+      - libjxl-dev
+      - libmagic-dev
+      - libpam0g-dev
+      - libpipewire-0.3-dev
+      - libpixman-1-dev
+      - libpugixml-dev
+      - libre2-dev
+      - librsvg2-dev
+      - libseat-dev
+      - libspa-0.2-dev
+      - libudev-dev
+      - libwayland-dev
+      - libxcb-composite0-dev
+      - libxcb-dri3-dev
+      - libxcb-errors-dev
+      - libxcb-ewmh-dev
+      - libxcb-ewmh2
+      - libxcb-icccm4-dev
+      - libxcb-present-dev
+      - libxcb-render-util0-dev
+      - libxcb-res0-dev
+      - libxcb-xinput-dev
+      - libxcursor-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - libxkbregistry-dev
+      - libxml2-dev
+      - libzip-dev
+      - meson
+      - ninja-build
+      - qt6-base-dev
+      - seatd
+      - wayland-protocols
+      - wget
+
+- name: install wayland and hyprland util packages
   become: true
   apt:
     name:
       - xwayland
       - xdg-desktop-portal
       - xdg-desktop-portal-gtk
-      - hyprland
-      - xdg-desktop-portal-hyprland
       - nwg-look
       - wofi
       - dunst
@@ -33,3 +96,4 @@
       - qt6-wayland
       - waybar
       - pavucontrol
+
