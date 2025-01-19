@@ -52,8 +52,11 @@
       - libpugixml-dev
       - libre2-dev
       - librsvg2-dev
+      - libsdbus-c++-dev
       - libseat-dev
       - libspa-0.2-dev
+      - libtomlplusplus3
+      - libtomlplusplus-dev
       - libudev-dev
       - libwayland-dev
       - libxcb-composite0-dev
@@ -176,102 +179,106 @@
 
 # Now compile and install it!
 
-- name: hyprwayland-scanner: cmake & build
+- name: hyprwayland-scanner - cmake & build
   shell:
-    cwd: /opt/hyprland/hyprwayland-scanner
-    cmd: cmake -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build -j `nproc`
-- name: hyprwayland-scanner: install
+    chdir: /opt/hyprland/hyprwayland-scanner
+    cmd: |
+      cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
+      cmake --build build -j `nproc`
+- name: hyprwayland-scanner - install
   shell:
-    cwd: /opt/hyprland/hyprwayland-scanner
+    chdir: /opt/hyprland/hyprwayland-scanner
     cmd: cmake --install build
-    become: true
-- name: hyprutils: cmake & build
+  become: true
+- name: hyprutils - cmake & build
   shell:
-    cwd: /opt/hyprland/hyprutils
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF` 
-- name: hyprutils: install
+    chdir: /opt/hyprland/hyprutils
+    cmd: |
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprutils - install
+  become: true
   shell:
-    cwd: /opt/hyprland/hyprutils
+    chdir: /opt/hyprland/hyprutils
     cmd: cmake --install build
-    become: true
-- name: aquamarine: cmake & build
+- name: aquamarine - cmake & build
   shell:
-    cwd: /opt/hyprland/aquamarine
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF` 
-- name: aquamarine: install
-  shell:
-    cwd: /opt/hyprland/aquamarine
-    cmd: cmake --install build
-    become: true
-- name: hyprlang: cmake & build
-  shell:
-    cwd: /opt/hyprland/hyprlang
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
-- name: hyprlang: install
-  shell:
-    cwd: /opt/hyprland/hyprlang
-    cmd: cmake --install ./build
-    become: true
-- name: hyprcursor: cmake & build
-  shell:
-    cwd: /opt/hyprland/hyprcursor
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF` 
-- name: hyprcursor: install
-  shell:
-    cwd: /opt/hyprland/hyprcursor
-    cmd: cmake --install build
-    become: true
-- name: hyprgraphics: cmake & build
-  shell:
-    cwd: /opt/hyprland/hyprgraphics
+    chdir: /opt/hyprland/aquamarine
     cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
-- name: hyprgraphics: install
+- name: aquamarine - install
   shell:
-    cwd: /opt/hyprland/hyprgraphics
+    chdir: /opt/hyprland/aquamarine
     cmd: cmake --install build
-    become: true
-- name: Hyprland: make all
+  become: true
+- name: hyprlang - cmake & build
   shell:
-    cwd: /opt/hyprland/Hyprland
-    cmd: make all
-- name: Hyprland: make install
+    chdir: /opt/hyprland/hyprlang
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprlang - install
   shell:
-    cwd: /opt/hyprland/Hyprland
-    cmd: make install
-    become: true
-- name: hyprlock: cmake & build
-  shell:
-    cwd: /opt/hyprland/hyprlock
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
-- name: hyprlock: install
-  shell:
-    cwd: /opt/hyprland/hyprlock
-    cmd: cmake --install build
-    become: true
-- name: hyprpaper: cmake & build
-  shell:
-    cwd: /opt/hyprland/hyprpaper
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpaper -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
-- name: hyprpaper: install
-  shell:
-    cwd: /opt/hyprland/hyprpaper
+    chdir: /opt/hyprland/hyprlang
     cmd: cmake --install ./build
-    become: true
-- name: hypridle: cmake & build
+  become: true
+- name: hyprcursor - cmake & build
   shell:
-    cwd: /opt/hyprland/hypridle
+    chdir: /opt/hyprland/hyprcursor
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprcursor - install
+  shell:
+    chdir: /opt/hyprland/hyprcursor
+    cmd: cmake --install build
+  become: true
+- name: hyprgraphics - cmake & build
+  shell:
+    chdir: /opt/hyprland/hyprgraphics
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprgraphics - install
+  shell:
+    chdir: /opt/hyprland/hyprgraphics
+    cmd: cmake --install build
+  become: true
+- name: Hyprland - make all
+  shell:
+    chdir: /opt/hyprland/Hyprland
+    cmd: make all
+- name: Hyprland - make install
+  shell:
+    chdir: /opt/hyprland/Hyprland
+    cmd: make install
+  become: true
+- name: hyprlock - cmake & build
+  shell:
+    chdir: /opt/hyprland/hyprlock
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprlock - install
+  shell:
+    chdir: /opt/hyprland/hyprlock
+    cmd: cmake --install build
+  become: true
+- name: hyprpaper - cmake & build
+  shell:
+    chdir: /opt/hyprland/hyprpaper
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpaper -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprpaper - install
+  shell:
+    chdir: /opt/hyprland/hyprpaper
+    cmd: cmake --install ./build
+  become: true
+- name: hypridle - cmake & build
+  shell:
+    chdir: /opt/hyprland/hypridle
     cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hypridle -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
-- name: hypridle: install
+- name: hypridle - install
   shell:
-    cwd: /opt/hyprland/hypridle
+    chdir: /opt/hyprland/hypridle
     cmd: cmake --install build
-    become: true
-- name: xdg-desktop-portal-hyprland: cmake & build
+  become: true
+- name: xdg-desktop-portal-hyprland - cmake & build
   shell:
-    cwd: /opt/hyprland/xdg-desktop-portal-hyprland
+    chdir: /opt/hyprland/xdg-desktop-portal-hyprland
     cmd: cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build
-- name: xdg-desktop-portal-hyprland: install
+- name: xdg-desktop-portal-hyprland - install
   shell:
-    cwd: /opt/hyprland/xdg-desktop-portal-hyprland
+    chdir: /opt/hyprland/xdg-desktop-portal-hyprland
     cmd: cmake --install build
-    become: true
+  become: true
