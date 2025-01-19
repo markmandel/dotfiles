@@ -97,3 +97,181 @@
       - waybar
       - pavucontrol
 
+# Clone everything first
+
+- name: Create Hyprland Opt directory
+  become: true # Required for creating directories in /opt/
+  file:
+    path: /opt/hyprland
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+
+- name: Clone hyprwayland-scanner
+  git:
+    repo: https://github.com/hyprwm/hyprwayland-scanner
+    dest: /opt/hyprland/hyprwayland-scanner
+    version: v0.4.4
+
+- name: Clone hyprutils
+  git:
+    repo: https://github.com/hyprwm/hyprutils
+    dest: /opt/hyprland/hyprutils
+    version: v0.3.3
+
+- name: Clone aquamarine
+  git:
+    repo: https://github.com/hyprwm/aquamarine
+    dest: /opt/hyprland/aquamarine
+    version: v0.7.1
+
+- name: Clone hyprland
+  git:
+    repo: https://github.com/hyprwm/hyprlang
+    dest: /opt/hyprland/hyprlang
+    version: v0.6.0
+
+- name: Clone hyprcursor
+  git:
+    repo: https://github.com/hyprwm/hyprcursor
+    dest: /opt/hyprland/hyprcursor
+    version: v0.1.11
+
+- name: Clone hyprgraphics
+  git:
+    repo: https://github.com/hyprwm/hyprgraphics
+    dest: /opt/hyprland/hyprgraphics
+    version: v0.1.1
+
+- name: Clone Hyprland
+  git:
+    repo: https://github.com/hyprwm/Hyprland
+    dest: /opt/hyprland/Hyprland
+    version: v0.46.2
+
+- name: Clone hyprlock
+  git:
+    repo: https://github.com/hyprwm/hyprlock
+    dest: /opt/hyprland/hyprlock
+    version: v0.6.1
+
+- name: Clone hyprpaper
+  git:
+    repo: https://github.com/hyprwm/hyprpaper
+    dest: /opt/hyprland/hyprpaper
+    version: 251e8e2593cdd2ef0a015f4f6e211a7bab3a63ed
+
+- name: Clone hypridle
+  git:
+    repo: https://github.com/hyprwm/hypridle
+    dest: /opt/hyprland/hypridle
+    version: v0.1.5
+
+- name: Clone xdg-descktop-portal-hyprland
+  git:
+    repo: https://github.com/hyprwm/xdg-desktop-portal-hyprland
+    dest: /opt/hyprland/xdg-desktop-portal-hyprland
+    version: v1.3.9
+
+# Now compile and install it!
+
+- name: hyprwayland-scanner: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprwayland-scanner
+    cmd: cmake -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build -j `nproc`
+- name: hyprwayland-scanner: install
+  shell:
+    cwd: /opt/hyprland/hyprwayland-scanner
+    cmd: cmake --install build
+    become: true
+- name: hyprutils: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprutils
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF` 
+- name: hyprutils: install
+  shell:
+    cwd: /opt/hyprland/hyprutils
+    cmd: cmake --install build
+    become: true
+- name: aquamarine: cmake & build
+  shell:
+    cwd: /opt/hyprland/aquamarine
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF` 
+- name: aquamarine: install
+  shell:
+    cwd: /opt/hyprland/aquamarine
+    cmd: cmake --install build
+    become: true
+- name: hyprlang: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprlang
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprlang: install
+  shell:
+    cwd: /opt/hyprland/hyprlang
+    cmd: cmake --install ./build
+    become: true
+- name: hyprcursor: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprcursor
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF` 
+- name: hyprcursor: install
+  shell:
+    cwd: /opt/hyprland/hyprcursor
+    cmd: cmake --install build
+    become: true
+- name: hyprgraphics: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprgraphics
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprgraphics: install
+  shell:
+    cwd: /opt/hyprland/hyprgraphics
+    cmd: cmake --install build
+    become: true
+- name: Hyprland: make all
+  shell:
+    cwd: /opt/hyprland/Hyprland
+    cmd: make all
+- name: Hyprland: make install
+  shell:
+    cwd: /opt/hyprland/Hyprland
+    cmd: make install
+    become: true
+- name: hyprlock: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprlock
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprlock: install
+  shell:
+    cwd: /opt/hyprland/hyprlock
+    cmd: cmake --install build
+    become: true
+- name: hyprpaper: cmake & build
+  shell:
+    cwd: /opt/hyprland/hyprpaper
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpaper -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hyprpaper: install
+  shell:
+    cwd: /opt/hyprland/hyprpaper
+    cmd: cmake --install ./build
+    become: true
+- name: hypridle: cmake & build
+  shell:
+    cwd: /opt/hyprland/hypridle
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hypridle -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+- name: hypridle: install
+  shell:
+    cwd: /opt/hyprland/hypridle
+    cmd: cmake --install build
+    become: true
+- name: xdg-desktop-portal-hyprland: cmake & build
+  shell:
+    cwd: /opt/hyprland/xdg-desktop-portal-hyprland
+    cmd: cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build
+- name: xdg-desktop-portal-hyprland: install
+  shell:
+    cwd: /opt/hyprland/xdg-desktop-portal-hyprland
+    cmd: cmake --install build
+    become: true
