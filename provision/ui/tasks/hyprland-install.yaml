@@ -55,8 +55,8 @@
       - libsdbus-c++-dev
       - libseat-dev
       - libspa-0.2-dev
-      - libtomlplusplus3
       - libtomlplusplus-dev
+      - libtomlplusplus3
       - libudev-dev
       - libwayland-dev
       - libxcb-composite0-dev
@@ -78,6 +78,10 @@
       - meson
       - ninja-build
       - qt6-base-dev
+      - qt6-declarative-dev
+      - qt6-declarative-private-dev
+      - qt6-wayland-dev
+      - qt6-wayland-private-dev
       - seatd
       - wayland-protocols
       - wget
@@ -176,6 +180,12 @@
     repo: https://github.com/hyprwm/xdg-desktop-portal-hyprland
     dest: /opt/hyprland/xdg-desktop-portal-hyprland
     version: v1.3.9
+
+- name: Clone xdg-descktop-portal-hyprland
+  git:
+    repo: https://github.com/hyprwm/hyprland-qtutils
+    dest: /opt/hyprland/hyprland-qtutils
+    version: v0.1.3
 
 # Now compile and install it!
 
@@ -284,3 +294,16 @@
     chdir: /opt/hyprland/xdg-desktop-portal-hyprland
     cmd: cmake --install build
   become: true
+
+- name: hyprland-qtutils - cmake & build
+  shell:
+    chdir: /opt/hyprland/hyprland-qtutils
+    cmd: |
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+
+- name: hyprland-qtutils - install
+  become: true
+  shell:
+    chdir: /opt/hyprland/hyprland-qtutils
+    cmd: cmake --install build
