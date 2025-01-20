@@ -18,7 +18,6 @@
   shell: |
     mkdir -p ~/.config/hypr
     ls {{ role_path }}/files/config/hypr/ | xargs -I{} ln --force -s {{ role_path }}/files/config/hypr/{} ~/.config/hypr/{}
-#    ln --force -s {{ role_path }}/files/config/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
 
 - name: link dunst config
   shell: |
