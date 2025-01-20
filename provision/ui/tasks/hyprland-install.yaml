@@ -179,6 +179,8 @@
 
 # Now compile and install it!
 
+# TOXO: Install hyprland-qtiles!
+
 - name: hyprwayland-scanner - cmake & build
   shell:
     chdir: /opt/hyprland/hyprwayland-scanner
