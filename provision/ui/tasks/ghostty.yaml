@@ -68,17 +68,7 @@
     dest: "/usr/local/bin/ghostty"
     state: link
 
-- name: create ghostty config directory
-  file:
-    path: ~/.config/ghostty
-    state: directory
-
-- name: Copy ghostty config file
-  copy:
-    src: ghostty-config
-    dest: ~/.config/ghostty/config
-
-#- name: Copy gtk-4.0 CSS file (remove rounded corners)
-#  copy:
-#    src: gtk-4.0.css
-#    dest: ~/.config/gtk-4.0/gtk.css
+- name: link ghostty config
+  shell: |
+    mkdir -p ~/.config/ghostty
+    ln --force -s {{ role_path }}/files/config/ghostty/config ~/.config/ghostty/config

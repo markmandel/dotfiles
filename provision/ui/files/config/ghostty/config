@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-theme = Builtin Solarized Dark
+theme = rose-pine
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 9
 
