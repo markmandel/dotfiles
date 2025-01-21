@@ -103,6 +103,7 @@
       - qt6-wayland
       - waybar
       - pavucontrol
+      - brightnessctl
 
 # Clone everything first
 
