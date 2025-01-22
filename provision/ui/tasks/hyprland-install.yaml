@@ -105,6 +105,28 @@
       - pavucontrol
       - brightnessctl
 
+# Set facts for reuse
+- name: Setting hyprland facts
+  set_fact:
+    hyprland_version: v0.46.2
+
+- name: Check if hyprland is installed
+  stat:
+    path: /usr/local/bin/hyprland
+  register: hyprland_installed
+
+- name: Compare hyprland version (will be empty if the version doesn't match)
+  shell: |
+    hyprland --version | grep {{ hyprland_version }}
+  register: hyprland_version_match
+  when: hyprland_installed.stat.exists
+
+# TOXO: make an overwride to force recompilation of Hyprland (env var?)
+
+- name: Install hyprland yes/no?
+  set_fact:
+    install_hyprland: "{{ hyprland_version_match is not defined or hyprland_version_match.stdout | trim | length == 0 }}"
+
 # Clone everything first
 
 - name: Create Hyprland Opt directory
@@ -156,7 +178,7 @@
   git:
     repo: https://github.com/hyprwm/Hyprland
     dest: /opt/hyprland/Hyprland
-    version: v0.46.2
+    version: "{{ hyprland_version }}"
 
 - name: Clone hyprlock
   git:
@@ -189,8 +211,6 @@
     version: v0.1.3
 
 # Now compile and install it!
-
-# TOXO: Install hyprland-qtiles!
 
 - name: hyprwayland-scanner - cmake & build
   shell:
@@ -250,15 +270,19 @@
     chdir: /opt/hyprland/hyprgraphics
     cmd: cmake --install build
   become: true
+
 - name: Hyprland - make all
   shell:
     chdir: /opt/hyprland/Hyprland
     cmd: make all
+  when: install_hyprland
 - name: Hyprland - make install
   shell:
     chdir: /opt/hyprland/Hyprland
     cmd: make install
   become: true
+  when: install_hyprland
+
 - name: hyprlock - cmake & build
   shell:
     chdir: /opt/hyprland/hyprlock

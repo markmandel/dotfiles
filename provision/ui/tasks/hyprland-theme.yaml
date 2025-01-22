@@ -34,7 +34,24 @@
     dconf write /org/gnome/desktop/interface/titlebar-font "'Sans Bold 10'"
     dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8
 
-- name: Locale setting to Australian
-  become: true
+# TOXO: automate setting of locale
+# https://wiki.debian.org/Locale#Standard
+
+- name: Clone rose-pine gtk theme
+  git:
+    repo: 'https://github.com/rose-pine/gtk'
+    version: v2.2.0
+    dest: '~/.local/share/rose-pine-gtk' # I've added a more specific directory name.
+
+- name: Install rose-pine gtk theme
   shell: |
-    sudo localectl set-locale LANG=en_IN.UTF-8
+    mkdir -p ~/.local/share/icons
+    mkdir -p ~/.local/share/themes
+    mkdir -p ~/.config/gtk-4.0
+    
+    export THEME_ROOT=~/.local/share/rose-pine-gtk
+    cp -r ${THEME_ROOT}/icons/* ~/.local/share/icons/
+    cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
+    cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
+
+# TOXO: automate setting of theme.
