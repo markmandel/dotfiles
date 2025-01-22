@@ -34,3 +34,7 @@
     dconf write /org/gnome/desktop/interface/titlebar-font "'Sans Bold 10'"
     dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8
 
+- name: Locale setting to Australian
+  become: true
+  shell: |
+    sudo localectl set-locale LANG=en_IN.UTF-8
