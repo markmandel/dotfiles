@@ -70,5 +70,4 @@
 
 - name: link ghostty config
   shell: |
-    mkdir -p ~/.config/ghostty
     ln --force -s {{ role_path }}/files/config/ghostty/config ~/.config/ghostty/config

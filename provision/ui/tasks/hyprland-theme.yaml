@@ -1,4 +1,4 @@
-# Copyright 2024 Mark Mandel All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,10 @@
 
 - name: link hyprland config
   shell: |
-    mkdir -p ~/.config/hypr
     ls {{ role_path }}/files/config/hypr/ | xargs -I{} ln --force -s {{ role_path }}/files/config/hypr/{} ~/.config/hypr/{}
 
 - name: link dunst config
   shell: |
-    mkdir -p ~/.config/dunst
     ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
 
 - name: dconf gtk theming
