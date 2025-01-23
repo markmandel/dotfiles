@@ -23,9 +23,19 @@
       - libnvidia-egl-wayland1
       - libnvidia-egl-gbm1
       - nvidia-vaapi-driver
+      - nvidia-suspend-common
 
-- name: Set nvdia options
+# Info:
+# https://wiki.debian.org/NvidiaGraphicsDrivers
+# https://wiki.hyprland.org/Nvidia/
+
+- name: Set nvdia options and enable suspend and hibernate services.
   become: true
   shell: |
     echo 'options nvidia NVreg_PreserveVideoMemoryAllocations=1' > /etc/modprobe.d/nvidia-power-management.conf
     echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-wayland-options.conf
+    echo 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1"' > /etc/default/grub.d/nvidia-modeset.cfg
+    update-grub
+    systemctl enable nvidia-suspend.service
+    systemctl enable nvidia-hibernate.service
+    systemctl enable nvidia-resume.service

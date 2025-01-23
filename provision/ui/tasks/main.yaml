@@ -14,7 +14,7 @@
 
 ---
 - import_tasks: home.yaml
-- import_tasks: dtofiles.yaml
+- import_tasks: dotfiles.yaml
 - import_tasks: std_packages.yaml
 - import_tasks: jetbrains-mono.yaml
 - import_tasks: ghostty.yaml
