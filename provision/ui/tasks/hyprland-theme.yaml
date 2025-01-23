@@ -24,7 +24,7 @@
     mkdir -p ~/.config/dunst
     ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
 
-- name: dconf gtk themeing
+- name: dconf gtk theming
   shell: |
     dconf write /org/nemo/desktop/font "'Sans 10'"
     dconf write /org/gnome/desktop/interface/font-name "'Sans 10'"
