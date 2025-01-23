@@ -51,4 +51,5 @@
       - kooha
       - slurp
       - wf-recorder
+      - power-profiles-daemon
 
