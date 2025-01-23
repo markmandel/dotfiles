@@ -20,26 +20,30 @@
     mode: '0755'
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"
-    
-- name: Download Intellij Ultimate
+
+- name: Check if IntelliJ archive exists
+  stat:
+    path: ~/Downloads/intellij.tar.gz
   register: intellij_download
+
+- name: Download Intellij Ultimate
   get_url:
     dest: ~/Downloads/intellij.tar.gz
     url: https://download.jetbrains.com/product?code=IIU&latest&distribution=linux
-    force: false
+  when: not intellij_download.stat.exists
 
 - name: extract into /opt/intellij
   unarchive:
     src: ~/Downloads/intellij.tar.gz
     dest: /opt/intellij
-  when: intellij_download.changed
+  when: not intellij_download.stat.exists
 
 - name: create "active" symlink for intellij
   shell:
     chdir: /opt/intellij
     cmd: |
-      find -maxdepth 1 -name 'idea*' | xargs -I{} ln -s {} active
-  when: intellij_download.changed
+      find -maxdepth 1 -type d -name 'idea*' | head -n 1 | xargs -I{} ln -s --no-dereference --force {} active
+  when: not intellij_download.stat.exists
       
 - name: create /usr/local/bin/ intellij link
   become: true

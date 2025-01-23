@@ -67,7 +67,3 @@
     src: "/opt/ghostty/bin/ghostty"
     dest: "/usr/local/bin/ghostty"
     state: link
-
-- name: link ghostty config
-  shell: |
-    ln --force -s {{ role_path }}/files/config/ghostty/config ~/.config/ghostty/config

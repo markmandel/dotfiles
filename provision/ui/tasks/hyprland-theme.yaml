@@ -14,14 +14,6 @@
 
 ---
 
-- name: link hyprland config
-  shell: |
-    ls {{ role_path }}/files/config/hypr/ | xargs -I{} ln --force -s {{ role_path }}/files/config/hypr/{} ~/.config/hypr/{}
-
-- name: link dunst config
-  shell: |
-    ln --force -s {{ role_path }}/files/config/dunst/dunstrc ~/.config/dunst/dunstrc
-
 - name: dconf gtk theming
   shell: |
     dconf write /org/nemo/desktop/font "'Sans 10'"
