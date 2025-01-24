@@ -33,19 +33,8 @@
 
     ### Geometry ###
 
-    # dynamic width from 0 to 300
-    # width = (0, 300)
-    # constant width of 300
-    width = 600
-
-    # The maximum height of a single notification, excluding the frame.
-    height = 300
-
     # Position the notification in the top right corner
     origin = top-right
-
-    # Offset from the origin
-    offset = 30x20
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -61,17 +50,10 @@
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    progress_bar_height = 10
+    # progress_bar_height = 10
 
     # Set the frame width of the progress bar
-    progress_bar_frame_width = 1
-
-    # Set the minimum width for the progress bar
-    progress_bar_min_width = 150
-
-    # Set the maximum width for the progress bar
-    progress_bar_max_width = 300
-
+    # progress_bar_frame_width = 1
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -88,20 +70,17 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    # padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 8
+    # horizontal_padding = 8
 
     # Padding between text and icon.
-    text_icon_padding = 0
+    # text_icon_padding = 0
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
-
-    # Defines color of the frame around the notification window.
-    frame_color = "#4d679a"
+    # frame_width = 2
 
     # Define a color for the separator.
     # possible values are:
@@ -122,8 +101,6 @@
     # idle_threshold = 120
 
     ### Text ###
-
-    font = Monospace 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -163,7 +140,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    # format = "<b>%s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -222,10 +199,10 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/wofi --dmenu
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/xdg-open
+    browser = /usr/bin/open
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
@@ -235,13 +212,6 @@
 
     # Define the class of the windows spawned by dunst
     class = Dunst
-
-    # Define the corner radius of the notification window
-    # in pixel size. If the radius is 0, you have no rounded
-    # corners.
-    # The radius will be automatically lowered if it exceeds half of the
-    # notification height to avoid clipping text and/or icons.
-    corner_radius = 5
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -323,91 +293,13 @@
 
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#383a3b"
-    foreground = "#ffffff"
     timeout = 60
-    # Icon for notifications with low urgency, uncomment to enable
-    #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#383a3b"
-    foreground = "#ffffff"
     timeout = 60
-    # Icon for notifications with normal urgency, uncomment to enable
-    #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#383a3b"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
     timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    #default_icon = /path/to/icon
-
-# Every section that isn't one of the above is interpreted as a rules to
-# override settings for certain messages.
-#
-# Messages can be matched by
-#    appname (discouraged, see desktop_entry)
-#    body
-#    category
-#    desktop_entry
-#    icon
-#    match_transient
-#    msg_urgency
-#    stack_tag
-#    summary
-#
-# and you can override the
-#    background
-#    foreground
-#    format
-#    frame_color
-#    fullscreen
-#    new_icon
-#    set_stack_tag
-#    set_transient
-#    set_category
-#    timeout
-#    urgency
-#    icon_position
-#    skip_display
-#    history_ignore
-#    action_name
-#    word_wrap
-#    ellipsize
-#    alignment
-#    hide_text
-#
-# Shell-like globbing will get expanded.
-#
-# Instead of the appname filter, it's recommended to use the desktop_entry filter.
-# GLib based applications export their desktop-entry name. In comparison to the appname,
-# the desktop-entry won't get localized.
-#
-# SCRIPTING
-# You can specify a script that gets run when the rule matches by
-# setting the "script" option.
-# The script will be called as follows:
-#   script appname summary body icon urgency
-# where urgency can be "LOW", "NORMAL" or "CRITICAL".
-#
-# NOTE: It might be helpful to run dunst -print in a terminal in order
-# to find fitting options for rules.
-
-# Disable the transient hint so that idle_threshold cannot be bypassed from the
-# client
-#[transient_disable]
-#    match_transient = yes
-#    set_transient = no
-#
-# Make the handling of transient notifications more strict by making them not
-# be placed in history.
-#[transient_history_ignore]
-#    match_transient = yes
-#    history_ignore = yes
 
 # fullscreen values
 # show: show the notifications, regardless if there is a fullscreen window opened
@@ -415,60 +307,5 @@
 #        If the notification is already drawn, it won't get undrawn.
 # pushback: same as delay, but when switching into fullscreen, the notification will get
 #           withdrawn from screen again and will get delayed like a new notification
-#[fullscreen_delay_everything]
-#    fullscreen = delay
-#[fullscreen_show_critical]
-#    msg_urgency = critical
-#    fullscreen = show
-
 [fullscreen]
     fullscreen = pushback
-
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
-
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
-
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    skip_display = true
-
-#[history-ignore]
-#    # This notification will not be saved in history
-#    summary = "foobar"
-#    history_ignore = yes
-
-#[skip-display]
-#    # This notification will not be displayed, but will be included in the history
-#    summary = "foobar"
-#    skip_display = yes
-
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
-#[stack-volumes]
-#    appname = "some_volume_notifiers"
-#    set_stack_tag = "volume"
-#
-# vim: ft=cfg
