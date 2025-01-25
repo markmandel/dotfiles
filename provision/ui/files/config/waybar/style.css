@@ -40,14 +40,9 @@
 @define-color highlightMed    #403d52;
 @define-color highlightHigh   #524f67;
 
- /*
+/*
 TOXO: install nm-applet for wifi (probably drop network module)
-
-TOXO: Suspend potential fixes:
- * https://www.reddit.com/r/hyprland/comments/1b5f11n/solved_nvidia_suspend_wakeup_fix/
- * https://github.com/0xFMD/hyprland-suspend-fix
 TOXO: Fixup clock for formats you want.
-TOXO: Make pulseaudio only show speaker for high/med/low volume
 TOXO: configure mpris
 TOXO: make pretty with rose pine, and maybe some other things.
 TOXO: clean out styles you don't use.

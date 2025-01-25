@@ -24,7 +24,7 @@
     dconf write /org/gnome/desktop/interface/titlebar-font "'Sans Bold 10'"
     dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8
 
-# TOXO: automate setting of locale
+# TODO: automate setting of locale
 # https://wiki.debian.org/Locale#Standard
 
 - name: Clone rose-pine gtk theme
@@ -44,4 +44,4 @@
     cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
 
-# TOXO: automate setting of theme.
+# TODO: automate setting of theme.
