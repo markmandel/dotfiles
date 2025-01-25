@@ -185,7 +185,9 @@
     max_icon_size = 500
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_theme = rose-pine-dawn-icons
+    enable_recursive_icon_lookup = true
+    # icon_path = ~/.local/share/icons/
 
     ### History ###
 

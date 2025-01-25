@@ -1,5 +1,6 @@
 // -*- mode: jsonc -*-
 {
+    "output": "eDP-1",
     "height": 20,
     "spacing": 4,
     // Gaps between modules (4px)
@@ -23,8 +24,6 @@
     ],
     "hyprland/workspaces": {
         "format": "{id}",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
         "persistent-workspaces": {
             "*": 10
         }
@@ -60,13 +59,12 @@
     },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{capacity}% {icon}",
         "format-full": "",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         "format-icons": [
@@ -103,19 +101,13 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "format": "{icon}",
+        "format-bluetooth": "{icon} ",
+        "format-bluetooth-muted": " ",
+        "format-muted": "",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
             "default": [
                 "",
                 "",
