@@ -40,10 +40,18 @@
 @define-color highlightMed    #403d52;
 @define-color highlightHigh   #524f67;
 
+ /*
+TOXO: install nm-applet for wifi (probably drop network module)
+TOXO: Fixup clock for formats you want.
+TOXO: Make pulseaudio only show speaker for high/med/low volume
+TOXO: configure mpris
+TOXO: make pretty with rose pine, and maybe some other things.
+TOXO: clean out styles you don't use.
+*/
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FontAwesome, "JetBrains Mono", sans-serif;
     font-size: 13px;
 }
 
@@ -58,15 +66,6 @@ window#waybar {
 window#waybar.hidden {
     opacity: 0.2;
 }
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
 
 window#waybar.termite {
     background-color: #3F3F3F;
@@ -106,13 +105,17 @@ button:hover {
     background: rgba(0, 0, 0, 0.2);
 }
 
-#workspaces button.focused {
+#workspaces button.active {
     background-color: #64727D;
     box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
+}
+
+#workspaces button.empty {
+    font-weight: lighter;
 }
 
 #mode {
@@ -122,19 +125,13 @@ button:hover {
 
 #clock,
 #battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
 #backlight,
 #network,
 #pulseaudio,
-#wireplumber,
 #custom-media,
 #tray,
 #mode,
 #idle_inhibitor,
-#scratchpad,
 #power-profiles-daemon,
 #mpd {
     padding: 0 10px;
