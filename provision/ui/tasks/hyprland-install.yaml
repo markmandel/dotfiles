@@ -125,7 +125,7 @@
 
 - name: Install hyprland yes/no?
   set_fact:
-    install_hyprland: "{{ hyprland_version_match is not defined or hyprland_version_match.stdout | trim | length == 0 }}"
+    install_hyprland: "{{ lookup('ansible.builtin.env', 'FORCE_HYPR') | length > 0 or hyprland_version_match is not defined or hyprland_version_match.stdout | trim | length == 0 }}"
 
 # Clone everything first
 
@@ -148,7 +148,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.3.3
+    version: v0.4.0
 
 - name: Clone aquamarine
   git:
@@ -184,7 +184,7 @@
   git:
     repo: https://github.com/hyprwm/hyprlock
     dest: /opt/hyprland/hyprlock
-    version: v0.6.1
+    version: v0.6.2
 
 - name: Clone hyprpaper
   git:
