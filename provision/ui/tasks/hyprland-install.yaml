@@ -108,7 +108,7 @@
 # Set facts for reuse
 - name: Setting hyprland facts
   set_fact:
-    hyprland_version: v0.46.2
+    hyprland_version: v0.47.0
 
 - name: Check if hyprland is installed
   stat:
@@ -120,8 +120,6 @@
     hyprland --version | grep {{ hyprland_version }}
   register: hyprland_version_match
   when: hyprland_installed.stat.exists
-
-# TOXO: make an overwride to force recompilation of Hyprland (env var?)
 
 - name: Install hyprland yes/no?
   set_fact:
@@ -148,7 +146,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.4.0
+    version: v0.5.0
 
 - name: Clone aquamarine
   git:
@@ -190,7 +188,7 @@
   git:
     repo: https://github.com/hyprwm/hyprpaper
     dest: /opt/hyprland/hyprpaper
-    version: 251e8e2593cdd2ef0a015f4f6e211a7bab3a63ed
+    version: v0.7.4
 
 - name: Clone hypridle
   git:
