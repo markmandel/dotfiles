@@ -123,7 +123,7 @@
 
 - name: Install hyprland yes/no?
   set_fact:
-    install_hyprland: "{{ lookup('ansible.builtin.env', 'FORCE_HYPR') | length > 0 or hyprland_version_match is not defined or hyprland_version_match.stdout | trim | length == 0 }}"
+    install_hyprland: "{{ lookup('ansible.builtin.env', 'FORCE_HYPR') | length > 0 or hyprland_version_match.stdout | default('') | trim | length == 0 }}"
 
 # Clone everything first
 
