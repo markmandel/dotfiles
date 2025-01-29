@@ -44,8 +44,6 @@
 TOXO: install nm-applet for wifi (probably drop network module)
 TOXO: Fixup clock for formats you want.
 TOXO: configure mpris
-TOXO: make pretty with rose pine, and maybe some other things.
-TOXO: clean out styles you don't use.
 */
 
 * {
@@ -163,19 +161,16 @@ button:hover {
 }
 
 label:focus {
-    /*background-color: #000000;*/
 }
 
 #backlight {
-    background-color: #90b1b1;
 }
 
 #network {
-    background-color: #2980b9;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: @love;
 }
 
 #pulseaudio {
