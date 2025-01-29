@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,19 +13,14 @@
 # limitations under the License.
 
 ---
-- import_tasks: home.yaml
-- import_tasks: dotfiles.yaml
-- import_tasks: std_packages.yaml
-- import_tasks: jetbrains-mono.yaml
-- import_tasks: ghostty.yaml
-- import_tasks: nvidia.yaml
-- import_tasks: hyprland-install.yaml
-- import_tasks: hyprland-theme.yaml
-- import_tasks: chrome.yaml
-- import_tasks: google-drive.yaml
-- import_tasks: idea.yaml
-- import_tasks: rofimoji.yaml
-- import_tasks: usb.yaml
-- import_tasks: razer.yaml
-- import_tasks: discord.yaml
-- import_tasks: slack.yaml
+
+- name: Grab latest deb for Slack
+  shell: |
+    curl -s https://slack.com/downloads/instructions/linux\?ddl\=1\&build\=deb | \ 
+    grep -E "https://downloads.slack-edge.com/desktop-releases/linux/x64/4.41.105/slack-desktop-([^\"]*?)-amd64.deb" --only-matching  \
+    | uniq | xargs wget -O /tmp/slack.deb
+    
+- name: Install Slack
+  become: true
+  apt:
+    deb: /tmp/slack.deb
