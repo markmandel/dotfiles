@@ -26,6 +26,7 @@
 - import_tasks: idea.yaml
 - import_tasks: rofimoji.yaml
 - import_tasks: usb.yaml
+- import_tasks: razer.yaml
+- import_tasks: discord.yaml
 
-#- import_tasks: razer.yaml
-#- import_tasks: discord.yaml
+# TOXO: install slack.

@@ -16,7 +16,7 @@
 
 - name: dconf gtk theming
   shell: |
-    dconf write /org/nemo/desktop/font "'Sans 10'"
+    dconf write /org/nemo/desktop/font "'Sans 9'"
     dconf write /org/gnome/desktop/interface/font-name "'Sans 10'"
     dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Sans Bold 10'"
     dconf write /org/gnome/desktop/interface/document-font-name "'Sans 10'"
@@ -43,5 +43,3 @@
     cp -r ${THEME_ROOT}/icons/* ~/.local/share/icons/
     cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
-
-# TODO: automate setting of theme.
