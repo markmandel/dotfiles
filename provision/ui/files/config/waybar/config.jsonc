@@ -39,8 +39,12 @@
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%a %d %b  %I:%M %p}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "actions": {
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
     },
     "backlight": {
         // "device": "acpi_video1",

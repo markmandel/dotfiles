@@ -104,6 +104,7 @@
       - waybar
       - pavucontrol
       - brightnessctl
+      - network-manager-applet
 
 # Set facts for reuse
 - name: Setting hyprland facts
