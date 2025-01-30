@@ -24,6 +24,9 @@
     dconf write /org/gnome/desktop/interface/titlebar-font "'Sans Bold 10'"
     dconf write /org/gnome/desktop/interface/text-scaling-factor 0.8
 
+# TOXO: https://github.com/zakk4223/hyprNStack
+# TOXO: Wofi themeing: https://github.com/hayattgd/minimal-gray/tree/main/config/wofi
+
 # TODO: automate setting of locale
 # https://wiki.debian.org/Locale#Standard
 
