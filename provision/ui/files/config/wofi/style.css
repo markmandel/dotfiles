@@ -72,13 +72,25 @@ window {
 #entry:selected {
     background-color: #eb6f92;
     color: #191724;
-    border-radius: 0px;;
+    border-radius: 5px;
     outline: none;
 }
 
 #entry:selected * {
     background-color: #eb6f92;
     color: #191724;
-    border-radius: 0px;;
+    border-radius: 0px;
+    outline: none;
+}
+
+#expander-box #entry:selected {
+    background-color: #9ccfd8;
+    border-radius: 5px;
+    outline: none;
+}
+
+#expander-box #entry:selected * {
+    background-color: #9ccfd8;
+    border-radius: 0px;
     outline: none;
 }

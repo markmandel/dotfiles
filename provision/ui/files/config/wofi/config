@@ -15,3 +15,4 @@
 allow_images=true
 insensitive=true
 image_size=24
+key_expand=Ctrl-Tab
