@@ -45,3 +45,5 @@
     cp -r ${THEME_ROOT}/icons/* ~/.local/share/icons/
     cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
+
+# TODO: install lutgen (https://github.com/ozwaldorf/lutgen-rs) since it's such a handy tool
