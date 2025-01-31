@@ -48,6 +48,8 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"
 
+#TOXO: Grab latest tagged version. might be easiest to clone and script
+
 - name: Extract ghostty
   unarchive:
     src: "https://github.com/ghostty-org/ghostty/archive/refs/tags/v1.0.1.zip"
