@@ -46,4 +46,13 @@
     cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
 
-# TODO: install lutgen (https://github.com/ozwaldorf/lutgen-rs) since it's such a handy tool
+# lutgen for wallpaper colour adjustment for the theme!
+- name: Clone lutgen-rs
+  git:
+    repo: https://github.com/ozwaldorf/lutgen-rs
+    dest: ~/workspace/lutgen-rs
+
+- name: Install lutgen-rs
+  shell:
+    chdir: ~/workspace/lutgen-rs
+    cmd: cargo install --path .
