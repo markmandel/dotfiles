@@ -29,3 +29,4 @@
 - import_tasks: razer.yaml
 - import_tasks: discord.yaml
 - import_tasks: slack.yaml
+- import_tasks: network.yaml
