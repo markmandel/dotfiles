@@ -13,8 +13,8 @@
     ],
     "modules-right": [
         "idle_inhibitor",
+        "mpris",
         "pulseaudio",
-        "network",
         "power-profiles-daemon",
         "backlight",
         "battery",
@@ -130,6 +130,13 @@
             "reboot": "reboot",
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
+        }
+    },
+    "mpris": {
+        "format": "{status_icon} {artist} - {title}",
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸"
         }
     }
 }
