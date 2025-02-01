@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TOXO: make this a standard window, and turn off / speed up animations.
-
 allow_images=true
 insensitive=true
 image_size=24

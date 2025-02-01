@@ -135,8 +135,8 @@
     "mpris": {
         "format": "{status_icon} {artist} - {title}",
         "status-icons": {
-            "playing": "▶",
-            "paused": "⏸"
+            "playing": "",
+            "paused": ""
         }
     }
 }

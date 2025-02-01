@@ -40,10 +40,6 @@
 @define-color highlightMed    #403d52;
 @define-color highlightHigh   #524f67;
 
-/*
-TOXO: configure mpris
-*/
-
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, "JetBrains Mono", sans-serif;
