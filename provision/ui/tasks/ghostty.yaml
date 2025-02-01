@@ -48,20 +48,24 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"
 
-#TOXO: Grab latest tagged version. might be easiest to clone and script
+- name: Clone ghostty repo
+  git:
+    repo: https://github.com/ghostty-org/ghostty.git
+    dest: /opt/ghostty/ghostty
 
-- name: Extract ghostty
-  unarchive:
-    src: "https://github.com/ghostty-org/ghostty/archive/refs/tags/v1.0.1.zip"
-    dest: "/opt/ghostty"
-    remote_src: yes
-    creates: "/opt/ghostty/ghostty-1.0.1"  # For idempotency
+- name: Checkout the latest tag for ghostty
+  shell:
+    chdir: /opt/ghostty/ghostty
+    cmd: |
+      git fetch --tags
+      git checkout $(git tag --list 'v*' | tail -n 1)
 
 # https://github.com/ghostty-org/ghostty/discussions/3311 - -fsys=fontconfig workaround
 - name: Compile ghostty
-  shell: |
-    cd /opt/ghostty/ghostty-1.0.1
-    /opt/zig/zig-linux-x86_64-0.13.0/zig build -fsys=fontconfig -p /opt/ghostty -Doptimize=ReleaseFast
+  shell:
+    chdir: /opt/ghostty/ghostty
+    cmd: |
+      /opt/zig/zig-linux-x86_64-0.13.0/zig build -fsys=fontconfig -p /opt/ghostty -Doptimize=ReleaseFast
 
 - name: Create symbolic link for ghostty
   become: true  # Needed for writing to /usr/local/bin
