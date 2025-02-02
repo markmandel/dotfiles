@@ -109,7 +109,7 @@
 # Set facts for reuse
 - name: Setting hyprland facts
   set_fact:
-    hyprland_version: v0.47.1
+    hyprland_version: v0.47.2
 
 - name: Check if hyprland is installed
   stat:

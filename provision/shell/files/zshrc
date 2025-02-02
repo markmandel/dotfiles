@@ -93,3 +93,9 @@ export EDITOR='nano -w'
 
 export PATH=/usr/local/go/bin:/usr/local/sbin/:/usr/sbin:$HOME/go/bin:$PATH
 
+if command -v flatpak &>/dev/null; then
+  export "$(flatpak --print-updated-env)"
+fi
+ 
+
+
