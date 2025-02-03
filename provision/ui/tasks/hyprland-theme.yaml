@@ -57,4 +57,5 @@
 - name: Install lutgen-rs
   shell:
     chdir: ~/workspace/lutgen-rs
-    cmd: cargo install --path .
+    cmd: |
+       ~/.cargo/bin/cargo install --path .
