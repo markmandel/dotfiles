@@ -54,3 +54,4 @@
       - power-profiles-daemon
       - evince
       - qalculate-gtk
+      - loup
