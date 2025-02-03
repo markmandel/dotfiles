@@ -52,11 +52,13 @@
   git:
     repo: https://github.com/ghostty-org/ghostty.git
     dest: /opt/ghostty/ghostty
+    update: false
 
 - name: Checkout the latest tag for ghostty
   shell:
     chdir: /opt/ghostty/ghostty
     cmd: |
+      git remote update -p
       git fetch --tags
       git checkout $(git tag --list 'v*' | tail -n 1)
 
