@@ -2,7 +2,7 @@
 {
     "output": "eDP-1",
     "height": 20,
-    "spacing": 4,
+    "spacing": 2,
     // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
