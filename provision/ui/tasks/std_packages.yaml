@@ -52,4 +52,5 @@
       - slurp
       - wf-recorder
       - power-profiles-daemon
-
+      - evince
+      - qalculate-gtk

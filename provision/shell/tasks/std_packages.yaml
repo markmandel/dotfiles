@@ -17,6 +17,8 @@
   become: true
   apt:
     name:
+      - sudo
+      - mount
       - curl
       - wipe
       - btop
@@ -30,4 +32,3 @@
       - moreutils
       - net-tools
       - ntp
-
