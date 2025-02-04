@@ -55,6 +55,7 @@
       - libsdbus-c++-dev
       - libseat-dev
       - libspa-0.2-dev
+      - libspng-dev
       - libtomlplusplus-dev
       - libtomlplusplus3
       - libudev-dev
@@ -172,7 +173,7 @@
   git:
     repo: https://github.com/hyprwm/hyprgraphics
     dest: /opt/hyprland/hyprgraphics
-    version: v0.1.1
+    version: v0.1.2
 
 - name: Clone Hyprland
   git:
