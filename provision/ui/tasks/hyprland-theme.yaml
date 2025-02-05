@@ -54,10 +54,12 @@
 - name: Install hyprland plugins
   shell: |
     hyprpm -v update
-    hyprpm -v add https://github.com/zakk4223/hyprNStack || true
+    yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
+    yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
     hyprpm enable hyprNStack
+    hyprpm enable hyprWorkspaceLayouts
     hyprpm reload
-    
+
 
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
