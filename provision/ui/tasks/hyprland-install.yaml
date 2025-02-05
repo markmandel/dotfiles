@@ -95,6 +95,7 @@
       - xdg-desktop-portal
       - xdg-desktop-portal-gtk
       - nwg-look
+      - qt6ct
       - wofi
       - dunst
       - playerctl
@@ -106,6 +107,7 @@
       - pavucontrol
       - brightnessctl
       - network-manager-applet
+      - system-config-printer
 
 # Set facts for reuse
 - name: Setting hyprland facts
