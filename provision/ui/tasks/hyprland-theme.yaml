@@ -50,6 +50,15 @@
     cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
 
+# Hyprland Plugins
+- name: Install hyprland plugins
+  shell: |
+    hyprpm -v update
+    hyprpm -v add https://github.com/zakk4223/hyprNStack || true
+    hyprpm enable hyprNStack
+    hyprpm reload
+    
+
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
   git:
