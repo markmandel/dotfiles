@@ -56,8 +56,8 @@
     yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
     hyprpm enable hyprNStack
     hyprpm enable hyprWorkspaceLayouts
+    hyprpm -v update
     hyprpm reload
-
 
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
