@@ -1,0 +1,14 @@
+[Default Applications]
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+image/jpeg=org.gnome.Loupe.desktop
+image/png=org.gnome.Loupe.desktop
+application/pdf=org.gnome.Evince.desktop
+
+[Added Associations]
+image/jpeg=org.gnome.Loupe.desktop;display-im7.q16.desktop;
+image/png=org.gnome.Loupe.desktop;
+application/pdf=org.gnome.Evince.desktop;
