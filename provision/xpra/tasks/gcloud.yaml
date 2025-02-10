@@ -29,5 +29,6 @@
   apt:
     name:
       - google-cloud-cli
+      - kubectl
     update_cache: true
   become: true
