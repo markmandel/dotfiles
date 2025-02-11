@@ -17,3 +17,9 @@
     - GoogleDrive
 
 # TODO: generate ~/.config/gtk-3.0/bookmarks with envsubst
+
+- name: Link scripts directory
+  file:
+    src: "{{ role_path }}/files/scripts"
+    dest: ~/scripts
+    state: link
