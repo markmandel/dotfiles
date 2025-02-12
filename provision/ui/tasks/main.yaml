@@ -31,3 +31,5 @@
 - import_tasks: slack.yaml
 - import_tasks: lan-mouse.yaml
 - import_tasks: network.yaml
+
+# TOXO: update and integrate the streamdeck rust binary.

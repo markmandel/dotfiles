@@ -52,3 +52,4 @@
     src: starship.toml
     dest: ~/.config/starship.toml
 
+# TODO: https://github.com/atuinsh/atuin
