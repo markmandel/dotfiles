@@ -67,7 +67,7 @@
   shell:
     chdir: /opt/ghostty/ghostty
     cmd: |
-      /opt/zig/zig-linux-x86_64-0.13.0/zig build -fsys=fontconfig -p /opt/ghostty -Doptimize=ReleaseFast
+      /opt/zig/zig-linux-x86_64-0.13.0/zig build -Doptimize=ReleaseFast
 
 - name: Create symbolic link for ghostty
   become: true  # Needed for writing to /usr/local/bin
