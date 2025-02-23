@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TOXO: turn this into a "lock/unlock" script, that pauses Discord on lock and continues on the other side.
+
 # Kill any existing lan-mouse processes
 killall lan-mouse
 
