@@ -56,3 +56,4 @@
       - qalculate-gtk
       - loupe
       - wlrctl
+      - libu2f-host0
