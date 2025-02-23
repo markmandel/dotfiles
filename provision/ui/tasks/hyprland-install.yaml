@@ -108,6 +108,7 @@
       - brightnessctl
       - network-manager-applet
       - system-config-printer
+      - wdisplays
 
 # Set facts for reuse
 - name: Setting hyprland facts
