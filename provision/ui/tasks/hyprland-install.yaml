@@ -188,7 +188,7 @@
   git:
     repo: https://github.com/hyprwm/hyprlock
     dest: /opt/hyprland/hyprlock
-    version: v0.6.2
+    version: v0.7.0
 
 - name: Clone hyprpaper
   git:
