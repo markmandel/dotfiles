@@ -18,7 +18,6 @@
   apt:
     name:
     - tmux
-    - xclip
     - urlview
 - name: copy tmux config
   copy: src=tmux.conf dest=~/.tmux.conf
