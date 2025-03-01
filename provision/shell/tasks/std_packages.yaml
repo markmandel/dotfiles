@@ -33,3 +33,4 @@
       - moreutils
       - net-tools
       - ntp
+      - jq

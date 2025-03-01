@@ -1,7 +1,7 @@
 [user]
-	name = Mark Mandel
-	email = mark@compoundtheory.com
+    name = Mark Mandel
+    email = mark.mandel@discordapp.com
 [push]
-	default = tracking
+    default = tracking
 [init]
-        defaultBranch = main
+    defaultBranch = main
