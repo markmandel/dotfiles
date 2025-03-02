@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,22 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-- name: grab the hostname
-  shell: hostname -d
-  register: domain_output
-
-- name: Debug domain_output
-  debug:
-    var: domain_output
-
-- name: copy git config file
-  template:
-    src: templates/gitconfig.j2
-    dest: ~/.gitconfig
-  vars:
-    domain: "{{ domain_output.stdout }}"
-
-
-#- name: copy git config file
-#  copy: src=gitconfig dest="~/.gitconfig" mode=0664
+[user]
+    name = Mark Mandel
+{# personal machines have compoundtheory.com domain names #}
+{% if domain == "compoundtheory.com" %}
+    email = mark@compoundtheory.com
+{% else %}
+    email = mark.mandel@discordapp.com
+{% endif %}
+[push]
+    default = tracking
+[init]
+    defaultBranch = main
