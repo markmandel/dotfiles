@@ -58,3 +58,6 @@
       - wlr-randr
       - wlrctl
       - zsh-syntax-highlighting
+      - fprintd
+      - libpam-fprintd
+      - libu2f-host0

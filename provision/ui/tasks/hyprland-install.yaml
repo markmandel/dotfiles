@@ -109,6 +109,7 @@
       - network-manager-applet
       - system-config-printer
       - wdisplays
+      - blueman
 
 # Set facts for reuse
 - name: Setting hyprland facts
@@ -132,6 +133,8 @@
     install_hyprland: "{{ lookup('ansible.builtin.env', 'FORCE_HYPR') | length > 0 or hyprland_version_match.stdout | default('') | trim | length == 0 }}"
 
 # Clone everything first
+
+# TOXO: get a polkit agent: https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/
 
 - name: Create Hyprland Opt directory
   become: true # Required for creating directories in /opt/

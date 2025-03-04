@@ -18,5 +18,5 @@
   user: mark
   roles:
     - shell
-    - xpra
+    - dev
     - ui
