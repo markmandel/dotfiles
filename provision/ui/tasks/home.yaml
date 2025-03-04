@@ -16,7 +16,7 @@
     - Videos
     - GoogleDrive
 
-# TODO: generate ~/.config/gtk-3.0/bookmarks with envsubst
+# TODO: generate ~/.config/gtk-3.0/bookmarks ansible jinja template.
 
 - name: Link scripts directory
   file:
