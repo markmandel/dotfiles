@@ -110,6 +110,7 @@
       - system-config-printer
       - wdisplays
       - blueman
+      - polkit-kde-agent-1
 
 # Set facts for reuse
 - name: Setting hyprland facts
