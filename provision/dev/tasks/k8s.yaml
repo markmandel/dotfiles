@@ -13,7 +13,13 @@
 # limitations under the License.
 
 ---
+
+- name: Get latest k9s
+  shell:
+    chdir: /tmp
+    cmd: curl -s https://api.github.com/repos/derailed/k9s/releases/latest  | jq ".name" | xargs -I{} wget -O k9s.deb "https://github.com/derailed/k9s/releases/download/{}/k9s_linux_amd64.deb"
+
 - name: Install k9s
   become: true
   apt:
-    deb: "https://github.com/derailed/k9s/releases/download/v0.40.5/k9s_linux_amd64.deb"
+    deb: "/tmp/k9s.deb"
