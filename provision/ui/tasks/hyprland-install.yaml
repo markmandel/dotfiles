@@ -135,8 +135,6 @@
 
 # Clone everything first
 
-# TOXO: get a polkit agent: https://wiki.hyprland.org/Hypr-Ecosystem/hyprpolkitagent/
-
 - name: Create Hyprland Opt directory
   become: true # Required for creating directories in /opt/
   file:
