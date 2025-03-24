@@ -36,7 +36,7 @@ unlock_lan_mouse() {
   killall lan-mouse
 
   # Start lan-mouse in daemon mode, redirecting output to /tmp/lan.log
-  nohup lan-mouse --daemon > /tmp/lan.log 2>&1 &
+  nohup lan-mouse daemon > /tmp/lan.log 2>&1 &
 
   # Optional: Check if the process started successfully
   if [[ $? -eq 0 ]]; then
