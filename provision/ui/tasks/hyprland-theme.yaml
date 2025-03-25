@@ -14,6 +14,20 @@
 
 ---
 
+- name: Create local.conf symlink or empty file
+  shell: |
+    HYPR_CONF_DIR=~/.config/hypr/hyprland.conf.d
+    HYPR_LOCAL_CONF=$HYPR_CONF_DIR/local.conf
+    HYPR_HOST_CONF=$HYPR_CONF_DIR/$(hostname).conf
+
+    if [ -f "$HYPR_HOST_CONF" ]; then
+      ln -sf "$HYPR_HOST_CONF" "$HYPR_LOCAL_CONF"
+      echo "Symlinked $HYPR_HOST_CONF to $HYPR_LOCAL_CONF"
+    else
+      touch "$HYPR_LOCAL_CONF"
+      echo "Created empty $HYPR_LOCAL_CONF"
+    fi
+
 - name: dconf gtk theming
   shell: |
     dconf write /org/nemo/desktop/font "'Sans 9'"
