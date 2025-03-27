@@ -30,5 +30,6 @@
     name:
       - google-cloud-cli
       - kubectl
+      - google-cloud-sdk-gke-gcloud-auth-plugin
     update_cache: true
   become: true
