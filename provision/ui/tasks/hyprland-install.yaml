@@ -162,7 +162,7 @@
     dest: /opt/hyprland/aquamarine
     version: v0.8.0
 
-- name: Clone hyprland
+- name: Clone hyprlang
   git:
     repo: https://github.com/hyprwm/hyprlang
     dest: /opt/hyprland/hyprlang
