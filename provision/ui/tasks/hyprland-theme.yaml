@@ -89,6 +89,6 @@
 
 # restart dunst service
 - name: Restart dunst service
-  systemd:
-    name: dunst
-    state: restarted
+  shell: |
+    killall dunst
+    notify-send "Dunst restarted"

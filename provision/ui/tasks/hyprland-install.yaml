@@ -198,13 +198,11 @@
     dest: /opt/hyprland/hyprpaper
     version: v0.7.4
 
-# TOXO: Upgrade hypridle to 1.1.6, but will need to work out how to install hyprland-protocols
-
 - name: Clone hypridle
   git:
     repo: https://github.com/hyprwm/hypridle
     dest: /opt/hyprland/hypridle
-    version: v0.1.5
+    version: v0.1.6
 
 - name: Clone xdg-descktop-portal-hyprland
   git:
@@ -290,6 +288,15 @@
     cmd: make install
   become: true
   when: install_hyprland
+
+- name: hyprland-protocols - ninja install
+  become: true
+  shell:
+    chdir: /opt/hyprland/Hyprland/subprojects/hyprland-protocols
+    cmd: |
+      meson setup build
+      ninja -C build
+      ninja -C build install
 
 - name: hyprlock - cmake & build
   shell:
