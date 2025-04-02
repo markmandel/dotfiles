@@ -258,8 +258,8 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
     mouse_right_click = close_all
 
     ### Keyboard shortcuts
@@ -269,19 +269,19 @@
     # Xev might be helpful to find names for keys.
 
     # Close notification.
-    close = ctrl+space
+    # close = mod4+end
 
     # Close all notifications.
-    close_all = ctrl+mod4+space
+    # close_all = ctrl+mod4+end
 
     # Redisplay last message(s).
     # On the US keyboard layout "grave" is normally above TAB and left
     # of "1". Make sure this key actually exists on your keyboard layout,
     # e.g. check output of 'xmodmap -pke'
-    history = ctrl+grave
+    # history = ctrl+grave
 
     # Context menu.
-    context = ctrl+shift+period
+    # context = ctrl+shift+period
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.

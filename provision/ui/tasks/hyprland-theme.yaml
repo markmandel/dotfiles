@@ -86,3 +86,9 @@
     chdir: ~/workspace/lutgen-rs
     cmd: |
        ~/.cargo/bin/cargo install --path .
+
+# restart dunst service
+- name: Restart dunst service
+  systemd:
+    name: dunst
+    state: restarted
