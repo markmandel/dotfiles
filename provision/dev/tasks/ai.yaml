@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-
-- import_tasks: docker.yaml
-- import_tasks: golang.yaml
-- import_tasks: helm.yaml
-- import_tasks: k8s.yaml
-- import_tasks: terraform.yaml
-- import_tasks: rust.yaml
-- import_tasks: npm.yaml
-- import_tasks: gh-cli.yaml
-- import_tasks: gcloud.yaml
-- import_tasks: minikube.yaml
-- import_tasks: jetbrains.yaml
-- import_tasks: ai.yaml
+- name: Install latest npm version
+  shell: npm install -g npm@latest
+  become: yes
