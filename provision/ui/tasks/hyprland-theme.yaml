@@ -73,7 +73,7 @@
     hyprpm enable hyprWorkspaceLayouts
     hyprpm enable Hyprspace
     hyprpm -v update
-    hyprpm reload
+    hyprpm reload || true
 
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
@@ -91,4 +91,4 @@
 - name: Restart dunst service
   shell: |
     killall dunst
-    notify-send "Dunst restarted"
+    timeout 1 notify-send "Dunst restarted" || true
