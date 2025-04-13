@@ -59,4 +59,44 @@
   shell: sysctl -p --system
   become: true
 
-# TOXO: Add Clion ot this, doing way too much work in C++.
+# Clion install, doing way too much work in C++.
+
+- name: Clion install folder
+  become: true
+  file:
+    path: /opt/clion
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+
+- name: Check if clion archive exists
+  stat:
+    path: ~/Downloads/clion.tar.gz
+  register: clion_download
+
+- name: Download clion Ultimate
+  get_url:
+    dest: ~/Downloads/clion.tar.gz
+    url: https://download.jetbrains.com/product?code=CL&latest&distribution=linux
+  when: not clion_download.stat.exists
+
+- name: extract into /opt/clion
+  unarchive:
+    src: ~/Downloads/clion.tar.gz
+    dest: /opt/clion
+  when: not clion_download.stat.exists
+
+- name: create "active" symlink for clion
+  shell:
+    chdir: /opt/clion
+    cmd: |
+      find -maxdepth 1 -type d -name 'clion*' | head -n 1 | xargs -I{} ln -s --no-dereference --force {} active
+  when: not clion_download.stat.exists
+
+- name: create /usr/local/bin/ clion link
+  become: true
+  file:
+    src: /opt/clion/active/bin/clion
+    dest: /usr/local/bin/clion
+    state: link
