@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,17 +13,18 @@
 # limitations under the License.
 
 ---
-- name: tmux
-  become: true
-  apt:
-    name:
-    - tmux
-    - urlview
-- name: copy tmux config
-  copy: src=tmux.conf dest=~/.tmux.conf
-- name: "Create .tmux plugins dir"
-  file: path="~/.tmux/plugins" state=directory
-- name: clone tmux plugin manager
-  git: repo=https://github.com/tmux-plugins/tpm dest=~/.tmux/plugins/tpm
+- name: Clone streamdeck-agent repository
+  git:
+    repo: git@github.com:markmandel/streamdeck-agent.git
+    dest: ~/workspace/streamdeck-agent
 
-# TODO: https://github.com/rose-pine/tmux
+- name: Install streamdeck-agent
+  become: true
+  shell:
+    chdir: "{{ lookup('ansible.builtin.env', 'HOME') }}/workspace/streamdeck-agent"
+    cmd: make deps udev
+
+- name: Install streamdeck-agent
+  shell:
+    chdir: ~/workspace/streamdeck-agent
+    cmd: make release
