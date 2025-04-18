@@ -17,14 +17,17 @@
   git:
     repo: git@github.com:markmandel/streamdeck-agent.git
     dest: ~/workspace/streamdeck-agent
+  register: streamdeck_result
 
-- name: Install streamdeck-agent
+- name: Install streamdeck-agent dependencies
   become: true
   shell:
     chdir: "{{ lookup('ansible.builtin.env', 'HOME') }}/workspace/streamdeck-agent"
     cmd: make deps udev
+  when: streamdeck_result.changed
 
 - name: Install streamdeck-agent
   shell:
     chdir: ~/workspace/streamdeck-agent
     cmd: make release
+  when: streamdeck_result.changed

@@ -80,12 +80,14 @@
   git:
     repo: https://github.com/ozwaldorf/lutgen-rs
     dest: ~/workspace/lutgen-rs
+  register: lutgen_result
 
 - name: Install lutgen-rs
   shell:
     chdir: ~/workspace/lutgen-rs
     cmd: |
        ~/.cargo/bin/cargo install --path .
+  when: lutgen_result.changed
 
 # restart dunst service
 - name: Restart dunst service
