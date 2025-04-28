@@ -23,3 +23,16 @@
   become: true
   apt:
     deb: "/tmp/discord.deb"
+
+- name: Download Discord (Canary)
+  get_url:
+    url: "https://discord.com/api/canary/download?platform=linux"
+    force: true
+    dest: "/tmp/discord-canary.deb"
+    mode: '0644'
+
+- name: Install Discord (Canary)
+  become: true
+  apt:
+    deb: "/tmp/discord-canary.deb"
+
