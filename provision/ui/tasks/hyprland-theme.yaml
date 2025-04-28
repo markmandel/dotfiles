@@ -67,7 +67,7 @@
   shell: |
     hyprpm -v update
     yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
-    yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
+    yes | hyprpm -v add hyprpm add https://github.com/zakk4223/hyprWorkspaceLayouts f86ccdbd75459d6be297e115136158ace8f889de || true
     yes | hyprpm add https://github.com/KZDKM/Hyprspace || true
     hyprpm enable hyprNStack
     hyprpm enable hyprWorkspaceLayouts
