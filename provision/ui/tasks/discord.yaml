@@ -35,4 +35,3 @@
   become: true
   apt:
     deb: "/tmp/discord-canary.deb"
-
