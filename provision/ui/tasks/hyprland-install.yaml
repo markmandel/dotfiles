@@ -49,6 +49,8 @@
       - libpam0g-dev
       - libpipewire-0.3-dev
       - libpixman-1-dev
+      - libpolkit-agent-1-dev
+      - libpolkit-qt6-1-dev
       - libpugixml-dev
       - libre2-dev
       - librsvg2-dev
@@ -110,7 +112,6 @@
       - system-config-printer
       - wdisplays
       - blueman
-      - polkit-kde-agent-1
 
 # Set facts for reuse
 - name: Setting hyprland facts
@@ -154,7 +155,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.6.0
+    version: v0.7.0
 
 - name: Clone aquamarine
   git:
@@ -215,6 +216,12 @@
     repo: https://github.com/hyprwm/hyprland-qtutils
     dest: /opt/hyprland/hyprland-qtutils
     version: v0.1.3
+
+- name: Clone hyprpolkitagent
+  git:
+    repo: https://github.com/hyprwm/hyprpolkitagent
+    dest: /opt/hyprland/hyprpolkitagent
+    version: v0.1.2
 
 # Now compile and install it!
 
@@ -350,3 +357,15 @@
     chdir: /opt/hyprland/hypridle
     cmd: cmake --install build
   become: true
+
+- name: hyprpolkitagent - cmake & build
+  shell:
+    chdir: /opt/hyprland/hyprpolkitagent
+    cmd: |
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprpolkitagent - install
+  become: true
+  shell:
+    chdir: /opt/hyprland/hyprpolkitagent
+    cmd: cmake --install build
