@@ -47,6 +47,7 @@
       - nemo-font-manager
       - obs-studio
       - v4l2loopback-dkms
+      - v4l2loopback-utils
       - picard
       - power-profiles-daemon
       - qalculate-gtk
