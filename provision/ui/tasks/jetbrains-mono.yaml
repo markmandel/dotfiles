@@ -18,7 +18,7 @@
 - name: install JetBrainMono Nerd Font
   get_url:
     dest: ~/Downloads/JetBrainsMono.zip
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
     force: false
 - name: ensure font directory exists
   become: true
@@ -30,4 +30,3 @@
   unarchive:
     src: ~/Downloads/JetBrainsMono.zip
     dest: /usr/share/fonts/nerd/jetbrains-mono
-
