@@ -50,17 +50,19 @@
     repo: 'https://github.com/rose-pine/gtk'
     version: v2.2.0
     dest: '~/.local/share/rose-pine-gtk' # I've added a more specific directory name.
+  register: rose_pine_result
 
 - name: Install rose-pine gtk theme
   shell: |
     mkdir -p ~/.local/share/icons
     mkdir -p ~/.local/share/themes
     mkdir -p ~/.config/gtk-4.0
-    
+
     export THEME_ROOT=~/.local/share/rose-pine-gtk
     cp -r ${THEME_ROOT}/icons/* ~/.local/share/icons/
     cp -r ${THEME_ROOT}/gtk3/* ~/.local/share/themes/
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
+  when: rose_pine_result.changed
 
 # Hyprland Plugins
 - name: Install hyprland plugins
