@@ -15,6 +15,7 @@
 ---
 
 - name: Create local.conf symlink or empty file
+  tags: hyprland
   shell: |
     HYPR_CONF_DIR=~/.config/hypr/hyprland.conf.d
     HYPR_LOCAL_CONF=$HYPR_CONF_DIR/local.conf
@@ -29,6 +30,7 @@
     fi
 
 - name: dconf gtk theming
+  tags: hyprland
   shell: |
     dconf write /org/nemo/desktop/font "'Sans 9'"
     dconf write /org/gnome/desktop/interface/font-name "'Sans 10'"
@@ -46,6 +48,7 @@
 # https://wiki.debian.org/Locale#Standard
 
 - name: Clone rose-pine gtk theme
+  tags: hyprland
   git:
     repo: 'https://github.com/rose-pine/gtk'
     version: v2.2.0
@@ -53,6 +56,7 @@
   register: rose_pine_result
 
 - name: Install rose-pine gtk theme
+  tags: hyprland
   shell: |
     mkdir -p ~/.local/share/icons
     mkdir -p ~/.local/share/themes
@@ -66,11 +70,12 @@
 
 # Hyprland Plugins
 - name: Install hyprland plugins
+  tags: hyprland
   shell: |
     hyprpm -v update
     yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
     yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts f86ccdbd75459d6be297e115136158ace8f889de || true
-    yes | hyprpm add https://github.com/KZDKM/Hyprspace || true
+    yes | hyprpm add https://github.com/KZDKM/Hyprspace 5b62529c2011ede6069445de9b5b3f8a1f10ecfe || true
     hyprpm enable hyprNStack
     hyprpm enable hyprWorkspaceLayouts
     hyprpm enable Hyprspace
@@ -79,12 +84,14 @@
 
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
+  tags: hyprland
   git:
     repo: https://github.com/ozwaldorf/lutgen-rs
     dest: ~/workspace/lutgen-rs
   register: lutgen_result
 
 - name: Install lutgen-rs
+  tags: hyprland
   shell:
     chdir: ~/workspace/lutgen-rs
     cmd: |
@@ -93,6 +100,7 @@
 
 # restart dunst service
 - name: Restart dunst service
+  tags: hyprland
   shell: |
     killall dunst
     timeout 1 notify-send "Dunst restarted" || true
