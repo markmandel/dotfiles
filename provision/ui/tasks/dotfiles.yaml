@@ -18,4 +18,4 @@
   shell: |
     cd {{ role_path }}/files/config
     find -type d -exec mkdir -p ~/.config/{} \;
-    find -type f -exec ln --force -s {{ role_path }}/files/config/{} ~/.config/{} \;
+    find -type f -exec ln -sf {{ role_path }}/files/config/{} ~/.config/{} \;
