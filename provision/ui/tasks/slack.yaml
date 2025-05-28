@@ -16,9 +16,7 @@
 
 - name: Grab latest deb for Slack
   shell: |
-    curl -s https://slack.com/downloads/instructions/linux\?ddl\=1\&build\=deb | \ 
-    grep -E "https://downloads.slack-edge.com/desktop-releases/linux/x64/([^/]+?)/slack-desktop-([^\"]+?)-amd64.deb" --only-matching  \
-    | uniq | xargs wget -O /tmp/slack.deb
+    curl -s https://slack.com/downloads/instructions/linux\?ddl\=1\&build\=deb | grep -E "https://downloads.slack-edge.com/desktop-releases/linux/x64/([^/]+?)/slack-desktop-([^\"]+?)-amd64.deb" --only-matching | uniq | xargs wget -q -O /tmp/slack.deb
     
 - name: Install Slack
   become: true
