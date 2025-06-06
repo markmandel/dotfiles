@@ -52,5 +52,10 @@
     src: starship.toml
     dest: ~/.config/starship.toml
 
-# TODO: https://github.com/atuinsh/atuin
+# Atuin
+- name: install or update atuin
+  shell: curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+- name: atuin import history
+  shell: atuin import auto
+
 # TODO: https://github.com/ajeetdsouza/zoxide
