@@ -19,11 +19,9 @@
     name:
     - tmux
     - urlview
-- name: copy tmux config
-  copy: src=tmux.conf dest=~/.tmux.conf
+- name: symlink tmux config
+  file: src={{ role_path }}/files/tmux.conf path=~/.tmux.conf state=link force=yes
 - name: "Create .tmux plugins dir"
   file: path="~/.tmux/plugins" state=directory
 - name: clone tmux plugin manager
   git: repo=https://github.com/tmux-plugins/tpm dest=~/.tmux/plugins/tpm
-
-# TODO: https://github.com/rose-pine/tmux

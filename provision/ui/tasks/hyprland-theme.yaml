@@ -44,9 +44,6 @@
 
 # TOXO: try out https://rosepinetheme.com/themes/cursor
 
-# TODO: automate setting of locale
-# https://wiki.debian.org/Locale#Standard
-
 - name: Clone rose-pine gtk theme
   tags: hyprland
   git:
