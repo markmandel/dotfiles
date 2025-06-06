@@ -143,7 +143,7 @@
         "menu-file": "/usr/share/waybar/custom_modules/power_menu.xml",
         // Menu file in resources folder
         "menu-actions": {
-            "shutdown": "shutdown",
+            "shutdown": "zenity --question --text='Poweroff?' && poweroff",
             "reboot": "reboot",
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
