@@ -57,5 +57,8 @@
   shell: curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 - name: atuin import history
   shell: ~/.atuin/bin/atuin import auto
+- name: link atuin config
+  shell: |
+    ln --force -s {{ role_path }}/files/config.toml ~/.config/atuin/config.toml
 
 # TODO: https://github.com/ajeetdsouza/zoxide
