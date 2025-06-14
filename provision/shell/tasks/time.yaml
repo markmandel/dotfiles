@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2025 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,7 @@
 # limitations under the License.
 
 ---
-- import_tasks: std_packages.yaml
-- import_tasks: time.yaml
-- import_tasks: tmux.yaml
-- import_tasks: git_config.yaml
-- import_tasks: zsh.yaml
-- import_tasks: xpra.yaml
+
+- name: enable ntp sync
+  become: true
+  shell: timedatectl set-ntp true
