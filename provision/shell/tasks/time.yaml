@@ -16,4 +16,4 @@
 
 - name: enable ntp sync
   become: true
-  shell: timedatectl set-ntp true
+  shell: timedatectl set-ntp true || true
