@@ -16,4 +16,7 @@
 
 - name: enable ntp sync
   become: true
-  shell: timedatectl set-ntp true || true
+  shell: |
+    timedatectl set-ntp true
+    timedatectl set-local-rtc 0
+  when: ansible_os_family == "Debian"
