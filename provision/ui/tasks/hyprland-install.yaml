@@ -154,6 +154,8 @@
 
 - name: Clone hyprwayland-scanner
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprwayland-scanner
     dest: /opt/hyprland/hyprwayland-scanner
@@ -161,6 +163,8 @@
 
 - name: Clone hyprutils
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
@@ -168,6 +172,8 @@
 
 - name: Clone aquamarine
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/aquamarine
     dest: /opt/hyprland/aquamarine
@@ -175,6 +181,8 @@
 
 - name: Clone hyprlang
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprlang
     dest: /opt/hyprland/hyprlang
@@ -182,6 +190,8 @@
 
 - name: Clone hyprcursor
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprcursor
     dest: /opt/hyprland/hyprcursor
@@ -189,6 +199,8 @@
 
 - name: Clone hyprgraphics
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprgraphics
     dest: /opt/hyprland/hyprgraphics
@@ -196,6 +208,8 @@
 
 - name: Clone Hyprland
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/Hyprland
     dest: /opt/hyprland/Hyprland
@@ -203,6 +217,8 @@
 
 - name: Clone hyprlock
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprlock
     dest: /opt/hyprland/hyprlock
@@ -210,6 +226,8 @@
 
 - name: Clone hyprpaper
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprpaper
     dest: /opt/hyprland/hyprpaper
@@ -217,6 +235,8 @@
 
 - name: Clone hypridle
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hypridle
     dest: /opt/hyprland/hypridle
@@ -224,6 +244,8 @@
 
 - name: Clone xdg-descktop-portal-hyprland
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/xdg-desktop-portal-hyprland
     dest: /opt/hyprland/xdg-desktop-portal-hyprland
@@ -231,6 +253,8 @@
 
 - name: Clone xdg-descktop-portal-hyprland
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprland-qtutils
     dest: /opt/hyprland/hyprland-qtutils
@@ -238,6 +262,8 @@
 
 - name: Clone hyprpolkitagent
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/hyprwm/hyprpolkitagent
     dest: /opt/hyprland/hyprpolkitagent

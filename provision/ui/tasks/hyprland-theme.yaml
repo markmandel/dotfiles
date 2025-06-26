@@ -82,6 +82,8 @@
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
   tags: hyprland
+  retries: 5
+  delay: 5
   git:
     repo: https://github.com/ozwaldorf/lutgen-rs
     dest: ~/workspace/lutgen-rs
@@ -92,7 +94,7 @@
   shell:
     chdir: ~/workspace/lutgen-rs
     cmd: |
-       ~/.cargo/bin/cargo install --path .
+       ~/.cargo/bin/cargo install --path crates/cli
   when: lutgen_result.changed
 
 # restart dunst service
