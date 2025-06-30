@@ -87,6 +87,7 @@
   git:
     repo: https://github.com/ozwaldorf/lutgen-rs
     dest: ~/workspace/lutgen-rs
+    force: true
   register: lutgen_result
 
 - name: Install lutgen-rs
@@ -94,7 +95,7 @@
   shell:
     chdir: ~/workspace/lutgen-rs
     cmd: |
-       ~/.cargo/bin/cargo install --path crates/cli
+       ~/.cargo/bin/cargo install --path crates/cli --force
   when: lutgen_result.changed
 
 # restart dunst service
