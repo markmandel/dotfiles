@@ -168,7 +168,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.8.0
+    version: v0.8.1
 
 - name: Clone aquamarine
   tags: hyprland
@@ -177,7 +177,7 @@
   git:
     repo: https://github.com/hyprwm/aquamarine
     dest: /opt/hyprland/aquamarine
-    version: v0.8.0
+    version: v0.9.1
 
 - name: Clone hyprlang
   tags: hyprland

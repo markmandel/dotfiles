@@ -19,6 +19,7 @@
 - import_tasks: jetbrains-mono.yaml
 - import_tasks: ghostty.yaml
 - import_tasks: nvidia.yaml
+- import_tasks: flatpak.yaml
 - import_tasks: hyprland-install.yaml
 - import_tasks: hyprland-theme.yaml
 - import_tasks: chrome.yaml
