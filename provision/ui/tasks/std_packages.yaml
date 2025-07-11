@@ -28,6 +28,7 @@
       - firefox-esr
       - flatpak
       - fonts-noto-color-emoji
+      - fprintd
       - gedit
       - gedit-plugins
       - gimp
@@ -36,6 +37,8 @@
       - keepassxc
       - kooha
       - libnotify-bin
+      - libpam-fprintd
+      - libu2f-host0
       - libu2f-host0
       - locate
       - loupe
@@ -46,20 +49,20 @@
       - nemo-fileroller
       - nemo-font-manager
       - obs-studio
-      - v4l2loopback-dkms
-      - v4l2loopback-utils
       - picard
       - power-profiles-daemon
       - qalculate-gtk
+      - remmina
+      - remmina-plugin-rdp
+      - remmina-plugin-secret
       - retext
       - slurp
       - swappy
       - synaptic
+      - v4l2loopback-dkms
+      - v4l2loopback-utils
       - wev
       - wf-recorder
       - wlr-randr
       - wlrctl
       - zsh-syntax-highlighting
-      - fprintd
-      - libpam-fprintd
-      - libu2f-host0

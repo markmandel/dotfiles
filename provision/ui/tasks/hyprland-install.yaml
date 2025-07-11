@@ -142,6 +142,7 @@
 
 # Clone everything first
 
+
 - name: Create Hyprland Opt directory
   tags: hyprland
   become: true # Required for creating directories in /opt/
