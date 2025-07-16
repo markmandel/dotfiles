@@ -13,6 +13,13 @@
 # limitations under the License.
 ---
 
+# Let's try adding the ghostty apt repository
+- name: Add community ghostty apt repository
+  become: true
+  shell: |
+    echo 'deb https://download.opensuse.org/repositories/home:/clayrisser:/sid/Debian_Unstable/ /' | tee /etc/apt/sources.list.d/home:clayrisser:sid.list
+    curl -fsSL https://download.opensuse.org/repositories/home:clayrisser:sid/Debian_Unstable/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_clayrisser_sid.gpg > /dev/null
+
 - name: Create Zig directory
   become: true # Required for creating directories in /opt/
   file:
