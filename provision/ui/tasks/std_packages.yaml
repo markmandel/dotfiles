@@ -51,6 +51,7 @@
       - obs-studio
       - picard
       - power-profiles-daemon
+      - puddletag
       - qalculate-gtk
       - remmina
       - remmina-plugin-rdp
