@@ -128,7 +128,6 @@ button:hover {
 }
 
 #battery.charging, #battery.plugged {
-    background-color: @overlay;
     color: @foam;
 }
 
