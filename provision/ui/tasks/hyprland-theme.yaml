@@ -66,6 +66,7 @@
   when: rose_pine_result.changed
 
 # Hyprland Plugins
+# This is a manual step, so this is disabled for now, and just a reference.
 - name: Install hyprland plugins
   tags: hyprland
   shell: |
@@ -78,6 +79,7 @@
     hyprpm enable Hyprspace
     hyprpm -v update
     hyprpm reload || true
+  when: 0 > 1
 
 # lutgen for wallpaper colour adjustment for the theme!
 - name: Clone lutgen-rs
