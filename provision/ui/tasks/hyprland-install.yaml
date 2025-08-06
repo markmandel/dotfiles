@@ -31,6 +31,7 @@
       - hwdata
       - libavcodec-dev
       - libavformat-dev
+      - libaudit-dev
       - libavutil-dev
       - libcairo2-dev
       - libdbus-c++-dev
@@ -59,6 +60,8 @@
       - libseat-dev
       - libspa-0.2-dev
       - libspng-dev
+      - libpolkit-agent-1-dev
+      - libpolkit-qt6-1-dev
       - libtomlplusplus-dev
       - libtomlplusplus3
       - libudev-dev
@@ -97,6 +100,11 @@
     src: "{{ playbook_dir }}/ui/files/experimental.sources"
     dest: /etc/apt/sources.list.d/experimental.sources
 
+- name: Update apt package cache
+  become: true
+  apt:
+    update_cache: yes
+
 - name: Install g++-15 from experimental
   tags: hyprland
   become: true
@@ -104,7 +112,6 @@
     name: g++-15
     state: present
     default_release: experimental
-    update_cache: true
 
 - name: Configure update-alternatives priorities (gcc/g++)
   tags: hyprland
@@ -116,6 +123,7 @@
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-15 90
     update-alternatives --set gcc /usr/bin/gcc-14
     update-alternatives --set g++ /usr/bin/g++-14
+    gcc --version
 
 - name: install wayland and hyprland util packages
   tags: hyprland
@@ -304,6 +312,7 @@
   shell: |
     update-alternatives --set gcc /usr/bin/gcc-15
     update-alternatives --set g++ /usr/bin/g++-15
+    gcc --version
 
 - name: hyprwayland-scanner - cmake & build
   tags: hyprland
