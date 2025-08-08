@@ -82,6 +82,7 @@
   when: 0 > 1
 
 # lutgen for wallpaper colour adjustment for the theme!
+# TOXO: replace with lutgen studio.
 - name: Clone lutgen-rs
   tags: hyprland
   retries: 5
@@ -91,14 +92,8 @@
     dest: ~/workspace/lutgen-rs
     force: true
   register: lutgen_result
+  when: 0 > 1
 
-- name: Install lutgen-rs
-  tags: hyprland
-  shell:
-    chdir: ~/workspace/lutgen-rs
-    cmd: |
-       ~/.cargo/bin/cargo install --path crates/cli --force
-  when: lutgen_result.changed
 
 # restart dunst service
 - name: Restart dunst service
