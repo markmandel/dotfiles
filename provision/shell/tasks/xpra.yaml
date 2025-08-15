@@ -20,12 +20,21 @@
     force: true
   become: true
 
-- name: add xpra respository
+- name: add xpra repository
   get_url:
     url: "https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/trixie/xpra.sources"
     dest: /etc/apt/sources.list.d
     force: true
   become: true
+  when: ansible_facts['lsb']['codename'] == 'forky'
+
+- name: add xpra repository
+  get_url:
+    url: "https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/{{ ansible_facts['lsb']['codename'] }}/xpra.sources"
+    dest: /etc/apt/sources.list.d
+    force: true
+  become: true
+  when: ansible_facts['lsb']['codename'] != 'forky'
 
 - name: install xpra
   apt:
