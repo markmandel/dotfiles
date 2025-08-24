@@ -212,7 +212,7 @@
   git:
     repo: https://github.com/hyprwm/aquamarine
     dest: /opt/hyprland/aquamarine
-    version: v0.9.2
+    version: v0.9.4
 
 - name: Clone hyprlang
   tags: hyprland
