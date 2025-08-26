@@ -49,6 +49,7 @@
       - nemo-fileroller
       - nemo-font-manager
       - obs-studio
+      - pandoc
       - picard
       - power-profiles-daemon
       - puddletag
