@@ -20,65 +20,9 @@
     echo 'deb https://download.opensuse.org/repositories/home:/clayrisser:/sid/Debian_Unstable/ /' | tee /etc/apt/sources.list.d/home:clayrisser:sid.list
     curl -fsSL https://download.opensuse.org/repositories/home:clayrisser:sid/Debian_Unstable/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_clayrisser_sid.gpg > /dev/null
 
-- name: Create Zig directory
-  become: true # Required for creating directories in /opt/
-  file:
-    path: /opt/zig
-    state: directory
-    mode: '0755'
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
-- name: Extract Zig
-  unarchive:
-    src: "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
-    dest: "/opt/zig"
-    remote_src: yes
-    creates: "/opt/zig/zig-linux-x86_64-0.13.0" # Ensures idempotency
-
-# build ghostty
-
-- name: Install required packages for ghostty
+- name: Install ghostty
   become: true
   apt:
     name:
-      - libgtk-4-dev
-      - libadwaita-1-dev
-      - git
-    state: present
-    update_cache: yes
-- name: Create ghostty directory
-  become: true # Required for creating directories in /opt/
-  file:
-    path: /opt/ghostty
-    state: directory
-    mode: '0755'
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
-
-- name: Clone ghostty repo
-  git:
-    repo: https://github.com/ghostty-org/ghostty.git
-    dest: /opt/ghostty/ghostty
-    update: false
-
-- name: Checkout the latest tag for ghostty
-  shell:
-    chdir: /opt/ghostty/ghostty
-    cmd: |
-      git remote update -p
-      git fetch --tags
-      git checkout $(git tag --list 'v*' | tail -n 1)
-
-# https://github.com/ghostty-org/ghostty/discussions/3311 - -fsys=fontconfig workaround
-- name: Compile ghostty
-  shell:
-    chdir: /opt/ghostty/ghostty
-    cmd: |
-      /opt/zig/zig-linux-x86_64-0.13.0/zig build -p /opt/ghostty -Doptimize=ReleaseFast
-
-- name: Create symbolic link for ghostty
-  become: true  # Needed for writing to /usr/local/bin
-  file:
-    src: "/opt/ghostty/bin/ghostty"
-    dest: "/usr/local/bin/ghostty"
-    state: link
+      - ghostty
+    update_cache: true
