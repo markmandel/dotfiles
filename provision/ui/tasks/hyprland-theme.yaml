@@ -73,10 +73,8 @@
     hyprpm -v update
     yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
     yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
-    yes | hyprpm add https://github.com/KZDKM/Hyprspace || true
     hyprpm enable hyprNStack
     hyprpm enable hyprWorkspaceLayouts
-    hyprpm enable Hyprspace
     hyprpm -v update
     hyprpm reload || true
   when: 0 > 1
