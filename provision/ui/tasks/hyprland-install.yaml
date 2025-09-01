@@ -203,7 +203,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.8.2
+    version: v0.8.4
 
 - name: Clone aquamarine
   tags: hyprland
@@ -275,7 +275,7 @@
   git:
     repo: https://github.com/hyprwm/hypridle
     dest: /opt/hyprland/hypridle
-    version: v0.1.6
+    version: v0.1.7
 
 - name: Clone xdg-descktop-portal-hyprland
   tags: hyprland
