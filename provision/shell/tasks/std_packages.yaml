@@ -32,5 +32,5 @@
       - python3-pip
       - moreutils
       - net-tools
-      - ntp
+      - ntpsec
       - jq
