@@ -16,6 +16,8 @@
   shell:
     chdir: /tmp
     cmd: curl -s https://api.github.com/repos/aurc/loggo/releases/latest  | jq '.assets[] | select(.name | endswith("linux_amd64.deb")) | .browser_download_url' | xargs -I{} wget -qO loggo.deb {}
+  retries: 5
+  delay: 5
 
 - name: Install loggo
   become: true

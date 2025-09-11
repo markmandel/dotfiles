@@ -18,6 +18,8 @@
     force: true
     dest: "/tmp/discord.deb"
     mode: '0644'
+  retries: 5
+  delay: 5
 
 - name: Install Discord
   become: true
@@ -30,6 +32,8 @@
     force: true
     dest: "/tmp/discord-canary.deb"
     mode: '0644'
+  retries: 5
+  delay: 5
 
 - name: Install Discord (Canary)
   become: true
