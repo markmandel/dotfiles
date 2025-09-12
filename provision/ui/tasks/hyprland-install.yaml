@@ -105,24 +105,12 @@
   apt:
     update_cache: yes
 
-- name: Install g++-15 from experimental
-  tags: hyprland
-  become: true
-  apt:
-    name: g++-15
-    state: present
-    default_release: experimental
-
 - name: Configure update-alternatives priorities (gcc/g++)
   tags: hyprland
   become: true
   shell: |
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 100
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 90
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-15 90
-    update-alternatives --set gcc /usr/bin/gcc-14
-    update-alternatives --set g++ /usr/bin/g++-14
+    update-alternatives --set gcc /usr/bin/gcc-15
+    update-alternatives --set g++ /usr/bin/g++-15
     gcc --version
 
 - name: install wayland and hyprland util packages
@@ -154,7 +142,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.50.1
+    hyprland_version: v0.51.0
 
 - name: Check if hyprland is installed
   tags: hyprland
@@ -306,14 +294,6 @@
 
 # Now compile and install it!
 
-- name: Configure update-alternatives priorities (gcc/g++)
-  tags: hyprland
-  become: true
-  shell: |
-    update-alternatives --set gcc /usr/bin/gcc-15
-    update-alternatives --set g++ /usr/bin/g++-15
-    gcc --version
-
 - name: hyprwayland-scanner - cmake & build
   tags: hyprland
   shell:
@@ -407,14 +387,6 @@
   when: install_hyprland
   tags: hyprland
 
-- name: Switch back to gcc/g++-14 after Hyprland build
-  become: true
-  shell: |
-    update-alternatives --set gcc /usr/bin/gcc-14
-    update-alternatives --set g++ /usr/bin/g++-14
-  when: install_hyprland
-  tags: hyprland
-
 - name: hyprland-protocols - ninja install
   become: true
   shell:
@@ -502,9 +474,3 @@
     cmd: cmake --install build
   tags: hyprland
 
-- name: Configure update-alternatives priorities (gcc/g++)
-  tags: hyprland
-  become: true
-  shell: |
-    update-alternatives --set gcc /usr/bin/gcc-14
-    update-alternatives --set g++ /usr/bin/g++-14
