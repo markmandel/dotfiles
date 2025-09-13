@@ -105,12 +105,16 @@
   apt:
     update_cache: yes
 
+# TODO: clean this up over time.
+
 - name: Configure update-alternatives priorities (gcc/g++)
   tags: hyprland
   become: true
   shell: |
     update-alternatives --set gcc /usr/bin/gcc-15
     update-alternatives --set g++ /usr/bin/g++-15
+    update-alternatives --remove gcc /usr/bin/gcc-14 || true
+    update-alternatives --remove g++ /usr/bin/g++-14 || true    
     gcc --version
 
 - name: install wayland and hyprland util packages
@@ -364,14 +368,6 @@
     chdir: /opt/hyprland/hyprgraphics
     cmd: cmake --install build
   become: true
-
-- name: Switch to gcc/g++-15 for Hyprland build
-  become: true
-  shell: |
-    update-alternatives --set gcc /usr/bin/gcc-15
-    update-alternatives --set g++ /usr/bin/g++-15
-  when: install_hyprland
-  tags: hyprland
 
 - name: Hyprland - make all
   shell:
