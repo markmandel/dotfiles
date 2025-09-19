@@ -14,20 +14,19 @@
 
 ---
 - name: grab the hostname
-  shell: hostname -d
-  register: domain_output
+  shell: hostname
+  register: hostname_output
 
-- name: Debug domain_output
+- name: Debug hostname_output
   debug:
-    var: domain_output
+    var: hostname_output
 
 - name: copy git config file
   template:
     src: templates/gitconfig.j2
     dest: ~/.gitconfig
   vars:
-    domain: "{{ domain_output.stdout }}"
-
+    hostname: "{{ hostname_output.stdout }}"
 
 #- name: copy git config file
 #  copy: src=gitconfig dest="~/.gitconfig" mode=0664
