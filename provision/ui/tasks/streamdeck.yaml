@@ -17,6 +17,8 @@
   git:
     repo: git@github.com:markmandel/streamdeck-agent.git
     dest: ~/workspace/streamdeck-agent
+  retries: 5
+  delay: 5
   register: streamdeck_result
 
 - name: Install streamdeck-agent dependencies
