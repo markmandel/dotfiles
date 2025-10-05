@@ -242,6 +242,22 @@
     dest: /opt/hyprland/Hyprland
     version: "{{ hyprland_version }}"
 
+- name: Hyprland - cherry-pick upstream fix for v0.51.1
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/Hyprland
+    cmd: |
+      set -euo pipefail
+      if git log -1 --pretty=%B | grep -q "cherry picked from commit f6c8cbc4f5a8f395a75076cbf8f87d8c47d64390"; then
+        echo "Cherry-pick already applied"
+      else
+        # Fetch the specific commit SHA and cherry-pick it with -x for traceability
+        git fetch origin f6c8cbc4f5a8f395a75076cbf8f87d8c47d64390
+        git cherry-pick -x f6c8cbc4f5a8f395a75076cbf8f87d8c47d64390
+      fi
+  when:
+    - hyprland_version == 'v0.51.1'
+
 - name: Clone hyprlock
   tags: hyprland
   retries: 5
