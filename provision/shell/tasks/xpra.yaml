@@ -19,6 +19,8 @@
     dest: "/usr/share/keyrings/xpra.asc"
     force: true
   become: true
+  retry: 5
+  delay: 5
 
 - name: add xpra repository
   get_url:
@@ -27,6 +29,8 @@
     force: true
   become: true
   when: ansible_facts['lsb']['codename'] == 'forky'
+  retry: 5
+  delay: 5
 
 - name: add xpra repository
   get_url:
@@ -35,6 +39,8 @@
     force: true
   become: true
   when: ansible_facts['lsb']['codename'] != 'forky'
+  retry: 5
+  delay: 5
 
 - name: install xpra
   apt:
