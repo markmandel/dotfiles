@@ -292,7 +292,7 @@
   git:
     repo: https://github.com/hyprwm/xdg-desktop-portal-hyprland
     dest: /opt/hyprland/xdg-desktop-portal-hyprland
-    version: v1.3.10
+    version: v1.3.11
 
 - name: Clone xdg-descktop-portal-hyprland
   tags: hyprland
