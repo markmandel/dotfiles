@@ -1,0 +1,11 @@
+---
+
+# Setup standard home directories
+
+- name: Make default home directories
+  file: 
+    path: "~/{{ item }}"
+    state: directory
+  with_items:
+    - .config
+    - Downloads
