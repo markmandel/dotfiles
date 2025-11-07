@@ -18,6 +18,9 @@
   shell: |
     echo "deb [signed-by=/usr/share/keyrings/alessandro-strada.gpg] https://ppa.launchpadcontent.net/alessandro-strada/ppa/ubuntu noble main" | tee /etc/apt/sources.list.d/alessandro-strada.list
     curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xA7AFF39895544C77C124BB46FEAC8456AF83AFEB' | gpg --yes --dearmour -o /usr/share/keyrings/alessandro-strada.gpg
+  retries: 5
+  delay: 5
+
 - name: install google-drive-ocamlfuse
   become: true
   apt:
