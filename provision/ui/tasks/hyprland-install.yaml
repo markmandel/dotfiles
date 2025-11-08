@@ -105,18 +105,6 @@
   apt:
     update_cache: yes
 
-# TODO: clean this up over time.
-
-- name: Configure update-alternatives priorities (gcc/g++)
-  tags: hyprland
-  become: true
-  shell: |
-    update-alternatives --set gcc /usr/bin/gcc-15
-    update-alternatives --set g++ /usr/bin/g++-15
-    update-alternatives --remove gcc /usr/bin/gcc-14 || true
-    update-alternatives --remove g++ /usr/bin/g++-14 || true    
-    gcc --version
-
 - name: install wayland and hyprland util packages
   tags: hyprland
   become: true
@@ -146,7 +134,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.51.1
+    hyprland_version: v0.52.0
 
 - name: Check if hyprland is installed
   tags: hyprland
@@ -241,22 +229,6 @@
     repo: https://github.com/hyprwm/Hyprland
     dest: /opt/hyprland/Hyprland
     version: "{{ hyprland_version }}"
-
-- name: Hyprland - cherry-pick upstream fix for v0.51.1
-  tags: hyprland
-  shell:
-    chdir: /opt/hyprland/Hyprland
-    cmd: |
-      set -euo pipefail
-      if git log -1 --pretty=%B | grep -q "cherry picked from commit f6c8cbc4f5a8f395a75076cbf8f87d8c47d64390"; then
-        echo "Cherry-pick already applied"
-      else
-        # Fetch the specific commit SHA and cherry-pick it with -x for traceability
-        git fetch origin f6c8cbc4f5a8f395a75076cbf8f87d8c47d64390
-        git cherry-pick -x f6c8cbc4f5a8f395a75076cbf8f87d8c47d64390
-      fi
-  when:
-    - hyprland_version == 'v0.51.1'
 
 - name: Clone hyprlock
   tags: hyprland
