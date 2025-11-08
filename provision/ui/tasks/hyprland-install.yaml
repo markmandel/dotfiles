@@ -273,7 +273,7 @@
   git:
     repo: https://github.com/hyprwm/hyprland-qtutils
     dest: /opt/hyprland/hyprland-qtutils
-    version: v0.1.4
+    version: v0.1.5
 
 - name: Clone hyprpolkitagent
   tags: hyprland
