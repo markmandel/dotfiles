@@ -134,7 +134,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.52.0
+    hyprland_version: v0.52.1
 
 - name: Check if hyprland is installed
   tags: hyprland
