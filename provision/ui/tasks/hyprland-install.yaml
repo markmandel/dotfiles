@@ -183,7 +183,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.10.1
+    version: v0.10.2
 
 - name: Clone aquamarine
   tags: hyprland
