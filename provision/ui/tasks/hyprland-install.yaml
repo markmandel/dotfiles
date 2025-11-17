@@ -201,7 +201,7 @@
   git:
     repo: https://github.com/hyprwm/hyprlang
     dest: /opt/hyprland/hyprlang
-    version: v0.6.4
+    version: v0.6.5
 
 - name: Clone hyprcursor
   tags: hyprland
