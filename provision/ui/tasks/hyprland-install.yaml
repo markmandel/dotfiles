@@ -219,7 +219,7 @@
   git:
     repo: https://github.com/hyprwm/hyprgraphics
     dest: /opt/hyprland/hyprgraphics
-    version: v0.3.0
+    version: v0.4.0
 
 - name: Clone Hyprland
   tags: hyprland
