@@ -183,7 +183,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.10.2
+    version: v0.10.3
 
 - name: Clone aquamarine
   tags: hyprland
@@ -192,7 +192,7 @@
   git:
     repo: https://github.com/hyprwm/aquamarine
     dest: /opt/hyprland/aquamarine
-    version: v0.9.5
+    version: v0.10.0
 
 - name: Clone hyprlang
   tags: hyprland
