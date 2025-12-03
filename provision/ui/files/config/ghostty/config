@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-theme = rose-pine
+theme = Rose Pine
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 9
 
 window-decoration = false
-gtk-adwaita = true
 gtk-single-instance = true
 window-save-state = never
