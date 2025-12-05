@@ -134,7 +134,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.52.1
+    hyprland_version: v0.52.2
 
 - name: Check if hyprland is installed
   tags: hyprland
@@ -183,7 +183,7 @@
   git:
     repo: https://github.com/hyprwm/hyprutils
     dest: /opt/hyprland/hyprutils
-    version: v0.10.3
+    version: v0.10.4
 
 - name: Clone aquamarine
   tags: hyprland
@@ -201,7 +201,7 @@
   git:
     repo: https://github.com/hyprwm/hyprlang
     dest: /opt/hyprland/hyprlang
-    version: v0.6.6
+    version: v0.6.7
 
 - name: Clone hyprcursor
   tags: hyprland
