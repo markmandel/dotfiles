@@ -63,6 +63,7 @@ esac
 # Set the new layout
 hyprctl dispatch layoutmsg "setlayout ${next_layout}" >/dev/null 2>&1
 hyprctl keyword plugin:wslayout:layouts "${next_layout}" >/dev/null 2>&1
+notify-send --urgency low --expire-time 2000 --icon ~/.local/share/icons/rose-pine-icons/16x16/actions/draw-cuboid.svg --app-name "Hyprland" "Layout: ${next_layout}"
 
 echo "Layout cycled: ${current_layout} → ${next_layout}"
 
