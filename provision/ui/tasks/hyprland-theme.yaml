@@ -42,8 +42,6 @@
     dconf write /org/nemo/preferences/default-folder-viewer "'list-view'"
     dconf write /org/cinnamon/desktop/applications/terminal/exec "'ghostty'"
 
-# TOXO: try out https://rosepinetheme.com/themes/cursor
-
 - name: Clone rose-pine gtk theme
   tags: hyprland
   git:
