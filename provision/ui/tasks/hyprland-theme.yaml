@@ -69,7 +69,7 @@
   tags: hyprland
   shell: |
     hyprpm -v update
-    yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
+    yes | hyprpm -v add https://github.com/markmandel/hyprNStack  b01ca4e516ff313125e0f60628001f4ead213eca || true
     yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
     hyprpm enable hyprNStack
     hyprpm enable hyprWorkspaceLayouts
