@@ -28,6 +28,7 @@
       - firefox-esr
       - flatpak
       - fonts-noto-color-emoji
+      - fonts-noto-cjk
       - fprintd
       - gedit
       - gedit-plugins
