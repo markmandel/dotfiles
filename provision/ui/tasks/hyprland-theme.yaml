@@ -63,20 +63,6 @@
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
   when: rose_pine_result.changed
 
-# Hyprland Plugins
-# This is a manual step, so this is disabled for now, and just a reference.
-- name: Install hyprland plugins
-  tags: hyprland
-  shell: |
-    hyprpm -v update
-    yes | hyprpm -v add https://github.com/markmandel/hyprNStack  b01ca4e516ff313125e0f60628001f4ead213eca || true
-    yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
-    hyprpm enable hyprNStack
-    hyprpm enable hyprWorkspaceLayouts
-    hyprpm -v update
-    hyprpm reload || true
-  when: 0 > 1
-
 # TOXO: replace with lutgen studio.
 - name: install lutgen-rs
   tags: hyprland
