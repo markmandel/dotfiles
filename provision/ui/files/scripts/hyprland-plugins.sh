@@ -35,7 +35,7 @@ echo "Updating hyprpm..."
 hyprpm -v update
 
 echo "Adding hyprNStack plugin..."
-yes | hyprpm -v add https://github.com/markmandel/hyprNStack b01ca4e516ff313125e0f60628001f4ead213eca || true
+yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
 
 echo "Adding hyprWorkspaceLayouts plugin..."
 yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true

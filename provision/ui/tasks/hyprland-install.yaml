@@ -60,8 +60,6 @@
       - libseat-dev
       - libspa-0.2-dev
       - libspng-dev
-      - libpolkit-agent-1-dev
-      - libpolkit-qt6-1-dev
       - libtomlplusplus-dev
       - libtomlplusplus3
       - libudev-dev
@@ -101,6 +99,7 @@
     dest: /etc/apt/sources.list.d/experimental.sources
 
 - name: Update apt package cache
+  tags: hyprland
   become: true
   apt:
     update_cache: yes
@@ -257,7 +256,7 @@
     dest: /opt/hyprland/hypridle
     version: v0.1.7
 
-- name: Clone xdg-descktop-portal-hyprland
+- name: Clone xdg-desktop-portal-hyprland
   tags: hyprland
   retries: 5
   delay: 5
@@ -266,7 +265,7 @@
     dest: /opt/hyprland/xdg-desktop-portal-hyprland
     version: v1.3.11
 
-- name: Clone xdg-descktop-portal-hyprland
+- name: Clone hyprland-qtutils
   tags: hyprland
   retries: 5
   delay: 5
@@ -327,7 +326,7 @@
   tags: hyprland
   shell:
     chdir: /opt/hyprland/hyprlang
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
 - name: hyprlang - install
   tags: hyprland
   shell:
@@ -338,7 +337,7 @@
   tags: hyprland
   shell:
     chdir: /opt/hyprland/hyprcursor
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
 - name: hyprcursor - install
   tags: hyprland
   shell:
@@ -384,7 +383,7 @@
 - name: hyprlock - cmake & build
   shell:
     chdir: /opt/hyprland/hyprlock
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build && cmake --build ./build --config Release --target hyprlock -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
   tags: hyprland
 - name: hyprlock - install
   shell:
@@ -395,7 +394,7 @@
 - name: hyprpaper - cmake & build
   shell:
     chdir: /opt/hyprland/hyprpaper
-    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpaper -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpaper -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
   tags: hyprland
 - name: hyprpaper - install
   shell:
@@ -435,7 +434,7 @@
     chdir: /opt/hyprland/hypridle
     cmd: |
       cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
-      cmake --build ./build --config Release --target hypridle -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+      cmake --build ./build --config Release --target hypridle -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
   tags: hyprland
 - name: hypridle - install
   shell:
