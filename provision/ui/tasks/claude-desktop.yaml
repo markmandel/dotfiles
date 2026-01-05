@@ -1,0 +1,25 @@
+# Copyright 2026 Mark Mandel All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Get latest claude-desktop
+  shell:
+    chdir: /tmp
+    cmd: curl -s https://api.github.com/repos/aaddrick/claude-desktop-debian/releases/latest  | jq '.assets[] | select(.name | endswith("amd64.deb")) | .browser_download_url' | xargs -I{} wget -qO claude-desktop.deb {}
+  retries: 5
+  delay: 5
+
+- name: Install claude-desktop
+  become: true
+  apt:
+    deb: "/tmp/claude-desktop.deb"
