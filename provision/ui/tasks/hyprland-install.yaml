@@ -29,9 +29,9 @@
       - git
       - glslang-tools
       - hwdata
+      - libaudit-dev
       - libavcodec-dev
       - libavformat-dev
-      - libaudit-dev
       - libavutil-dev
       - libcairo2-dev
       - libdbus-c++-dev
@@ -44,10 +44,12 @@
       - libgles2
       - libglvnd-core-dev
       - libglvnd-dev
+      - libiniparser-dev
       - libinput-bin
       - libinput-dev
       - libjxl-dev
       - libmagic-dev
+      - libmuparser-dev
       - libpam0g-dev
       - libpipewire-0.3-dev
       - libpixman-1-dev
@@ -133,7 +135,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.52.2
+    hyprland_version: v0.53.1
 
 - name: Check if hyprland is installed
   tags: hyprland
@@ -200,7 +202,7 @@
   git:
     repo: https://github.com/hyprwm/hyprlang
     dest: /opt/hyprland/hyprlang
-    version: v0.6.7
+    version: v0.6.8
 
 - name: Clone hyprcursor
   tags: hyprland
@@ -219,6 +221,33 @@
     repo: https://github.com/hyprwm/hyprgraphics
     dest: /opt/hyprland/hyprgraphics
     version: v0.5.0
+
+- name: Clone hyprwire
+  tags: hyprland
+  retries: 5
+  delay: 5
+  git:
+    repo: https://github.com/hyprwm/hyprwire
+    dest: /opt/hyprland/hyprwire
+    version: v0.2.1
+
+- name: Clone hyprtoolkit
+  tags: hyprland
+  retries: 5
+  delay: 5
+  git:
+    repo: https://github.com/hyprwm/hyprtoolkit
+    dest: /opt/hyprland/hyprtoolkit
+    version: v0.5.2
+
+- name: Clone hyprland-guiutils
+  tags: hyprland
+  retries: 5
+  delay: 5
+  git:
+    repo: https://github.com/hyprwm/hyprland-guiutils
+    dest: /opt/hyprland/hyprland-guiutils
+    version: v0.2.1
 
 - name: Clone Hyprland
   tags: hyprland
@@ -245,7 +274,7 @@
   git:
     repo: https://github.com/hyprwm/hyprpaper
     dest: /opt/hyprland/hyprpaper
-    version: v0.7.6
+    version: v0.8.1
 
 - name: Clone hypridle
   tags: hyprland
@@ -265,14 +294,14 @@
     dest: /opt/hyprland/xdg-desktop-portal-hyprland
     version: v1.3.11
 
-- name: Clone hyprland-qtutils
+- name: Clone hyprland-qt-support
   tags: hyprland
   retries: 5
   delay: 5
   git:
-    repo: https://github.com/hyprwm/hyprland-qtutils
-    dest: /opt/hyprland/hyprland-qtutils
-    version: v0.1.5
+    repo: https://github.com/hyprwm/hyprland-qt-support
+    dest: /opt/hyprland/hyprland-qt-support
+    version: v0.1.0
 
 - name: Clone hyprpolkitagent
   tags: hyprland
@@ -355,6 +384,39 @@
     chdir: /opt/hyprland/hyprgraphics
     cmd: cmake --install build
   become: true
+- name: hyprwire - cmake & build
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/hyprwire
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprwire - install
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/hyprwire
+    cmd: cmake --install build
+  become: true
+- name: hyprtoolkit - cmake & build
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/hyprtoolkit
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprtoolkit - install
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/hyprtoolkit
+    cmd: cmake --install build
+  become: true
+- name: hyprland-guiutils - cmake & build
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/hyprland-guiutils
+    cmd: cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+- name: hyprland-guiutils - install
+  tags: hyprland
+  shell:
+    chdir: /opt/hyprland/hyprland-guiutils
+    cmd: cmake --install build
+  become: true
 
 - name: Hyprland - make all
   shell:
@@ -415,17 +477,17 @@
   become: true
   tags: hyprland
 
-- name: hyprland-qtutils - cmake & build
+- name: hyprland-qt-support - cmake & build
   shell:
-    chdir: /opt/hyprland/hyprland-qtutils
+    chdir: /opt/hyprland/hyprland-qt-support
     cmd: |
       cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
       cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
   tags: hyprland
-- name: hyprland-qtutils - install
+- name: hyprland-qt-support - install
   become: true
   shell:
-    chdir: /opt/hyprland/hyprland-qtutils
+    chdir: /opt/hyprland/hyprland-qt-support
     cmd: cmake --install build
   tags: hyprland
 
