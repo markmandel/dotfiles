@@ -12,10 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Install latest npm version
-  shell: npm install -g npm@latest
-  become: yes
-
 - name: Install Claude Code CLI
-  shell: npm install -g @anthropic-ai/claude-code
-  become: yes
+  shell: curl -fsSL https://claude.ai/install.sh | bash
