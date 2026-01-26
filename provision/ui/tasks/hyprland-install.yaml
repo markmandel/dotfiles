@@ -135,7 +135,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.53.1
+    hyprland_version: v0.53.3
 
 - name: Check if hyprland is installed
   tags: hyprland
@@ -238,7 +238,7 @@
   git:
     repo: https://github.com/hyprwm/hyprtoolkit
     dest: /opt/hyprland/hyprtoolkit
-    version: v0.5.2
+    version: v0.5.3
 
 - name: Clone hyprland-guiutils
   tags: hyprland
