@@ -15,7 +15,7 @@
 [user]
     name = Mark Mandel
 {# personal machines have compoundtheory.com domain names #}
-{% if hostname == "discord" %}
+{% if hostname == "discord" or hostname == "docs" %}
 	email = mark.mandel@discordapp.com
 {% else %}
 	email = mark@compoundtheory.com
