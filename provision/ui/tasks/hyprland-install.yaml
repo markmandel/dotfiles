@@ -274,7 +274,7 @@
   git:
     repo: https://github.com/hyprwm/hyprpaper
     dest: /opt/hyprland/hyprpaper
-    version: v0.8.2
+    version: v0.8.3
 
 - name: Clone hypridle
   tags: hyprland
