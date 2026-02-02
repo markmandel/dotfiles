@@ -18,8 +18,10 @@
 - name: add polychromatic repository
   become: true
   shell: |
-    echo "deb [signed-by=/usr/share/keyrings/polychromatic.gpg] http://ppa.launchpad.net/polychromatic/stable/ubuntu noble main" | tee /etc/apt/sources.list.d/polychromatic.list
-    curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xc0d54c34d00160459588000e96b9cd7c22e2c8c5' | sudo gpg --yes --dearmour -o /usr/share/keyrings/polychromatic.gpg
+    curl -fsSL 'https://debian.polychromatic.app/key.asc' | gpg --yes --dearmour -o /usr/share/keyrings/polychromatic.gpg
+    echo "deb [signed-by=/usr/share/keyrings/polychromatic.gpg] https://debian.polychromatic.app trixie main" | tee /etc/apt/sources.list.d/polychromatic.list
+  retries: 5
+  delay: 5
 - name: install openrazer and polychromatic
   become: true
   apt:
