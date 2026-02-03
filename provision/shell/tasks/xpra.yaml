@@ -24,21 +24,10 @@
 
 - name: add xpra repository
   get_url:
-    url: "https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/trixie/xpra.sources"
+    url: "https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/{{ ansible_facts['lsb']['codename'] }}/xpra-beta.sources"
     dest: /etc/apt/sources.list.d
     force: true
   become: true
-  when: ansible_facts['lsb']['codename'] == 'forky'
-  retries: 5
-  delay: 5
-
-- name: add xpra repository
-  get_url:
-    url: "https://raw.githubusercontent.com/Xpra-org/xpra/master/packaging/repos/{{ ansible_facts['lsb']['codename'] }}/xpra.sources"
-    dest: /etc/apt/sources.list.d
-    force: true
-  become: true
-  when: ansible_facts['lsb']['codename'] != 'forky'
   retries: 5
   delay: 5
 
