@@ -17,3 +17,10 @@
   become: true
   shell: flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
+# TODO: Switch from flatpak to deb install when https://github.com/keepassxreboot/keepassxc/issues/13033 becomes resolved.
+- name: Install KeepassXC via Flatpak
+  become: true
+  flatpak:
+    name: org.keepassxc.KeePassXC
+    remote: flathub
+    state: present
