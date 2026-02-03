@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC All Rights Reserved.
+# Copyright 2026 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,18 +14,14 @@
 
 ---
 
-- import_tasks: apt.yaml
-- import_tasks: home.yaml
-- import_tasks: docker.yaml
-- import_tasks: golang.yaml
-- import_tasks: helm.yaml
-- import_tasks: k8s.yaml
-- import_tasks: terraform.yaml
-- import_tasks: rust.yaml
-- import_tasks: npm.yaml
-- import_tasks: gh-cli.yaml
-- import_tasks: gcloud.yaml
-- import_tasks: minikube.yaml
-- import_tasks: jetbrains.yaml
-- import_tasks: ai.yaml
-- import_tasks: loggo.yaml
+# Copy sources.list with contrib non-free non-free-firmware components
+
+- name: Copy sources.list to /etc/apt/sources.list
+  become: yes
+  copy:
+    src: files/sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
