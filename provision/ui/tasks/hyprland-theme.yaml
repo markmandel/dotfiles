@@ -63,7 +63,6 @@
     cp ${THEME_ROOT}/gtk4/rose-pine.css ~/.config/gtk-4.0/gtk.css
   when: rose_pine_result.changed
 
-# TOXO: replace with lutgen studio.
 - name: install lutgen-rs
   tags: hyprland
   retries: 5

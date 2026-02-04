@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TODO: Only run if `lspci | grep -i nvidia` returns a value.
-# cat /proc/driver/nvidia/version might be another good way.
-
 ---
+- name: Check for NVIDIA GPU
+  shell: lspci | grep -i nvidia
+  register: nvidia_check
+  failed_when: false
+  changed_when: false
+
 - name: Install nvidia drivers
   become: true
   apt:
@@ -27,6 +30,7 @@
       - libnvidia-egl-gbm1
       - nvidia-vaapi-driver
       - nvidia-suspend-common
+  when: nvidia_check.rc == 0
 
 # Info:
 # https://wiki.debian.org/NvidiaGraphicsDrivers
@@ -42,3 +46,4 @@
     systemctl enable nvidia-suspend.service
     systemctl enable nvidia-hibernate.service
     systemctl enable nvidia-resume.service
+  when: nvidia_check.rc == 0
