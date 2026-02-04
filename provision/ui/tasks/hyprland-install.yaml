@@ -107,6 +107,8 @@
   apt:
     update_cache: yes
 
+# TODO: I think we need to specify a polkit for network-manager-applet first.
+
 - name: install wayland and hyprland util packages
   tags: hyprland
   become: true

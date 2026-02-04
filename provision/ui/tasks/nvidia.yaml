@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TODO: Only run if `lspci | grep -i nvidia` returns a value.
+# cat /proc/driver/nvidia/version might be another good way.
+
 ---
 - name: Install nvidia drivers
   become: true
