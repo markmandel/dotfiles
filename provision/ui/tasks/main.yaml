@@ -32,5 +32,6 @@
 - import_tasks: slack.yaml
 - import_tasks: lan-mouse.yaml
 - import_tasks: claude-desktop.yaml
-- import_tasks: network.yaml
 - import_tasks: cups.yaml
+# network should always be last, as it restarts the network.
+- import_tasks: network.yaml
