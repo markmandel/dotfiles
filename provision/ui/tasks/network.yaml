@@ -14,6 +14,8 @@
 
 ---
 
+# TODO: may also want to disable interfaces from autoconnecting etc.
+
 # From: https://wiki.debian.org/NetworkManager#Wired_Networks_are_Unmanaged
 
 - name: Configure NetworkManager
