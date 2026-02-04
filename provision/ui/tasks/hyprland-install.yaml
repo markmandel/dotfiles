@@ -107,8 +107,6 @@
   apt:
     update_cache: yes
 
-# TODO: I think we need to specify a polkit for network-manager-applet first.
-
 - name: install wayland and hyprland util packages
   tags: hyprland
   become: true
@@ -129,6 +127,7 @@
       - waybar
       - pavucontrol
       - brightnessctl
+      - polkit-kde-agent-1 # needed as a requirement for network-manager-applet (otherwise we get all of gnome-shell)
       - network-manager-applet
       - system-config-printer
       - wdisplays
