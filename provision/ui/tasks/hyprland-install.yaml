@@ -41,6 +41,7 @@
       - libegl1-mesa-dev
       - libffi-dev
       - libgbm-dev
+      - libglaze-dev
       - libgles2
       - libglvnd-core-dev
       - libglvnd-dev
