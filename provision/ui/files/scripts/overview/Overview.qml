@@ -163,8 +163,8 @@ FocusScope {
                 id: cursorAnim
                 running: overview.filterText !== ""
                 loops: Animation.Infinite
-                NumberAnimation { to: 1; duration: 500 }
-                NumberAnimation { to: 0; duration: 500 }
+                NumberAnimation { to: 1; duration: 200 }
+                NumberAnimation { to: 0; duration: 200 }
             }
         }
     }
@@ -176,6 +176,10 @@ FocusScope {
         columns: overview.cols
         spacing: overview.gap
 
+        move: Transition {
+            NumberAnimation { properties: "x,y"; duration: 50; easing.type: Easing.OutCubic }
+        }
+
         Repeater {
             id: repeater
             model: overview.filteredToplevels
@@ -185,6 +189,9 @@ FocusScope {
                 toplevel: modelData
                 width: overview.cardW
                 height: overview.cardH
+
+                Behavior on width { NumberAnimation { duration: 50; easing.type: Easing.OutCubic } }
+                Behavior on height { NumberAnimation { duration: 50; easing.type: Easing.OutCubic } }
             }
         }
     }
