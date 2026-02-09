@@ -128,7 +128,7 @@ FocusScope {
         height: overview.filterHeight
         radius: 8
         color: Theme.surface
-        border.color: overview.filterText !== "" ? Theme.iris : Theme.highlightMed
+        border.color: overview.filterText !== "" ? Theme.love : Theme.highlightMed
         border.width: 1
 
         Text {

@@ -33,7 +33,7 @@ Rectangle {
 
     radius: 10
     color: activeFocus ? Theme.overlay : Theme.surface
-    border.color: activeFocus ? Theme.iris : (isActive ? Theme.love : Theme.highlightMed)
+    border.color: activeFocus ? Theme.foam : (isActive ? Theme.love : Theme.highlightMed)
     border.width: activeFocus || isActive ? 2 : 1
 
     focus: true
