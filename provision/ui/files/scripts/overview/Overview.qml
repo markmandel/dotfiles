@@ -55,8 +55,8 @@ FocusScope {
         for (var i = 0; i < overview.sortedToplevels.length; i++) {
             var tl = overview.sortedToplevels[i]
             var title = (tl.title || "").toLowerCase()
-            var appId = (tl.appId || "").toLowerCase()
-            if (title.indexOf(query) >= 0 || appId.indexOf(query) >= 0) {
+            var className = (tl.lastIpcObject.class || "").toLowerCase()
+            if (title.indexOf(query) >= 0 || className.indexOf(query) >= 0) {
                 result.push(tl)
             }
         }
