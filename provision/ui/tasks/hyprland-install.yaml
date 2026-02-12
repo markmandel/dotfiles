@@ -240,7 +240,7 @@
   git:
     repo: https://github.com/hyprwm/hyprtoolkit
     dest: /opt/hyprland/hyprtoolkit
-    version: v0.5.3
+    version: a017877956ac7a5bc25fafd1314ba6a0dbecf3b2
 
 - name: Clone hyprland-guiutils
   tags: hyprland
