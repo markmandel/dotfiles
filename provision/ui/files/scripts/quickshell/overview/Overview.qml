@@ -15,6 +15,7 @@ limitations under the License.
 
 import Quickshell.Hyprland
 import QtQuick
+import qs.Common
 
 FocusScope {
     id: overview

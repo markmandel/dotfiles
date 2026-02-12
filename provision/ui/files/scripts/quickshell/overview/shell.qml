@@ -16,6 +16,7 @@ limitations under the License.
 import Quickshell
 import Quickshell.Wayland
 import QtQuick
+import qs.Common
 
 PanelWindow {
     id: root

@@ -16,6 +16,7 @@ limitations under the License.
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import QtQuick
+import qs.Common
 
 Rectangle {
     id: card
