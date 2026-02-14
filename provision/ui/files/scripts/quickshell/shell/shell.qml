@@ -78,7 +78,7 @@ Scope {
 			Rectangle {
 				anchors.fill: parent
 				radius: height / 2
-				color: Qt.rgba(Theme.surface.r, Theme.surface.g, Theme.surface.b, 0.85)
+				color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b, 0.85)
 
 				RowLayout {
 					anchors {
@@ -116,7 +116,7 @@ Scope {
 
 							implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
 							radius: parent.radius
-							color: Theme.iris
+							color: Theme.love
 						}
 					}
 				}

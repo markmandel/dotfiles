@@ -33,7 +33,7 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-    color: Qt.rgba(Theme.base.r, Theme.base.g, Theme.base.b, 0.85)
+    color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b, 0.85)
 
     onClosed: Qt.quit()
 
