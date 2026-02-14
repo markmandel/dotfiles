@@ -36,6 +36,12 @@ Scope {
 			root.shouldShowOsd = true;
 			hideTimer.restart();
 		}
+
+		function onMutedChanged() {
+			if (!root.ready) return;
+			root.shouldShowOsd = true;
+			hideTimer.restart();
+		}
 	}
 
 	property bool ready: false
@@ -82,8 +88,15 @@ Scope {
 					}
 
 					IconImage {
+						property real vol: Pipewire.defaultAudioSink?.audio.volume ?? 0
+						property bool muted: Pipewire.defaultAudioSink?.audio.muted ?? false
+						property string icon: muted ? "audio-volume-muted-symbolic"
+							: vol < 0.33 ? "audio-volume-low-symbolic"
+							: vol < 0.66 ? "audio-volume-medium-symbolic"
+							: "audio-volume-high-symbolic"
+
 						implicitSize: 30
-						source: Quickshell.iconPath("audio-volume-high-symbolic")
+						source: Quickshell.iconPath(icon)
 					}
 
 					Rectangle {
