@@ -14,10 +14,8 @@ limitations under the License.
 */
 
 import QtQuick
-import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
-import Quickshell.Widgets
 import qs.Common
 
 Scope {
@@ -46,6 +44,12 @@ Scope {
 
 	property bool ready: false
 	property bool shouldShowOsd: false
+	property real volume: Pipewire.defaultAudioSink?.audio.volume ?? 0
+	property bool muted: Pipewire.defaultAudioSink?.audio.muted ?? false
+	property string volumeIcon: muted ? "audio-volume-muted-symbolic"
+		: volume < 0.33 ? "audio-volume-low-symbolic"
+		: volume < 0.66 ? "audio-volume-medium-symbolic"
+		: "audio-volume-high-symbolic"
 
 	Timer {
 		id: readyTimer
@@ -60,67 +64,10 @@ Scope {
 		onTriggered: root.shouldShowOsd = false
 	}
 
-	LazyLoader {
-		active: root.shouldShowOsd
-
-		PanelWindow {
-			anchors.bottom: true
-			margins.bottom: screen.height / 15
-			exclusiveZone: 0
-
-			implicitWidth: 400
-			implicitHeight: 50
-			color: "transparent"
-
-			// An empty click mask prevents the window from blocking mouse events.
-			mask: Region {}
-
-			Rectangle {
-				anchors.fill: parent
-				radius: height / 2
-				color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b, 0.85)
-
-				RowLayout {
-					anchors {
-						fill: parent
-						leftMargin: 10
-						rightMargin: 15
-					}
-
-					IconImage {
-						property real vol: Pipewire.defaultAudioSink?.audio.volume ?? 0
-						property bool muted: Pipewire.defaultAudioSink?.audio.muted ?? false
-						property string icon: muted ? "audio-volume-muted-symbolic"
-							: vol < 0.33 ? "audio-volume-low-symbolic"
-							: vol < 0.66 ? "audio-volume-medium-symbolic"
-							: "audio-volume-high-symbolic"
-
-						implicitSize: 30
-						source: Quickshell.iconPath(icon)
-					}
-
-					Rectangle {
-						// Stretches to fill all left-over space
-						Layout.fillWidth: true
-
-						implicitHeight: 10
-						radius: 20
-						color: Theme.highlightMed
-
-						Rectangle {
-							anchors {
-								left: parent.left
-								top: parent.top
-								bottom: parent.bottom
-							}
-
-							implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
-							radius: parent.radius
-							color: Theme.love
-						}
-					}
-				}
-			}
-		}
+	OsdBar {
+		shouldShow: root.shouldShowOsd
+		iconSource: Quickshell.iconPath(root.volumeIcon)
+		value: root.volume
+		barColor: Theme.love
 	}
 }

@@ -17,4 +17,5 @@ import Quickshell
 
 ShellRoot {
 	Volume {}
+	Brightness {}
 }
