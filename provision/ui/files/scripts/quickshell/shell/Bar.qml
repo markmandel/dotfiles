@@ -18,6 +18,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Services.SystemTray
+import Quickshell.Services.UPower
 import qs.Common
 
 PanelWindow {
@@ -71,6 +72,8 @@ PanelWindow {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         spacing: 6
+
+        Battery { barWindow: bar }
 
         // System tray icons
         Repeater {
