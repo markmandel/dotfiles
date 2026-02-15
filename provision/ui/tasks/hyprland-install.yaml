@@ -66,6 +66,9 @@
       - libtomlplusplus-dev
       - libtomlplusplus3
       - libudev-dev
+      - libheif-dev
+      - libwebp-dev
+      - libjpeg-dev
       - libwayland-dev
       - libxcb-composite0-dev
       - libxcb-dri3-dev
