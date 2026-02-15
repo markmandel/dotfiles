@@ -222,4 +222,25 @@ PanelWindow {
 
         text: Hyprland.activeToplevel?.title ?? ""
     }
+
+    // Clock on the right
+    Text {
+        anchors.right: parent.right
+        anchors.rightMargin: 8
+        anchors.verticalCenter: parent.verticalCenter
+        color: Theme.text
+        font.family: "JetBrains Mono"
+        font.pixelSize: 10
+
+        property date now: new Date()
+
+        Timer {
+            interval: 1000
+            running: true
+            repeat: true
+            onTriggered: parent.now = new Date()
+        }
+
+        text: Qt.formatDateTime(now, "⌚ hh:mm AP 🗓️ ddd dd MMM")
+    }
 }
