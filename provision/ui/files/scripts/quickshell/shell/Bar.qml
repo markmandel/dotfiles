@@ -151,7 +151,19 @@ PanelWindow {
                             clip: true
 
                             opacity: 0
-                            Component.onCompleted: opacity = 1
+                            transform: Translate {
+                                id: slideTransform
+                                y: -20
+                                Behavior on y {
+                                    NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                opacity = 1
+                                slideTransform.y = 0
+                            }
+
                             Behavior on opacity {
                                 NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
                             }
