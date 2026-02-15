@@ -17,9 +17,11 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
+import Quickshell.Wayland
 import qs.Common
 
 PanelWindow {
+    id: bar
     anchors {
         top: true
         left: true
@@ -63,13 +65,20 @@ PanelWindow {
                 property bool isActive: workspace?.focused ?? false
                 property bool isOccupied: (workspace?.toplevels.values.length ?? 0) > 0
                 property bool isUrgent: workspace?.urgent ?? false
+                property bool showPreview: false
+
+                Timer {
+                    id: hideTimer
+                    interval: 100
+                    onTriggered: wsButton.showPreview = false
+                }
 
                 Layout.fillHeight: true
                 implicitWidth: 24
 
                 color: isUrgent ? Theme.iris
                      : isActive ? Theme.highlightHigh
-                     : hoverArea.containsMouse ? Theme.pine
+                     : showPreview ? Theme.pine
                      : "transparent"
 
                 // Active workspace bottom accent
@@ -78,7 +87,7 @@ PanelWindow {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: 3
-                    visible: isActive || hoverArea.containsMouse
+                    visible: isActive || showPreview
                     color: isActive ? Theme.love : Theme.rose
                 }
 
@@ -95,6 +104,109 @@ PanelWindow {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: Hyprland.dispatch("workspace " + wsId)
+                    onContainsMouseChanged: {
+                        if (containsMouse) {
+                            hideTimer.stop()
+                            wsButton.showPreview = true
+                        } else {
+                            hideTimer.restart()
+                        }
+                    }
+                }
+
+                LazyLoader {
+                    id: previewLoader
+                    active: wsButton.showPreview
+
+                    PopupWindow {
+                        visible: true
+                        anchor {
+                            window: bar
+                            edges: Edges.Bottom
+                            gravity: Edges.Bottom
+                            rect.y: bar.implicitHeight
+                        }
+
+                        implicitWidth: 320
+                        implicitHeight: 200
+                        color: "transparent"
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onContainsMouseChanged: {
+                                if (containsMouse) {
+                                    hideTimer.stop()
+                                } else {
+                                    hideTimer.restart()
+                                }
+                            }
+                        }
+
+                        Rectangle {
+                            id: previewBg
+                            anchors.fill: parent
+                            radius: 8
+                            color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b, 0.9)
+                            clip: true
+
+                            opacity: 0
+                            Component.onCompleted: opacity = 1
+                            Behavior on opacity {
+                                NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
+                            }
+
+                            // Active workspace: full screen capture
+                            ScreencopyView {
+                                visible: wsButton.isActive
+                                anchors.centerIn: parent
+                                captureSource: bar.screen
+                                live: true
+                                constraintSize: Qt.size(previewBg.width - 16, previewBg.height - 16)
+                            }
+
+                            // Inactive occupied workspace: grid of window thumbnails
+                            Grid {
+                                visible: !wsButton.isActive && wsButton.isOccupied
+                                anchors.centerIn: parent
+                                spacing: 4
+                                columns: {
+                                    var count = wsButton.workspace ? wsButton.workspace.toplevels.values.length : 1
+                                    return Math.max(1, Math.ceil(Math.sqrt(count)))
+                                }
+
+                                Repeater {
+                                    model: (!wsButton.isActive && wsButton.isOccupied && wsButton.workspace)
+                                           ? wsButton.workspace.toplevels.values : []
+
+                                    ScreencopyView {
+                                        required property var modelData
+                                        captureSource: modelData.wayland
+                                        live: true
+                                        constraintSize: {
+                                            var count = wsButton.workspace.toplevels.values.length
+                                            var cols = Math.max(1, Math.ceil(Math.sqrt(count)))
+                                            var rows = Math.max(1, Math.ceil(count / cols))
+                                            var cellW = (previewBg.width - 16 - (cols - 1) * 4) / cols
+                                            var cellH = (previewBg.height - 16 - (rows - 1) * 4) / rows
+                                            return Qt.size(cellW, cellH)
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Empty workspace
+                            Text {
+                                visible: !wsButton.isActive && !wsButton.isOccupied
+                                anchors.centerIn: parent
+                                text: "Empty"
+                                color: Theme.muted
+                                font.family: "JetBrains Mono"
+                                font.pixelSize: 14
+                                opacity: 0.6
+                            }
+                        }
+                    }
                 }
             }
         }
