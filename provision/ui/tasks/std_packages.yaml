@@ -24,11 +24,10 @@
       - copyq-doc
       - copyq-plugins
       - dconf-editor
-      - evince
       - firefox-esr
       - flatpak
-      - fonts-noto-color-emoji
       - fonts-noto-cjk
+      - fonts-noto-color-emoji
       - fprintd
       - gedit
       - gedit-plugins
@@ -67,4 +66,5 @@
       - wf-recorder
       - wlr-randr
       - wlrctl
+      - zathura
       - zsh-syntax-highlighting
