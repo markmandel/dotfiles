@@ -1,3 +1,4 @@
+//@ pragma UseQApplication
 /*
 Copyright 2026 Mark Mandel All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License");

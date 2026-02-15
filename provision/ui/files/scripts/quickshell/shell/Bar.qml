@@ -18,6 +18,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland
+import Quickshell.Widgets
+import Quickshell.Services.SystemTray
 import qs.Common
 
 PanelWindow {
@@ -223,24 +225,141 @@ PanelWindow {
         text: Hyprland.activeToplevel?.title ?? ""
     }
 
-    // Clock on the right
-    Text {
+    // Right side: system tray + clock
+    RowLayout {
         anchors.right: parent.right
         anchors.rightMargin: 8
-        anchors.verticalCenter: parent.verticalCenter
-        color: Theme.text
-        font.family: "JetBrains Mono"
-        font.pixelSize: 10
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        spacing: 6
 
-        property date now: new Date()
+        // System tray icons
+        Repeater {
+            model: SystemTray.items
 
-        Timer {
-            interval: 1000
-            running: true
-            repeat: true
-            onTriggered: parent.now = new Date()
+            Rectangle {
+                id: trayItem
+                required property var modelData
+
+                Layout.fillHeight: true
+                implicitWidth: 18
+                color: trayHover.containsMouse ? Theme.highlightHigh : "transparent"
+                radius: 2
+
+                IconImage {
+                    anchors.centerIn: parent
+                    implicitSize: 14
+                    source: trayItem.modelData.icon
+                }
+
+                LazyLoader {
+                    active: trayHover.containsMouse && (trayItem.modelData.tooltipTitle !== "" || trayItem.modelData.title !== "")
+
+                    PopupWindow {
+                        visible: true
+                        anchor {
+                            window: bar
+                            edges: Edges.Bottom
+                            gravity: Edges.Bottom
+                            rect.y: bar.implicitHeight
+                        }
+
+                        anchor.rect.x: trayItem.mapToItem(null, 0, 0).x
+
+                        implicitWidth: tooltipText.implicitWidth + 16
+                        implicitHeight: tooltipText.implicitHeight + (tooltipDesc.visible ? tooltipDesc.implicitHeight + 4 : 0) + 12
+                        color: "transparent"
+
+                        Rectangle {
+                            anchors.fill: parent
+                            radius: 4
+                            color: Qt.rgba(Theme.surface.r, Theme.surface.g, Theme.surface.b, 0.95)
+                            border.color: Theme.highlightMed
+                            border.width: 1
+
+                            Column {
+                                anchors.centerIn: parent
+                                spacing: 2
+
+                                Text {
+                                    id: tooltipText
+                                    text: trayItem.modelData.tooltipTitle || trayItem.modelData.title
+                                    color: Theme.text
+                                    font.family: "JetBrains Mono"
+                                    font.pixelSize: 10
+                                }
+
+                                Text {
+                                    id: tooltipDesc
+                                    visible: trayItem.modelData.tooltipDescription !== ""
+                                    text: trayItem.modelData.tooltipDescription
+                                    color: Theme.subtle
+                                    font.family: "JetBrains Mono"
+                                    font.pixelSize: 9
+                                }
+                            }
+                        }
+                    }
+                }
+
+                MouseArea {
+                    id: trayHover
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+
+                    onClicked: function(mouse) {
+                        if (mouse.button === Qt.LeftButton) {
+                            if (trayItem.modelData.onlyMenu && trayItem.modelData.hasMenu) {
+                                trayItem.modelData.display(bar, trayItem.mapToItem(null, 0, 0).x, bar.implicitHeight)
+                            } else {
+                                trayItem.modelData.activate()
+                            }
+                        } else if (mouse.button === Qt.RightButton) {
+                            if (trayItem.modelData.hasMenu) {
+                                trayItem.modelData.display(bar, trayItem.mapToItem(null, 0, 0).x, bar.implicitHeight)
+                            }
+                        } else if (mouse.button === Qt.MiddleButton) {
+                            trayItem.modelData.secondaryActivate()
+                        }
+                    }
+
+                    onWheel: function(wheel) {
+                        trayItem.modelData.scroll(
+                            wheel.angleDelta.y !== 0 ? wheel.angleDelta.y / 120 : wheel.angleDelta.x / 120,
+                            wheel.angleDelta.y === 0
+                        )
+                    }
+                }
+            }
         }
 
-        text: Qt.formatDateTime(now, "⌚ hh:mm AP 🗓️ ddd dd MMM")
+        // Separator
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.topMargin: 4
+            Layout.bottomMargin: 4
+            implicitWidth: 1
+            color: Theme.highlightMed
+        }
+
+        // Clock
+        Text {
+            Layout.alignment: Qt.AlignVCenter
+            color: Theme.text
+            font.family: "JetBrains Mono"
+            font.pixelSize: 10
+
+            property date now: new Date()
+
+            Timer {
+                interval: 1000
+                running: true
+                repeat: true
+                onTriggered: parent.now = new Date()
+            }
+
+            text: Qt.formatDateTime(now, "⌚ hh:mm AP 🗓️ ddd dd MMM")
+        }
     }
 }
