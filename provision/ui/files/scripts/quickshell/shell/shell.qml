@@ -16,6 +16,7 @@ limitations under the License.
 import Quickshell
 
 ShellRoot {
+    Bar {}
 	Volume {}
 	Brightness {}
 }
