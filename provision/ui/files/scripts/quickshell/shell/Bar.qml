@@ -15,6 +15,7 @@ limitations under the License.
 
 import Quickshell
 import QtQuick
+import QtQuick.Layouts
 import Quickshell.Hyprland
 import qs.Common
 
@@ -25,10 +26,10 @@ PanelWindow {
         right: true
     }
 
-    implicitHeight: 23
+    implicitHeight: 20
     color: Theme.base
 
-    // Bottom border to match waybar styling
+    // Bottom border
     Rectangle {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
@@ -37,6 +38,69 @@ PanelWindow {
         color: Theme.muted
     }
 
+    // Workspaces on the left
+    RowLayout {
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        spacing: 2
+
+        Repeater {
+            model: 10
+
+            Rectangle {
+                id: wsButton
+                required property int index
+
+                property int wsId: index + 1
+                property HyprlandWorkspace workspace: {
+                    for (var i = 0; i < Hyprland.workspaces.values.length; i++) {
+                        if (Hyprland.workspaces.values[i].id === wsId)
+                            return Hyprland.workspaces.values[i];
+                    }
+                    return null;
+                }
+                property bool isActive: workspace?.focused ?? false
+                property bool isOccupied: (workspace?.toplevels.values.length ?? 0) > 0
+                property bool isUrgent: workspace?.urgent ?? false
+
+                Layout.fillHeight: true
+                implicitWidth: 24
+
+                color: isUrgent ? Theme.iris
+                     : isActive ? Theme.highlightHigh
+                     : hoverArea.containsMouse ? Theme.pine
+                     : "transparent"
+
+                // Active workspace bottom accent
+                Rectangle {
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 3
+                    visible: isActive || hoverArea.containsMouse
+                    color: isActive ? Theme.love : Theme.rose
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    text: wsId
+                    font.family: "JetBrains Mono"
+                    font.pixelSize: 10
+                    color: !isOccupied && !isActive ? Theme.muted : Theme.text
+                }
+
+                MouseArea {
+                    id: hoverArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: Hyprland.dispatch("workspace " + wsId)
+                }
+            }
+        }
+    }
+
+    // Active window title in the center
     Text {
         anchors.centerIn: parent
         color: Theme.text
