@@ -116,7 +116,7 @@ PanelWindow {
 
                 LazyLoader {
                     id: previewLoader
-                    active: wsButton.showPreview
+                    active: wsButton.showPreview && (wsButton.isActive || wsButton.isOccupied)
 
                     PopupWindow {
                         visible: true
@@ -205,17 +205,6 @@ PanelWindow {
                                         }
                                     }
                                 }
-                            }
-
-                            // Empty workspace
-                            Text {
-                                visible: !wsButton.isActive && !wsButton.isOccupied
-                                anchors.centerIn: parent
-                                text: "Empty"
-                                color: Theme.muted
-                                font.family: "JetBrains Mono"
-                                font.pixelSize: 14
-                                opacity: 0.6
                             }
                         }
                     }
