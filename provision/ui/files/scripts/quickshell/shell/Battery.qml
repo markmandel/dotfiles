@@ -56,13 +56,6 @@ Rectangle {
         return "image://icon/battery-level-" + level + suffix;
     }
 
-    function iconColor(): color {
-        if (isCritical) return Theme.love;
-        if (isCharging || isFull || isPlugged) return Theme.foam;
-        if (pct <= 30) return Theme.gold;
-        return Theme.text;
-    }
-
     function stateLabel(): string {
         if (isFull) return "Fully Charged";
         if (isCharging) return "Charging";
