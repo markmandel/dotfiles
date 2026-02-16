@@ -73,6 +73,7 @@ PanelWindow {
         anchors.bottom: parent.bottom
         spacing: 6
 
+        CaffeineToggle { barWindow: bar }
         Battery { barWindow: bar }
 
         // System tray icons
