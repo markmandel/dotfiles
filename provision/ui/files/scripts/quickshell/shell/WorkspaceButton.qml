@@ -119,7 +119,7 @@ Rectangle {
                 id: previewBg
                 anchors.fill: parent
                 radius: 8
-                color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b, 0.9)
+                color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b)
                 clip: true
 
                 opacity: 0
