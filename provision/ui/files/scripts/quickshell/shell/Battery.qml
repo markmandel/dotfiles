@@ -90,6 +90,14 @@ Rectangle {
         }
 
         Text {
+            visible: !batteryRoot.isCritical && !isFull
+            text: Math.round(batteryRoot.pct) + "%"
+            color: Theme.foam
+            font.family: "JetBrains Mono"
+            font.pixelSize: 10
+        }
+
+        Text {
             visible: batteryRoot.isCritical
             text: Math.round(batteryRoot.pct) + "% \u00b7 " + batteryRoot.formatTime(batteryRoot.battery.timeToEmpty)
             color: Theme.love
@@ -134,14 +142,6 @@ Rectangle {
                         color: Theme.text
                         font.family: "JetBrains Mono"
                         font.pixelSize: 10
-                    }
-
-                    Text {
-                        text: Math.round(batteryRoot.pct) + "%"
-                        color: Theme.text
-                        font.family: "JetBrains Mono"
-                        font.pixelSize: 10
-                        font.bold: true
                     }
 
                     Text {
