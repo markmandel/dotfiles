@@ -106,6 +106,10 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
+                onClicked: {
+                    Hyprland.dispatch("workspace " + wsId)
+                    wsButton.showPreview = false
+                }
                 onContainsMouseChanged: {
                     if (containsMouse) {
                         hideTimer.stop()
