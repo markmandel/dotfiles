@@ -93,5 +93,7 @@ PanelWindow {
         }
 
         Clock {}
+
+        PowerMenu { barWindow: bar }
     }
 }

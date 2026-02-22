@@ -1,0 +1,232 @@
+/*
+Copyright 2026 Mark Mandel All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+import Quickshell
+import QtQuick
+import QtQuick.Layouts
+import Quickshell.Widgets
+import Quickshell.Io
+import qs.Common
+
+Rectangle {
+    id: powerRoot
+    required property PanelWindow barWindow
+
+    Layout.fillHeight: true
+    implicitWidth: powerIcon.implicitWidth
+    color: powerHover.containsMouse ? Theme.highlightHigh : "transparent"
+    radius: 2
+
+    property bool menuOpen: false
+
+    // --- Processes (outside popup so they survive menu close) ---
+    Process {
+        id: shutdownProcess
+        command: ["systemctl", "poweroff"]
+    }
+
+    Process {
+        id: suspendProcess
+        command: ["systemctl", "suspend"]
+    }
+
+    Process {
+        id: rebootProcess
+        command: ["systemctl", "reboot"]
+    }
+
+    // --- Icon ---
+    IconImage {
+        id: powerIcon
+        anchors.centerIn: parent
+        implicitSize: 14
+        source: "image://icon/system-shutdown-symbolic"
+    }
+
+    // --- Slide-down menu ---
+    LazyLoader {
+        active: powerRoot.menuOpen
+
+        PopupWindow {
+            visible: true
+            anchor {
+                window: powerRoot.barWindow
+                edges: Edges.Bottom
+                gravity: Edges.Bottom
+                rect.y: powerRoot.barWindow.implicitHeight
+            }
+            // Pin 8px from screen right edge, matching bar RowLayout rightMargin
+            anchor.rect.x: powerRoot.barWindow.width
+
+            implicitWidth: 140
+            // Start at 2 (not 0) — Wayland rejects zero-size surfaces
+            implicitHeight: 2
+            color: "transparent"
+
+            NumberAnimation on implicitHeight {
+                from: 2
+                to: 90
+                duration: 200
+                easing.type: Easing.OutCubic
+                running: true
+            }
+
+            // clip: true on Item (not Rectangle) so the animated window boundary
+            // clips overflow without flattening the Rectangle's border-radius
+            Item {
+                anchors.fill: parent
+                clip: true
+
+                Rectangle {
+                    width: parent.width
+                    height: 90
+                    radius: 4
+                    color: Qt.rgba(Theme.surface.r, Theme.surface.g, Theme.surface.b)
+                    border.color: Theme.highlightMed
+                    border.width: 1
+
+                    Column {
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            margins: 4
+                        }
+                        spacing: 2
+
+                        // --- Shutdown ---
+                        Rectangle {
+                            width: parent.width
+                            height: 26
+                            radius: 2
+                            color: shutdownHover.containsMouse ? Theme.highlightHigh : "transparent"
+
+                            Row {
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.left: parent.left
+                                anchors.leftMargin: 6
+                                spacing: 6
+
+                                IconImage {
+                                    implicitSize: 12
+                                    source: "image://icon/system-shutdown-symbolic"
+                                }
+
+                                Text {
+                                    text: "Shutdown"
+                                    color: Theme.text
+                                    font.family: "JetBrains Mono"
+                                    font.pixelSize: 10
+                                }
+                            }
+
+                            MouseArea {
+                                id: shutdownHover
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: {
+                                    powerRoot.menuOpen = false
+                                    shutdownProcess.running = true
+                                }
+                            }
+                        }
+
+                        // --- Suspend ---
+                        Rectangle {
+                            width: parent.width
+                            height: 26
+                            radius: 2
+                            color: suspendHover.containsMouse ? Theme.highlightHigh : "transparent"
+
+                            Row {
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.left: parent.left
+                                anchors.leftMargin: 6
+                                spacing: 6
+
+                                IconImage {
+                                    implicitSize: 12
+                                    source: "image://icon/system-suspend-symbolic"
+                                }
+
+                                Text {
+                                    text: "Suspend"
+                                    color: Theme.text
+                                    font.family: "JetBrains Mono"
+                                    font.pixelSize: 10
+                                }
+                            }
+
+                            MouseArea {
+                                id: suspendHover
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: {
+                                    powerRoot.menuOpen = false
+                                    suspendProcess.running = true
+                                }
+                            }
+                        }
+
+                        // --- Reboot ---
+                        Rectangle {
+                            width: parent.width
+                            height: 26
+                            radius: 2
+                            color: rebootHover.containsMouse ? Theme.highlightHigh : "transparent"
+
+                            Row {
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.left: parent.left
+                                anchors.leftMargin: 6
+                                spacing: 6
+
+                                IconImage {
+                                    implicitSize: 12
+                                    source: "image://icon/system-reboot-symbolic"
+                                }
+
+                                Text {
+                                    text: "Reboot"
+                                    color: Theme.text
+                                    font.family: "JetBrains Mono"
+                                    font.pixelSize: 10
+                                }
+                            }
+
+                            MouseArea {
+                                id: rebootHover
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: {
+                                    powerRoot.menuOpen = false
+                                    rebootProcess.running = true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // --- Mouse area ---
+    MouseArea {
+        id: powerHover
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: powerRoot.menuOpen = !powerRoot.menuOpen
+    }
+}
