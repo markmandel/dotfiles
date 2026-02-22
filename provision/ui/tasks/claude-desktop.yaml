@@ -12,14 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Get latest claude-desktop
-  shell:
-    chdir: /tmp
-    cmd: curl -s https://api.github.com/repos/aaddrick/claude-desktop-debian/releases/latest  | jq '.assets[] | select(.name | endswith("amd64.deb")) | .browser_download_url' | xargs -I{} wget -qO claude-desktop.deb {}
+- name: Add Claude Desktop APT repository
+  become: true
+  shell: |
+    curl -fsSL https://aaddrick.github.io/claude-desktop-debian/KEY.gpg | gpg --dearmor -o /usr/share/keyrings/claude-desktop.gpg
+    echo "deb [signed-by=/usr/share/keyrings/claude-desktop.gpg arch=amd64,arm64] https://aaddrick.github.io/claude-desktop-debian stable main" | tee /etc/apt/sources.list.d/claude-desktop.list
   retries: 5
   delay: 5
 
 - name: Install claude-desktop
   become: true
   apt:
-    deb: "/tmp/claude-desktop.deb"
+    name: claude-desktop
+    state: present
+    update_cache: yes
