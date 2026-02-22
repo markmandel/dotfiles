@@ -31,9 +31,17 @@ Rectangle {
 
     property bool menuOpen: false
     onMenuOpenChanged: {
-        if (menuOpen) closeTimer.restart()
-        else closeTimer.stop()
+        if (menuOpen) {
+            _popupActive = true
+            closeTimer.restart()
+        } else {
+            closeTimer.stop()
+            // _popupActive = false is set by the close animation on completion
+        }
     }
+
+    // Separate from menuOpen so the popup isn't destroyed until close animation ends
+    property bool _popupActive: false
 
     property bool popupHovered: false
 
@@ -71,9 +79,10 @@ Rectangle {
 
     // --- Slide-down menu ---
     LazyLoader {
-        active: powerRoot.menuOpen
+        active: powerRoot._popupActive
 
         PopupWindow {
+            id: powerMenu
             visible: true
             anchor {
                 window: powerRoot.barWindow
@@ -89,13 +98,53 @@ Rectangle {
             implicitHeight: 2
             color: "transparent"
 
-            NumberAnimation on implicitHeight {
-                from: 2
+            // Flag distinguishes a natural close-animation finish from an
+            // interrupted stop (e.g. user reopens before animation completes)
+            property bool _animatingClose: false
+
+            NumberAnimation {
+                id: openAnim
+                target: powerMenu
+                property: "implicitHeight"
                 to: 90
                 duration: 200
                 easing.type: Easing.OutCubic
-                running: true
             }
+
+            NumberAnimation {
+                id: closeAnim
+                target: powerMenu
+                property: "implicitHeight"
+                to: 2
+                duration: 200
+                easing.type: Easing.InCubic
+                onStopped: {
+                    if (powerMenu._animatingClose) {
+                        powerMenu._animatingClose = false
+                        powerRoot._popupActive = false
+                    }
+                }
+            }
+
+            Connections {
+                target: powerRoot
+                function onMenuOpenChanged() {
+                    if (powerRoot.menuOpen) {
+                        // Clear flag BEFORE stop() so onStopped doesn't deactivate
+                        powerMenu._animatingClose = false
+                        closeAnim.stop()
+                        openAnim.from = powerMenu.implicitHeight
+                        openAnim.start()
+                    } else {
+                        openAnim.stop()
+                        powerMenu._animatingClose = true
+                        closeAnim.from = powerMenu.implicitHeight
+                        closeAnim.start()
+                    }
+                }
+            }
+
+            Component.onCompleted: openAnim.start()
 
             // clip: true on Item (not Rectangle) so the animated window boundary
             // clips overflow without flattening the Rectangle's border-radius
