@@ -30,6 +30,20 @@ Rectangle {
     radius: 2
 
     property bool menuOpen: false
+    onMenuOpenChanged: {
+        if (menuOpen) closeTimer.restart()
+        else closeTimer.stop()
+    }
+
+    property bool popupHovered: false
+
+    // Auto-close the menu if neither the button nor the popup is hovered for 5s
+    Timer {
+        id: closeTimer
+        interval: 2000
+        repeat: false
+        onTriggered: powerRoot.menuOpen = false
+    }
 
     // --- Processes (outside popup so they survive menu close) ---
     Process {
@@ -88,6 +102,21 @@ Rectangle {
             Item {
                 anchors.fill: parent
                 clip: true
+
+                // Hover tracker for the popup — drives the auto-close timer.
+                // acceptedButtons: Qt.NoButton makes it click-transparent so
+                // button MouseAreas underneath still receive clicks.
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    acceptedButtons: Qt.NoButton
+                    onContainsMouseChanged: {
+                        powerRoot.popupHovered = containsMouse
+                        if (!powerRoot.menuOpen) return
+                        if (containsMouse) closeTimer.stop()
+                        else if (!powerHover.containsMouse) closeTimer.restart()
+                    }
+                }
 
                 Rectangle {
                     width: parent.width
@@ -228,5 +257,10 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: powerRoot.menuOpen = !powerRoot.menuOpen
+        onContainsMouseChanged: {
+            if (!powerRoot.menuOpen) return
+            if (containsMouse) closeTimer.stop()
+            else if (!powerRoot.popupHovered) closeTimer.restart()
+        }
     }
 }
