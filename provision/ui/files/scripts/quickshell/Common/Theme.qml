@@ -34,4 +34,6 @@ Singleton {
     readonly property color highlightLow: "#21202e"
     readonly property color highlightMed: "#403d52"
     readonly property color highlightHigh: "#524f67"
+
+    readonly property string monoFont: "JetBrains Mono"
 }

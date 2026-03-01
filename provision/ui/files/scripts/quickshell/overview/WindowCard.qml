@@ -32,6 +32,17 @@ Rectangle {
 
     signal selected()
 
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onContainsMouseChanged: if (containsMouse) card.forceActiveFocus()
+        onClicked: card.selected()
+    }
+
+    onSelected: activate()
+
     radius: 10
     color: activeFocus ? Theme.overlay : Theme.surface
     border.color: activeFocus ? Theme.foam : (isActive ? Theme.love : Theme.highlightMed)
@@ -77,7 +88,7 @@ Rectangle {
         Rectangle {
             visible: card.wsLabel !== ""
             anchors.top: parent.top
-            anchors.right: parent.right
+            anchors.left: parent.left
             anchors.margins: 6
             width: wsText.implicitWidth + 12
             height: wsText.implicitHeight + 6
@@ -91,6 +102,38 @@ Rectangle {
                 color: Theme.subtle
                 font.pixelSize: 10
                 font.bold: true
+            }
+        }
+
+        // Close button
+        Rectangle {
+            id: closeButton
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.margins: 6
+            width: 20
+            height: 20
+            radius: 10
+            color: closeMouseArea.containsMouse ? Theme.love : Qt.rgba(Theme.base.r, Theme.base.g, Theme.base.b, 0.8)
+
+            Text {
+                anchors.centerIn: parent
+                text: "×"
+                color: closeMouseArea.containsMouse ? Theme.base : Theme.subtle
+                font.pixelSize: 16
+                font.bold: true
+            }
+
+            MouseArea {
+                id: closeMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    if (card.address !== "") {
+                        var addr = card.address.startsWith("0x") ? card.address : "0x" + card.address
+                        Hyprland.dispatch("closewindow address:" + addr)
+                    }
+                }
             }
         }
     }
@@ -130,15 +173,6 @@ Rectangle {
         }
     }
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        onContainsMouseChanged: if (containsMouse) card.forceActiveFocus()
-        onClicked: card.selected()
-    }
-
     function activate() {
         if (card.workspaceId !== 0) {
             Hyprland.dispatch("focusworkspaceoncurrentmonitor " + card.workspaceId)
@@ -151,6 +185,4 @@ Rectangle {
         }
         Qt.quit()
     }
-
-    onSelected: activate()
 }

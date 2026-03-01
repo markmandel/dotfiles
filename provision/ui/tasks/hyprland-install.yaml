@@ -127,7 +127,6 @@
       - wireplumber
       - xwaylandvideobridge
       - qt6-wayland
-      - waybar
       - pavucontrol
       - brightnessctl
       - polkit-kde-agent-1 # needed as a requirement for network-manager-applet (otherwise we get all of gnome-shell)
