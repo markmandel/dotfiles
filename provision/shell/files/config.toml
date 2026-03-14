@@ -148,6 +148,7 @@ filter_mode_shell_up_key_binding = "directory"
 ## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
 # This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
 enter_accept = true
+search_mode = "daemon-fuzzy"
 
 ## Defaults to "emacs".  This specifies the keymap on the startup of `atuin
 ## search`.  If this is set to "auto", the startup keymap mode in the Atuin
@@ -230,6 +231,8 @@ records = true
 # strategy = "auto"
 
 [daemon]
+enabled = true
+autostart = true
 ## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`
 # enabled = false
 
@@ -270,3 +273,6 @@ records = true
 ## The "workspace" mode is skipped when not in a workspace or workspaces = false.
 ## Default filter mode can be overridden with the filter_mode setting.
 filters = [ "host", "session", "workspace", "directory" ]
+
+[ai]
+enabled = true
