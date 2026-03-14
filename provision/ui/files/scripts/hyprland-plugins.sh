@@ -37,14 +37,8 @@ hyprpm -v update
 echo "Adding hyprNStack plugin..."
 yes | hyprpm -v add https://github.com/zakk4223/hyprNStack || true
 
-echo "Adding hyprWorkspaceLayouts plugin..."
-yes | hyprpm -v add https://github.com/zakk4223/hyprWorkspaceLayouts || true
-
 echo "Enabling hyprNStack..."
 hyprpm enable hyprNStack
-
-echo "Enabling hyprWorkspaceLayouts..."
-hyprpm enable hyprWorkspaceLayouts
 
 echo "Updating hyprpm again..."
 hyprpm -v update
