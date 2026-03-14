@@ -15,16 +15,6 @@
 # limitations under the License.
 
 
-### Discord
-
-lock_discord() {
-  killall -STOP Discord
-}
-
-unlock_discord() {
-  killall -CONT Discord
-}
-
 ### Lan Mouse
 
 local_lan_mouse() {
@@ -51,10 +41,8 @@ unlock_lan_mouse() {
 
 if [ "$1" == "lock" ]; then
   local_lan_mouse
-  lock_discord
   echo "locked."
 elif [ "$1" == "unlock" ]; then
-  unlock_discord
   unlock_lan_mouse
   echo "unlocked."
 else
