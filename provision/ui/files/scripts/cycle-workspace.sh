@@ -17,8 +17,8 @@
 set -euo pipefail
 
 # cycle-workspace.sh
-# Cycles through master, nstack, and dwindle layouts for hyprWorkspaceLayouts plugin.
-# Each call switches to the next layout in the sequence: master → nstack → dwindle → master
+# Cycles through master, scrolling, and dwindle layouts for the current workspace.
+# Each call switches to the next layout in the sequence: master → scrolling → dwindle → master
 #
 # Requirements: hyprctl
 
@@ -30,25 +30,22 @@ if ! command -v hyprctl >/dev/null 2>&1; then
   exit 1
 fi
 
-# Get current layout from wslayout plugin
-current_layout=$(hyprctl getoption plugin:wslayout:layouts -j | jq -r '.str' 2>/dev/null || echo "")
-
-# If layouts is blank, fall back to default_layout
-if [[ -z "${current_layout}" ]]; then
-  current_layout=$(hyprctl getoption plugin:wslayout:default_layout -j | jq -r '.str' 2>/dev/null || echo "")
-fi
+# Get current workspace ID and layout
+active_workspace=$(hyprctl activeworkspace -j)
+current_workspace_id=$(echo "${active_workspace}" | jq -r '.id')
+current_layout=$(echo "${active_workspace}" | jq -r '.tiledLayout' 2>/dev/null || echo "")
 
 if [[ -z "${current_layout}" ]]; then
-  err "Failed to get current layout. Is hyprWorkspaceLayouts plugin loaded?"
+  err "Failed to get current layout."
   exit 1
 fi
 
-# Determine next layout in cycle: master → nstack → dwindle → master
+# Determine next layout in cycle: master → scrolling → dwindle → master
 case "${current_layout}" in
   master)
-    next_layout="nstack"
+    next_layout="scrolling"
     ;;
-  nstack)
+  scrolling)
     next_layout="dwindle"
     ;;
   dwindle)
@@ -60,9 +57,8 @@ case "${current_layout}" in
     ;;
 esac
 
-# Set the new layout
-hyprctl dispatch layoutmsg "setlayout ${next_layout}" >/dev/null 2>&1
-hyprctl keyword plugin:wslayout:layouts "${next_layout}" >/dev/null 2>&1
+# Set the new layout for the current workspace using workspace rules
+hyprctl keyword workspace "${current_workspace_id},layout:${next_layout}" >/dev/null 2>&1
 notify-send --urgency low --expire-time 2000 --icon ~/.local/share/icons/rose-pine-icons/16x16/actions/draw-cuboid.svg --app-name "Hyprland" "Layout: ${next_layout}"
 
 echo "Layout cycled: ${current_layout} → ${next_layout}"
