@@ -68,7 +68,7 @@
 
 # Atuin
 - name: install or update atuin
-  shell: curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+  shell: curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
 - name: atuin import history
   shell: ~/.atuin/bin/atuin import auto
 - name: link atuin config
