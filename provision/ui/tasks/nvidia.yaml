@@ -49,7 +49,7 @@
 - name: Set nvdia options and enable suspend and hibernate services.
   become: true
   shell: |
-    echo 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1"' > /etc/default/grub.d/nvidia-modeset.cfg
+    echo 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1 nvidia_drm.fbdev=1"' > /etc/default/grub.d/nvidia-modeset.cfg
     update-grub
     systemctl enable nvidia-suspend.service
     systemctl enable nvidia-hibernate.service
