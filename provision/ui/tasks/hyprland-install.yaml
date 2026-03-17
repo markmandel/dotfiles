@@ -97,13 +97,6 @@
       - wayland-protocols
       - wget
 
-- name: Enable experimental APT source for g++-15
-  tags: hyprland
-  become: true
-  copy:
-    src: "{{ playbook_dir }}/ui/files/experimental.sources"
-    dest: /etc/apt/sources.list.d/experimental.sources
-
 - name: Update apt package cache
   tags: hyprland
   become: true

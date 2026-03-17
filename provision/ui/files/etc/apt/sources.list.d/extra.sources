@@ -14,6 +14,6 @@
 
 Types: deb deb-src
 URIs: http://deb.debian.org/debian/
-Suites: experimental
+Suites: experimental sid
 Components: main contrib non-free non-free-firmware
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg

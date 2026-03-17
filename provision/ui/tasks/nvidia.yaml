@@ -39,7 +39,7 @@
 - name: Set nvidia wayland modprobe options
   become: true
   copy:
-    src: modprobe.d/nvidia-wayland-options.conf
+    src: etc/modprobe.d/nvidia-wayland-options.conf
     dest: /etc/modprobe.d/nvidia-wayland-options.conf
     owner: root
     group: root
