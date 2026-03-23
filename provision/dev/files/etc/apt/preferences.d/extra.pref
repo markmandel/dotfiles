@@ -1,4 +1,4 @@
-# Copyright 2026 Mark Mandel All Rights Reserved.
+# Copyright 2026 Mark Mandel
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,18 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
 
-- name: Enable extra (experimental and sid) APT sources
-  tags: hyprland
-  become: true
-  copy:
-    src: "{{ playbook_dir }}/ui/files/etc/apt/sources.list.d/extra.sources"
-    dest: /etc/apt/sources.list.d/extra.sources
+Package: *
+Pin: release a=experimental
+Pin-Priority: 1
 
-- name: Set low pinning for extra (experimental and sid) sources
-  tags: hyprland
-  become: true
-  copy:
-    src: "{{ playbook_dir }}/ui/files/etc/apt/preferences.d/extra.pref"
-    dest: /etc/apt/preferences.d/extra.pref
+Package: *
+Pin: release a=unstable
+Pin-Priority: 1

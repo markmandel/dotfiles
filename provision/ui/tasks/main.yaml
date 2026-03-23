@@ -21,7 +21,6 @@
 - import_tasks: quickshell.yaml
 - import_tasks: nvidia.yaml
 - import_tasks: flatpak.yaml
-- import_tasks: extra-apt.yaml
 - import_tasks: hyprland-install.yaml
 - import_tasks: hyprland-theme.yaml
 - import_tasks: quickshell.yaml
