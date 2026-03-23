@@ -275,4 +275,4 @@ autostart = true
 filters = [ "host", "session", "workspace", "directory" ]
 
 [ai]
-enabled = true
+enabled = false
