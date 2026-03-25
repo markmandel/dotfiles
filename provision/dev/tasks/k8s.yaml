@@ -15,6 +15,8 @@
 ---
 
 - name: Get latest k9s
+  retries: 5
+  delay: 5
   shell:
     chdir: /tmp
     cmd: curl -s https://api.github.com/repos/derailed/k9s/releases/latest  | jq ".name" | xargs -I{} wget -O k9s.deb "https://github.com/derailed/k9s/releases/download/{}/k9s_linux_amd64.deb"
