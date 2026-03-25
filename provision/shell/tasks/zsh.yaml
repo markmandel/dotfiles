@@ -23,7 +23,7 @@
       - zsh
 - name: set zsh as default shell
   user:
-    name: "{{ ansible_user_id }}"
+    name: "{{ ansible_facts['user_id'] }}"
     shell: /usr/bin/zsh
   become: true
   

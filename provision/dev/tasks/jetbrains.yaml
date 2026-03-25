@@ -18,8 +18,8 @@
     path: /opt/intellij
     state: directory
     mode: '0755'
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
 
 - name: Check if IntelliJ archive exists
   stat:
@@ -67,8 +67,8 @@
     path: /opt/clion
     state: directory
     mode: '0755'
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
 
 - name: Check if clion archive exists
   stat:

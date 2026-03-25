@@ -23,7 +23,7 @@
 - name: Add user to lpadmin group
   become: true
   user:
-    name: "{{ ansible_user_id }}"
+    name: "{{ ansible_facts['user_id'] }}"
     groups: lpadmin
     append: true
 
