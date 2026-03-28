@@ -235,7 +235,7 @@
   git:
     repo: https://github.com/hyprwm/hyprtoolkit
     dest: /opt/hyprland/hyprtoolkit
-    version: v0.5.3
+    version: 9af245a69fa6b286b88ddfc340afd288e00a6998
 
 - name: Clone hyprland-guiutils
   tags: hyprland
