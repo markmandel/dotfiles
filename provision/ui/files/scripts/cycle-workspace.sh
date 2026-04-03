@@ -17,8 +17,8 @@
 set -euo pipefail
 
 # cycle-workspace.sh
-# Cycles through master, scrolling, and dwindle layouts for the current workspace.
-# Each call switches to the next layout in the sequence: master → scrolling → dwindle → master
+# Cycles through master, nStack, scrolling, and dwindle layouts for the current workspace.
+# Each call switches to the next layout in the sequence: master → nStack → scrolling → dwindle → master
 #
 # Requirements: hyprctl
 
@@ -40,9 +40,12 @@ if [[ -z "${current_layout}" ]]; then
   exit 1
 fi
 
-# Determine next layout in cycle: master → scrolling → dwindle → master
+# Determine next layout in cycle: master → nStack → scrolling → dwindle → master
 case "${current_layout}" in
   master)
+    next_layout="nStack"
+    ;;
+  nStack)
     next_layout="scrolling"
     ;;
   scrolling)
