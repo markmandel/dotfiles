@@ -13,30 +13,22 @@
 # limitations under the License.
 
 ---
-- name: Add avengemedia danklinux PPA
+- name: Add avengemedia danklinux OBS repository
   become: true
   shell: |
-    echo "deb [signed-by=/usr/share/keyrings/avengemedia-danklinux.gpg] https://ppa.launchpadcontent.net/avengemedia/danklinux/ubuntu questing main" | tee /etc/apt/sources.list.d/avengemedia-danklinux.list
-    curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x45FECBE587307AAA3F0A4BE9FC44813D2A7788B7' | gpg --yes --dearmour -o /usr/share/keyrings/avengemedia-danklinux.gpg
+    echo 'deb http://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /' | tee /etc/apt/sources.list.d/home:AvengeMedia:danklinux.list
+    curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_Testing/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_AvengeMedia_danklinux.gpg > /dev/null
   retries: 5
   delay: 5
 
-- name: Pin quickshell-git and deprioritize other packages from avengemedia PPA
+- name: Pin ghostty to deprioritize from avengemedia danklinux OBS repository
   become: true
   copy:
     dest: /etc/apt/preferences.d/avengemedia-danklinux
     content: |
-      Package: quickshell-git
-      Pin: release o=LP-PPA-avengemedia-danklinux
-      Pin-Priority: 1000
-
       Package: ghostty
-      Pin: release o=LP-PPA-avengemedia-danklinux
+      Pin: release o=obs://build.opensuse.org/home:AvengeMedia:danklinux/Debian_Testing
       Pin-Priority: -1
-
-      Package: *
-      Pin: release o=LP-PPA-avengemedia-danklinux
-      Pin-Priority: 100
 
 - name: Install quickshell-git
   become: true
