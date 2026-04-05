@@ -20,6 +20,8 @@
     dest: ~/Downloads/JetBrainsMono.zip
     url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
     force: false
+  retries: 5
+  delay: 5
 - name: ensure font directory exists
   become: true
   file:
