@@ -118,7 +118,6 @@
       - playerctl
       - pipewire
       - wireplumber
-      - xwaylandvideobridge
       - qt6-wayland
       - pavucontrol
       - brightnessctl
