@@ -10,7 +10,6 @@ application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
-x-scheme-handler/discord-1461835155223216206=discord-1461835155223216206.desktop
 
 [Added Associations]
 image/jpeg=org.gnome.Loupe.desktop;display-im7.q16.desktop;
