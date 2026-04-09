@@ -14,10 +14,17 @@
 
 ---
 
-- name: Download lan-mouse
+- name: Get latest lan-mouse version
+  retries: 5
+  delay: 5
+  shell:
+    chdir: /tmp
+    cmd: curl -s https://api.github.com/repos/feschber/lan-mouse/releases/latest | jq -r ".tag_name" | xargs -I{} curl -sL -o lan-mouse "https://github.com/feschber/lan-mouse/releases/download/{}/lan-mouse"
+
+- name: Install lan-mouse
   become: true
-  get_url:
-    url: https://github.com/feschber/lan-mouse/releases/download/latest/lan-mouse
+  copy:
+    src: /tmp/lan-mouse
     dest: /usr/local/bin/lan-mouse
-    mode: '0755'  # Make it executable
-    force: yes     # Overwrite if it exists (optional, depending on desired behavior)
+    mode: '0755'
+    remote_src: yes
