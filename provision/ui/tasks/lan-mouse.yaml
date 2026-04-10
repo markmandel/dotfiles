@@ -19,7 +19,7 @@
   delay: 5
   shell:
     chdir: /tmp
-    cmd: curl -s https://api.github.com/repos/feschber/lan-mouse/releases/latest | jq -r ".tag_name" | xargs -I{} curl -sL -o lan-mouse "https://github.com/feschber/lan-mouse/releases/download/{}/lan-mouse"
+    cmd: curl -s https://api.github.com/repos/feschber/lan-mouse/releases | jq -r "map(select(.prerelease)) | .[0].tag_name" | xargs -I{} curl -sL -o lan-mouse "https://github.com/feschber/lan-mouse/releases/download/{}/lan-mouse-linux-x86_64"
 
 - name: Install lan-mouse
   become: true
