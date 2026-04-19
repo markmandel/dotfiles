@@ -261,7 +261,7 @@
   git:
     repo: https://github.com/hyprwm/hyprlock
     dest: /opt/hyprland/hyprlock
-    version: v0.9.3
+    version: v0.9.5
 
 - name: Clone hyprpaper
   tags: hyprland
