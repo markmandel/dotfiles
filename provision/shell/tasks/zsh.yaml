@@ -53,6 +53,13 @@
   retries: 5
   delay: 5
 
+- name: "install custom plugin: zsh-claudecode-completion"
+  git:
+    repo: https://github.com/wbingli/zsh-claudecode-completion.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-claudecode-completion
+  retries: 5
+  delay: 5
+
 # Starship prompt
 - name: install or update starship prompt
   become: true
