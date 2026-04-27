@@ -171,7 +171,7 @@
   git:
     repo: https://github.com/hyprwm/hyprwayland-scanner
     dest: /opt/hyprland/hyprwayland-scanner
-    version: v0.4.5
+    version: v0.4.6
 
 - name: Clone hyprutils
   tags: hyprland
@@ -189,7 +189,7 @@
   git:
     repo: https://github.com/hyprwm/aquamarine
     dest: /opt/hyprland/aquamarine
-    version: v0.10.0
+    version: v0.11.0
 
 - name: Clone hyprlang
   tags: hyprland
@@ -225,7 +225,7 @@
   git:
     repo: https://github.com/hyprwm/hyprwire
     dest: /opt/hyprland/hyprwire
-    version: v0.3.0
+    version: v0.3.1
 
 - name: Clone hyprtoolkit
   tags: hyprland
@@ -288,7 +288,7 @@
   git:
     repo: https://github.com/hyprwm/xdg-desktop-portal-hyprland
     dest: /opt/hyprland/xdg-desktop-portal-hyprland
-    version: v1.3.11
+    version: v1.3.12
 
 - name: Clone hyprland-qt-support
   tags: hyprland
