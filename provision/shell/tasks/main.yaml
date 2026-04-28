@@ -18,5 +18,4 @@
 - import_tasks: tmux.yaml
 - import_tasks: git_config.yaml
 - import_tasks: zsh.yaml
-- import_tasks: extra-apt.yaml
 - import_tasks: xpra.yaml

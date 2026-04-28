@@ -18,12 +18,12 @@
   tags: hyprland
   become: true
   copy:
-    src: "{{ playbook_dir }}/shell/files/etc/apt/sources.list.d/extra.sources"
+    src: "{{ playbook_dir }}/dev/files/etc/apt/sources.list.d/extra.sources"
     dest: /etc/apt/sources.list.d/extra.sources
 
 - name: Set low pinning for extra (experimental and sid) sources
   tags: hyprland
   become: true
   copy:
-    src: "{{ playbook_dir }}/shell/files/etc/apt/preferences.d/extra.pref"
+    src: "{{ playbook_dir }}/dev/files/etc/apt/preferences.d/extra.pref"
     dest: /etc/apt/preferences.d/extra.pref
