@@ -30,3 +30,4 @@
 - import_tasks: jetbrains.yaml
 - import_tasks: ai.yaml
 - import_tasks: loggo.yaml
+- import_tasks: xpra.yaml
