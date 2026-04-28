@@ -13,6 +13,15 @@
 # limitations under the License.
 
 ---
+- name: Remove text-based web browsers
+  become: true
+  apt:
+    name:
+      - elinks
+      - lynx
+      - w3m
+    state: absent
+
 - name: Install core standard packages
   become: true
   apt:
