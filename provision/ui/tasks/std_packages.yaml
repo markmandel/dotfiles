@@ -39,6 +39,7 @@
       - libpam-fprintd
       - libu2f-host0
       - libu2f-host0
+      - linux-headers-amd64
       - locate
       - loupe
       - meld

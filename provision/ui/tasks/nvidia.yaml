@@ -23,7 +23,6 @@
   become: true
   apt:
     name:
-      - linux-headers-amd64
       - nvidia-driver-full
       - nvidia-detect
       - libnvidia-egl-wayland1
