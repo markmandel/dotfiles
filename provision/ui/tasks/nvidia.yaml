@@ -46,6 +46,11 @@
     mode: '0644'
   when: nvidia_check.rc == 0
 
+- name: Run update-initramfs after setting modprobe options
+  become: true
+  shell: update-initramfs -u
+  when: nvidia_check.rc == 0
+
 - name: Set nvdia options and enable suspend and hibernate services.
   become: true
   shell: |
