@@ -47,15 +47,13 @@
       - nemo-compare
       - nemo-fileroller
       - nemo-font-manager
+      - nvtop
       - obs-studio
       - pandoc
       - picard
       - power-profiles-daemon
       - puddletag
       - qalculate-gtk
-      - remmina
-      - remmina-plugin-rdp
-      - remmina-plugin-secret
       - retext
       - slurp
       - swappy
