@@ -11,6 +11,7 @@ x-scheme-handler/webcal=google-chrome.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 x-scheme-handler/slack=slack.desktop
+x-scheme-handler/claude=claude-desktop.desktop
 
 [Added Associations]
 image/jpeg=org.gnome.Loupe.desktop;display-im7.q16.desktop;
