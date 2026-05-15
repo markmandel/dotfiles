@@ -53,6 +53,7 @@
       - libnvidia-egl-wayland1
       - libnvidia-egl-gbm1
       - nvidia-vaapi-driver
+      - nvidia-settings
   when: nvidia_check.rc == 0
 
 - name: Set nvidia wayland modprobe options
