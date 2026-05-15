@@ -19,21 +19,41 @@
   failed_when: false
   changed_when: false
 
+# Info:
+# https://wiki.debian.org/NvidiaGraphicsDrivers
+# https://wiki.hyprland.org/Nvidia/
+# https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/debian.html#compute-only-headless-and-desktop-only-no-compute-installation
+
+- name: Download NVIDIA CUDA keyring package
+  become: true
+  get_url:
+    url: https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
+    dest: /tmp/cuda-keyring_1.1-1_all.deb
+    mode: '0644'
+  when: nvidia_check.rc == 0
+
+- name: Install NVIDIA CUDA keyring package
+  become: true
+  apt:
+    deb: /tmp/cuda-keyring_1.1-1_all.deb
+  when: nvidia_check.rc == 0
+
+- name: Update apt cache after adding NVIDIA repository
+  become: true
+  apt:
+    update_cache: true
+  when: nvidia_check.rc == 0
+
 - name: Install nvidia drivers
   become: true
   apt:
     name:
-      - nvidia-driver-full
-      - nvidia-detect
+      - nvidia-driver
+      - nvidia-kernel-open-dkms
       - libnvidia-egl-wayland1
       - libnvidia-egl-gbm1
       - nvidia-vaapi-driver
-      - nvidia-suspend-common
   when: nvidia_check.rc == 0
-
-# Info:
-# https://wiki.debian.org/NvidiaGraphicsDrivers
-# https://wiki.hyprland.org/Nvidia/
 
 - name: Set nvidia wayland modprobe options
   become: true

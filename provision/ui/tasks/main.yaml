@@ -16,10 +16,10 @@
 - import_tasks: home.yaml
 - import_tasks: dotfiles.yaml
 - import_tasks: std_packages.yaml
+- import_tasks: nvidia.yaml
 - import_tasks: jetbrains-mono.yaml
 - import_tasks: ghostty.yaml
 - import_tasks: quickshell.yaml
-- import_tasks: nvidia.yaml
 - import_tasks: flatpak.yaml
 - import_tasks: hyprland-install.yaml
 - import_tasks: hyprland-theme.yaml
