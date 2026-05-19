@@ -51,7 +51,6 @@
       - nvtop
       - obs-studio
       - pandoc
-      - picard
       - power-profiles-daemon
       - puddletag
       - qalculate-gtk
