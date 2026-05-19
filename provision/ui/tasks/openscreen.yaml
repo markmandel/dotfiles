@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC All Rights Reserved.
+# Copyright 2026 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,14 +14,7 @@
 
 ---
 
-- name: Get latest k9s
-  retries: 5
-  delay: 5
-  shell:
-    chdir: /tmp
-    cmd: curl -s https://api.github.com/repos/derailed/k9s/releases/latest  | jq ".name" | xargs -I{} wget -q -O k9s.deb "https://github.com/derailed/k9s/releases/download/{}/k9s_linux_amd64.deb"
-
-- name: Install k9s
+- name: Install Openscreen
   become: true
   apt:
-    deb: "/tmp/k9s.deb"
+    deb: "https://github.com/siddharthvaddem/openscreen/releases/latest/download/Openscreen-Linux-latest.deb"
