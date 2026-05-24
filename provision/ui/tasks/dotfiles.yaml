@@ -14,8 +14,18 @@
 
 ---
 
-- name: Dotfiles for the config directory
-  shell: |
-    cd {{ role_path }}/files/config
-    find -type d -exec mkdir -p ~/.config/{} \;
-    find -type f -exec ln -sf {{ role_path }}/files/config/{} ~/.config/{} \;
+- name: Symlink top-level config directories into ~/.config
+  file:
+    src: "{{ role_path }}/files/config/{{ item }}"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/{{ item }}"
+    state: link
+    force: true
+  with_items: "{{ lookup('pipe', 'find ' + role_path + '/files/config -mindepth 1 -maxdepth 1 -type d -printf \"%f\\n\"').splitlines() }}"
+
+- name: Symlink top-level config files into ~/.config
+  file:
+    src: "{{ role_path }}/files/config/{{ item }}"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/{{ item }}"
+    state: link
+    force: true
+  with_items: "{{ lookup('pipe', 'find ' + role_path + '/files/config -mindepth 1 -maxdepth 1 -type f -printf \"%f\\n\"').splitlines() }}"
