@@ -3,3 +3,4 @@
 *.iml
 *.retry
 /provision/dircolors
+/provision/ui/files/config/hypr/hyprland.conf.d/local.conf
