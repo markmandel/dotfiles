@@ -21,7 +21,7 @@ limitations under the License.
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 
-local programs = require("includes.programs")
+local programs = require("programs")
 
 -- Plugins!
 hl.exec_once("hyprpm reload -n")
