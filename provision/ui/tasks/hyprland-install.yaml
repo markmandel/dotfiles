@@ -27,6 +27,7 @@
       - gettext
       - gettext-base
       - git
+      - glslang-dev
       - glslang-tools
       - hwdata
       - libaudit-dev
@@ -48,6 +49,7 @@
       - libiniparser-dev
       - libinput-bin
       - libinput-dev
+      - liblua5.5-dev
       - libjxl-dev
       - libmagic-dev
       - libmuparser-dev
@@ -69,6 +71,7 @@
       - libheif-dev
       - libwebp-dev
       - libjpeg-dev
+      - libudis86-dev
       - libwayland-dev
       - libxcb-composite0-dev
       - libxcb-dri3-dev
@@ -86,6 +89,7 @@
       - libxkbregistry-dev
       - libxml2-dev
       - libzip-dev
+      - lua5.5
       - meson
       - ninja-build
       - qt6-base-dev
@@ -131,7 +135,7 @@
 - name: Setting hyprland facts
   tags: hyprland
   set_fact:
-    hyprland_version: v0.54.3
+    hyprland_version: v0.55.2
 
 - name: Check if hyprland is installed
   tags: hyprland
@@ -315,7 +319,7 @@
   git:
     repo: https://github.com/hyprwm/hyprshutdown
     dest: /opt/hyprland/hyprshutdown
-    version: v0.1.0
+    version: v0.1.1
 
 # Now compile and install it!
 
