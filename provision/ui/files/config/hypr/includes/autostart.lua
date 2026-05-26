@@ -23,9 +23,6 @@ limitations under the License.
 
 local programs = require("programs")
 
--- Plugins!
-hl.exec_once("hyprpm reload -n")
-
 -- Idling and clicking
 hl.exec_once("killall hypridle; hypridle")
 
