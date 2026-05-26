@@ -16,5 +16,6 @@ limitations under the License.
 
 
 
+require("includes.autostart")
 require("includes.monitors")
 require("includes.theme")
