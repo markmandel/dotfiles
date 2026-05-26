@@ -14,7 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ]]
 
+-------------------
+--- MY PROGRAMS ---
+-------------------
 
+-- Set programs that you use
+local M = {}
 
-require("includes.monitors")
-require("includes.theme")
+M.terminal        = "ghostty"
+M.terminalScratch = "ghostty --class=com.markmandel.scratchpad -e tmux"
+
+return M
