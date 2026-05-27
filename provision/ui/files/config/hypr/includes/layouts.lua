@@ -14,14 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ]]
 
--------------------
---- MY PROGRAMS ---
--------------------
+-----------------
+---  LAYOUTS  ---
+-----------------
 
--- Set programs that you use
-local M = {}
+hl.layout.register("columns", {
+    recalculate = function(ctx)
+        local n = #ctx.targets
+        if n == 0 then
+            return
+        end
 
-M.terminal        = "ghostty"
-M.terminalScratch = "ghostty --class=com.markmandel.scratchpad -e tmux"
-
-return M
+        for i, target in ipairs(ctx.targets) do
+            target:place(ctx:column(i, n))
+        end
+    end,
+})
