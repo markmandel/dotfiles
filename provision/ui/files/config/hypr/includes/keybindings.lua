@@ -23,6 +23,14 @@ limitations under the License.
 local programs = require("includes.programs")
 local mainMod  = "SUPER"
 
+-- Send a Hyprland-branded low-urgency desktop notification.
+local function notify(message)
+    os.execute(string.format(
+        [[notify-send --urgency low --expire-time 2000 --icon ~/.local/share/icons/rose-pine-icons/16x16/actions/draw-cuboid.svg --app-name "Hyprland" %q]],
+        message
+    ))
+end
+
 -- General bindings
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd(programs.terminal))
 hl.bind(mainMod .. " + X",             hl.dsp.window.close())
@@ -54,6 +62,7 @@ hl.bind(mainMod .. " + Space", function ()
     end
 
     hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+    notify("Layout: " .. next_layout)
 end)
 
 hl.bind(mainMod .. " + minus",        hl.dsp.layout("colresize -conf"))
@@ -61,24 +70,26 @@ hl.bind(mainMod .. " + equal",        hl.dsp.layout("colresize +conf"))
 hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.layout("fit all"))
 
 -- Primary/Secondary layout toggle
-hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.exec_cmd(
-    [[hyprctl keyword workspace "$(hyprctl activeworkspace -j | jq -r '.id'),layout:master"]]
-))
-hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.exec_cmd(
-    [[notify-send --urgency low --expire-time 2000 --icon ~/.local/share/icons/rose-pine-icons/16x16/actions/draw-cuboid.svg --app-name "Hyprland" "Layout: master"]]
-))
-hl.bind("CTRL + SHIFT + " .. mainMod .. " + Space", hl.dsp.exec_cmd(
-    [[notify-send --urgency low --expire-time 2000 --icon ~/.local/share/icons/rose-pine-icons/16x16/actions/draw-cuboid.svg --app-name "Hyprland" "Layout: $(hyprctl activeworkspace -j | jq -r '.tiledLayout')"]]
-))
+hl.bind(mainMod .. " + SHIFT + Space", function()
+    local workspace = hl.get_active_workspace()
+    if not workspace then return end
+    hl.workspace_rule({ workspace = workspace.name, layout = "master" })
+    notify("Layout: master")
+end)
+hl.bind("CTRL + SHIFT + " .. mainMod .. " + Space", function()
+    local workspace = hl.get_active_workspace()
+    if not workspace then return end
+    notify("Layout: " .. (workspace.tiled_layout or "unknown"))
+end)
 
 hl.bind(mainMod .. " + H", hl.dsp.window.resize({ x = "-5%", y = "0" }), { repeating = true })
 hl.bind(mainMod .. " + L", hl.dsp.window.resize({ x = "5%",  y = "0" }), { repeating = true })
 
 -- Move focus
-hl.bind(mainMod .. " + tab",         hl.dsp.cycle_next({ direction = "next" }))
-hl.bind(mainMod .. " + SHIFT + tab", hl.dsp.cycle_next({ direction = "prev" }))
-hl.bind(mainMod .. " + J",           hl.dsp.cycle_next({ direction = "next" }))
-hl.bind(mainMod .. " + K",           hl.dsp.cycle_next({ direction = "prev" }))
+hl.bind(mainMod .. " + tab",         hl.dsp.window.cycle_next())
+hl.bind(mainMod .. " + SHIFT + tab", hl.dsp.window.cycle_next({ next = false }))
+hl.bind(mainMod .. " + J",           hl.dsp.window.cycle_next())
+hl.bind(mainMod .. " + K",           hl.dsp.window.cycle_next({ next = false }))
 hl.bind(mainMod .. " + left",        hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right",       hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",          hl.dsp.focus({ direction = "up" }))
@@ -124,15 +135,23 @@ hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("special"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special", silent = true }))
 
 -- Restore the scratchpad if it gets shut down.
-hl.bind(mainMod .. " + F12", hl.dsp.exec_cmd(
-    [[hyprctl clients | grep "class: com.markmandel.scratchpad" || ]] .. programs.terminalScratch
-))
+hl.bind(mainMod .. " + F12", function()
+    local windows = hl.get_windows()
+    for _, w in ipairs(windows) do
+        if w.class == "com.markmandel.scratchpad" then return end
+    end
+    hl.exec_cmd(programs.terminalScratch)
+end)
 hl.bind(mainMod .. " + F12", hl.dsp.workspace.toggle_special("terminal"))
 
 -- KeePassXC scratchpad
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.exec_cmd(
-    [[hyprctl clients | grep " class: org.keepassxc.KeePassXC" || flatpak run org.keepassxc.KeePassXC]]
-))
+hl.bind(mainMod .. " + CTRL + K", function()
+    local windows = hl.get_windows()
+    for _, w in ipairs(windows) do
+        if w.class == "org.keepassxc.KeePassXC" then return end
+    end
+    hl.exec_cmd("flatpak run org.keepassxc.KeePassXC")
+end)
 hl.bind(mainMod .. " + CTRL + K", hl.dsp.workspace.toggle_special("keepass"))
 
 -- Scroll through existing workspaces with mainMod + scroll
