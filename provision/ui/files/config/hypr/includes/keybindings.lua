@@ -36,7 +36,26 @@ hl.bind(mainMod .. " + P",        hl.dsp.exec_cmd("wofi --show drun,run"))
 hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("rofimoji --skin-tone ask --action clipboard"))
 
 -- Layout Manipulation
-hl.bind(mainMod .. " + Space",        hl.dsp.exec_cmd("~/scripts/cycle-workspace.sh"))
+hl.bind(mainMod .. " + Space", function ()
+    local layouts     = { "master", "lua:columns", "dwindle" }
+    local workspace   = hl.get_active_workspace()
+    local next_layout = "lua:columns"
+
+    if not workspace then
+        return
+    end
+
+    for i = 1, #layouts do
+        if layouts[i] == workspace.tiled_layout then
+            local next_layout_idx = (i % #layouts) + 1
+            next_layout = layouts[next_layout_idx]
+            break
+        end
+    end
+
+    hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+end)
+
 hl.bind(mainMod .. " + minus",        hl.dsp.layout("colresize -conf"))
 hl.bind(mainMod .. " + equal",        hl.dsp.layout("colresize +conf"))
 hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.layout("fit all"))
