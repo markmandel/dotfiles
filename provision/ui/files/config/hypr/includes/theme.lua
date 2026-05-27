@@ -18,7 +18,7 @@ limitations under the License.
 --- LOOK AND FEEL ---
 ---------------------
 
-local colours = require("rose-pine")
+local colours = require("includes.rose-pine")
 
 -- Refer to https://wiki.hypr.land/Configuring/Variables/
 
