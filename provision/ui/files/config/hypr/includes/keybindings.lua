@@ -45,7 +45,7 @@ hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("rofimoji --skin-tone ask --ac
 
 -- Layout Manipulation
 hl.bind(mainMod .. " + Space", function ()
-    local layouts     = { "master", "lua:columns", "dwindle" }
+    local layouts     = { "master", "lua:columns", "scrolling" }
     local workspace   = hl.get_active_workspace()
     local next_layout = "lua:columns"
 
