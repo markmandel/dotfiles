@@ -159,7 +159,15 @@ hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.move({ monitor = -1 }))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ monitor = 1 }))
 
 -- Expo (overview)
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("quickshell -c ~/scripts/quickshell/overview"))
+local function overview()
+    hl.exec_cmd("quickshell -c ~/scripts/quickshell/overview")
+end
+hl.bind(mainMod .. " + G", overview)
+hl.gesture({
+    fingers   = 3,
+    direction = "up",
+    action    = overview,
+})
 
 -- Special workspaces
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("special"))
