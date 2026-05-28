@@ -110,9 +110,9 @@ for i = 1, 10 do
     local key    = i % 10  -- 10 maps to key 0
     local numpad = numpad_keys[i]
     hl.bind(mainMod .. " + " .. key,               hl.dsp.focus({ workspace = i }))
-    hl.bind(mainMod .. " + SHIFT + " .. key,       hl.dsp.window.move({ workspace = i, silent = true }))
+    hl.bind(mainMod .. " + SHIFT + " .. key,       hl.dsp.window.move({ workspace = i, follow = false }))
     hl.bind(mainMod .. " + " .. numpad,            hl.dsp.focus({ workspace = i }))
-    hl.bind(mainMod .. " + SHIFT + " .. numpad,    hl.dsp.window.move({ workspace = i, silent = true }))
+    hl.bind(mainMod .. " + SHIFT + " .. numpad,    hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
 -- Previous workspace
