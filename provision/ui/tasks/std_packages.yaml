@@ -29,9 +29,11 @@
       - fonts-noto-cjk
       - fonts-noto-color-emoji
       - fprintd
+      - fwupd
       - gedit
       - gedit-plugins
       - gimp
+      - gnome-firmware
       - grim
       - inkscape
       - kooha
