@@ -18,6 +18,15 @@ limitations under the License.
 ---  LAYOUTS  ---
 -----------------
 
+hl.config({
+    general = {
+        layout = "master",
+    },
+    master = {
+        new_status = "inherit",
+    },
+})
+
 hl.layout.register("columns", {
     recalculate = function(ctx)
         local n = #ctx.targets
