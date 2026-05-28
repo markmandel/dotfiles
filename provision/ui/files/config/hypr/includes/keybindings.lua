@@ -82,18 +82,18 @@ hl.bind("CTRL + SHIFT + " .. mainMod .. " + Space", function()
     notify("Layout: " .. (workspace.tiled_layout or "unknown"))
 end)
 
-hl.bind(mainMod .. " + H", hl.dsp.window.resize({ x = "-5%", y = "0" }), { repeating = true })
-hl.bind(mainMod .. " + L", hl.dsp.window.resize({ x = "5%",  y = "0" }), { repeating = true })
+hl.bind(mainMod .. " + H", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + L", hl.dsp.window.resize({ x = 50,  y = 0, relative = true }), { repeating = true })
 
 -- Move focus
 hl.bind(mainMod .. " + tab",         hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + SHIFT + tab", hl.dsp.window.cycle_next({ next = false }))
 hl.bind(mainMod .. " + J",           hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + K",           hl.dsp.window.cycle_next({ next = false }))
-hl.bind(mainMod .. " + left",        hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right",       hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",          hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",        hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + left",        hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + right",       hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + up",          hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + down",        hl.dsp.focus({ direction = "d" }))
 
 -- Move window around workspace
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "l" }))
@@ -128,7 +128,6 @@ hl.bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ monitor = 1 }))
 
 -- Expo (overview)
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("quickshell -c ~/scripts/quickshell/overview"))
-hl.gesture({ fingers = 3, direction = "up", action = hl.dsp.exec_cmd("quickshell -c ~/scripts/quickshell/overview") })
 
 -- Special workspaces
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("special"))
@@ -140,7 +139,7 @@ hl.bind(mainMod .. " + F12", function()
     for _, w in ipairs(windows) do
         if w.class == "com.markmandel.scratchpad" then return end
     end
-    hl.exec_cmd(programs.terminalScratch)
+    hl.dispatch(hl.dsp.exec_cmd(programs.terminalScratch))
 end)
 hl.bind(mainMod .. " + F12", hl.dsp.workspace.toggle_special("terminal"))
 
@@ -150,7 +149,7 @@ hl.bind(mainMod .. " + CTRL + K", function()
     for _, w in ipairs(windows) do
         if w.class == "org.keepassxc.KeePassXC" then return end
     end
-    hl.exec_cmd("flatpak run org.keepassxc.KeePassXC")
+    hl.dispatch(hl.dsp.exec_cmd("flatpak run org.keepassxc.KeePassXC"))
 end)
 hl.bind(mainMod .. " + CTRL + K", hl.dsp.workspace.toggle_special("keepass"))
 
