@@ -16,11 +16,12 @@ limitations under the License.
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 
+local host = require("includes.hostname")
+
 -- Built-in laptop display (only on host "oss")
-local hostname = io.popen("hostname"):read("*l")
-if hostname == "oss" then
+host.on_host("oss", function()
     hl.monitor({ output = "desc:Samsung Display Corp. ATNA40HQ02-0", mode = "2880x1800@60", position = "0x0", scale = 1.5 })
-end
+end)
 
 -- Alienware external monitor
 hl.monitor({ output = "desc:Dell Inc. Dell AW3821DW ##GjMYMxgwAAwA", mode = "3840x1600@30", position = "-3840x-400", scale = 1 })
