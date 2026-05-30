@@ -75,7 +75,7 @@ Rectangle {
         id: hoverArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: Hyprland.dispatch("workspace " + wsId)
+        onClicked: Hyprland.dispatch("hl.dsp.focus({ workspace = " + wsId + ", on_current_monitor = true })")
         onContainsMouseChanged: {
             if (containsMouse) {
                 hideTimer.stop()
@@ -107,7 +107,7 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    Hyprland.dispatch("workspace " + wsId)
+                    Hyprland.dispatch("hl.dsp.focus({ workspace = " + wsId + ", on_current_monitor = true })")
                     wsButton.showPreview = false
                 }
                 onContainsMouseChanged: {

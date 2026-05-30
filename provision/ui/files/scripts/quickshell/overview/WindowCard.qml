@@ -175,7 +175,6 @@ Rectangle {
 
     function activate() {
         if (card.workspaceId !== 0) {
-            // Hyprland.dispatch("focusworkspaceoncurrentmonitor " + card.workspaceId)
             Hyprland.dispatch("hl.dsp.focus({ workspace = " + card.workspaceId + ", on_current_monitor = true })")
         }
         if (card.address !== "") {
