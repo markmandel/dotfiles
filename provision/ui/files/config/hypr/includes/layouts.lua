@@ -27,6 +27,11 @@ hl.config({
     }
 })
 
+
+-----------------------
+---  COLUMN LAYOUT  ---
+-----------------------
+
 ---@param ctx HL.LayoutContext
 local function swap_with_master(ctx)
     local len = #ctx.targets
