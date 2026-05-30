@@ -89,19 +89,16 @@ local function resize(ctx, amount)
     local left_key  = ctx.targets[left_idx].window and ctx.targets[left_idx].window.address or tostring(left_idx)
     local right_key = ctx.targets[right_idx].window and ctx.targets[right_idx].window.address or tostring(right_idx)
 
+    -- Check that the resize won't push either window to 0 or below; if so, abort
+    local base_w = ctx.area.w / n
+    local new_left_w  = base_w + (state.offsets[left_key]  or 0) + amount
+    local new_right_w = base_w + (state.offsets[right_key] or 0) - amount
+    if new_left_w <= 0 or new_right_w <= 0 then
+        return true
+    end
+
     state.offsets[left_key]  = (state.offsets[left_key]  or 0) + amount
     state.offsets[right_key] = (state.offsets[right_key] or 0) - amount
-
-    -- Clamp: neither window may shrink below 50px
-    local base_w = ctx.area.w / n
-    if (base_w + state.offsets[left_key]) < 50 then
-        state.offsets[left_key]  = 50 - base_w
-        state.offsets[right_key] = base_w - 50
-    end
-    if (base_w + state.offsets[right_key]) < 50 then
-        state.offsets[right_key] = 50 - base_w
-        state.offsets[left_key]  = base_w - 50
-    end
 
     return true
 end
