@@ -27,7 +27,6 @@ hl.config({
     }
 })
 
-
 -----------------------
 ---  COLUMN LAYOUT  ---
 -----------------------
@@ -42,6 +41,20 @@ local function swap_with_master(ctx)
     return true
 end
 
+local state = {
+    -- store the width offsets per target/window
+    offsets = {}
+}
+
+---@param ctx HL.LayoutContext
+---@param amount number
+-- Resize the active window by the given amount, and adjust the offsets for window on the right.
+-- The far right window will need to adjust the window on the left.
+local function resize(ctx, amount)
+    hl.notification.create({ text = "Resizing: " .. amount, duration = 10000 })
+    -- TODO: Implement resize logic
+end
+
 hl.layout.register("columns", {
     recalculate = function (ctx)
         hl.notification.create({ text = "recalculating", duration = 1000 })
@@ -51,6 +64,7 @@ hl.layout.register("columns", {
         end
 
         for i, target in ipairs(ctx.targets) do
+            -- get the default column box for this index, for this number of columns
             local box = ctx:column(i, n)
             target:place(box)
         end
@@ -60,6 +74,14 @@ hl.layout.register("columns", {
 
         if message == "swapwithmaster" then
             return swap_with_master(ctx)
+        end
+
+        if message == "resize-" then
+            return resize(ctx, -50)
+        end
+
+        if message == "resize+" then
+            return resize(ctx, 50)
         end
 
         return message .. " is not supported"
