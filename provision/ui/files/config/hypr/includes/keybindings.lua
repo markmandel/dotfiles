@@ -131,9 +131,13 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }))
 -- Move window around workspace
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "l" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "r" }))
-hl.bind(mainMod .. " + Return", layout_bind({
-    master = hl.dsp.layout("swapwithmaster")
-}))
+hl.bind(
+    mainMod .. " + Return",
+    layout_bind({
+        master = hl.dsp.layout("swapwithmaster"),
+        ["lua:columns"] = hl.dsp.layout("swapwithmaster")
+    })
+)
 
 -- Switch workspaces with mainMod + [0-9] and numpad
 -- Move active window to a workspace with mainMod + SHIFT + [0-9] and numpad
@@ -166,9 +170,9 @@ local function overview()
 end
 hl.bind(mainMod .. " + G", overview)
 hl.gesture({
-    fingers   = 3,
+    fingers = 3,
     direction = "up",
-    action    = overview,
+    action = overview
 })
 
 -- Special workspaces

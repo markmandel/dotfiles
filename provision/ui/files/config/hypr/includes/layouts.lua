@@ -20,22 +20,43 @@ limitations under the License.
 
 hl.config({
     general = {
-        layout = "master",
+        layout = "master"
     },
     master = {
-        new_status = "inherit",
-    },
+        new_status = "inherit"
+    }
 })
 
+---@param ctx HL.LayoutContext
+local function swap_with_master(ctx)
+    local len = #ctx.targets
+    if len < 2 then
+        return true
+    end
+    hl.dispatch(hl.dsp.window.swap({ with = ctx.targets[1].window }))
+    return true
+end
+
 hl.layout.register("columns", {
-    recalculate = function(ctx)
+    recalculate = function (ctx)
+        hl.notification.create({ text = "recalculating", duration = 1000 })
         local n = #ctx.targets
         if n == 0 then
             return
         end
 
         for i, target in ipairs(ctx.targets) do
-            target:place(ctx:column(i, n))
+            local box = ctx:column(i, n)
+            target:place(box)
         end
     end,
+    layout_msg = function (ctx, message)
+        hl.notification.create({ text = message, duration = 10000 })
+
+        if message == "swapwithmaster" then
+            return swap_with_master(ctx)
+        end
+
+        return message .. " is not supported"
+    end
 })
