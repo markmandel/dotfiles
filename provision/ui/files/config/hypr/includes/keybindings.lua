@@ -115,8 +115,24 @@ hl.bind("CTRL + SHIFT + " .. mainMod .. " + Space", function ()
     notify("Layout: " .. (workspace.tiled_layout or "unknown"))
 end)
 
-hl.bind(mainMod .. " + H", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
-hl.bind(mainMod .. " + L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+hl.bind(
+    mainMod .. " + H",
+    layout_bind({
+        master = hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
+        scrolling = hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
+        ["lua:columns"] = hl.dsp.layout("resize-")
+    }),
+    { repeating = true }
+)
+hl.bind(
+    mainMod .. " + L",
+    layout_bind({
+        master = hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
+        scrolling = hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
+        ["lua:columns"] = hl.dsp.layout("resize+")
+    }),
+    { repeating = true }
+)
 
 -- Move focus
 hl.bind(mainMod .. " + tab", hl.dsp.window.cycle_next())
