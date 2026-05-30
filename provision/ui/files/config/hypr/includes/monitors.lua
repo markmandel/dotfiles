@@ -38,8 +38,6 @@ host.on_host("games-oss", function()
 
     -- Widescreen Samsung external monitor
     hl.monitor({ output = "desc:Samsung Electric Company Odyssey G95SC H1AK500000", mode = "5120x1440@60", position = "-3840x1080", scale = 1 })
-
-    hl.notification.create({ text = "games-oss", duration = 10 })
 end)
 
 host.on_host("discord", function()
