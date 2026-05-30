@@ -131,7 +131,7 @@ Rectangle {
                 onClicked: {
                     if (card.address !== "") {
                         var addr = card.address.startsWith("0x") ? card.address : "0x" + card.address
-                        Hyprland.dispatch("closewindow address:" + addr)
+                        Hyprland.dispatch("hl.dsp.window.close('address:" + addr +"')")
                     }
                 }
             }
