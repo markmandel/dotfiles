@@ -51,8 +51,59 @@ local state = {
 -- Resize the active window by the given amount, and adjust the offsets for window on the right.
 -- The far right window will need to adjust the window on the left.
 local function resize(ctx, amount)
-    hl.notification.create({ text = "Resizing: " .. amount, duration = 10000 })
-    -- TODO: Implement resize logic
+    local n = #ctx.targets
+    if n < 2 then
+        return true
+    end
+
+    -- Find the active window's index in targets
+    local active_win = hl.get_active_window()
+    if active_win == nil then
+        return true
+    end
+
+    local active_idx = nil
+    for i, target in ipairs(ctx.targets) do
+        if target.window ~= nil and target.window.address == active_win.address then
+            active_idx = i
+            break
+        end
+    end
+
+    if active_idx == nil then
+        return true
+    end
+
+    -- The far-right window steals from the left neighbour instead
+    local left_idx, right_idx
+    if active_idx == n then
+        left_idx  = n - 1
+        right_idx = n
+        amount    = -amount
+    else
+        left_idx  = active_idx
+        right_idx = active_idx + 1
+    end
+
+    -- Apply offset: grow left_idx by amount, shrink right_idx by amount
+    local left_key  = ctx.targets[left_idx].window and ctx.targets[left_idx].window.address or tostring(left_idx)
+    local right_key = ctx.targets[right_idx].window and ctx.targets[right_idx].window.address or tostring(right_idx)
+
+    state.offsets[left_key]  = (state.offsets[left_key]  or 0) + amount
+    state.offsets[right_key] = (state.offsets[right_key] or 0) - amount
+
+    -- Clamp: neither window may shrink below 50px
+    local base_w = ctx.area.w / n
+    if (base_w + state.offsets[left_key]) < 50 then
+        state.offsets[left_key]  = 50 - base_w
+        state.offsets[right_key] = base_w - 50
+    end
+    if (base_w + state.offsets[right_key]) < 50 then
+        state.offsets[right_key] = 50 - base_w
+        state.offsets[left_key]  = base_w - 50
+    end
+
+    return true
 end
 
 hl.layout.register("columns", {
@@ -63,10 +114,16 @@ hl.layout.register("columns", {
             return
         end
 
+        -- Compute base equal-width columns then apply stored offsets
+        local base_w = ctx.area.w / n
+        local x = ctx.area.x
         for i, target in ipairs(ctx.targets) do
-            -- get the default column box for this index, for this number of columns
-            local box = ctx:column(i, n)
+            local key = target.window and target.window.address or tostring(i)
+            local offset = state.offsets[key] or 0
+            local w = base_w + offset
+            local box = { x = x, y = ctx.area.y, w = w, h = ctx.area.h }
             target:place(box)
+            x = x + w
         end
     end,
     layout_msg = function (ctx, message)
