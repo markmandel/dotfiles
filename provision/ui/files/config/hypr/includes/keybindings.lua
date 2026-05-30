@@ -80,6 +80,15 @@ hl.bind(mainMod .. " + Space", function ()
     end
 
     hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+    -- if columns, reset the column state for that workspace
+    if next_layout == "lua:columns" then
+        hl.notification.create({ text = "Layout: " .. next_layout, duration = 1000 })
+        local timer = hl.timer(function ()
+                hl.dispatch(hl.dsp.layout("reset"))
+            end, { timeout = 500, type = "oneshot" })
+        timer:set_enabled(true)
+    end
+
     notify("Layout: " .. next_layout)
 end)
 
@@ -98,6 +107,7 @@ hl.bind(
 hl.bind(
     mainMod .. " + SHIFT + equal",
     layout_bind({
+        ["lua:columns"] = hl.dsp.layout("reset"),
         scrolling = hl.dsp.layout("fit all")
     })
 )

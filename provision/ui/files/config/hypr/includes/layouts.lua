@@ -52,20 +52,18 @@ local function get_offsets(workspace_id)
     return workspaces[workspace_id].offsets
 end
 
--- Returns the workspace id from the layout context, or nil if unavailable.
-local function ctx_workspace_id(ctx)
-    for _, target in ipairs(ctx.targets) do
-        if target.window and target.window.workspace then
-            return target.window.workspace.id
-        end
+-- Returns the active workspace id, or nil if unavailable.
+local function active_workspace_id()
+    local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
+    if not workspace then
+        return nil
     end
-    return nil
+    return workspace.id
 end
 
----@param ctx HL.LayoutContext
 -- Resets all column offsets for the workspace, restoring equal-width columns.
-local function reset_offsets(ctx)
-    local ws_id = ctx_workspace_id(ctx)
+local function reset_offsets()
+    local ws_id = active_workspace_id()
     if ws_id ~= nil then
         workspaces[ws_id] = nil
     end
@@ -110,7 +108,7 @@ local function resize(ctx, amount)
     local left_key  = ctx.targets[left_idx].window and ctx.targets[left_idx].window.address or tostring(left_idx)
     local right_key = ctx.targets[right_idx].window and ctx.targets[right_idx].window.address or tostring(right_idx)
 
-    local ws_id  = ctx_workspace_id(ctx)
+    local ws_id  = active_workspace_id()
     local offsets = get_offsets(ws_id)
 
     -- Check that the resize won't push either window to 0 or below; if so, abort
@@ -129,7 +127,7 @@ end
 
 hl.layout.register("columns", {
     recalculate = function (ctx)
-        hl.notification.create({ text = "recalculating", duration = 1000 })
+        -- hl.notification.create({ text = "recalculating", duration = 1000 })
         local n = #ctx.targets
         if n == 0 then
             return
@@ -138,7 +136,7 @@ hl.layout.register("columns", {
         -- Compute base equal-width columns then apply stored offsets
         local base_w = ctx.area.w / n
         local x = ctx.area.x
-        local offsets = get_offsets(ctx_workspace_id(ctx))
+        local offsets = get_offsets(active_workspace_id())
         for i, target in ipairs(ctx.targets) do
             local key = target.window and target.window.address or tostring(i)
             local offset = offsets[key] or 0
@@ -164,7 +162,7 @@ hl.layout.register("columns", {
         end
 
         if message == "reset" then
-            return reset_offsets(ctx)
+            return reset_offsets()
         end
 
         return message .. " is not supported"
