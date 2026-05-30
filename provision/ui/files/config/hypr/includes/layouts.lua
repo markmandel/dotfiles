@@ -41,10 +41,36 @@ local function swap_with_master(ctx)
     return true
 end
 
-local state = {
-    -- store the width offsets per target/window
-    offsets = {}
-}
+-- Top-level map: workspace_id (integer) -> { offsets: table<string, number> }
+local workspaces = {}
+
+-- Returns the offsets table for the given workspace id, creating it if needed.
+local function get_offsets(workspace_id)
+    if workspaces[workspace_id] == nil then
+        workspaces[workspace_id] = { offsets = {} }
+    end
+    return workspaces[workspace_id].offsets
+end
+
+-- Returns the workspace id from the layout context, or nil if unavailable.
+local function ctx_workspace_id(ctx)
+    for _, target in ipairs(ctx.targets) do
+        if target.window and target.window.workspace then
+            return target.window.workspace.id
+        end
+    end
+    return nil
+end
+
+---@param ctx HL.LayoutContext
+-- Resets all column offsets for the workspace, restoring equal-width columns.
+local function reset_offsets(ctx)
+    local ws_id = ctx_workspace_id(ctx)
+    if ws_id ~= nil then
+        workspaces[ws_id] = nil
+    end
+    return true
+end
 
 ---@param ctx HL.LayoutContext
 ---@param amount number
@@ -57,14 +83,9 @@ local function resize(ctx, amount)
     end
 
     -- Find the active window's index in targets
-    local active_win = hl.get_active_window()
-    if active_win == nil then
-        return true
-    end
-
     local active_idx = nil
     for i, target in ipairs(ctx.targets) do
-        if target.window ~= nil and target.window.address == active_win.address then
+        if target.window ~= nil and target.window.active then
             active_idx = i
             break
         end
@@ -89,16 +110,19 @@ local function resize(ctx, amount)
     local left_key  = ctx.targets[left_idx].window and ctx.targets[left_idx].window.address or tostring(left_idx)
     local right_key = ctx.targets[right_idx].window and ctx.targets[right_idx].window.address or tostring(right_idx)
 
+    local ws_id  = ctx_workspace_id(ctx)
+    local offsets = get_offsets(ws_id)
+
     -- Check that the resize won't push either window to 0 or below; if so, abort
     local base_w = ctx.area.w / n
-    local new_left_w  = base_w + (state.offsets[left_key]  or 0) + amount
-    local new_right_w = base_w + (state.offsets[right_key] or 0) - amount
+    local new_left_w  = base_w + (offsets[left_key]  or 0) + amount
+    local new_right_w = base_w + (offsets[right_key] or 0) - amount
     if new_left_w <= 0 or new_right_w <= 0 then
         return true
     end
 
-    state.offsets[left_key]  = (state.offsets[left_key]  or 0) + amount
-    state.offsets[right_key] = (state.offsets[right_key] or 0) - amount
+    offsets[left_key]  = (offsets[left_key]  or 0) + amount
+    offsets[right_key] = (offsets[right_key] or 0) - amount
 
     return true
 end
@@ -114,9 +138,10 @@ hl.layout.register("columns", {
         -- Compute base equal-width columns then apply stored offsets
         local base_w = ctx.area.w / n
         local x = ctx.area.x
+        local offsets = get_offsets(ctx_workspace_id(ctx))
         for i, target in ipairs(ctx.targets) do
             local key = target.window and target.window.address or tostring(i)
-            local offset = state.offsets[key] or 0
+            local offset = offsets[key] or 0
             local w = base_w + offset
             local box = { x = x, y = ctx.area.y, w = w, h = ctx.area.h }
             target:place(box)
@@ -136,6 +161,10 @@ hl.layout.register("columns", {
 
         if message == "resize+" then
             return resize(ctx, 50)
+        end
+
+        if message == "reset" then
+            return reset_offsets(ctx)
         end
 
         return message .. " is not supported"
