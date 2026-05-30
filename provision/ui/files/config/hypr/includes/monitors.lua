@@ -42,7 +42,6 @@ host.on_host("games-oss", function()
     hl.notification.create({ text = "games-oss", duration = 10 })
 end)
 
-
 host.on_host("discord", function()
     -- Work laptop
     hl.monitor({ output = "desc:Lenovo Group Limited 0x8AB", mode = "3072x1920@60", position = "0x0", scale = 1.5 })
