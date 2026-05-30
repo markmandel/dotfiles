@@ -131,7 +131,7 @@ Rectangle {
                 onClicked: {
                     if (card.address !== "") {
                         var addr = card.address.startsWith("0x") ? card.address : "0x" + card.address
-                        Hyprland.dispatch("hl.dsp.window.close('address:" + addr +"')")
+                        Hyprland.dispatch("hl.dsp.window.close({ window = 'address:" + addr + "' })")
                     }
                 }
             }
@@ -175,11 +175,12 @@ Rectangle {
 
     function activate() {
         if (card.workspaceId !== 0) {
-            Hyprland.dispatch("focusworkspaceoncurrentmonitor " + card.workspaceId)
+            // Hyprland.dispatch("focusworkspaceoncurrentmonitor " + card.workspaceId)
+            Hyprland.dispatch("hl.dsp.focus({ workspace = " + card.workspaceId + ", on_current_monitor = true })")
         }
         if (card.address !== "") {
             var addr = card.address.startsWith("0x") ? card.address : "0x" + card.address
-            Hyprland.dispatch("focuswindow address:" + addr)
+            Hyprland.dispatch("hl.dsp.focus({ window = 'address:" + addr + "' })")
         } else {
             toplevel.activate()
         }
