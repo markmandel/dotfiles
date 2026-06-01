@@ -31,7 +31,7 @@ fi
 
 echo "Selected wallpaper: $wall"
 
-lutgen apply --palette rose-pine --nearest=0 --output wallpaper.png "$wall"
+lutgen apply --palette rose-pine --output wallpaper.png "$wall"
 
 # open the above wallpaper in a subprocess, just so I can see the original
 xdg-open "$wall"
@@ -41,7 +41,7 @@ killall hyprpaper || true
 hyprpaper &
 
 # give everything time to update before trashing the file.
-sleep 10s
+sleep 5s
 # trash the above wallpaper
 trash "$wall"
 
