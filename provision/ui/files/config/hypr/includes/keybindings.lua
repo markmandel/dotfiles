@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ]]
 
+local host = require("includes.hostname")
+
 ---------------------
 --- KEYBINDINGS   ---
 ---------------------
@@ -281,3 +283,10 @@ hl.bind("CTRL + SHIFT + A", hl.dsp.exec_cmd("copyq show"))
 -- lan-mouse keyboard shortcuts
 hl.bind("CTRL + ALT + Up", hl.dsp.exec_cmd("wlrctl pointer move 0 -10000"))
 hl.bind("CTRL + ALT + Down", hl.dsp.exec_cmd("wlrctl pointer move 0 10000"))
+
+-----------------
+---  DISCORD  ---
+-----------------
+host.on_host("discord", function ()
+    hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("~/workspace/discord-notification-center/target/release/discord-notification-center toggle"))
+end)

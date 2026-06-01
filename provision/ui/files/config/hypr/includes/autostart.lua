@@ -22,8 +22,9 @@ limitations under the License.
 -- Or execute your favorite apps at launch like this:
 
 local programs = require("includes.programs")
+local host = require("includes.hostname")
 
-hl.on("hyprland.start", function()
+hl.on("hyprland.start", function ()
     -- Idling and clicking
     hl.exec_cmd("killall hypridle; hypridle")
 
@@ -37,7 +38,9 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("[workspace special:terminal silent] " .. programs.terminalScratch)
 
     -- Google Drive mounting. Only mount if we have credentials.
-    hl.exec_cmd("sleep 5s && grep apps.googleusercontent.com ~/.gdfuse/default/config && google-drive-ocamlfuse ~/GoogleDrive")
+    hl.exec_cmd(
+        "sleep 5s && grep apps.googleusercontent.com ~/.gdfuse/default/config && google-drive-ocamlfuse ~/GoogleDrive"
+    )
 
     -- CopyQ!
     hl.exec_cmd("sleep 3s && copyq")
@@ -58,4 +61,13 @@ hl.on("hyprland.start", function()
 
     -- quickshell
     hl.exec_cmd("killall quickshell; quickshell -c ~/scripts/quickshell/shell > /tmp/quickshell.log 2>&1")
+
+    -----------------
+    ---  DISCORD  ---
+    -----------------
+    host.on_host("discord", function ()
+        hl.exec_cmd(
+            "sleep 2s && ~/workspace/discord-notification-center/target/release/discord-notification-center > /tmp/discord-notification-center.log 2>&1"
+        )
+    end)
 end)
