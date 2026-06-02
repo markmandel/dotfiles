@@ -22,7 +22,7 @@ mkdir -p archive
 mv wallpaper.png "./archive/wallpaper-$(date).png" || true
 
 # choose a wallpaper at random in this directory
-wall=$(find . -maxdepth 1 -type f -name '*.png' ! -name 'wallpaper.png' | shuf -n 1)
+wall=$(find . -maxdepth 1 -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) ! -name 'wallpaper.png' | shuf -n 1)
 
 if [[ -z "$wall" ]]; then
     echo "No wallpapers found"
