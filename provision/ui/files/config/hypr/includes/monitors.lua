@@ -45,7 +45,7 @@ host.on_host("discord", function()
     hl.monitor({ output = "desc:Lenovo Group Limited 0x8AB", mode = "3072x1920@60", position = "0x0", scale = 1.5 })
 
     -- Alienware external monitor (Presentations / recording)
-    hl.monitor({ output = "desc:Dell Inc. Dell AW3821DW #GjMYMxgwAAwA", mode = "1920x1080@30", position = "3520x-1080", scale = 1 })
+    hl.monitor({ output = "desc:Dell Inc. Dell AW3821DW #GjMYMxgwAAwA", mode = "1920x1080@60", position = "3520x-1080", scale = 1 })
 
     -- Alienware external monitor (Regular usage)
     -- hl.monitor({ output = "desc:Dell Inc. Dell AW3821DW #GjMYMxgwAAwA", mode = "3840x1600@30", position = "3520x-1600", scale = 1 })
