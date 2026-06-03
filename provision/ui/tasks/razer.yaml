@@ -19,7 +19,7 @@
   become: true
   shell: |
     curl -fsSL 'https://debian.polychromatic.app/key.asc' | gpg --yes --dearmour -o /usr/share/keyrings/polychromatic.gpg
-    echo "deb [signed-by=/usr/share/keyrings/polychromatic.gpg] https://debian.polychromatic.app trixie main" | tee /etc/apt/sources.list.d/polychromatic.list
+    echo "deb [signed-by=/usr/share/keyrings/polychromatic.gpg] https://debian.polychromatic.app forky main" | tee /etc/apt/sources.list.d/polychromatic.list
   retries: 5
   delay: 5
 - name: install openrazer and polychromatic
