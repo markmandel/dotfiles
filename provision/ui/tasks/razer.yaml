@@ -22,6 +22,16 @@
     echo "deb [signed-by=/usr/share/keyrings/polychromatic.gpg] https://debian.polychromatic.app forky main" | tee /etc/apt/sources.list.d/polychromatic.list
   retries: 5
   delay: 5
+
+# Source: https://software.opensuse.org/download.html?project=hardware%3Arazer&package=openrazer-meta
+- name: add openrazer repository
+  become: true
+  shell: |
+    echo 'deb http://download.opensuse.org/repositories/hardware:/razer/Debian_Testing/ /' | tee /etc/apt/sources.list.d/hardware:razer.list
+    curl -fsSL https://download.opensuse.org/repositories/hardware:razer/Debian_Testing/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/hardware_razer.gpg > /dev/null
+  retries: 5
+  delay: 5
+
 - name: install openrazer and polychromatic
   become: true
   apt:

@@ -14,3 +14,10 @@
 
 - name: Install Claude Code CLI
   shell: curl -fsSL https://claude.ai/install.sh | bash
+  retries: 5
+  delay: 5
+
+- name: Install Antigravity CLI
+  shell: curl -fsSL https://antigravity.google/cli/install.sh | bash
+  retries: 5
+  delay: 5
