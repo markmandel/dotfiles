@@ -17,7 +17,27 @@
   retries: 5
   delay: 5
 
-- name: Install Antigravity CLI
-  shell: curl -fsSL https://antigravity.google/cli/install.sh | bash
+- name: Ensure ~/.local/bin exists
+  file:
+    path: ~/.local/bin
+    state: directory
+    mode: '0755'
+
+- name: Download latest Antigravity CLI
+  shell:
+    chdir: /tmp
+    cmd: >
+      curl -s https://api.github.com/repos/google-antigravity/antigravity-cli/releases/latest
+      | jq -r '.assets[] | select(.name == "agy_cli_linux_x64.tar.gz") | .browser_download_url'
+      | xargs -I{} curl -fsSL -o /tmp/agy_cli.tar.gz {}
   retries: 5
   delay: 5
+
+- name: Extract Antigravity CLI to ~/.local/bin
+  unarchive:
+    src: /tmp/agy_cli.tar.gz
+    dest: ~/.local/bin
+    remote_src: yes
+
+- name: Run agy install
+  shell: ~/.local/bin/agy install --skip-path
