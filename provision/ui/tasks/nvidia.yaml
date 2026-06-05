@@ -50,7 +50,7 @@
     name:
       - nvidia-driver
       - nvidia-kernel-open-dkms
-      - libnvidia-egl-wayland1
+      - libnvidia-egl-wayland21
       - libnvidia-egl-gbm1
       - nvidia-vaapi-driver
       - nvidia-settings
