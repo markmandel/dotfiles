@@ -55,6 +55,22 @@
       - nvidia-vaapi-driver
       - nvidia-settings
       - libcuda1
+      - libgles-nvidia1
+      - libgles-nvidia2
+      - libnvidia-cfg1
+      - libnvidia-encode1
+      - nvidia-vulkan-icd
+      - libnvidia-allocator1
+      - libnvidia-rtcore
+      - libcudadebugger1
+      - libnvidia-fbc1
+      - libnvoptix1
+      - libnvidia-opticalflow1
+      - libnvidia-ngx1
+      - libnvidia-api1
+      - nvidia-opencl-icd
+      - nvidia-powerd
+      - nvidia-persistenced
   when: nvidia_check.rc == 0
 
 - name: Set nvidia wayland modprobe options
@@ -77,7 +93,4 @@
   shell: |
     echo 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1 nvidia_drm.fbdev=1"' > /etc/default/grub.d/nvidia-modeset.cfg
     update-grub
-    systemctl enable nvidia-suspend.service
-    systemctl enable nvidia-hibernate.service
-    systemctl enable nvidia-resume.service
   when: nvidia_check.rc == 0
