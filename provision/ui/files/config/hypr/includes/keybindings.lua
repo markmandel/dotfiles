@@ -184,12 +184,12 @@ end
 hl.bind(mainMod .. " + grave", hl.dsp.focus({ workspace = "previous" }))
 
 -- Move focus to other monitor
-hl.bind(mainMod .. " + W", hl.dsp.focus({ monitor = -1 }))
-hl.bind(mainMod .. " + E", hl.dsp.focus({ monitor = 1 }))
+hl.bind(mainMod .. " + W", hl.dsp.focus({ monitor = "-1" }))
+hl.bind(mainMod .. " + E", hl.dsp.focus({ monitor = "+1" }))
 
 -- Move active windows between monitors
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.move({ monitor = -1 }))
-hl.bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ monitor = 1 }))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.move({ monitor = "-1" }))
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ monitor = "+1" }))
 
 -- Expo (overview)
 local function overview()
