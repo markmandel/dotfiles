@@ -1,0 +1,44 @@
+{
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "font": {
+      "normal": {
+         "family": "Roboto",
+         "size": 9
+      }
+   },
+   "theme": {
+      "dark": {
+         "name": "rose-pine",
+         "icon_theme": "oomox-rose-pine"
+      }
+   },
+   "launcher_window": {
+      "client_side_decorations": {
+         "enabled": true
+      }
+   },
+   "providers": {
+      "applications": {
+         "preferences": {
+            "defaultAction": "launch",
+            "paths": [
+               "~/.local/share/applications",
+               "~/.local/share/flatpak/exports/share/applications",
+               "/var/lib/flatpak/exports/share/applications",
+               "/usr/local/share/applications",
+               "/usr/share/applications"
+            ]
+         }
+      },
+      "power": {
+         "entrypoints": {
+            "hibernate": {
+               "enabled": false
+            },
+            "logout": {
+               "enabled": true
+            }
+         }
+      }
+   }
+}

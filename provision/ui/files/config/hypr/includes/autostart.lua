@@ -62,6 +62,9 @@ hl.on("hyprland.start", function ()
     -- quickshell
     hl.exec_cmd("killall quickshell; quickshell -c ~/scripts/quickshell/shell > /tmp/quickshell.log 2>&1")
 
+    -- vicinae
+    hl.exec_cmd("sleep 1s && vicinae server > /tmp/vicinae.log 2>&1")
+
     -----------------
     ---  DISCORD  ---
     -----------------

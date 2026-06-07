@@ -60,8 +60,8 @@ hl.bind(mainMod .. " + Z", hl.dsp.window.fullscreen({ mode = 1 }))
 hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
 -- Menus
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("wofi --show drun,run"))
-hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("rofimoji --skin-tone ask --action clipboard"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("vicinae toggle"))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("vicinae deeplink vicinae://launch/core/search-emojis"))
 
 -- Layout Manipulation
 hl.bind(mainMod .. " + Space", function ()
