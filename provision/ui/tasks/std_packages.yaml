@@ -68,3 +68,10 @@
       - wlrctl
       - zathura
       - zsh-syntax-highlighting
+
+- name: Package Cleanup!
+  become: true
+  apt:
+    name:
+      - openscreen
+    state: absent

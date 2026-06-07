@@ -13,8 +13,14 @@
 # limitations under the License.
 
 ---
-
-- name: Install Openscreen
+- name: Install fonts-noto-color-emoji
   become: true
   apt:
-    deb: "https://github.com/siddharthvaddem/openscreen/releases/latest/download/Openscreen-Linux-latest.deb"
+    name: fonts-noto-color-emoji
+    state: present
+
+- name: Install vicinae
+  become: true
+  shell: curl -fsSL https://vicinae.com/install | bash
+  retries: 5
+  delay: 5
