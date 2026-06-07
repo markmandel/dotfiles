@@ -39,5 +39,5 @@
     dest: ~/.local/bin
     remote_src: yes
 
-- name: Run agy install
-  shell: ~/.local/bin/agy install --skip-path
+- name: Run antigravity install
+  shell: ~/.local/bin/antigravity install --skip-path
