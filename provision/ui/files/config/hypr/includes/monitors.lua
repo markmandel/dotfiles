@@ -33,8 +33,11 @@ host.on_host("games-oss", function()
     --Alienware laptop with Geforce 3090
     hl.monitor({ output = "desc:AU Optronics 0xBD90", mode = "1920x1080@60", position = "0x0", scale = 1 })
 
-    -- Alienware external monitor
+    -- Alienware external monitor (regular)
     hl.monitor({ output = "desc:Dell Inc. Dell AW3821DW #GjMYMxgwAAwA", mode = "3840x1600@30", position = "-3840x-520", scale = 1 })
+    
+    -- Alienware external monitor (presentation)
+    -- hl.monitor({ output = "desc:Dell Inc. Dell AW3821DW #GjMYMxgwAAwA", mode = "1920x1080@60", position = "-1920x-520", scale = 1 })
 
     -- Widescreen Samsung external monitor
     hl.monitor({ output = "desc:Samsung Electric Company Odyssey G95SC H1AK500000", mode = "5120x1440@60", position = "-3840x1080", scale = 1 })
