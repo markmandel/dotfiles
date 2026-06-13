@@ -52,6 +52,15 @@
                "enabled": true
             }
          }
+      },
+      "system": {
+         "entrypoints": {
+            "run": {
+               "preferences": {
+                  "default-action": "run"
+               }
+            }
+         }
       }
    }
 }
