@@ -16,8 +16,8 @@
 
 echo "Attempting to fix lock issue"
 
-hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-hyprctl --instance 0 'dispatch exec hyprlock'
+hyprctl --instance 0 'eval hl.config({ misc = { allow_session_lock_restore = 1 }})'
+hyprctl --instance 0 'eval hl.exec_cmd("hyprlock")'
 
 
 echo "Try now!. If this doesn't work, then kill hyprlock and try again."
