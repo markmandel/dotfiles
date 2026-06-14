@@ -13,26 +13,37 @@
 # limitations under the License.
 
 ---
-- name: Add avengemedia danklinux OBS repository
-  become: true
-  shell: |
-    echo 'deb http://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /' | tee /etc/apt/sources.list.d/home:AvengeMedia:danklinux.list
-    curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_Testing/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_AvengeMedia_danklinux.gpg > /dev/null
-  retries: 5
-  delay: 5
 
-- name: Pin ghostty to deprioritize from avengemedia danklinux OBS repository
-  become: true
-  copy:
-    dest: /etc/apt/preferences.d/avengemedia-danklinux
-    content: |
-      Package: ghostty
-      Pin: release o=obs://build.opensuse.org/home:AvengeMedia:danklinux/Debian_Testing
-      Pin-Priority: -1
+# TODO: cleanup in the near future
 
-- name: Install quickshell-git
+- name: Remove avengemedia danklinux OBS repository
+  become: true
+  file:
+    path: /etc/apt/sources.list.d/home:AvengeMedia:danklinux.list
+    state: absent
+
+- name: Remove avengemedia danklinux OBS GPG key
+  become: true
+  file:
+    path: /etc/apt/trusted.gpg.d/home_AvengeMedia_danklinux.gpg
+    state: absent
+
+- name: Remove avengemedia danklinux apt pin
+  become: true
+  file:
+    path: /etc/apt/preferences.d/avengemedia-danklinux
+    state: absent
+
+- name: Install quickshell
+  become: true
+  apt:
+    name:
+      - quickshell
+    update_cache: true
+
+- name: Remove quickshell-git package
   become: true
   apt:
     name:
       - quickshell-git
-    update_cache: true
+    state: absent
