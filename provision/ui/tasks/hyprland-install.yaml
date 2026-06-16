@@ -117,7 +117,6 @@
       - xdg-desktop-portal-gtk
       - nwg-look
       - qt6ct
-      - wofi
       - dunst
       - playerctl
       - pipewire

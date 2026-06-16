@@ -73,5 +73,5 @@
   become: true
   apt:
     name:
-      - openscreen
+      - wofi
     state: absent
