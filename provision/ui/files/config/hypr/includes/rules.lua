@@ -72,3 +72,12 @@ hl.window_rule({
     size  = "(monitor_w*0.5) (monitor_h*0.75)",
     match = { class = "^(com.github.hluk.copyq)$" },
 })
+
+-- XDG desktop portal (GTK) file picker, etc.
+hl.window_rule({
+    name   = "xdg-desktop-portal-gtk",
+    float  = true,
+    center = true,
+    size   = "(monitor_w*0.6) (monitor_h*0.8)",
+    match  = { class = "^(xdg-desktop-portal-gtk)$" },
+})
