@@ -25,6 +25,9 @@ hl.config({
     binds = {
         hide_special_on_workspace_change = true,
     },
+    misc = {
+        initial_workspace_tracking = 1
+    }
 })
 
 -- Ignore maximize requests from apps. You'll probably like this.
