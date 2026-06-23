@@ -181,7 +181,7 @@ for i = 1, 10 do
 end
 
 -- Previous workspace
-hl.bind(mainMod .. " + grave", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(mainMod .. " + grave", hl.dsp.focus({ workspace = "previous", on_current_monitor=true }))
 
 -- Move focus to other monitor
 hl.bind(mainMod .. " + W", hl.dsp.focus({ monitor = "-1" }))
