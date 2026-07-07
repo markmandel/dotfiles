@@ -56,7 +56,7 @@
   copy: dest=/etc/sysctl.d/idea.conf src=idea.conf
   become: true
 - name: refresh sysctl
-  shell: sysctl -p --system
+  shell: systemctl restart systemd-sysctl
   become: true
 
 # Clion install, doing way too much work in C++.
