@@ -37,6 +37,7 @@
       - grim
       - inkscape
       - kooha
+      - libfuse2t64
       - libnotify-bin
       - libpam-fprintd
       - libu2f-host0
