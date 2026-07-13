@@ -13,12 +13,42 @@
 # limitations under the License.
 ---
 
-# Let's try adding the ghostty apt repository
-- name: Add community ghostty apt repository
+# Remove the old ghostty apt repository
+- name: Remove old community ghostty apt source list
   become: true
-  shell: |
-    curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
-    echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee /etc/apt/sources.list.d/debian.griffo.io.list
+  file:
+    path: /etc/apt/sources.list.d/debian.griffo.io.list
+    state: absent
+
+- name: Remove old community ghostty apt GPG key
+  become: true
+  file:
+    path: /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
+    state: absent
+
+# Add the danklinux repository for ghostty
+- name: Add danklinux apt GPG key
+  become: true
+  shell: curl -fsSL https://download.opensuse.org/repositories/home:AvengeMedia:danklinux/Debian_Testing/Release.key | gpg --dearmor -o /etc/apt/keyrings/danklinux.gpg
+  args:
+    creates: /etc/apt/keyrings/danklinux.gpg
+
+- name: Add danklinux apt repository
+  become: true
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/danklinux.gpg] https://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /"
+    filename: danklinux
+    state: present
+
+# Pin quickshell from the new repositories so it doesn't override the standard Debian package
+- name: Pin quickshell from danklinux repository
+  become: true
+  copy:
+    dest: /etc/apt/preferences.d/danklinux-pin
+    content: |
+      Package: quickshell
+      Pin: origin download.opensuse.org
+      Pin-Priority: 1
 
 - name: Install ghostty
   become: true
