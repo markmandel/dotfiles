@@ -96,12 +96,14 @@ local function resize(ctx, amount)
         return true
     end
 
-    -- The far-right window steals from the left neighbour instead
+    -- The far-right window resizes against its left neighbour instead. Since there's
+    -- no right neighbour to shrink into, keep the border-direction intuition (H moves
+    -- the border left/grows the active column, L moves it right/shrinks it) rather than
+    -- the "L always grows the active window" rule used elsewhere.
     local left_idx, right_idx
     if active_idx == n then
         left_idx  = n - 1
         right_idx = n
-        amount    = -amount
     else
         left_idx  = active_idx
         right_idx = active_idx + 1
