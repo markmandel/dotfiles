@@ -47,7 +47,7 @@
          "entrypoints": {
             "search-emojis": {
                "preferences": {
-                  "defaultAction": "copy",
+                  "defaultAction": "paste",
                   "skinTone": "light"
                }
             }

@@ -60,13 +60,14 @@
       - retext
       - slurp
       - swappy
-      - synaptic
       - v4l2loopback-dkms
       - v4l2loopback-utils
       - wev
       - wf-recorder
+      - wl-clipboard
       - wlr-randr
       - wlrctl
+      - wtype
       - zathura
       - zsh-syntax-highlighting
 
@@ -74,5 +75,5 @@
   become: true
   apt:
     name:
-      - wofi
+      - synaptic
     state: absent
