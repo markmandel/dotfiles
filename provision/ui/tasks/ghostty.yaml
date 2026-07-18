@@ -33,11 +33,14 @@
     path: /etc/apt/preferences.d/danklinux-pin
     state: absent
 
-  
+- name: Get latest ghostty (forky) deb
+  shell:
+    chdir: /tmp
+    cmd: curl -s https://api.github.com/repos/markmandel/ghostty-debian/releases/latest | jq -r '.assets[] | select(.name | endswith("forky_amd64.deb")) | .browser_download_url' | xargs -I{} wget -qO ghostty.deb {}
+  retries: 5
+  delay: 5
 
 - name: Install ghostty
   become: true
   apt:
-    name:
-      - ghostty
-    update_cache: true
+    deb: "/tmp/ghostty.deb"

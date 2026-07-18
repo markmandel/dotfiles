@@ -23,6 +23,7 @@
       - copyq
       - copyq-doc
       - copyq-plugins
+      - dconf-cli
       - dconf-editor
       - firefox-esr
       - flatpak
