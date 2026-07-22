@@ -48,29 +48,30 @@
   become: true
   apt:
     name:
-      - nvidia-driver
-      - nvidia-kernel-open-dkms
-      - libnvidia-egl-wayland21
-      - libnvidia-egl-gbm1
-      - nvidia-vaapi-driver
-      - nvidia-settings
       - libcuda1
+      - libcudadebugger1
       - libgles-nvidia1
       - libgles-nvidia2
-      - libnvidia-cfg1
-      - libnvidia-encode1
-      - nvidia-vulkan-icd
       - libnvidia-allocator1
-      - libnvidia-rtcore
-      - libcudadebugger1
-      - libnvidia-fbc1
-      - libnvoptix1
-      - libnvidia-opticalflow1
-      - libnvidia-ngx1
       - libnvidia-api1
+      - libnvidia-cfg1
+      - libnvidia-egl-gbm1
+      - libnvidia-egl-wayland21
+      - libnvidia-encode1
+      - libnvidia-fbc1
+      - libnvidia-ngx1
+      - libnvidia-opticalflow1
+      - libnvidia-rtcore
+      - libnvoptix1
+      - nvidia-driver
+      - nvidia-driver-cuda
+      - nvidia-kernel-open-dkms
       - nvidia-opencl-icd
-      - nvidia-powerd
       - nvidia-persistenced
+      - nvidia-powerd
+      - nvidia-settings
+      - nvidia-vaapi-driver
+      - nvidia-vulkan-icd
   when: nvidia_check.rc == 0
 
 - name: Set nvidia wayland modprobe options
