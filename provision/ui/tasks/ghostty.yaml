@@ -13,26 +13,6 @@
 # limitations under the License.
 ---
 
-# Clean up the danklinux repository that was previously used for ghostty/quickshell
-- name: Remove danklinux apt repository
-  become: true
-  apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/danklinux.gpg] https://download.opensuse.org/repositories/home:/AvengeMedia:/danklinux/Debian_Testing/ /"
-    filename: danklinux
-    state: absent
-
-- name: Remove danklinux apt GPG key
-  become: true
-  file:
-    path: /etc/apt/keyrings/danklinux.gpg
-    state: absent
-
-- name: Remove quickshell pin from danklinux repository
-  become: true
-  file:
-    path: /etc/apt/preferences.d/danklinux-pin
-    state: absent
-
 - name: Get latest ghostty (forky) deb
   shell:
     chdir: /tmp

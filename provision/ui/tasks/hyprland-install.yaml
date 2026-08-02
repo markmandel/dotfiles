@@ -34,24 +34,25 @@
       - hyprshutdown
       - xdg-desktop-portal-hyprland
 
-- name: install wayland and hyprland util packages
+- name: install desktop ui utilities
   tags: hyprland
   become: true
   apt:
     name:
-      - xwayland
-      - xdg-desktop-portal
-      - xdg-desktop-portal-gtk
-      - nwg-look
-      - qt6ct
-      - dunst
-      - playerctl
-      - pipewire
-      - wireplumber
-      - qt6-wayland
-      - pavucontrol
+      - blueman
       - brightnessctl
+      - dunst
       - network-manager-applet
+      - nwg-look
+      - pavucontrol
+      - pipewire
+      - playerctl
+      - qt6-wayland
+      - qt6ct
+      - quickshell
       - system-config-printer
       - wdisplays
-      - blueman
+      - wireplumber
+      - xdg-desktop-portal
+      - xdg-desktop-portal-gtk
+      - xwayland

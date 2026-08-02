@@ -19,14 +19,12 @@
 - import_tasks: nvidia.yaml
 - import_tasks: jetbrains-mono.yaml
 - import_tasks: ghostty.yaml
-- import_tasks: quickshell.yaml
 - import_tasks: flatpak.yaml
 - import_tasks: hyprland-install.yaml
 - import_tasks: hyprland-theme.yaml
 - import_tasks: quickshell.yaml
 - import_tasks: chrome.yaml
 - import_tasks: google-drive.yaml
-- import_tasks: rofimoji.yaml
 - import_tasks: usb.yaml
 - import_tasks: razer.yaml
 - import_tasks: discord.yaml
@@ -36,5 +34,6 @@
 - import_tasks: claude-desktop.yaml
 - import_tasks: vicinae.yaml
 - import_tasks: cups.yaml
+- import_tasks: k8s.yaml
 # network should always be last, as it restarts the network.
 - import_tasks: network.yaml

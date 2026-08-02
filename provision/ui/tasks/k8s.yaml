@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC All Rights Reserved.
+# Copyright 2026 Mark Mandel All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,15 @@
 # limitations under the License.
 
 ---
-- name: Uninstall rofimoji
-  shell: PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx uninstall rofimoji
+
+- name: Download latest Headlamp deb
+  shell:
+    chdir: /tmp
+    cmd: curl -s https://api.github.com/repos/kubernetes-sigs/headlamp/releases/latest | jq -r '.assets[] | select(.name | endswith("amd64.deb")) | .browser_download_url' | xargs -I{} wget -qO headlamp.deb {}
+  retries: 5
+  delay: 5
+
+- name: Install Headlamp
   become: true
-  failed_when: false
+  apt:
+    deb: /tmp/headlamp.deb
