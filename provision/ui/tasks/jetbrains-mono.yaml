@@ -15,10 +15,17 @@
 ---
 
 # nerd font key path (starting, but not ending with '/')
+- name: get latest JetBrainsMono Nerd Font release
+  shell:
+    cmd: curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r .tag_name
+  register: jetbrains_mono_release
+  changed_when: false
+  retries: 5
+  delay: 5
 - name: install JetBrainMono Nerd Font
   get_url:
-    dest: ~/Downloads/JetBrainsMono.zip
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+    dest: "~/Downloads/JetBrainsMono-{{ jetbrains_mono_release.stdout }}.tar.xz"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ jetbrains_mono_release.stdout }}/JetBrainsMono.tar.xz"
     force: false
   retries: 5
   delay: 5
@@ -27,8 +34,8 @@
   file:
     path: /usr/share/fonts/nerd/jetbrains-mono
     state: directory
-- name: unzip jetbrains fonts
+- name: unarchive jetbrains fonts
   become: true
   unarchive:
-    src: ~/Downloads/JetBrainsMono.zip
+    src: "~/Downloads/JetBrainsMono-{{ jetbrains_mono_release.stdout }}.tar.xz"
     dest: /usr/share/fonts/nerd/jetbrains-mono
