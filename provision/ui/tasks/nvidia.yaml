@@ -38,6 +38,12 @@
     deb: /tmp/cuda-keyring_1.1-1_all.deb
   when: nvidia_check.rc == 0
 
+- name: Add NVIDIA CUDA network repository
+  become: true
+  shell: |
+    echo 'deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/ /' | tee /etc/apt/sources.list.d/cuda-debian13-x86_64.list
+  when: nvidia_check.rc == 0
+
 - name: Update apt cache after adding NVIDIA repository
   become: true
   apt:
