@@ -62,6 +62,7 @@
       - libnvidia-api1
       - libnvidia-cfg1
       - libnvidia-egl-gbm1
+      - libnvidia-egl-wayland1
       - libnvidia-egl-wayland21
       - libnvidia-encode1
       - libnvidia-fbc1
