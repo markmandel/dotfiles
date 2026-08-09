@@ -180,6 +180,15 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. numpad, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
+-- move window _down_ from a special workspace
+hl.bind(mainMod .. " + SHIFT + D", function()
+    -- Get the active workspace underneath the special workspace
+    local ws = hl.get_active_workspace()
+    hl.notification.create({ text=ws.id, timeout=5000 })
+    -- Move the focused window out of special and into that workspace ID
+    hl.dispatch(hl.dsp.window.move({ workspace = ws.id, follow = false }))
+end)
+
 -- Previous workspace
 hl.bind(mainMod .. " + grave", hl.dsp.focus({ workspace = "previous", on_current_monitor=true }))
 
