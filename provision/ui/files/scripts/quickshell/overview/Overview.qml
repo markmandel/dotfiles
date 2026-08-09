@@ -32,7 +32,8 @@ FocusScope {
         Hyprland.refreshToplevels()
         var result = []
         var tail = []
-        var wsList = Hyprland.workspaces.values
+        var wsList = Array.from(Hyprland.workspaces.values)
+        wsList.sort(function(a, b) { return a.id - b.id })
         for (var i = 0; i < wsList.length; i++) {
             var dest = wsList[i].id < 0 ? tail : result
             var toplevels = Array.from(wsList[i].toplevels.values)
