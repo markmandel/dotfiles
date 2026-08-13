@@ -63,6 +63,7 @@
       - swappy
       - v4l2loopback-dkms
       - v4l2loopback-utils
+      - vainfo
       - wev
       - wf-recorder
       - wl-clipboard
