@@ -18,21 +18,27 @@ limitations under the License.
 --- ENVIRONMENT VARIABLES ---
 ---------------------------------
 
+local nvidia = require("includes.nvidia")
+
 -- See https://wiki.hyprland.org/Configuring/Environment-variables/
 
 hl.env("XCURSOR_SIZE",  "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
--- Nvidia variables
-hl.env("LIBVA_DRIVER_NAME",        "nvidia")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("NVD_BACKEND",              "direct")
+-- Nvidia variables - https://wiki.hypr.land/Nvidia/
+nvidia.on_nvidia(function ()
+    hl.env("LIBVA_DRIVER_NAME", "nvidia")
+    hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+    hl.env("NVD_BACKEND", "direct")
+end)
 
 -- Themeing
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
+-- Wayland
+
 -- Push Electron apps (like Discord) to use wayland.
-hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 -- Claude Desktop Wayland
 hl.env("CLAUDE_USE_WAYLAND", "1")
