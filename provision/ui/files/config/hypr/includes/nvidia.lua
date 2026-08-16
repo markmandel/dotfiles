@@ -23,13 +23,16 @@ local function detect_nvidia()
     local f = io.open("/proc/driver/nvidia/version", "r")
     if f then
         f:close()
+        hl.notification.create({ text="Nvidia Found via /proc", timeout=5000 })
         return true
     end
     local dev = io.open("/dev/nvidia0", "r")
     if dev then
         dev:close()
+        hl.notification.create({ text="Nvidia Found va /dev", timeout=5000 })
         return true
     end
+hl.notification.create({ text="Nvidia card not found", timeout=5000 })
     return false
 end
 
