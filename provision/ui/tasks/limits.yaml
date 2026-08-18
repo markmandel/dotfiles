@@ -1,0 +1,47 @@
+# Copyright 2026 Mark Mandel All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+
+# Debian's systemd ships a default *soft* nofile limit of 1024 (hard is already
+# 524288), so most desktop-session processes (portal daemons, hyprpolkitagent,
+# glycin's sandboxed image loaders) inherit that low cap. Heavy Unix-socket
+# fd-passing traffic from apps like Slack/Chrome/Discord (D-Bus, PipeWire,
+# clipboard, tray icons) can push the system-wide in-flight fd count past that
+# cap, causing other processes to fail their next fd-passing call with
+# ETOOMANYREFS ("Too many references: cannot splice") - surfaced by glycin as
+# a generic zbus i/o error. Raise the default soft limit to match the existing
+# hard ceiling so this doesn't happen.
+#
+# NOTE: this requires a full logout/login (new Hyprland session) to take
+# effect - systemd --user reads DefaultLimitNOFILE at its own startup.
+- name: Ensure /etc/systemd/user.conf.d exists
+  tags: limits
+  become: true
+  file:
+    path: /etc/systemd/user.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Raise default systemd user-session file descriptor limit
+  tags: limits
+  become: true
+  copy:
+    src: etc/systemd/user.conf.d/50-nofile-limits.conf
+    dest: /etc/systemd/user.conf.d/50-nofile-limits.conf
+    owner: root
+    group: root
+    mode: '0644'
