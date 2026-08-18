@@ -45,3 +45,26 @@
     owner: root
     group: root
     mode: '0644'
+
+# The above only covers units systemd --user itself spawns (D-Bus-activated
+# services like xdg-desktop-portal-gtk). This session is a plain `login`(1)
+# TTY session (start-hyprland -> Hyprland -> everything else), not a
+# systemd-managed graphical session, so the actual process tree - Hyprland
+# itself, quickshell, hypridle/hyprpaper, terminals, and every Electron app
+# (Slack/Chrome/Discord) - inherits its nofile limit from `login`, which goes
+# through PAM (`session required pam_limits.so` in /etc/pam.d/login). Without
+# an explicit entry here, that stays at the kernel default of 1024 soft
+# regardless of the systemd drop-in above. This is the drop-in that actually
+# reaches that tree.
+#
+# NOTE: also requires a full logout/login to take effect - pam_limits only
+# applies limits at session start.
+- name: Raise default PAM session file descriptor limit
+  tags: limits
+  become: true
+  copy:
+    src: etc/security/limits.d/50-nofile-limits.conf
+    dest: /etc/security/limits.d/50-nofile-limits.conf
+    owner: root
+    group: root
+    mode: '0644'
