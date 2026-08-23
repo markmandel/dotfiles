@@ -36,5 +36,6 @@
 - import_tasks: vicinae.yaml
 - import_tasks: cups.yaml
 - import_tasks: k8s.yaml
+- import_tasks: bluetooth.yaml
 # network should always be last, as it restarts the network.
 - import_tasks: network.yaml
