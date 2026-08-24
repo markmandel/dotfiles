@@ -51,6 +51,7 @@
       - qt6ct
       - quickshell
       - system-config-printer
+      - upower
       - wdisplays
       - wireplumber
       - xdg-desktop-portal
