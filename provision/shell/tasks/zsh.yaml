@@ -68,10 +68,10 @@
   file:
    path: ~/.config
    state: directory
-- name: copy starship config
-  copy:
-    src: starship.toml
-    dest: ~/.config/starship.toml
+
+- name: link starship config
+  shell: |
+    ln --force -s {{ role_path }}/files/starship.toml ~/.config/starship.toml
 
 # Atuin
 - name: install or update atuin
