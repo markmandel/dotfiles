@@ -81,7 +81,7 @@ $character"""
 
 
 [gcloud]
-format = 'on [$symbol$project]($style) '
+format = '(on $symbol$project)($style) '
 
 [kubernetes]
 format = 'on [$symbol$context]($style) '
