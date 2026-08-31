@@ -29,5 +29,6 @@
 - import_tasks: minikube.yaml
 - import_tasks: jetbrains.yaml
 - import_tasks: ai.yaml
+- import_tasks: workmux.yaml
 - import_tasks: loggo.yaml
 # - import_tasks: xpra.yaml
