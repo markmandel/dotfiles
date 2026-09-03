@@ -23,9 +23,11 @@
       }
    },
    "launcher_window": {
+      "opacity": 1,
       "client_side_decorations": {
          "enabled": true
-      }
+      },
+      "material": "none"
    },
    "keybinds": {
       "toggle-action-panel": "control+SPACE"
