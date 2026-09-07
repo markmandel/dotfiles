@@ -15,6 +15,7 @@
 ---
 - name: install or update minikube
   become: true
-  shell: curl -sLo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
+  apt:
+    deb: https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
   retries: 5
   delay: 5
