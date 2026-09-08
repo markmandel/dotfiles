@@ -16,6 +16,7 @@
 
 - import_tasks: apt.yaml
 - import_tasks: extra-apt.yaml
+- import_tasks: std_packages.yaml
 - import_tasks: home.yaml
 - import_tasks: docker.yaml
 - import_tasks: golang.yaml
@@ -31,4 +32,4 @@
 - import_tasks: ai.yaml
 - import_tasks: workmux.yaml
 - import_tasks: loggo.yaml
-# - import_tasks: xpra.yaml
+- import_tasks: xpra.yaml

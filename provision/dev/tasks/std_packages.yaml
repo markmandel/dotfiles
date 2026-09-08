@@ -11,27 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ---
-
-# TODO: remove once cleaned up from all machines.
-
-- name: purge xpra
+- name: Install core standard packages
+  become: true
   apt:
     name:
-      - xpra
-      - xpra-codecs-extras
-    state: absent
-    purge: true
-  become: true
-
-- name: remove xpra repository
-  file:
-    path: /etc/apt/sources.list.d/xpra-beta.sources
-    state: absent
-  become: true
-
-- name: remove xpra key
-  file:
-    path: /usr/share/keyrings/xpra.asc
-    state: absent
-  become: true
+      - waypipe
