@@ -14,11 +14,11 @@
 
 - name: grab helm installer
   get_url:
-    url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
     dest: /tmp/get_helm.sh
     mode: 777
   become: true
-- name: install the latest helm
+- name: install the latest helm 4
   shell:
     cmd: /tmp/get_helm.sh
   become: true
