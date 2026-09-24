@@ -19,3 +19,4 @@
     name:
       - waypipe
       - git-delta
+      - distrobox
