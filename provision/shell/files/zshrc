@@ -106,6 +106,13 @@ if command -v workmux &>/dev/null; then
   alias wm='workmux'
 fi
 
+# coder2
+
+if command -v coder2 &>/dev/null; then
+  # generated script hardcodes the "coder" binary name, so retarget it at coder2
+  source <(coder2 completion --shell zsh --print | sed -e 's/"coder"/"coder2"/' -e 's/^compdef _coder_completions coder$/compdef _coder_completions coder2/')
+fi
+
 # atuin
 
 . "$HOME/.atuin/bin/env"
