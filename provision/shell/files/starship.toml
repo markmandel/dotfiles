@@ -79,10 +79,9 @@ $os\
 $shell\
 $character"""
 
-
 [gcloud]
-format = '(on $symbol$project)($style) '
+format = '(on $symbol$project )($style)'
 
 [kubernetes]
-format = 'on [$symbol$context]($style) '
+format = 'on [$symbol $context]($style) '
 disabled = false
