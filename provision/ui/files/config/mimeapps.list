@@ -12,8 +12,10 @@ x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 x-scheme-handler/slack=slack.desktop
 x-scheme-handler/claude=com.anthropic.Claude.desktop
+image/webp=org.gnome.Loupe.desktop
 
 [Added Associations]
 image/jpeg=org.gnome.Loupe.desktop;display-im7.q16.desktop;
 image/png=org.gnome.Loupe.desktop;
 application/pdf=org.gnome.Evince.desktop;org.pwmt.zathura.desktop;
+image/webp=org.gnome.Loupe.desktop;
