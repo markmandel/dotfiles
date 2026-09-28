@@ -23,6 +23,7 @@
 - import_tasks: ghostty.yaml
 - import_tasks: flatpak.yaml
 - import_tasks: hyprland-install.yaml
+- import_tasks: brightness.yaml
 - import_tasks: hyprland-theme.yaml
 - import_tasks: chrome.yaml
 - import_tasks: google-drive.yaml

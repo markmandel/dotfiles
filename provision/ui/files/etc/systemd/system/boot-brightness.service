@@ -1,0 +1,12 @@
+[Unit]
+Description=Set screen backlight brightness to 80% on boot
+# systemd-backlight@.service restores the last saved brightness and runs
+# Before=sysinit.target, so default dependencies order us after it.
+ConditionPathExistsGlob=/sys/class/backlight/*
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/brightnessctl --class=backlight set 80%
+
+[Install]
+WantedBy=multi-user.target
