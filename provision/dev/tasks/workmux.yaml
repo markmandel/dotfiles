@@ -19,6 +19,13 @@
   retries: 5
   delay: 5
 
+- name: symlink workmux config into ~/.config
+  file:
+    src: "{{ role_path }}/files/config/workmux"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/workmux"
+    state: link
+    force: true
+
 # `workmux setup` requires an interactive terminal, so install the status
 # tracking hooks via the Claude Code plugin instead - workmux recognises an
 # enabled workmux-status plugin as configured.
