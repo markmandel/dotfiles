@@ -14,6 +14,36 @@
 
 nerdfont: true
 
+# Branch new worktrees from main, not whatever is checked out.
+base_branch: auto
+merge_strategy: rebase
+
 # Don't override tmux's window-status formats - tmux.conf renders
 # @workmux_status itself, so it keeps the status bar theme.
 status_format: false
+
+# Nerd Font glyphs take the colour of the tmux window pill, unlike emoji.
+status_icons:
+  working: "󰚩"
+  waiting: "󰍡"
+  done: "󰄬"
+
+# Rose Pine dashboard (https://rosepinetheme.com/palette/).
+theme:
+  mode: dark
+  custom:
+    current_row_bg: "#403d52"      # highlight med
+    highlight_row_bg: "#26233a"    # overlay
+    current_worktree_fg: "#c4a7e7" # iris
+    dimmed: "#6e6a86"              # muted
+    text: "#e0def4"                # text
+    border: "#524f67"              # highlight high
+    help_border: "#c4a7e7"         # iris
+    help_muted: "#908caa"          # subtle
+    header: "#908caa"              # subtle
+    keycap: "#ebbcba"              # rose
+    info: "#31748f"                # pine
+    success: "#9ccfd8"             # foam
+    warning: "#f6c177"             # gold
+    danger: "#eb6f92"              # love
+    accent: "#c4a7e7"              # iris
