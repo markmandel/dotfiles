@@ -213,7 +213,7 @@ hl.gesture({
 
 -- Special workspaces
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("special"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special", silent = true }))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special", follow = false }))
 
 -- Restore the scratchpad if it gets shut down.
 hl.bind(mainMod .. " + F12", function ()
