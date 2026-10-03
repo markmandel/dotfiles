@@ -13,10 +13,12 @@
 # limitations under the License.
 ---
 
+# Community .deb from https://github.com/mkasberg/ghostty-ubuntu, as recommended by
+# https://ghostty.org/docs/install/binary
 - name: Get latest ghostty (forky) deb
   shell:
     chdir: /tmp
-    cmd: curl -s https://api.github.com/repos/markmandel/ghostty-debian/releases/latest | jq -r '.assets[] | select(.name | endswith("forky_amd64.deb")) | .browser_download_url' | xargs -I{} wget -qO ghostty.deb {}
+    cmd: curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | jq -r '.assets[] | select(.name | endswith("amd64_forky.deb")) | .browser_download_url' | xargs -I{} wget -qO ghostty.deb {}
   retries: 5
   delay: 5
 
