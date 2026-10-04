@@ -80,7 +80,8 @@ $shell\
 $character"""
 
 [gcloud]
-format = '(on $symbol$project )($style)'
+symbol = '⛅ '
+format = '(on [$symbol$project]($style) )'
 
 [kubernetes]
 format = 'on [$symbol $context]($style) '
