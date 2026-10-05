@@ -286,8 +286,8 @@ hl.bind(mainMod .. " + Home", hl.dsp.exec_cmd("dunstctl history-pop"))
 hl.bind("Print", hl.dsp.exec_cmd([[grim -g "$(slurp)" - | swappy -f -]]))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grim /tmp/screenshot.png && gimp /tmp/screenshot.png"))
 
--- CopyQ
-hl.bind("CTRL + SHIFT + A", hl.dsp.exec_cmd("copyq show"))
+-- Clipboard
+hl.bind("CTRL + SHIFT + A", hl.dsp.exec_cmd("vicinae deeplink vicinae://launch/clipboard/history"))
 
 -- lan-mouse keyboard shortcuts
 hl.bind("CTRL + ALT + Up", hl.dsp.exec_cmd("wlrctl pointer move 0 -10000"))

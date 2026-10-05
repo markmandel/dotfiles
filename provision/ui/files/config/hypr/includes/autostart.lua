@@ -42,9 +42,6 @@ hl.on("hyprland.start", function ()
         "sleep 5s && grep apps.googleusercontent.com ~/.gdfuse/default/config && google-drive-ocamlfuse ~/GoogleDrive"
     )
 
-    -- CopyQ!
-    hl.exec_cmd("sleep 3s && copyq")
-
     -- Network management
     hl.exec_cmd("sleep 2s && nm-applet --indicator")
     -- bluetooth

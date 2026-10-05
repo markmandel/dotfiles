@@ -68,14 +68,6 @@ hl.window_rule({
     match     = { class = "^(org.keepassxc.KeePassXC)$" },
 })
 
--- CopyQ
-hl.window_rule({
-    name  = "copyq",
-    float = true,
-    size  = "(monitor_w*0.5) (monitor_h*0.75)",
-    match = { class = "^(com.github.hluk.copyq)$" },
-})
-
 -- XDG desktop portal (GTK) file picker, etc.
 hl.window_rule({
     name   = "xdg-desktop-portal-gtk",

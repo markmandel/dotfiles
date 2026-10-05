@@ -20,9 +20,6 @@
       - alacarte
       - audacity
       - baobab
-      - copyq
-      - copyq-doc
-      - copyq-plugins
       - dconf-cli
       - dconf-editor
       - firefox-esr
@@ -77,5 +74,7 @@
   become: true
   apt:
     name:
-      - waybar
+      - copyq
+      - copyq-doc
+      - copyq-plugins
     state: absent
