@@ -20,3 +20,4 @@
       - waypipe
       - git-delta
       - distrobox
+      - shellcheck
