@@ -50,7 +50,12 @@
       },
       "clipboard": {
          "preferences": {
-            "monitoring": true
+            "monitoring": true,
+            "ignorePasswords": true,
+            "preserveTagged": true,
+            "ignoredApps": [],
+            "evictionThreshold": "604800",
+            "eraseOnStartup": false
          }
       },
       "core": {
