@@ -68,6 +68,17 @@
             }
          }
       },
+      "files": {
+         "preferences": {
+            "autoIndexing": true,
+            "indexingPaths": [
+               "/home/mark"
+            ],
+            "excludedIndexingPaths": [
+               "/home/mark/GoogleDrive"
+            ]
+         }
+      },
       "power": {
          "entrypoints": {
             "hibernate": {
