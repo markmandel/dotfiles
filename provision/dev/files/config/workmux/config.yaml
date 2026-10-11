@@ -18,6 +18,13 @@ nerdfont: true
 base_branch: auto
 merge_strategy: rebase
 
+# Start the agent in new worktrees, so `workmux add -P` can hand it a prompt.
+# `<agent>` resolves to the `agent` setting (default: claude).
+panes:
+  - command: <agent>
+    focus: true
+  - split: horizontal
+
 # Don't override tmux's window-status formats - tmux.conf renders
 # @workmux_status itself, so it keeps the status bar theme.
 status_format: false
