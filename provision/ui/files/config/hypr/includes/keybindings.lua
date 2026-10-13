@@ -37,10 +37,16 @@ local function notify(message)
     )
 end
 
+-- The workspace the user is looking at: the open special workspace if there is one,
+-- otherwise the regular active workspace underneath it.
+local function current_workspace()
+    return hl.get_active_special_workspace() or hl.get_active_workspace()
+end
+
 -- bind to specific layout
 local function layout_bind(bind_table)
     return function ()
-        local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
+        local workspace = current_workspace()
         if not workspace then
             return
         end
@@ -66,7 +72,7 @@ hl.bind(mainMod .. " + CTRL + J", hl.dsp.exec_cmd("vicinae deeplink vicinae://la
 -- Layout Manipulation
 hl.bind(mainMod .. " + Space", function ()
     local layouts = { "master", "lua:columns", "scrolling" }
-    local workspace = hl.get_active_workspace()
+    local workspace = current_workspace()
     local next_layout = "lua:columns"
 
     if not workspace then
@@ -117,13 +123,13 @@ hl.bind(
 
 -- Primary/Secondary layout toggle
 hl.bind(mainMod .. " + SHIFT + Space", function ()
-    local workspace = hl.get_active_workspace()
+    local workspace = current_workspace()
     if not workspace then return end
     hl.workspace_rule({ workspace = workspace.name, layout = "master" })
     notify("Layout: master")
 end)
 hl.bind("CTRL + SHIFT + " .. mainMod .. " + Space", function ()
-    local workspace = hl.get_active_workspace()
+    local workspace = current_workspace()
     if not workspace then return end
     notify("Layout: " .. (workspace.tiled_layout or "unknown"))
 end)
