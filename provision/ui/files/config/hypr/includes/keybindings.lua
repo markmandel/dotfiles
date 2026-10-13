@@ -108,6 +108,8 @@ hl.bind(
 hl.bind(
     mainMod .. " + SHIFT + equal",
     layout_bind({
+        -- master has no reset, so set mfact back to its default (0.55)
+        master = hl.dsp.layout("mfact exact 0.55"),
         ["lua:columns"] = hl.dsp.layout("reset"),
         scrolling = hl.dsp.layout("fit all")
     })
@@ -191,6 +193,7 @@ end)
 
 -- Previous workspace
 hl.bind(mainMod .. " + grave", hl.dsp.focus({ workspace = "previous", on_current_monitor=true }))
+hl.bind(mainMod .. " + SHIFT + grave", hl.dsp.window.move({ workspace = "previous", follow = false }))
 
 -- Move focus to other monitor
 hl.bind(mainMod .. " + W", hl.dsp.focus({ monitor = "-1" }))
