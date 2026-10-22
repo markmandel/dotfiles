@@ -240,7 +240,7 @@ hl.bind(mainMod .. " + CTRL + K", function ()
     for _, w in ipairs(windows) do
         if w.class == "org.keepassxc.KeePassXC" then return end
     end
-    hl.dispatch(hl.dsp.exec_cmd("flatpak run org.keepassxc.KeePassXC"))
+    hl.dispatch(hl.dsp.exec_cmd("keepassxc"))
 end)
 hl.bind(mainMod .. " + CTRL + K", hl.dsp.workspace.toggle_special("keepass"))
 
