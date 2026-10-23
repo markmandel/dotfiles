@@ -17,10 +17,30 @@
 set -eo pipefail
 set -x
 
-gh pr list --author markmandel --state merged --limit 10 --json headRefName --jq '.[] | .headRefName' | xargs -I{} git push origin :{} || true
+git fetch --all --prune
 
-git checkout main
-git remote update -p
+# Delete remote branches of my merged PRs that still exist on origin.
+# Pushing the delete also removes the remote-tracking ref, so the local branch shows as gone.
+gh pr list --author @me --state merged --limit 20 --json headRefName --jq '.[].headRefName' |
+    while read -r branch; do
+        if git show-ref --verify --quiet "refs/remotes/origin/${branch}"; then
+            git push origin --delete "${branch}" || true
+        fi
+    done
 
-git branch -vvv | grep ": gone" | awk '{ print $1 }' | xargs git branch -D || true
+default_branch=$(git rev-parse --abbrev-ref origin/HEAD 2> /dev/null || echo origin/main)
+git switch "${default_branch#origin/}"
+
+# Remove workmux worktrees (and their tmux windows) whose upstream branch is gone,
+# before deleting branches, as git won't delete a branch checked out in a worktree.
+if command -v workmux &> /dev/null; then
+    workmux remove --gone || true
+fi
+git worktree prune
+
+# Delete local branches whose upstream is gone. Uses -D, as squash merges aren't seen as merged.
+git for-each-ref --format '%(refname:short) %(upstream:track)' refs/heads |
+    awk '$2 == "[gone]" { print $1 }' |
+    xargs -r git branch -D
+
 git pull --rebase
