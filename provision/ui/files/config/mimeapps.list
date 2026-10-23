@@ -14,6 +14,7 @@ x-scheme-handler/slack=slack.desktop
 x-scheme-handler/claude=com.anthropic.Claude.desktop
 image/webp=org.gnome.Loupe.desktop
 text/markdown=me.mitya57.ReText.desktop
+x-scheme-handler/unityhub=unityhub.desktop
 
 [Added Associations]
 image/jpeg=org.gnome.Loupe.desktop;display-im7.q16.desktop;
@@ -21,3 +22,4 @@ image/png=org.gnome.Loupe.desktop;
 application/pdf=org.gnome.Evince.desktop;org.pwmt.zathura.desktop;
 image/webp=org.gnome.Loupe.desktop;
 text/markdown=me.mitya57.ReText.desktop;
+x-scheme-handler/unityhub=unityhub.desktop;
