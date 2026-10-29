@@ -21,6 +21,8 @@ limitations under the License.
 -- See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 -- See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
 
+local colours = require("includes.rose-pine")
+
 hl.config({
     binds = {
         hide_special_on_workspace_change = true,
@@ -75,4 +77,12 @@ hl.window_rule({
     center = true,
     size   = "(monitor_w*0.6) (monitor_h*0.8)",
     match  = { class = "^(xdg-desktop-portal-gtk)$" },
+})
+
+-- Windows copied to multiple workspaces (see copywindow.lua)
+hl.window_rule({
+    name         = "copied-window",
+    -- Only the active border; inactive stays the theme default
+    border_color = "rgb(" .. colours.iris .. ")",
+    match        = { tag = "copied" },
 })

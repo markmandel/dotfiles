@@ -22,6 +22,7 @@ limitations under the License.
 -- so we track the set of workspaces each window has been "copied" to, and move
 -- it to whichever of those workspaces becomes active. Its place in each
 -- workspace's layout is remembered and restored when it comes back.
+-- Copied windows are tagged "copied", which rules.lua uses to colour the border.
 
 local M = {}
 
@@ -31,7 +32,19 @@ local copies = {}
 -- window address -> { [workspace_id] = { prev = address|nil, index = integer } }
 local positions = {}
 
+-- Add or remove the "copied" tag. Resolve the window first: if the selector
+-- doesn't match a window, Hyprland falls back to the *active* window instead.
+local function tag(address, enabled)
+    local window = hl.get_window("address:" .. address)
+    if window then
+        hl.dispatch(hl.dsp.window.tag({ tag = (enabled and "+" or "-") .. "copied", window = window }))
+    end
+end
+
 local function forget(address)
+    if copies[address] then
+        tag(address, false)
+    end
     copies[address] = nil
     positions[address] = nil
 end
@@ -136,6 +149,7 @@ function M.copy_to(workspace_id)
     set[window.workspace.id] = true
     set[workspace_id] = true
     copies[window.address] = set
+    tag(window.address, true)
 end
 
 -- Remove the active window from the current workspace if it has been copied
