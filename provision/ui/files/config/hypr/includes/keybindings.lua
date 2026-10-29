@@ -23,6 +23,7 @@ local host = require("includes.hostname")
 -- See https://wiki.hyprland.org/Configuring/Keywords/
 
 local programs = require("includes.programs")
+local copywindow = require("includes.copywindow")
 local mainMod = "SUPER"
 
 ---- FUNCTIONS ------
@@ -59,7 +60,8 @@ end
 
 -- General bindings
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd(programs.terminal))
-hl.bind(mainMod .. " + X", hl.dsp.window.close())
+-- Removes the window from this workspace if copied elsewhere, otherwise closes it
+hl.bind(mainMod .. " + X", copywindow.kill_copy)
 hl.bind(mainMod .. " + M", hl.dsp.exit())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Z", hl.dsp.window.fullscreen({ mode = 1 }))
@@ -176,6 +178,7 @@ hl.bind(
 
 -- Switch workspaces with mainMod + [0-9] and numpad
 -- Move active window to a workspace with mainMod + SHIFT + [0-9] and numpad
+-- Copy active window to a workspace with mainMod + SHIFT + CTRL + [0-9] and numpad
 local numpad_keys = {
     "KP_End", "KP_Down", "KP_Next", "KP_Left", "KP_Begin", "KP_Right", "KP_Home", "KP_Up", "KP_Prior", "KP_Insert"
 }
@@ -186,6 +189,8 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
     hl.bind(mainMod .. " + " .. numpad, hl.dsp.focus({ workspace = i, on_current_monitor = true }))
     hl.bind(mainMod .. " + SHIFT + " .. numpad, hl.dsp.window.move({ workspace = i, follow = false }))
+    hl.bind(mainMod .. " + SHIFT + CTRL + " .. key, function () copywindow.copy_to(i) end)
+    hl.bind(mainMod .. " + SHIFT + CTRL + " .. numpad, function () copywindow.copy_to(i) end)
 end
 
 -- move window _down_ from a special workspace
