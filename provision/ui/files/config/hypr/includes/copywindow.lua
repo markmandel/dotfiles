@@ -178,8 +178,7 @@ function M.kill_copy()
 end
 
 -- Bring copied windows along to the workspace that just became active.
-hl.on("workspace.active", function (workspace)
-    workspace = workspace or hl.get_active_workspace()
+local function follow(workspace)
     if not workspace or workspace.special then
         return
     end
@@ -192,6 +191,17 @@ hl.on("workspace.active", function (workspace)
             end
         end
     end
+end
+
+hl.on("workspace.active", function (workspace)
+    follow(workspace or hl.get_active_workspace())
+end)
+
+-- Focusing another monitor doesn't change workspaces, but the workspace it
+-- shows may be one a copied window should follow to.
+hl.on("monitor.focused", function (monitor)
+    local workspace = type(monitor) == "userdata" and monitor.active_workspace
+    follow(workspace or hl.get_active_workspace())
 end)
 
 -- Moving a copied window somewhere outside its set (e.g. mod+shift+N) makes it
