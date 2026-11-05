@@ -276,3 +276,6 @@ filters = [ "host", "session", "workspace", "directory" ]
 
 [ai]
 enabled = false
+
+[threads]
+capture = true

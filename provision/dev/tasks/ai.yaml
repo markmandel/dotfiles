@@ -17,6 +17,21 @@
   retries: 5
   delay: 5
 
+- name: Ensure ~/.claude/skills exists
+  file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.claude/skills"
+    state: directory
+
+# If a skill already exists as a real directory, remove it manually first -
+# Ansible won't replace a non-empty directory with a symlink.
+- name: Symlink Claude skills into ~/.claude/skills
+  file:
+    src: "{{ role_path }}/files/claude/skills/{{ item }}"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.claude/skills/{{ item }}"
+    state: link
+    force: true
+  with_items: "{{ lookup('pipe', 'find ' + role_path + '/files/claude/skills -mindepth 1 -maxdepth 1 -type d -printf \"%f\\n\"').splitlines() }}"
+
 - name: Ensure ~/.local/bin exists
   file:
     path: ~/.local/bin
