@@ -24,6 +24,7 @@ local host = require("includes.hostname")
 
 local programs = require("includes.programs")
 local copywindow = require("includes.copywindow")
+local scrolling = require("includes.scrolling")
 local mainMod = "SUPER"
 
 ---- FUNCTIONS ------
@@ -44,16 +45,18 @@ local function current_workspace()
     return hl.get_active_special_workspace() or hl.get_active_workspace()
 end
 
--- bind to specific layout
+-- bind to specific layout. Each entry is a dispatcher or a function to call.
 local function layout_bind(bind_table)
     return function ()
         local workspace = current_workspace()
         if not workspace then
             return
         end
-        local layout = workspace.tiled_layout
-        if bind_table[layout] then
-            hl.dispatch(bind_table[layout])
+        local action = bind_table[workspace.tiled_layout]
+        if type(action) == "function" then
+            action()
+        elseif action then
+            hl.dispatch(action)
         end
     end
 end
@@ -104,13 +107,13 @@ end)
 hl.bind(
     mainMod .. " + minus",
     layout_bind({
-        scrolling = hl.dsp.layout("colresize -conf")
+        scrolling = function () scrolling.colresize_all(-1) end
     })
 )
 hl.bind(
     mainMod .. " + equal",
     layout_bind({
-        scrolling = hl.dsp.layout("colresize +conf")
+        scrolling = function () scrolling.colresize_all(1) end
     })
 )
 hl.bind(
