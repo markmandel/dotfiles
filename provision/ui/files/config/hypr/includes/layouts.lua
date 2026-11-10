@@ -44,32 +44,46 @@ local function swap_with_master(ctx)
     return true
 end
 
--- Top-level map: workspace_id (integer) -> { offsets: table<string, number> }
+-- Top-level map: workspace key (string) -> { offsets: table<string, number> }
 local workspaces = {}
 
--- Returns the offsets table for the given workspace id, creating it if needed.
-local function get_offsets(workspace_id)
-    if workspaces[workspace_id] == nil then
-        workspaces[workspace_id] = { offsets = {} }
-    end
-    return workspaces[workspace_id].offsets
-end
-
--- Returns the active workspace id, or nil if unavailable.
-local function active_workspace_id()
-    local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
+-- Returns a stable key for a workspace. Workspace ids can be nil (e.g. special
+-- workspaces as of Hyprland 0.57), so prefer the name, which is always set.
+local function workspace_key(workspace)
     if not workspace then
         return nil
     end
-    return workspace.id
+    return workspace.name or (workspace.id ~= nil and tostring(workspace.id)) or nil
 end
 
--- Resets all column offsets for the workspace, restoring equal-width columns.
-local function reset_offsets()
-    local ws_id = active_workspace_id()
-    if ws_id ~= nil then
-        workspaces[ws_id] = nil
+---@param ctx HL.LayoutContext
+-- Returns the key of the workspace being laid out. Derived from the targets'
+-- windows rather than the active workspace, since recalculate can run for a
+-- workspace that isn't focused (e.g. the normal workspace under a special one).
+local function ctx_workspace_key(ctx)
+    for _, target in ipairs(ctx.targets) do
+        local key = target.window and workspace_key(target.window.workspace)
+        if key ~= nil then
+            return key
+        end
     end
+    return workspace_key(hl.get_active_special_workspace() or hl.get_active_workspace()) or ""
+end
+
+---@param ctx HL.LayoutContext
+-- Returns the offsets table for the workspace being laid out, creating it if needed.
+local function get_offsets(ctx)
+    local key = ctx_workspace_key(ctx)
+    if workspaces[key] == nil then
+        workspaces[key] = { offsets = {} }
+    end
+    return workspaces[key].offsets
+end
+
+---@param ctx HL.LayoutContext
+-- Resets all column offsets for the workspace, restoring equal-width columns.
+local function reset_offsets(ctx)
+    workspaces[ctx_workspace_key(ctx)] = nil
     return true
 end
 
@@ -113,8 +127,7 @@ local function resize(ctx, amount)
     local left_key  = ctx.targets[left_idx].window and ctx.targets[left_idx].window.address or tostring(left_idx)
     local right_key = ctx.targets[right_idx].window and ctx.targets[right_idx].window.address or tostring(right_idx)
 
-    local ws_id  = active_workspace_id()
-    local offsets = get_offsets(ws_id)
+    local offsets = get_offsets(ctx)
 
     -- Check that the resize won't push either window to 0 or below; if so, abort
     local base_w = ctx.area.w / n
@@ -140,7 +153,7 @@ hl.layout.register("columns", {
         -- Compute base equal-width columns then apply stored offsets
         local base_w = ctx.area.w / n
         local x = ctx.area.x
-        local offsets = get_offsets(active_workspace_id())
+        local offsets = get_offsets(ctx)
         for i, target in ipairs(ctx.targets) do
             local key = target.window and target.window.address or tostring(i)
             local offset = offsets[key] or 0
@@ -164,7 +177,7 @@ hl.layout.register("columns", {
         end
 
         if message == "reset" then
-            return reset_offsets()
+            return reset_offsets(ctx)
         end
 
         return message .. " is not supported"
