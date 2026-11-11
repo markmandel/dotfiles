@@ -159,6 +159,7 @@ hl.bind(
 )
 
 -- Move focus
+hl.bind(mainMod .. " + tab", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + SHIFT + tab", hl.dsp.window.cycle_next({ next = false }))
 hl.bind(mainMod .. " + J", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + K", hl.dsp.window.cycle_next({ next = false }))
@@ -220,9 +221,9 @@ hl.bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ monitor = "+1" }))
 local function overview()
     hl.exec_cmd("quickshell -c ~/scripts/quickshell/overview")
 end
--- Super+Tab opens the overview. Once it is open, the bind does nothing and, being
+-- Super+Q opens the overview. Once it is open, the bind does nothing and, being
 -- non-consuming, lets the key through to the overview, which moves to the next window.
-hl.bind(mainMod .. " + tab", function ()
+hl.bind(mainMod .. " + Q", function ()
     if #hl.get_layers({ namespace = "quickshell-overview" }) > 0 then
         return
     end
@@ -320,5 +321,5 @@ hl.bind("CTRL + ALT + Down", hl.dsp.exec_cmd("wlrctl pointer move 0 10000"))
 ---  DISCORD  ---
 -----------------
 host.on_host("discord", function ()
-    hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("~/workspace/discord-notification-center/target/release/discord-notification-center toggle"))
+    hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("~/workspace/discord-notification-center/target/release/discord-notification-center toggle"))
 end)

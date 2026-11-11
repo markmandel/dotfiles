@@ -107,8 +107,14 @@ FocusScope {
 
     // Capture typing for the filter
     Keys.onPressed: function(event) {
-        if (event.key === Qt.Key_Tab) {
-            // Tab / Super+Tab (passed through from Hyprland): next window, wrapping
+        var superQ = event.key === Qt.Key_Q && (event.modifiers & Qt.MetaModifier)
+        if (superQ && (event.modifiers & Qt.ShiftModifier)) {
+            // Super+Shift+Q: previous window, wrapping
+            var k = focusedIndex()
+            navigateTo(k > 0 ? k - 1 : repeater.count - 1)
+            event.accepted = true
+        } else if (event.key === Qt.Key_Tab || superQ) {
+            // Tab / Super+Q (passed through from Hyprland): next window, wrapping
             var i = focusedIndex()
             navigateTo(i >= 0 && i < repeater.count - 1 ? i + 1 : 0)
             event.accepted = true
