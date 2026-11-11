@@ -35,3 +35,33 @@
   apt:
     name: yazi
     update_cache: true
+
+# Optional dependencies: https://yazi-rs.github.io/docs/installation
+# fzf and fd-find come from tmux.yaml, wl-clipboard and the nerd font from the
+# ui role, and 7-zip (p7zip-full), jq and zoxide from std_packages.yaml.
+- name: Install yazi dependencies
+  become: true
+  apt:
+    name:
+      - file
+      - ffmpeg
+      - poppler-utils
+      - ripgrep
+      - resvg
+      - imagemagick
+
+# yazi's search runs `fd`, but Debian ships it as `fdfind` (fd-find, from tmux.yaml).
+- name: link fd to fdfind
+  file:
+    src: /usr/bin/fdfind
+    path: ~/.local/bin/fd
+    state: link
+    force: true
+
+# Rose Pine flavor is vendored in files/yazi so it can be tweaked over time.
+- name: link yazi config
+  file:
+    src: "{{ role_path }}/files/yazi"
+    path: ~/.config/yazi
+    state: link
+    force: true

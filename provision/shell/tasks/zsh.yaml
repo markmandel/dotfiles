@@ -81,5 +81,3 @@
 - name: link atuin config
   shell: |
     ln --force -s {{ role_path }}/files/config.toml ~/.config/atuin/config.toml
-
-# TODO: https://github.com/ajeetdsouza/zoxide
