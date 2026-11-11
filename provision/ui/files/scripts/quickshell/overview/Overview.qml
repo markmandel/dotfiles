@@ -107,7 +107,17 @@ FocusScope {
 
     // Capture typing for the filter
     Keys.onPressed: function(event) {
-        if (event.key === Qt.Key_Backspace) {
+        if (event.key === Qt.Key_Tab) {
+            // Tab / Super+Tab (passed through from Hyprland): next window, wrapping
+            var i = focusedIndex()
+            navigateTo(i >= 0 && i < repeater.count - 1 ? i + 1 : 0)
+            event.accepted = true
+        } else if (event.key === Qt.Key_Backtab) {
+            // Shift+Tab: previous window, wrapping
+            var j = focusedIndex()
+            navigateTo(j > 0 ? j - 1 : repeater.count - 1)
+            event.accepted = true
+        } else if (event.key === Qt.Key_Backspace) {
             overview.filterText = overview.filterText.slice(0, -1)
             event.accepted = true
         } else if (event.text && event.text.length === 1

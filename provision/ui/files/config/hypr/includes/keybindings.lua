@@ -159,7 +159,6 @@ hl.bind(
 )
 
 -- Move focus
-hl.bind(mainMod .. " + tab", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + SHIFT + tab", hl.dsp.window.cycle_next({ next = false }))
 hl.bind(mainMod .. " + J", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + K", hl.dsp.window.cycle_next({ next = false }))
@@ -221,7 +220,14 @@ hl.bind(mainMod .. " + SHIFT + E", hl.dsp.window.move({ monitor = "+1" }))
 local function overview()
     hl.exec_cmd("quickshell -c ~/scripts/quickshell/overview")
 end
-hl.bind(mainMod .. " + G", overview)
+-- Super+Tab opens the overview. Once it is open, the bind does nothing and, being
+-- non-consuming, lets the key through to the overview, which moves to the next window.
+hl.bind(mainMod .. " + tab", function ()
+    if #hl.get_layers({ namespace = "quickshell-overview" }) > 0 then
+        return
+    end
+    overview()
+end, { non_consuming = true })
 hl.gesture({
     fingers = 3,
     direction = "up",

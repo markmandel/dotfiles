@@ -31,6 +31,8 @@ PanelWindow {
     aboveWindows: true
     focusable: true
     WlrLayershell.layer: WlrLayer.Overlay
+    // Hyprland's Super+Tab bind looks for this namespace to tell if the overview is open
+    WlrLayershell.namespace: "quickshell-overview"
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
     color: Qt.rgba(Theme.overlay.r, Theme.overlay.g, Theme.overlay.b, 0.85)
