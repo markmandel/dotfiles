@@ -54,6 +54,8 @@ plugins=(
     tmux
     colored-man-pages
     autojump
+    zoxide
+    fzf
     dirhistory
     zsh-syntax-highlighting
     zsh-autosuggestions
@@ -87,6 +89,10 @@ zstyle :omz:plugins:ssh-agent agent-forwarding yes
 zstyle :omz:plugins:ssh-agent lazy yes
 
 source $ZSH/oh-my-zsh.sh
+
+# fzf pickers, matching the dashboard picker bindings
+bindkey '^F' fzf-file-widget
+bindkey '^E' fzf-cd-widget
 
 # Set autocomplete formatting
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#2AA198,bg=,," 

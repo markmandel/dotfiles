@@ -34,6 +34,7 @@
       - btop
       - p7zip-full
       - autojump
+      - zoxide
       - trash-cli
       - tree
       - gdebi
