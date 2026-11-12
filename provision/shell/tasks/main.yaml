@@ -19,3 +19,4 @@
 - import_tasks: git_config.yaml
 - import_tasks: zsh.yaml
 - import_tasks: yazi.yaml
+- import_tasks: sesh.yaml

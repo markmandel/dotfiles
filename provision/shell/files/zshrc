@@ -117,6 +117,12 @@ if command -v workmux &>/dev/null; then
   alias wm='workmux'
 fi
 
+# sesh
+
+if command -v sesh &>/dev/null; then
+  source <(sesh completion zsh)
+fi
+
 # coder2
 
 if command -v coder2 &>/dev/null; then
