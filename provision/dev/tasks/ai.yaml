@@ -17,6 +17,21 @@
   retries: 5
   delay: 5
 
+# Both add and install succeed if already present, but install doesn't upgrade,
+# so refresh the marketplace and update the plugin on every run.
+# The status line itself is set up once with the plugin's /claude-hud:hud skill.
+- name: Add claude-hud plugin marketplace
+  shell: ~/.local/bin/claude plugin marketplace add jarrodwatts/claude-hud
+
+- name: Install claude-hud plugin
+  shell: ~/.local/bin/claude plugin install claude-hud@claude-hud
+
+- name: Update claude-hud plugin marketplace
+  shell: ~/.local/bin/claude plugin marketplace update claude-hud
+
+- name: Update claude-hud plugin
+  shell: ~/.local/bin/claude plugin update claude-hud@claude-hud
+
 - name: Ensure ~/.claude/skills exists
   file:
     path: "{{ ansible_facts['env']['HOME'] }}/.claude/skills"

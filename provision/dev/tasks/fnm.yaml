@@ -1,0 +1,37 @@
+# Copyright 2026 Mark Mandel All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# fnm (Fast Node Manager) installs official Node.js builds in the home directory.
+# Debian's nodejs is built without TypeScript type-stripping, which some tools need.
+# The system nodejs (npm.yaml) stays as the default `node`: no shell integration is
+# set up here, and each project installs the Node versions it needs with fnm.
+#
+# Re-running this upgrades fnm to its latest release.
+
+---
+- name: Install or upgrade fnm
+  shell: curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell --install-dir ~/.local/share/fnm
+  args:
+    executable: /bin/bash
+
+- name: Create ~/.local/bin
+  file:
+    path: ~/.local/bin
+    state: directory
+
+- name: Link fnm into ~/.local/bin
+  file:
+    src: ~/.local/share/fnm/fnm
+    dest: ~/.local/bin/fnm
+    state: link

@@ -25,6 +25,7 @@
 - import_tasks: terraform.yaml
 - import_tasks: rust.yaml
 - import_tasks: npm.yaml
+- import_tasks: fnm.yaml
 - import_tasks: gh-cli.yaml
 - import_tasks: gcloud.yaml
 - import_tasks: minikube.yaml
