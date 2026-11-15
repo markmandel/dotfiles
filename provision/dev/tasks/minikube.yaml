@@ -19,3 +19,16 @@
     deb: https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
   retries: 5
   delay: 5
+- name: Install libvirt for the minikube kvm2 driver
+  become: true
+  apt:
+    name:
+      - libvirt-daemon-system
+      - libvirt-clients
+    state: present
+- name: Add user to libvirt group
+  become: true
+  user:
+    name: "{{ ansible_facts['user_id'] }}"
+    groups: libvirt
+    append: true
