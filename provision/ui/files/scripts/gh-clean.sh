@@ -44,3 +44,4 @@ git for-each-ref --format '%(refname:short) %(upstream:track)' refs/heads |
     xargs -r git branch -D
 
 git pull --rebase
+workmux claude prune
