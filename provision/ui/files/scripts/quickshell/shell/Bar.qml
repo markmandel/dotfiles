@@ -43,6 +43,7 @@ PanelWindow {
 
     // Workspaces on the left
     RowLayout {
+        id: leftSection
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
@@ -55,9 +56,19 @@ PanelWindow {
         }
     }
 
-    // Active window title in the center
+    // Active window title in the center. Width is capped to the space
+    // between the left and right sections (kept symmetric so it stays
+    // centered), eliding on the right so the start of the title stays visible.
     Text {
+        readonly property int gap: 12
+        readonly property real sideExtent: Math.max(
+            leftSection.width,
+            rightSection.width + rightSection.anchors.rightMargin)
+
         anchors.centerIn: parent
+        width: Math.max(0, Math.min(implicitWidth, bar.width - 2 * (sideExtent + gap)))
+        elide: Text.ElideRight
+        maximumLineCount: 1
         color: Theme.text
         font.family: "JetBrains Mono"
         font.pixelSize: 10
@@ -67,6 +78,7 @@ PanelWindow {
 
     // Right side: system tray + clock
     RowLayout {
+        id: rightSection
         anchors.right: parent.right
         anchors.rightMargin: 8
         anchors.top: parent.top
