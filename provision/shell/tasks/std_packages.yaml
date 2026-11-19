@@ -44,3 +44,11 @@
       - net-tools
       - ntpsec
       - jq
+
+# TODO: cleanup 30 December 2026
+- name: Cleanup.
+  become: true
+  apt:
+    name:
+      - autojump
+    state: absent
