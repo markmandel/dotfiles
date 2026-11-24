@@ -42,7 +42,7 @@
   shell:
     chdir: /opt/intellij
     cmd: |
-      find -maxdepth 1 -type d -name 'idea*' | head -n 1 | xargs -I{} ln -s --no-dereference --force {} active
+      find -maxdepth 1 -type d -name 'idea*' | sort -V | tail -n 1 | xargs -I{} ln -s --no-dereference --force {} active
   when: not intellij_download.stat.exists
       
 - name: create /usr/local/bin/ intellij link
